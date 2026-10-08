@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#ff78a8">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff76aa'/%3E%3Cpath d='M32 9l6.2 14.2L54 25l-11.7 10.7L45.6 51 32 43.2 18.4 51l3.3-15.3L10 25l15.8-1.8z' fill='%23ffd95e' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
+  <title>Grade 1 Colorful Review</title>
+  <meta name="description" content="Interactive Grade 1 review for Language Arts, Math, and Science.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-quiz-mode="list">
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">★</span><span>Grade 1 Review</span></div>
+    <div class="top-progress" aria-live="polite"><span id="subjectLabel">Choose a subject</span><div class="mini-track"><span id="miniFill"></span></div></div>
+    <nav class="top-nav-actions" role="tablist" aria-label="Các màn hình chính">
+      <button id="homeBtn" class="top-tab active" type="button" role="tab" aria-selected="true">🏠 Trang chủ</button>
+      <button id="catalogBtn" class="top-tab" type="button" role="tab" aria-selected="false">📚 Danh sách</button>
+      <button id="historyBtn" class="top-tab" type="button" role="tab" aria-selected="false">🕘 History</button>
+    </nav>
+  </header>
+  <main>
+    <section id="homeView" class="home-view">
+      <section class="elsa-landing" aria-labelledby="landingGreeting">
+        <div class="elsa-landing-copy"><p class="eyebrow">ELSA'S LEARNING WORLD</p><h1 id="landingGreeting">Hello! My name is Elsa!</h1><p id="landingWish">Welcome to my website. Let’s learn together!</p><button id="letsGoBtn" class="landing-cta" type="button">Let’s go! <span aria-hidden="true">→</span></button></div>
+        <img id="landingMascot" src="assets/mascot/academy/welcome.webp" alt="Elsa welcomes you to learn">
+      </section>
+    </section>
+    <section id="catalogView" class="catalog-view" hidden>
+      <section class="character-picker" aria-labelledby="characterTitle">
+        <div><p class="eyebrow">YOUR LEARNING BUDDY</p><h2 id="characterTitle">Choose your quiz friend</h2></div>
+        <div class="character-tools">
+          <button id="userListBtn" class="user-list-btn" type="button" aria-expanded="false" aria-controls="characterOptions"><span aria-hidden="true">👥</span><span>Danh sách người dùng<small>Show all profiles</small></span><b aria-hidden="true">⌄</b></button>
+          <div class="character-options" id="characterOptions"></div>
+          <button id="addUserBtn" class="add-user-btn" type="button" hidden><span aria-hidden="true">＋</span><span>Add user<small>Tạo người dùng</small></span></button>
+        </div>
+      </section>
+      <aside class="promise"><span>🖼️ Picture with every question</span><span>💾 Answers save on this device</span><span>⭐ Submit once after finishing</span></aside>
+      <header class="catalog-heading">
+        <div><p class="eyebrow">QUIZ LIBRARY</p><h1>Danh sách bài quiz</h1><p>Sắp xếp theo ngày upload mới nhất; mỗi ngày gồm các môn học riêng.</p></div>
+        <button id="catalogHomeBtn" class="ghost-btn" type="button">Về trang chủ</button>
+      </header>
+      <form class="catalog-filters" aria-label="Bộ lọc danh sách quiz">
+        <label for="catalogSubjectFilter"><span>Môn học</span><select id="catalogSubjectFilter"><option value="all">Tất cả môn học</option><option value="close-reading">Close Reading</option><option value="language">Language Arts</option><option value="math">Math</option><option value="science">Science</option><option value="wellbeing">Wellbeing</option></select></label>
+        <label for="catalogDateFilter"><span>Ngày upload</span><select id="catalogDateFilter"><option value="all">Tất cả ngày</option></select></label>
+      </form>
+      <p id="catalogEmpty" class="catalog-empty" hidden>Không có bài quiz phù hợp với bộ lọc.</p>
+      <div id="catalogGroups" class="catalog-groups"></div>
+    </section>
+    <section id="quizView" class="quiz-view" hidden>
+      <nav class="subject-tabs" id="subjectTabs" aria-label="Subjects"></nav>
+      <header class="subject-summary">
+        <div class="subject-heading"><img id="subjectMascot" class="subject-mascot" src="assets/mascot/academy/language.webp" alt=""><div><h1 id="subjectTitle"></h1><p id="subjectSubtitle"></p></div></div>
+        <div class="summary-stats"><strong id="answerCount"></strong><span id="scoreCount"></span></div>
+        <div class="summary-actions"><button id="clearBtn" class="ghost-btn" type="button">Clear answers</button></div>
+        <div id="summaryMessage" class="summary-message" hidden aria-live="polite"><img id="summaryMascot" src="assets/mascot/academy/success.webp" alt="The learning buddy celebrates"><p id="summaryMessageText"></p></div>
+      </header>
+      <div class="worksheet-paper">
+        <nav id="sectionNav" class="section-nav" aria-label="Main content sections"></nav>
+        <div id="groupList" class="group-list"></div>
+        <section id="submitPanel" class="submit-panel" aria-labelledby="submitTitle">
+          <div><strong id="submitProgress"></strong><p id="submitTitle">Answer every question, then submit the whole test once.</p></div>
+          <button id="submitBtn" class="check-btn" type="button">Submit test</button>
+        </section>
+      </div>
+    </section>
+    <section id="historyView" class="history-view" hidden>
+      <header class="history-heading">
+        <div><p class="eyebrow">KEEP SHINING</p><h1>Test History</h1><p>See every finished test and celebrate your progress.</p></div>
+        <button id="historyHomeBtn" class="ghost-btn" type="button">Back to subjects</button>
+      </header>
+      <p id="historyEmpty" class="history-empty">No results yet. Finish a test and your score will appear here.</p>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </main>
+  <dialog id="resultDialog" class="result-dialog" aria-labelledby="resultDialogTitle" aria-describedby="resultDialogMessage">
+    <div class="result-dialog-card">
+      <img id="resultDialogMascot" src="assets/mascot/academy/success.webp" alt="The learning buddy celebrates your result">
+      <p class="eyebrow">QUIZ COMPLETE!</p>
+      <h2 id="resultDialogTitle">Great work!</h2>
+      <p id="resultDialogScore" class="result-dialog-score"></p>
+      <p id="resultDialogMessage" class="result-dialog-message"></p>
+      <div class="result-dialog-actions">
+        <button id="resultReviewBtn" class="check-btn" type="button">Xem đáp án • Review</button>
+        <button id="resultRetryBtn" class="ghost-btn" type="button">Làm lại • Try again</button>
+      </div>
+    </div>
+  </dialog>
+  <dialog id="addUserDialog" class="add-user-dialog" aria-labelledby="addUserTitle">
+    <form id="addUserForm" class="add-user-card">
+      <div class="add-user-heading">
+        <div><p class="eyebrow">NEW LEARNING BUDDY</p><h2 id="addUserTitle">Add a new user</h2><p>Tạo hồ sơ riêng cho bé trên thiết bị này.</p></div>
+        <button id="cancelAddUserBtn" class="dialog-close-btn" type="button" aria-label="Close add user dialog">✕</button>
+      </div>
+      <fieldset class="gender-picker">
+        <legend>Choose • Chọn</legend>
+        <label class="gender-option girl"><input type="radio" name="userGender" value="girl" checked><span aria-hidden="true">👧</span><strong>Bé gái<small>Girl</small></strong></label>
+        <label class="gender-option boy"><input type="radio" name="userGender" value="boy"><span aria-hidden="true">👦</span><strong>Bé trai<small>Boy</small></strong></label>
+      </fieldset>
+      <label class="user-name-field" for="newUserName"><strong>Name • Tên của bé</strong><input id="newUserName" name="userName" type="text" maxlength="30" autocomplete="off" placeholder="Ví dụ: Minh Anh" required></label>
+      <div class="avatar-field">
+        <img id="newUserPreview" alt="New user avatar preview">
+        <div><strong>Avatar • Ảnh đại diện</strong><p>Không bắt buộc. Chọn ảnh JPG, PNG hoặc WebP.</p><label class="avatar-upload-btn" for="newUserAvatar">📷 Choose a photo<input id="newUserAvatar" type="file" accept="image/*"></label></div>
+      </div>
+      <p id="addUserError" class="add-user-error" role="alert" hidden></p>
+      <div class="add-user-actions"><button id="cancelAddUserFooterBtn" class="ghost-btn" type="button">Cancel • Hủy</button><button id="saveUserBtn" class="check-btn" type="submit">Create user • Tạo hồ sơ</button></div>
+    </form>
+  </dialog>
+  <script src="quiz-registry.js"></script>
+  <!-- QUIZ FILES: thêm một dòng cho mỗi file mới trong quizzes/ (xem HUONG-DAN.md) -->
+  <!-- /QUIZ FILES -->
+  <script src="list-app.js"></script>
+</body>
+</html>
