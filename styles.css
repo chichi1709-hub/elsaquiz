@@ -434,3 +434,7 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .full-review-text-question .fill-field input{min-height:54px;border-radius:12px}
 @media(max-width:900px){.full-review-text-question>.question-body{grid-column:1/-1}.full-review-text-question .compound-activity,.dropdown-bank-activity{grid-template-columns:1fr}}
 @media(max-width:520px){.list-question.full-review-text-question{padding:14px 10px;border-radius:16px}.full-review-text-question .compound-field.no-field-visual{padding:12px}.word-bank-chip{min-height:34px;padding:6px 11px;font-size:.92rem}.compound-field.select-field select{min-height:52px}}
+
+/* Danh sách link luyện thêm (thẻ BONUS / Ghi nhớ) */
+.reading-links{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 12px}
+.reading-links .reading-source-link{margin:0}

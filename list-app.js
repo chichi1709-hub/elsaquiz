@@ -604,22 +604,26 @@ function readingCardMarkup(reading){
   const images=(reading.images||[]).map((src,index)=>`<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(reading.title)} page ${index+1}" loading="${index===0?"eager":"lazy"}"></figure>`).join("");
   const transcript=escapeHtml(reading.text||"").replace(/\n/g,"<br>");
   const listening=reading.mode==="listen";
-  const reference=reading.mode==="reference";
+  // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
+  const notes=reading.mode==="notes",bonus=reading.mode==="bonus";
+  const reference=reading.mode==="reference"||notes||bonus;
   const sourceLink=reading.url?`<a class="reading-source-link" href="${escapeHtml(reading.url)}" target="_blank" rel="noopener noreferrer">▶ ${listening?"Listen to the story video":"Open the source"}</a>`:"";
-  const instruction=reference?"Use this source page for the questions in this section.":listening?"Listen to the complete story collection before answering its questions.":"Read this complete text before answering its questions.";
-  const eyebrow=reference?"LOOK AT THIS SOURCE PAGE":listening?"LISTEN TO THE WHOLE STORY FIRST":"READ THE WHOLE TEXT FIRST";
+  const extraLinks=(reading.links||[]).map(link=>`<a class="reading-source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">▶ ${escapeHtml(link.label)}</a>`).join("");
+  const instruction=notes?"Đọc phần ghi nhớ trước khi làm bài • Read these notes first.":bonus?"Không tính điểm • Extra practice from the class diary.":reference?"Use this source page for the questions in this section.":listening?"Listen to the complete story collection before answering its questions.":"Read this complete text before answering its questions.";
+  const eyebrow=notes?"GHI NHỚ • REMEMBER":bonus?"BONUS • LUYỆN THÊM":reference?"LOOK AT THIS SOURCE PAGE":listening?"LISTEN TO THE WHOLE STORY FIRST":"READ THE WHOLE TEXT FIRST";
   return `<section class="reading-library${reference?" reading-reference":""}" id="reading-${escapeHtml(reading.id)}"><div class="reading-library-heading"><h2>${escapeHtml(reading.title)}</h2><p>${instruction}</p></div><article class="reading-card">
     <header><p class="eyebrow">${eyebrow}</p><p>${escapeHtml(reading.byline||"")}</p></header>
-    ${sourceLink}
+    ${sourceLink}${extraLinks?`<div class="reading-links">${extraLinks}</div>`:""}
     ${images?`<div class="reading-gallery">${images}</div>`:""}
     <div class="reading-transcript" aria-label="Full text of ${escapeHtml(reading.title)}">${transcript}</div>
   </article></section>`;
 }
 
-function readingLibraryMarkup(subject){
+function readingLibraryMarkup(subject,position="start"){
   if(!Array.isArray(subject.readings)||!subject.readings.length) return "";
   const linked=new Set(subject.questions.map(item=>item.readingId).filter(Boolean));
-  return subject.readings.filter(reading=>!linked.has(reading.id)).map(readingCardMarkup).join("");
+  const atEnd=reading=>reading.mode==="bonus";
+  return subject.readings.filter(reading=>!linked.has(reading.id)&&(position==="end")===atEnd(reading)).map(readingCardMarkup).join("");
 }
 
 function groupMarkup(group,groupIndex){
@@ -655,7 +659,7 @@ function renderSubject(scrollTarget){
   const displayGroups=displayGroupsFor(active);
   const firstReading=subject.readings?.[0];
   $("#sectionNav").innerHTML=`${firstReading?`<a href="#reading-${escapeHtml(firstReading.id)}">Readings</a>`:""}${displayGroups.map((group,index)=>`<a href="#group-${index}">${group.title.replace(/^\d+\.\s*/,"")}</a>`).join("")}`;
-  $("#groupList").innerHTML=readingLibraryMarkup(subject)+displayGroups.map(groupMarkup).join("");
+  $("#groupList").innerHTML=readingLibraryMarkup(subject)+displayGroups.map(groupMarkup).join("")+readingLibraryMarkup(subject,"end");
   $("#submitProgress").textContent=state.submitted?`Submitted · ${count.correct}/${count.total} (~${percent}%)`:`${count.answered} of ${count.total} answered`;
   $("#submitTitle").textContent=state.submitted?"Review your answers above, or clear the test to try again.":"Answer every question, then submit the whole test once.";
   $("#submitBtn").textContent=state.submitted?"Test submitted":"Submit test";
