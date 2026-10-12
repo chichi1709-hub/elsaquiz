@@ -138,7 +138,7 @@
     subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"08/10/2026 · Unit 2 Week 1 · Firefighters at Work, HFW, middle sound, -ed sounds",scoreByField:true,
       groups:LA_G,questions:LA_Q,
       readings:[
-        notes("notes-0810","Ghi nhớ — 08/10","Nonfiction tells about real people and real things.\nAGAIN: To do something another time.\nNEW: Something that is not old.\nSay a word and say the middle sound in that word. The middle sound in set is /e/.\n-ed can sound like /t/ (kissed), /d/ (loved) or /id/ (painted).","Unit 2 Week 1"),
+        notes("notes-0810","Ghi nhớ — 08/10","📅 Lấy từ Class Diary: 08/10/2026\nNonfiction tells about real people and real things.\nAGAIN: To do something another time.\nNEW: Something that is not old.\nSay a word and say the middle sound in that word. The middle sound in set is /e/.\n-ed can sound like /t/ (kissed), /d/ (loved) or /id/ (painted).","Unit 2 Week 1"),
         {id:"firefighters",title:"Firefighters at Work",byline:"Paired Selection · Nonfiction · Literature Anthology pages 22-23",images:[IMG("firefighters-at-work")],text:firefighters},
         bonus("bonus-0810",[
           {label:"Game: High-frequency words",url:"https://www.baamboozle.com/game/3706689"},
@@ -161,7 +161,7 @@
         {title:"1. How do animals protect themselves?",subtitle:"Look at each photo. Explain how each animal can protect itself using its structures.",start:0,end:3},
         {title:"2. Check and write",subtitle:"True or false · Write a full sentence",start:4,end:5}
       ],
-      readings:[notes("notes-sci-0810","Ghi nhớ — Animal Protection","Protection keeps things safe from harm.\nSome animals can use their structures for protection.\nStructure: a body part.","Unit 2 Module 1 · Lesson 2")],
+      readings:[notes("notes-sci-0810","Ghi nhớ — Animal Protection","📅 Lấy từ Class Diary: 08/10/2026\nProtection keeps things safe from harm.\nSome animals can use their structures for protection.\nStructure: a body part.","Unit 2 Module 1 · Lesson 2")],
       questions:[
         {section:"Animal Protection · Lion",img:IMG("protect-lion"),text:"How can a lion protect itself?",type:"compound",fields:[
           multi("lion","Choose the 3 structures.",["thick mane","sharp teeth","sharp claws","soft feathers","long neck"],["thick mane","sharp teeth","sharp claws"],"🦁")

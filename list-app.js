@@ -129,11 +129,18 @@ function formatUploadDate(isoDate){
   return `${day}/${month}/${year}`;
 }
 
+// Trong mỗi ngày: toàn bộ Language Arts trước, rồi Science, rồi các môn khác (giữ thứ tự Part 1, 2, 3…).
+const catalogSubjectRank={language:0,science:1};
 function catalogGroupsByUploadDate(items=quizCatalog){
-  return items.reduce((result,item)=>{
+  const groups=items.reduce((result,item)=>{
     (result[item.uploadDate]??=[]).push(item);
     return result;
   },{});
+  Object.values(groups).forEach(list=>{
+    const position=new Map(list.map((item,index)=>[item,index]));
+    list.sort((a,b)=>((catalogSubjectRank[a.subjectKey]??2)-(catalogSubjectRank[b.subjectKey]??2))||position.get(a)-position.get(b));
+  });
+  return groups;
 }
 
 function setActiveTopTab(view){

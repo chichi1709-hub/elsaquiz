@@ -126,7 +126,7 @@
       readings:[
         {id:"dassies",title:"The 3 Little Dassies",byline:"Big Book · Jan Brett · tóm tắt (không phải nguyên văn sách)",images:[IMG12("dassies-retell-picture")],
           text:"Three dassie sisters, Mimbi, Pimbi and Timbi, go to live on a far mountain.\nAgama Man, a friendly lizard, tells them that eagles live on the mountain. The dassies shiver in the hot sun because they are scared.\nMimbi builds a house of grass. Pimbi builds a house of sticks. Timbi builds a house of stones. It is hard work!\nThe eagle flaps and claps. The grass house and the stick house fall apart, and the eagle takes Mimbi and Pimbi to his nest.\nThe stone house does not move.\nAgama Man helps Mimbi and Pimbi climb down. They run to Timbi's stone house.\nThe eagle falls down the chimney into the fire and flies away, black as soot.\nThe stone house is the strongest!"},
-        notes("notes-la-1210","Ghi nhớ — Unit 2 Week 2","Essential Question: What buildings do you know? What are they made of?\nDefine: A shelter is a building that protects you or keeps you safe.\nDefine: Materials are the things used to make something else.\nMaterials: metal, stone, glass, wood, brick, plastic.\nThe letter u can make the short u sound you hear in rug.","Unit 2 Week 2"),
+        notes("notes-la-1210","Ghi nhớ — Unit 2 Week 2","📅 Lấy từ Class Diary: 12/10/2026 (Unit 2 Week 2)\nEssential Question: What buildings do you know? What are they made of?\nDefine: A shelter is a building that protects you or keeps you safe.\nDefine: Materials are the things used to make something else.\nMaterials: metal, stone, glass, wood, brick, plastic.\nThe letter u can make the short u sound you hear in rug.","Unit 2 Week 2"),
         bonus("bonus-la-1210",[
           {label:"Video: Buildings (warm-up)",url:"https://www.youtube.com/watch?v=A_Gy6DbFFeo"},
           {label:"Video: Short u",url:"https://www.youtube.com/watch?v=i81NmRz4nu0"},
@@ -205,7 +205,7 @@
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"12/10/2026 · Lesson 2 (diary 09/10) · Science Review: Animal Protection · Explore Animal Structures",scoreByField:true,
       groups:groupsOf([["Science Review: Animal Protection","Close Reading · Science Review",7],["Inquiry Activity: Explore Animal Structures","Student Book pages 30 and 31",6]]),
       questions:SCI_Q,
-      readings:[notes("notes-sci-0910","Ghi nhớ — Science","Protection: keeps things safe from harm.\nA turtle has a hard shell to protect its body.\nA hedgehog has sharp spines to protect itself.\nA chameleon can blend in with its surroundings to hide from predators.\nA skunk sprays a bad-smelling liquid to protect itself.\nA bear uses its sharp claws to defend itself.","Unit 2 Module 1 · Lesson 2")]}
+      readings:[notes("notes-sci-0910","Ghi nhớ — Science","📅 Lấy từ Class Diary: 09/10/2026 (Science Review trong mục Close Reading + Explore Animal Structures)\nProtection: keeps things safe from harm.\nA turtle has a hard shell to protect its body.\nA hedgehog has sharp spines to protect itself.\nA chameleon can blend in with its surroundings to hide from predators.\nA skunk sprays a bad-smelling liquid to protect itself.\nA bear uses its sharp claws to defend itself.","Unit 2 Module 1 · Lesson 2")]}
   });
 
   // ───────────────────────── LANGUAGE ARTS ─────────────────────────
@@ -293,7 +293,7 @@
       groups:groupsOf([["Spelling","Homework check · Practice Book page 87",1],["Phonemic Awareness","Practice Book page 82 · middle sounds",1],["Grammar: Nouns","Identify the nouns · Noun or action verb",2],["Phonics","Short e and -ed words",3],["Mechanics: Commas in a Series","Review · Notebook · Worksheet",3]]),
       questions:LA_Q,
       readings:[
-        notes("notes-la-0910","Ghi nhớ — 09/10","A noun names a person, place, or thing.\nSay a word and say the middle sound: pig – six /i/, bell – hen /e/.\nIn a list with three or more nouns, a comma is used after all but the last noun.","Unit 2 Week 1"),
+        notes("notes-la-0910","Ghi nhớ — 09/10","📅 Lấy từ Class Diary: 09/10/2026 (đáp án phiếu dấu phẩy cô chữa ngày 12/10)\nA noun names a person, place, or thing.\nSay a word and say the middle sound: pig – six /i/, bell – hen /e/.\nIn a list with three or more nouns, a comma is used after all but the last noun.","Unit 2 Week 1"),
         bonus("bonus-la-0910",[
           {label:"Video: Nouns",url:"https://www.youtube.com/watch?v=_II6ySgUtWc&t=1s"},
           {label:"Game: Nouns vs action verbs",url:"https://wordwall.net/resource/26230545/english/nouns-vs-action-verb"},

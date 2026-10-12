@@ -209,7 +209,7 @@
   const laSubject=(subtitle,questions,groups,readings=[])=>({name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle,scoreByField:true,groups,questions:withHints(questions),readings});
   const notes=(id,title,text,byline="Unit 2 Week 1")=>({id,title,byline,mode:"notes",text});
   const bonus=(id,links)=>({id,title:"Bonus · Video & game",byline:"Link cô giáo giao trong Class Diary",mode:"bonus",links,text:""});
-  LA_READINGS.unshift(notes("notes-reading","Ghi nhớ — Reading","Fantasy: Fantasies are made-up stories with characters, settings, and events that could not exist in real life.\nRealistic fiction: a made-up story. It has characters that do things that could happen in real life.\nCharacters are the people or animals in a story.\nThe setting is where the story takes place.\nThe events are what happen in the story."));
+  LA_READINGS.unshift(notes("notes-reading","Ghi nhớ — Reading","📅 Lấy từ Class Diary: 01, 02, 05, 06, 07/10/2026 (Millie 01/10 · Good Job, Ben! 02 & 05/10 · The Red Hat 06 & 07/10 · Oral Vocabulary 07/10)\nFantasy: Fantasies are made-up stories with characters, settings, and events that could not exist in real life.\nRealistic fiction: a made-up story. It has characters that do things that could happen in real life.\nCharacters are the people or animals in a story.\nThe setting is where the story takes place.\nThe events are what happen in the story."));
   LA_READINGS.push(bonus("bonus-reading",[{label:"Big Book: Millie Waits for the Mail",url:"https://drive.google.com/file/d/1Ab-WyOJrt3t_3m5uGtUI2QWt6o-o2Urb/view?usp=drive_link"}]));
   registerQuiz({
     id:"class-diary-2026-10-07-language-reading",
@@ -331,7 +331,7 @@
     subjectKey:"language",
     title:"Language Arts (Part 2: Sounds & Spelling)",
     subject:laSubject("07/10/2026 · Unit 2 Week 1 · HFW, short e, -ed ending, beginning/middle/final sounds",LA_QUESTIONS.splice(0),LA_GROUPS.splice(0),[
-      notes("notes-sounds","Ghi nhớ — Sounds & Spelling","High-frequency words: again · help · new · there · use\nThe letters e or ea can make the short e sound: leg, bread.\nAdd the ending -ed to an action word to tell about something that already happened: help → helped, fill → filled.\ntalked: we say the final sound as just a /t/. visited: we say the final sound as /id/ (words that end with a /t/ or /d/ sound)."),
+      notes("notes-sounds","Ghi nhớ — Sounds & Spelling","📅 Lấy từ Class Diary: 01, 05, 06, 07/10/2026 (HFW 01 & 06/10 · Spelling short e 05 & 07/10 · -ed 05 & 06/10 · Phonemic Awareness 07/10)\nHigh-frequency words: again · help · new · there · use\nThe letters e or ea can make the short e sound: leg, bread.\nAdd the ending -ed to an action word to tell about something that already happened: help → helped, fill → filled.\ntalked: we say the final sound as just a /t/. visited: we say the final sound as /id/ (words that end with a /t/ or /d/ sound)."),
       bonus("bonus-sounds",[
         {label:"Game: High-frequency words",url:"https://www.baamboozle.com/game/3706689"},
         {label:"Video: Short e (sit or stand)",url:"https://www.youtube.com/watch?v=Lkuucy5Fegk"},
@@ -430,7 +430,7 @@
     subjectKey:"language",
     title:"Language Arts (Part 3: Grammar & Writing)",
     subject:laSubject("07/10/2026 · Unit 2 Week 1 · Nouns, commas in a series, word order, writing a sentence",LA_QUESTIONS.splice(0),LA_GROUPS.splice(0),[
-      notes("notes-grammar","Ghi nhớ — Grammar","A noun names a person, place, or thing. (A noun can also name an animal.)\nIn a list with three or more nouns, a comma is used after all but the last noun.\nCount how many nouns. There will always be 1 less comma.\nExample: Frogs, cats, and dogs are in the pet show.\nA sentence begins with a capital letter. A sentence tells about one idea."),
+      notes("notes-grammar","Ghi nhớ — Grammar","📅 Lấy từ Class Diary: 01, 02, 05, 06, 07/10/2026 (Nouns 01, 02 & 07/10 · Commas 05, 06 & 07/10 · Writing 02/10)\nA noun names a person, place, or thing. (A noun can also name an animal.)\nIn a list with three or more nouns, a comma is used after all but the last noun.\nCount how many nouns. There will always be 1 less comma.\nExample: Frogs, cats, and dogs are in the pet show.\nA sentence begins with a capital letter. A sentence tells about one idea."),
       bonus("bonus-grammar",[
         {label:"Video: What is a Noun?",url:"https://www.youtube.com/watch?v=9cu7C07pNbA"},
         {label:"Game: Find the nouns",url:"https://www.baamboozle.com/game/80716"},
@@ -466,7 +466,7 @@
         {title:"4. Inquiry Activity: Animals Move",subtitle:"How animals use their structures to move",start:10,end:11}
       ],
       readings:[
-        notes("notes-science","Ghi nhớ — Science","Structure: a body part.\nFunction: what the body part does.\nprotection: keeps things safe from harm.","Unit 2 Module 1 · Lesson 2"),
+        notes("notes-science","Ghi nhớ — Science","📅 Lấy từ Class Diary: 01, 02, 06/10/2026 (Science Probe & Hummingbirds 01/10 · Lesson 2 Review & Animal Protection 02/10 · Animals Move 06/10)\nStructure: a body part.\nFunction: what the body part does.\nprotection: keeps things safe from harm.","Unit 2 Module 1 · Lesson 2"),
         {id:"protection",title:"Animal Protection",byline:"Student Book, page 26",mode:"reference",images:[IMG("protection-text")],
           text:"Protection keeps things safe from harm. Some animals can use their structures for protection. Other animals build homes for protection. Animals can also use structures like their nose, mouth, eyes, and ears to help them live."}
       ],
