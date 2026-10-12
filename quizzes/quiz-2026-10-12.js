@@ -126,7 +126,7 @@
       readings:[
         {id:"dassies",title:"The 3 Little Dassies",byline:"Big Book · Jan Brett · tóm tắt (không phải nguyên văn sách)",images:[IMG12("dassies-retell-picture")],
           text:"Three dassie sisters, Mimbi, Pimbi and Timbi, go to live on a far mountain.\nAgama Man, a friendly lizard, tells them that eagles live on the mountain. The dassies shiver in the hot sun because they are scared.\nMimbi builds a house of grass. Pimbi builds a house of sticks. Timbi builds a house of stones. It is hard work!\nThe eagle flaps and claps. The grass house and the stick house fall apart, and the eagle takes Mimbi and Pimbi to his nest.\nThe stone house does not move.\nAgama Man helps Mimbi and Pimbi climb down. They run to Timbi's stone house.\nThe eagle falls down the chimney into the fire and flies away, black as soot.\nThe stone house is the strongest!"},
-        notes("notes-la-1210","Ghi nhớ — Unit 2 Week 2","📅 Lấy từ Class Diary: 12/10/2026 (Unit 2 Week 2)\nEssential Question: What buildings do you know? What are they made of?\nDefine: A shelter is a building that protects you or keeps you safe.\nDefine: Materials are the things used to make something else.\nMaterials: metal, stone, glass, wood, brick, plastic.\nThe letter u can make the short u sound you hear in rug.","Unit 2 Week 2"),
+        notes("notes-la-1210","Ghi nhớ — Unit 2 Week 2","📅 Lấy từ Class Diary: 12/10/2026 (Unit 2 Week 2)\n(12/10) Essential Question: What buildings do you know? What are they made of?\n(12/10) Define: A shelter is a building that protects you or keeps you safe.\n(12/10) Define: Materials are the things used to make something else.\n(12/10) Materials: metal, stone, glass, wood, brick, plastic.\n(12/10) The middle sound in mud, cub, and fun is /u/.\n(12/10) The letter u can make the short u sound you hear in rug.","Unit 2 Week 2"),
         bonus("bonus-la-1210",[
           {label:"Video: Buildings (warm-up)",url:"https://www.youtube.com/watch?v=A_Gy6DbFFeo"},
           {label:"Video: Short u",url:"https://www.youtube.com/watch?v=i81NmRz4nu0"},
@@ -293,7 +293,7 @@
       groups:groupsOf([["Spelling","Homework check · Practice Book page 87",1],["Phonemic Awareness","Practice Book page 82 · middle sounds",1],["Grammar: Nouns","Identify the nouns · Noun or action verb",2],["Phonics","Short e and -ed words",3],["Mechanics: Commas in a Series","Review · Notebook · Worksheet",3]]),
       questions:LA_Q,
       readings:[
-        notes("notes-la-0910","Ghi nhớ — 09/10","📅 Lấy từ Class Diary: 09/10/2026 (đáp án phiếu dấu phẩy cô chữa ngày 12/10)\nA noun names a person, place, or thing.\nSay a word and say the middle sound: pig – six /i/, bell – hen /e/.\nIn a list with three or more nouns, a comma is used after all but the last noun.","Unit 2 Week 1"),
+        notes("notes-la-0910","Ghi nhớ — 09/10","📅 Lấy từ Class Diary: 09/10/2026 (đáp án phiếu dấu phẩy cô chữa ngày 12/10)\n(01/10) A noun names a person, place, or thing.\n(09/10) Same middle sound: pig – six /i/, bell – hen /e/, pen – neck /e/.\n(09/10) -ed: headed /id/ · dressed /t/ · yelled /d/.\n(05/10) In a list with three or more nouns, a comma is used after all but the last noun.\n(12/10) Homework check: Dogs, cats, and fish make good pets.","Unit 2 Week 1"),
         bonus("bonus-la-0910",[
           {label:"Video: Nouns",url:"https://www.youtube.com/watch?v=_II6ySgUtWc&t=1s"},
           {label:"Game: Nouns vs action verbs",url:"https://wordwall.net/resource/26230545/english/nouns-vs-action-verb"},

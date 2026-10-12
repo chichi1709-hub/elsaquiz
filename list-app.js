@@ -515,9 +515,13 @@ function handleAddUser(event){
   buildCatalogHeader();
 }
 
+// Thanh chuyển bài: mọi bài CÙNG NGÀY với bài đang mở, đúng thứ tự Danh sách
+// (các Part của Language Arts liền nhau, hết Language Arts mới đến Science).
+const tabLabel=item=>{const part=/Part\s*(\d+)/i.exec(item.title);return `${subjectFor(item.id).icon} ${subjectFor(item.id).name}${part?` · Part ${part[1]}`:""}`};
 function buildTabs(){
-  const activeSubject=libraryEntry(active)?.subjectKey;
-  $("#subjectTabs").innerHTML=Object.entries(defaultQuizIds).map(([subjectKey,quizId])=>{const subject=subjectFor(quizId);return `<button class="${subjectKey===activeSubject?"active":""}" data-quiz="${quizId}" type="button">${subject.icon} ${subject.name}</button>`}).join("");
+  const entry=libraryEntry(active);
+  const sameDay=entry?catalogGroupsByUploadDate()[entry.uploadDate]||[]:[];
+  $("#subjectTabs").innerHTML=sameDay.map(item=>`<button class="${item.id===entry.id?"active":""}" data-quiz="${escapeHtml(item.id)}" type="button">${escapeHtml(tabLabel(item))}</button>`).join("");
   document.querySelectorAll("#subjectTabs button").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
 }
 
