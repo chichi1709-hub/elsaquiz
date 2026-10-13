@@ -519,9 +519,10 @@ function handleAddUser(event){
 // (các Part của Language Arts liền nhau, hết Language Arts mới đến Science).
 // Nhãn nút: "Language Arts · Part 2", hoặc phần sau dấu "–" của tiêu đề (vd. "Science · Lesson 2 Review").
 const tabLabel=item=>{
-  const part=/Part\s*(\d+)/i.exec(item.title);
+  const part=/Part\s*(\d+[a-z]?)/i.exec(item.title);
   const dash=item.title.indexOf("–");
-  const extra=part?`Part ${part[1]}`:dash<0?"":item.title.slice(dash+1).replace(/\(.*?\)/g,"").trim();
+  const name=dash<0?"":item.title.slice(dash+1).replace(/\(.*?\)/g,"").trim();
+  const extra=[name,part?`Part ${part[1]}`:""].filter(Boolean).join(" · ");
   return `${subjectFor(item.id).icon} ${subjectFor(item.id).name}${extra?` · ${extra}`:""}`;
 };
 function buildTabs(){
