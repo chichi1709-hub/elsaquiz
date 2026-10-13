@@ -517,7 +517,13 @@ function handleAddUser(event){
 
 // Thanh chuyển bài: mọi bài CÙNG NGÀY với bài đang mở, đúng thứ tự Danh sách
 // (các Part của Language Arts liền nhau, hết Language Arts mới đến Science).
-const tabLabel=item=>{const part=/Part\s*(\d+)/i.exec(item.title);return `${subjectFor(item.id).icon} ${subjectFor(item.id).name}${part?` · Part ${part[1]}`:""}`};
+// Nhãn nút: "Language Arts · Part 2", hoặc phần sau dấu "–" của tiêu đề (vd. "Science · Lesson 2 Review").
+const tabLabel=item=>{
+  const part=/Part\s*(\d+)/i.exec(item.title);
+  const dash=item.title.indexOf("–");
+  const extra=part?`Part ${part[1]}`:dash<0?"":item.title.slice(dash+1).replace(/\(.*?\)/g,"").trim();
+  return `${subjectFor(item.id).icon} ${subjectFor(item.id).name}${extra?` · ${extra}`:""}`;
+};
 function buildTabs(){
   const entry=libraryEntry(active);
   const sameDay=entry?catalogGroupsByUploadDate()[entry.uploadDate]||[]:[];
