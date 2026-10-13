@@ -144,9 +144,12 @@ function catalogGroupsByUploadDate(items=quizCatalog){
 }
 
 function setActiveTopTab(view){
-  const tabMap={home:"homeBtn",catalog:"catalogBtn",history:"historyBtn"};
+  const tabMap={home:"homeBtn",catalog:"catalogBtn",history:"historyBtn",mindmap:"mindmapBtn"};
+  const mindmapView=document.getElementById("mindmapView");
+  if(mindmapView) mindmapView.hidden=view!=="mindmap";
   Object.entries(tabMap).forEach(([name,id])=>{
     const tab=$("#"+id),selected=name===view;
+    if(!tab) return;
     tab.classList.toggle("active",selected);
     tab.setAttribute("aria-selected",String(selected));
   });
@@ -161,7 +164,7 @@ function handleWheelScroll(event){
   if(event.ctrlKey||event.defaultPrevented) return;
   const amount=wheelScrollAmount(event.deltaY);
   if(!amount||document.documentElement.scrollHeight<=window.innerHeight) return;
-  const internalScroller=event.target.closest?.(".result-dialog-card,.add-user-card");
+  const internalScroller=event.target.closest?.(".result-dialog-card,.add-user-card,.mm-stage");
   if(internalScroller&&internalScroller.scrollHeight>internalScroller.clientHeight) return;
   event.preventDefault();
   window.scrollBy({top:amount,left:0,behavior:"auto"});

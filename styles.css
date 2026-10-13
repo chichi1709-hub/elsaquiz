@@ -438,3 +438,23 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 /* Danh sách link luyện thêm (thẻ BONUS / Ghi nhớ) */
 .reading-links{display:flex;flex-wrap:wrap;gap:10px;margin:4px 0 12px}
 .reading-links .reading-source-link{margin:0}
+
+/* ── Mind Map ── */
+.mindmap-view{max-width:1240px;margin:0 auto;padding:18px 16px 40px}
+.mm-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:14px}
+.mm-card{display:flex;flex-direction:column;text-align:left;background:#fff;border:2px solid #e3deea;border-radius:22px;overflow:hidden;cursor:pointer;padding:0;box-shadow:0 8px 18px rgba(49,49,77,.08)}
+.mm-card:hover{border-color:#9b69e8;transform:translateY(-2px)}
+.mm-card img{width:100%;aspect-ratio:3/2;object-fit:cover;display:block}
+.mm-meta{display:flex;flex-direction:column;gap:3px;padding:12px 16px 16px}
+.mm-meta small{color:#7a7690;font-weight:800}.mm-meta b{font-size:1.15rem;color:#31314d}.mm-meta span{color:#5b5870;font-size:.92rem}
+.mm-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0}
+.mm-toolbar strong{flex:1;min-width:200px;color:#31314d}
+.mm-zoom{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.mm-zoom button,.mm-zoom a{min-height:42px;min-width:42px;padding:6px 12px;border:2px solid #e3deea;border-radius:12px;background:#fff;color:#31314d;font-weight:900;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.mm-zoom #mmIn,.mm-zoom #mmOut{font-size:1.4rem}
+#mmZoom{min-width:58px;text-align:center;font-weight:900;color:#5b3fc4}
+.mm-stage{position:relative;height:calc(100vh - 230px);min-height:420px;overflow:auto;background:#f4f1fb;border:2px solid #e3deea;border-radius:18px;cursor:grab;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch}
+.mm-stage.dragging{cursor:grabbing}
+.mm-stage img{display:block;max-width:none;user-select:none;-webkit-user-drag:none}
+.mm-tip{margin-top:8px;color:#7a7690;font-size:.9rem}
+@media(max-width:699px){.top-nav-actions{grid-template-columns:repeat(4,minmax(0,1fr))!important}.mm-stage{height:calc(100vh - 300px)}}
