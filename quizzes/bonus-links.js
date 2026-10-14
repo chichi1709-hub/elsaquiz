@@ -267,4 +267,18 @@
     cards:[{...card("Structure and function","Match each word with its meaning.",[sel("structure","structure",SF,SF[0],"🦴"),sel("function","function",SF,SF[1],"⚙️"),sel("eyes","eyes",SF,SF[2],"👀"),
       sel("legs","legs",SF,SF[3],"🦵"),sel("wings","wings",SF,SF[4],"🪽"),sel("antennae","antennae",SF,SF[5],"🐜"),sel("exo","exoskeleton",SF,SF[6],"🦀")],
       "structure → body part that helps an animal survive · function → job of a body part · eyes → help animals see · legs → help animal walk · wings → help animal fly · antennae → help animal find food · exoskeleton → protects body and sheds as the animal grows"),img:"assets/mascot/academy/science.webp"}]});
+  // ───────── 25. Video "Contractions – Phonics Mix" (English4abc) ─────────
+  const C2=[["you are","you’re"],["he is","he’s"],["she is","she’s"],["it is","it’s"],["we are","we’re"],["they are","they’re"],["that is","that’s"],["who is","who’s"]];
+  bonus({id:"bonus-video-contractions",remember:["A contraction joins two words into one with an apostrophe (’).","’s = is: he’s · she’s · it’s · that’s · who’s","’re = are: you’re · we’re · they’re"],urls:["https://www.youtube.com/watch?v=0_NVE-yttBE"],title:"Contractions (song)",source:"Video · English4abc · Contractions Phonics Mix",
+    cards:[card("Contractions","Listen to the song. Answer the questions.",[
+      ch("what","A contraction joins ___ into one word.",["two words","two letters","two sentences"],"two words","🔗"),
+      ch("mark","Which mark do we use in a contraction?",["an apostrophe (’)","a comma (,)","a period (.)"],"an apostrophe (’)","✏️")],
+      "A contraction joins two words into one. We write it with an apostrophe (’)."),
+      card("Contractions","Two words → one word.",C2.map(([a,b],i)=>sel(`c${i}`,a,C2.map(r=>r[1]),b)),C2.map(([a,b])=>`${a} → ${b}`).join(" · "))]});
+
+  // ───────── 26. Baamboozle 2941674 "'s Contractions" (16 câu, 2 chiều) ─────────
+  const S2=[["he’s","he is"],["there is","there’s"],["what’s","what is"],["who is","who’s"],["it is","it’s"],["she is","she’s"],["where’s","where is"],["that is","that’s"],["that’s","that is"],["where is","where’s"],["she’s","she is"],["it’s","it is"],["who’s","who is"],["what is","what’s"],["there’s","there is"],["he is","he’s"]];
+  const SHORT2=["he’s","she’s","it’s","that’s","what’s","where’s","who’s","there’s"],LONG2=SHORT2.map(w=>w.replace("’s"," is"));
+  bonus({id:"bonus-contractions-s-game",remember:["’s Contractions: he’s · she’s · it’s · that’s · what’s · where’s · who’s · there’s","there’s = there is · who’s = who is · that’s = that is"],urls:["https://www.baamboozle.com/index.php/slideshow/2941674","https://www.baamboozle.com/slideshow/2941674","https://www.baamboozle.com/game/2941674"],title:"’s Contractions Game",source:"Baamboozle · ’s Contractions (match the 2 words)",
+    cards:chunk(S2,8).map((rows,k)=>card("’s contractions","Match the contraction and the two words.",rows.map(([q,a],i)=>sel(`s${k}${i}`,q,a.includes("’")?SHORT2:LONG2,a)),rows.map(([q,a])=>`${q} → ${a}`).join(" · ")))});
 })();
