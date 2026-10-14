@@ -268,17 +268,17 @@ function scoreBand(percent){
 function resultMessage(percent){
   if(percent<70) return {
     title:"Keep going, little star!",
-    message:"Cố lên nhé, lần sau bạn sẽ làm tốt hơn! • Keep trying — you will do even better next time!",
+    message:"Keep trying — you will do even better next time!",
     icon:"🌱"
   };
   if(percent<=85) return {
-    title:"Super! Tốt lắm!",
-    message:"Bạn đã làm rất tốt! Hãy tiếp tục cố gắng nhé. • Great job! Keep learning and shining!",
+    title:"Super! Great work!",
+    message:"Great job! Keep learning and shining!",
     icon:"⭐"
   };
   return {
-    title:"Excellent! Xuất sắc!",
-    message:"Chúc mừng bạn đã hoàn thành thật tuyệt vời! • Congratulations — you did an amazing job!",
+    title:"Excellent! Amazing!",
+    message:"Congratulations — you did an amazing job!",
     icon:"🏆"
   };
 }
@@ -624,19 +624,22 @@ function readingCardMarkup(reading){
   if(!reading) return "";
   const images=(reading.images||[]).map((src,index)=>`<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(reading.title)} page ${index+1}" loading="${index===0?"eager":"lazy"}"></figure>`).join("");
   const transcript=escapeHtml(reading.text||"").replace(/\n/g,"<br>");
+  // Thẻ REMEMBER: "1. Class Diary 13/10/2026" + nội dung, "2. Class Diary …" (days do quiz-registry.js tạo).
+  const days=reading.mode==="notes"&&Array.isArray(reading.days)?reading.days:null;
+  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3><ul>${day.items.map(item=>`<li>${escapeHtml(item)}</li>`).join("")}</ul></li>`).join("")}</ol>`:"";
   const listening=reading.mode==="listen";
   // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
   const notes=reading.mode==="notes",bonus=reading.mode==="bonus";
   const reference=reading.mode==="reference"||notes||bonus;
   const sourceLink=reading.url?`<a class="reading-source-link" href="${escapeHtml(reading.url)}" target="_blank" rel="noopener noreferrer">▶ ${listening?"Listen to the story video":"Open the source"}</a>`:"";
   const extraLinks=(reading.links||[]).map(link=>`<a class="reading-source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">▶ ${escapeHtml(link.label)}</a>`).join("");
-  const instruction=notes?"Đọc phần ghi nhớ trước khi làm bài • Read these notes first.":bonus?"Không tính điểm • Extra practice from the class diary.":reference?"Use this source page for the questions in this section.":listening?"Listen to the complete story collection before answering its questions.":"Read this complete text before answering its questions.";
-  const eyebrow=notes?"GHI NHỚ • REMEMBER":bonus?"BONUS • LUYỆN THÊM":reference?"LOOK AT THIS SOURCE PAGE":listening?"LISTEN TO THE WHOLE STORY FIRST":"READ THE WHOLE TEXT FIRST";
+  const instruction=notes?"Read these notes first.":bonus?"Extra practice from the class diary (not scored).":reference?"Use this source page for the questions in this section.":listening?"Listen to the complete story collection before answering its questions.":"Read this complete text before answering its questions.";
+  const eyebrow=notes?"REMEMBER":bonus?"BONUS":reference?"LOOK AT THIS SOURCE PAGE":listening?"LISTEN TO THE WHOLE STORY FIRST":"READ THE WHOLE TEXT FIRST";
   return `<section class="reading-library${reference?" reading-reference":""}" id="reading-${escapeHtml(reading.id)}"><div class="reading-library-heading"><h2>${escapeHtml(reading.title)}</h2><p>${instruction}</p></div><article class="reading-card">
     <header><p class="eyebrow">${eyebrow}</p><p>${escapeHtml(reading.byline||"")}</p></header>
     ${sourceLink}${extraLinks?`<div class="reading-links">${extraLinks}</div>`:""}
-    ${images?`<div class="reading-gallery">${images}</div>`:""}
-    <div class="reading-transcript" aria-label="Full text of ${escapeHtml(reading.title)}">${transcript}</div>
+    ${images?`${transcript?`<p class="reading-step">📖 Look at the book: <b>${escapeHtml(reading.title)}</b></p>`:""}<div class="reading-gallery">${images}</div>`:""}
+    ${daysMarkup||(transcript?`${images?`<p class="reading-step">📝 Read the text</p>`:""}<div class="reading-transcript" aria-label="Full text of ${escapeHtml(reading.title)}">${transcript}</div>`:"")}
   </article></section>`;
 }
 
@@ -824,7 +827,7 @@ function openResultDialog(key,result,historySaved=true){
   $("#resultDialogMascot").src=mascotAsset("success");
   $("#resultDialogTitle").textContent=`${feedback.icon} ${feedback.title}`;
   $("#resultDialogScore").textContent=`${result.correct}/${result.total} (~${percent}%)`;
-  $("#resultDialogMessage").textContent=historySaved?feedback.message:`${feedback.message} History could not be saved on this device • Chưa thể lưu lịch sử trên thiết bị này.`;
+  $("#resultDialogMessage").textContent=historySaved?feedback.message:`${feedback.message} History could not be saved on this device.`;
   $("#resultDialog").className=`result-dialog ${scoreBand(percent)}`;
   $("#resultDialog").showModal();
 }

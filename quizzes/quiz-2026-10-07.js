@@ -92,7 +92,7 @@
   const LA_QUESTIONS=[],LA_GROUPS=[];
   const part=(title,subtitle,items)=>{LA_GROUPS.push({title:`${LA_GROUPS.length+1}. ${title}`,subtitle,start:LA_QUESTIONS.length,end:LA_QUESTIONS.length+items.length-1});LA_QUESTIONS.push(...items)};
   const LA_READINGS=[
-    {id:"good-job-ben",title:"Good Job, Ben!",byline:"Shared Read · Reading and Writing Companion, page 14 · Realistic Fiction",images:benStory.map((_,i)=>IMG(`good-job-ben-${String(i+1).padStart(2,"0")}`)),text:benStory.join("\n\n")}
+    {id:"good-job-ben",title:"Good Job, Ben!",byline:"Shared Read · Reading and Writing Companion, page 14 · Realistic Fiction",images:[IMG("good-job-ben-cover"),...benStory.map((_,i)=>IMG(`good-job-ben-${String(i+1).padStart(2,"0")}`))],text:benStory.join("\n\n")}
   ];
 
   // ── Phần 1: Đọc hiểu & Từ vựng ──
@@ -466,7 +466,7 @@
         {title:"4. Inquiry Activity: Animals Move",subtitle:"How animals use their structures to move",start:10,end:11}
       ],
       readings:[
-        notes("notes-science","Ghi nhớ — Science","📅 Lấy từ Class Diary: 01, 02, 06/10/2026 (Science Probe & Hummingbirds 01/10 · Lesson 2 Review & Animal Protection 02/10 · Animals Move 06/10)\nStructure: a body part.\nFunction: what the body part does.\nprotection: keeps things safe from harm.","Unit 2 Module 1 · Lesson 2"),
+        notes("notes-science","Ghi nhớ — Science","📅 Lấy từ Class Diary: 01, 02, 06/10/2026 (Science Probe & Hummingbirds 01/10 · Lesson 2 Review & Animal Protection 02/10 · Animals Move 06/10)\n(02/10) Structure: a body part.\n(02/10) Function: what the body part does.\n(02/10) Protection: keeps things safe from harm.\n(01/10) Why are the hummingbird's wings blurry? The wings help the bird to fly. The hummingbird's wings were moving very fast.\n(06/10) Animals Move: Rabbits use their feet to move. A rabbit hops.","Unit 2 Module 1 · Lesson 2"),
         {id:"protection",title:"Animal Protection",byline:"Student Book, page 26",mode:"reference",images:[IMG("protection-text")],
           text:"Protection keeps things safe from harm. Some animals can use their structures for protection. Other animals build homes for protection. Animals can also use structures like their nose, mouth, eyes, and ears to help them live."}
       ],
@@ -478,7 +478,7 @@
         {section:"Science Probe · Functions of Animal Parts",img:IMG("tiger-probe"),text:"Look at the page. Answer each question.",type:"compound",fields:[
           choice("best","Which student tells what an animal part DOES (its function)?",["Roosevelt","Steve","Toni"],"Roosevelt","🐅"),
           choice("legs","The tiger uses its legs for ___.",["running","eating","hearing"],"running","🐅")
-        ],explain:"Tigers do use their legs for running. Roosevelt nói về việc chân làm (function). Steve và Toni chỉ tả bộ phận (răng sắc, lông mềm)."},
+        ],explain:"Tigers do use their legs for running. Roosevelt tells what the legs do (a function). Steve and Toni only name body parts (sharp teeth, soft fur)."},
         {section:"Discover the Phenomenon · Hummingbirds",img:IMG("hummingbird-video"),text:"Think about the hummingbird video.",type:"compound",fields:[
           choice("wings","What do the hummingbird's wings help it do?",["fly","swim","dig"],"fly","🐦"),
           choice("blurry","Why are the hummingbird's wings blurry in the video?",["They are moving very fast.","They are wet.","They are not moving."],"They are moving very fast.","💨")

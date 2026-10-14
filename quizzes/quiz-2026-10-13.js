@@ -221,8 +221,8 @@
           "(file đính kèm) Essential Question: What are the functions of different animal body parts?",
           "⚠️ Review Lesson 2 carefully for the test on THURSDAY."
         ],"Unit 2 Module 1 · Lesson 2"),
-        {id:"biologist",title:"What Does a Wildlife Biologist Do?",byline:"STEM Connection · Student Book pages 28-29",mode:"reference",images:[],text:biologistText},
-        {id:"lesson2",title:"Animal Protection",byline:"Functions of Animal Structures (file đính kèm)",mode:"reference",images:[],text:"Protection keeps things safe from harm.\nAnimals use body parts to protect themselves or build homes.\nAnimals use their nose, mouth, eyes, and ears to help them live."},
+        {id:"biologist",title:"What Does a Wildlife Biologist Do?",byline:"STEM Connection · Student Book pages 28-29",mode:"reference",images:[IMG("stem-biologist-text"),IMG("biologist")],text:biologistText},
+        {id:"lesson2",title:"Animal Protection",byline:"Functions of Animal Structures (slides)",mode:"reference",images:[IMG("fas-protection-slide")],text:"Protection keeps things safe from harm.\nAnimals use body parts to protect themselves or build homes.\nAnimals use their nose, mouth, eyes, and ears to help them live."},
         bonus("bonus-sci-1310",[{label:"Game: Animal structures and functions",url:"https://wordwall.net/resource/14757170/science/animals-structure-function"}])
       ]}
   });
