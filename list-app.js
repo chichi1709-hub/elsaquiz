@@ -672,7 +672,22 @@ function readingCardMarkup(reading){
       col=1-col;return cell;
     });
   };
-  const cellMarkup=cell=>`<div class="note-cell${cell.wide?" wide":""}">${cell.term?`<b>${escapeHtml(cell.term)}</b>`:""}${cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${escapeHtml(cell.text)}</span>`}</div>`;
+  // In đậm theo Class Diary: nhãn trước ":" là từ khoá (trừ nhãn chung như Example/Define/Writing Trait/Lesson n),
+  // chữ diary in đậm (HFW, THURSDAY, Protection, Characters/Setting/Events, Genre: Fantasy), từ được Define.
+  const PLAIN_LABEL=/^(example|define|writing trait|writing skill|homework check|lesson \d+)$/i;
+  const DIARY_BOLD=[/^(Characters) are /,/^The (setting) is /,/^The (events) are /,/^(Protection) keeps /,/\b(THURSDAY)\b/,/^(Fantasy)\./];
+  const emph=(text,term)=>{
+    let safe=escapeHtml(text);
+    const rules=/^define$/i.test(term||"")?[/^(?:A |An )?(\w+) (?:is|are) /]:DIARY_BOLD;
+    for(const rule of rules){const m=String(text).match(rule);if(m){const word=escapeHtml(m[1]);safe=safe.replace(word,`<b>${word}</b>`);break}}
+    return safe;
+  };
+  const cellMarkup=cell=>{
+    const label=cell.term?(PLAIN_LABEL.test(cell.term)?`<span class="note-label">${escapeHtml(cell.term)}</span>`:`<b>${escapeHtml(cell.term)}</b>`):"";
+    const hfw=/high-frequency/i.test(cell.term||"");
+    const body=cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${hfw?`<b>${escapeHtml(chip)}</b>`:escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${emph(cell.text,cell.term)}</span>`;
+    return `<div class="note-cell${cell.wide?" wide":""}">${label}${body}</div>`;
+  };
   const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3>${dayMarkup(day.items)}</li>`).join("")}</ol>`:"";
   const listening=reading.mode==="listen";
   // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
