@@ -513,3 +513,15 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .bq-field .bq-hint,.bq-field .bq-mark{flex-basis:100%;margin-top:0}
 @media (max-width:520px){.bq-field .bq-label{max-width:100%}}
 .bq-field .bq-label{min-width:9.5em}
+/* REMEMBER: mỗi ý là 1 ô trong bảng 2 cột */
+.note-table{display:grid;grid-template-columns:1fr 1fr;margin:4px 0 0;border:2px solid #e3dcf5;border-radius:12px;overflow:hidden;background:#fff;font-weight:600;color:#31314d;line-height:1.45}
+.note-cell{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;padding:8px 12px;border-right:1px solid #ece6f6;border-bottom:1px solid #ece6f6}
+.note-cell.wide{grid-column:1 / -1}
+.note-cell b{color:#5b3fc4}
+.note-cell b::after{content:":"}
+.note-chips{display:flex;flex-wrap:wrap;gap:6px}
+.note-chips span{background:#f3edff;border-radius:999px;padding:1px 10px}
+@media (max-width:560px){.note-table{grid-template-columns:1fr}}
+.note-cell{display:block}
+.note-cell b{margin-right:6px}
+.note-cell .note-chips{margin-top:4px}

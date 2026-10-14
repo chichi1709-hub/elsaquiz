@@ -632,7 +632,24 @@ function readingCardMarkup(reading){
   const transcript=escapeHtml(reading.text||"").replace(/\n/g,"<br>");
   // Thẻ REMEMBER: "1. Class Diary 13/10/2026" + nội dung, "2. Class Diary …" (days do quiz-registry.js tạo).
   const days=reading.mode==="notes"&&Array.isArray(reading.days)?reading.days:null;
-  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3><ul>${day.items.map(item=>`<li>${escapeHtml(item)}</li>`).join("")}</ul></li>`).join("")}</ol>`:"";
+  // Mỗi ý là 1 ô của bảng; ý gộp bằng "·" được tách thành nhiều ô; "Term: …" → term in đậm.
+  const noteCells=item=>{
+    const head=String(item).match(/^([^:·]{1,40}):\s+(.+)$/);
+    if(head&&/\s[·•]\s/.test(head[2])&&!head[2].includes(":")) return [{term:head[1],chips:head[2].replace(/\.$/,"").split(/\s+[·•]\s+/)}];
+    return String(item).split(/\s+[·•]\s+/).map(part=>{const m=part.match(/^([^:]{1,32}):\s+(.+)$/);return m&&m[1].split(" ").length<=4?{term:m[1],text:m[2]}:{text:part}});
+  };
+  // Ô dài/chip chiếm cả dòng; ô lẻ cuối hàng (không có ô bên cạnh) cũng kéo cả dòng để bảng không bị ô trống.
+  const layoutCells=cells=>{
+    const wide=cells.map(cell=>Boolean(cell.chips)||(cell.term||"").length+(cell.text||"").length>70);
+    let col=0;
+    return cells.map((cell,i)=>{
+      if(wide[i]){col=0;return {...cell,wide:true}}
+      if(col===0&&(i===cells.length-1||wide[i+1])) return {...cell,wide:true};
+      col=1-col;return cell;
+    });
+  };
+  const cellMarkup=cell=>`<div class="note-cell${cell.wide?" wide":""}">${cell.term?`<b>${escapeHtml(cell.term)}</b>`:""}${cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${escapeHtml(cell.text)}</span>`}</div>`;
+  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3><div class="note-table">${layoutCells(day.items.flatMap(noteCells)).map(cellMarkup).join("")}</div></li>`).join("")}</ol>`:"";
   const listening=reading.mode==="listen";
   // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
   const notes=reading.mode==="notes",bonus=reading.mode==="bonus";
