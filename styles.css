@@ -505,3 +505,11 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .bq-actions .bq-retry{background:#7a5bc7}
 .bq-score{font-size:1.1rem;color:#2e9d57}
 .bq-progress{color:#666}
+/* Bonus: câu hỏi và ô trả lời trên cùng 1 dòng */
+.bq-field{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px}
+.bq-field .bq-label{margin:0;flex:0 1 auto;max-width:62%}
+.bq-field select,.bq-field input[type=text]{flex:1 1 180px;min-width:150px}
+.bq-field .bq-options{flex:1 1 240px}
+.bq-field .bq-hint,.bq-field .bq-mark{flex-basis:100%;margin-top:0}
+@media (max-width:520px){.bq-field .bq-label{max-width:100%}}
+.bq-field .bq-label{min-width:9.5em}
