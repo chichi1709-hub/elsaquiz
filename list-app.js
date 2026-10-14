@@ -50,7 +50,10 @@ const mascotAsset=pose=>buddyAsset(getBuddy(chosenCharacter)||getBuddy("academy"
 function applyBuddyTheme(){document.body.dataset.buddyGender=(getBuddy(chosenCharacter)||getBuddy("academy")).gender}
 applyBuddyTheme();
 const subjectOrder=["close-reading","language","math","science","wellbeing"];
-const quizCatalog=registeredQuizzes.map(({subject,...item})=>item);
+// Bài bonus (hidden) không hiện trong Danh sách; chỉ mở từ nút "Do the quiz here" trong thẻ Bonus.
+const quizCatalog=registeredQuizzes.filter(entry=>!entry.hidden).map(({subject,...item})=>item);
+let bonusReturnId=null;
+const bonusQuizFor=url=>{const key=window.normalizeBonusUrl?window.normalizeBonusUrl(url):url;const id=(window.BONUS_QUIZ_BY_URL||{})[key];return id&&quizLibrary[id]?id:null};
 const quizLibrary=Object.fromEntries(registeredQuizzes.map(entry=>[entry.id,entry]));
 const uploadLabels=Object.fromEntries(quizCatalog.filter(item=>item.uploadLabel).map(item=>[item.uploadDate,item.uploadLabel]));
 // Tab môn học trong màn làm bài trỏ tới bài mới nhất của từng môn.
@@ -530,8 +533,11 @@ const tabLabel=item=>{
 };
 function buildTabs(){
   const entry=libraryEntry(active);
-  const sameDay=entry?catalogGroupsByUploadDate()[entry.uploadDate]||[]:[];
-  $("#subjectTabs").innerHTML=sameDay.map(item=>`<button class="${item.id===entry.id?"active":""}" data-quiz="${escapeHtml(item.id)}" type="button">${escapeHtml(tabLabel(item))}</button>`).join("");
+  // Đang làm bài bonus: hiện nút quay lại bài trước + các bài cùng ngày của bài trước.
+  const home=entry?.hidden?libraryEntry(bonusReturnId):entry;
+  const sameDay=home?catalogGroupsByUploadDate()[home.uploadDate]||[]:[];
+  const back=entry?.hidden&&home?`<button class="active" data-quiz="${escapeHtml(home.id)}" type="button">↩ Back to ${escapeHtml(tabLabel(home))}</button>`:"";
+  $("#subjectTabs").innerHTML=back+sameDay.map(item=>`<button class="${item.id===entry.id?"active":""}" data-quiz="${escapeHtml(item.id)}" type="button">${escapeHtml(tabLabel(item))}</button>`).join("");
   document.querySelectorAll("#subjectTabs button").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
 }
 
@@ -632,7 +638,11 @@ function readingCardMarkup(reading){
   const notes=reading.mode==="notes",bonus=reading.mode==="bonus";
   const reference=reading.mode==="reference"||notes||bonus;
   const sourceLink=reading.url?`<a class="reading-source-link" href="${escapeHtml(reading.url)}" target="_blank" rel="noopener noreferrer">▶ ${listening?"Listen to the story video":"Open the source"}</a>`:"";
-  const extraLinks=(reading.links||[]).map(link=>`<a class="reading-source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">▶ ${escapeHtml(link.label)}</a>`).join("");
+  const extraLinks=(reading.links||[]).map(link=>{
+    const quizId=bonusQuizFor(link.url);
+    const doHere=quizId&&quizId!==active?`<button class="reading-source-link do-here" type="button" data-open-quiz="${escapeHtml(quizId)}">✏️ Do the quiz here</button>`:"";
+    return `<span class="bonus-link"><b>${escapeHtml(link.label)}</b><a class="reading-source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">▶ Open online</a>${doHere}</span>`;
+  }).join("");
   const instruction=notes?"Read these notes first.":bonus?"Extra practice from the class diary (not scored).":reference?"Use this source page for the questions in this section.":listening?"Listen to the complete story collection before answering its questions.":"Read this complete text before answering its questions.";
   const eyebrow=notes?"REMEMBER":bonus?"BONUS":reference?"LOOK AT THIS SOURCE PAGE":listening?"LISTEN TO THE WHOLE STORY FIRST":"READ THE WHOLE TEXT FIRST";
   return `<section class="reading-library${reference?" reading-reference":""}" id="reading-${escapeHtml(reading.id)}"><div class="reading-library-heading"><h2>${escapeHtml(reading.title)}</h2><p>${instruction}</p></div><article class="reading-card">
@@ -689,6 +699,7 @@ function renderSubject(scrollTarget){
   $("#submitBtn").textContent=state.submitted?"Test submitted":"Submit test";
   $("#submitBtn").disabled=state.submitted;
   attachQuestionEvents();
+  document.querySelectorAll("[data-open-quiz]").forEach(button=>button.addEventListener("click",()=>{if(!libraryEntry(active)?.hidden) bonusReturnId=active;openSubject(button.dataset.openQuiz)}));
   if(scrollTarget) requestAnimationFrame(()=>document.getElementById(scrollTarget)?.scrollIntoView({block:"start"}));
 }
 
@@ -956,7 +967,7 @@ function showHome(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-window.quizTestApi={quizCatalog,quizLibrary,defaultQuizIds,resolveQuizId,libraryEntry,subjectFor,groupsFor,mergeSharedContentGroups,displayGroupsFor,readingCardMarkup,readingLibraryMarkup,mascotSets,greetingForHour,elsaWelcomeForHour,formatUploadDate,catalogGroupsByUploadDate,catalogFilteredItems,wheelScrollAmount,multiChoiceCount,multiChoiceHint,readState,writeState,saveGiven,correctFor,isExpectedChoice,expectedAnswerText,scorePercent,scoreBand,resultMessage,formatTestDate,readHistory,persistJson,recordHistory,hasAnswer,toggleChoice,questionUnitCount,questionUnitTotal,counts,unansweredIndexes,submitSubject,resetSubject,reviewSubmission,retrySubmission,storageKey,historyKey,usersKey,readCustomUsers,availableBuddies,visibleBuddies,getBuddy,addCustomUser,setChosenCharacter,fallbackAvatar};
+window.quizTestApi={bonusQuizFor,quizCatalog,quizLibrary,defaultQuizIds,resolveQuizId,libraryEntry,subjectFor,groupsFor,mergeSharedContentGroups,displayGroupsFor,readingCardMarkup,readingLibraryMarkup,mascotSets,greetingForHour,elsaWelcomeForHour,formatUploadDate,catalogGroupsByUploadDate,catalogFilteredItems,wheelScrollAmount,multiChoiceCount,multiChoiceHint,readState,writeState,saveGiven,correctFor,isExpectedChoice,expectedAnswerText,scorePercent,scoreBand,resultMessage,formatTestDate,readHistory,persistJson,recordHistory,hasAnswer,toggleChoice,questionUnitCount,questionUnitTotal,counts,unansweredIndexes,submitSubject,resetSubject,reviewSubmission,retrySubmission,storageKey,historyKey,usersKey,readCustomUsers,availableBuddies,visibleBuddies,getBuddy,addCustomUser,setChosenCharacter,fallbackAvatar};
 
 if(!window.QUIZ_TEST_MODE){
   $("#homeBtn").addEventListener("click",showHome);
