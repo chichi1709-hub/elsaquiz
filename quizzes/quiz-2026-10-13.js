@@ -109,12 +109,11 @@
       tf("night","One night the hut dripped.",true,"🌙"),
       tf("wet","At the end, the cubs live in a wet hut.",false,"💧")
     ],"1. TRUE · 2. FALSE (mud, sticks and grass) · 3. TRUE (Then one night… Drip, drip, drip!) · 4. FALSE (It is good to live in a dry hut.)","Đối chiếu với truyện: đúng chọn TRUE, sai chọn FALSE."),
-    la("Cubs in a Hut · Story order","Put the events in order. 1 = first, 4 = last.",[
-      order("fix","The cubs fix the hut.",4,4,"🔨"),
-      order("plan","The cubs make a plan to make a hut.",1,4,"🗺️"),
-      order("drip","One night the hut drips.",3,4,"💧"),
-      order("move","The cubs move in with rugs and beds.",2,4,"🛏️")
-    ],"1. The cubs make a plan. · 2. They move in with rugs and beds. · 3. One night the hut drips. · 4. They fix the hut.","Việc nào xảy ra trước?"),
+    la("Cubs in a Hut · What happens?","Think about the order of the story.",[
+      choice("first","What do the cubs do FIRST?",["They make a plan to make a hut.","They fix the hut.","They go to sleep."],"They make a plan to make a hut.","🗺️"),
+      choice("after","After they make the hut, what do the cubs do?",["They move in with rugs and beds.","They knock it down.","They give it to a fox."],"They move in with rugs and beds.","🛏️"),
+      choice("end","What do the cubs do at the END?",["They fix the hut.","They move to a new town.","They sleep in the rain."],"They fix the hut.","🔨")
+    ],"The cubs make a plan → they move in with rugs and beds → one night the hut drips → they fix the hut. Now it is a dry hut!"),
     la("Cubs in a Hut · Write a full sentence","Answer with a full sentence.",[
       write("fix","What do the cubs do when the hut drips?",["They fix the hut.","fix"],"✍️")
     ],"“We must fix it,” said Bud. The cubs fix the hut, so it is dry.","Viết câu tiếng Anh có từ fix."),
@@ -192,12 +191,12 @@
       select("legs","legs",["body part that helps an animal survive","job of a body part","help animals see","help animal walk","help animal fly"],"help animal walk","🦵"),
       select("wings","wings",["body part that helps an animal survive","job of a body part","help animals see","help animal walk","help animal fly"],"help animal fly","🪽")
     ],"structure → body part that helps an animal survive · function → job of a body part · eyes → help animals see · legs → help animal walk · wings → help animal fly (game Animals Structure Function)","Ôn từ vựng cho bài kiểm tra thứ Năm."),
-    sci("Lesson 2 · True or false","Read and choose TRUE or FALSE.",[
-      tf("eq","Lesson 2 asks: What are the functions of different animal body parts?",true,"❓"),
+    sci("Lesson 2 · Main question","Read and choose the answer.",[
+      choice("eq","In Lesson 2 we read: “Wings help birds fly.” “Fins help fish swim.” “A shell protects the turtle.” So what is the main question of Lesson 2?",["What are the functions of different animal body parts?","How do plants grow?","What jobs need to be done in a community?","What buildings do you know?"],"What are the functions of different animal body parts?","❓"),
       tf("quills","Porcupine quills do not help protect the porcupine.",false,"🦔"),
       tf("rabbit","A rabbit's large ears help it hear when danger is near.",true,"🐇"),
       tf("biologist","Wildlife biologists study buildings.",false,"🔬")
-    ],"1. TRUE (Essential Question) · 2. FALSE (quills keep the porcupine safe) · 3. TRUE · 4. FALSE (they study animals)","Đúng chọn TRUE, sai chọn FALSE."),
+    ],"1. What are the functions of different animal body parts? (the Essential Question of Lesson 2) · 2. FALSE (quills keep the porcupine safe) · 3. TRUE · 4. FALSE (they study animals)","Đúng chọn TRUE, sai chọn FALSE."),
     // ── Science Probe (Lesson 3 Launch — xem trước) ──
     photo("Science Probe · Puppies (Lesson 3)",IMG("puppies-probe"),"Winnie's dog had six puppies. Which best describes the puppies?",[
       choice("puppies","Choose one.",["They look exactly like their mother.","They look similar to their mother.","They look very different from their mother."],"They look similar to their mother.","🐶")

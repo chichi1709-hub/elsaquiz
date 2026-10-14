@@ -144,12 +144,11 @@
       tf("six","Mom gets six.",false,"🍞"),
       tf("vet","The vet helped Jet get well.",true,"🐶")
     ],"1. TRUE · 2. FALSE (Ben and Mom can not cross yet.) · 3. FALSE (Mom gets ten.) · 4. TRUE",{readingId:"good-job-ben"}),
-    la("Good Job, Ben! · Story order","Put the events in order. 1 = first, 4 = last.",[
-      order("men","Six men use a drill and fill cracks.",2,4,"🚧"),
-      order("bus","Ben and Mom get on the bus.",1,4,"🚌"),
-      order("books","Ben and Mom stop to get books.",4,4,"📚"),
-      order("bread","Ben and Mom step in for bread.",3,4,"🍞")
-    ],"1. Ben and Mom get on the bus. · 2. Six men use a drill and fill cracks. · 3. Ben and Mom step in for bread. · 4. Ben and Mom stop to get books."),
+    la("Good Job, Ben! · What happens?","Think about the order of the story.",[
+      choice("first","What happens FIRST in the story?",["Ben and Mom get on the bus.","Ben and Mom stop to get books.","Ben and Mom step in for bread."],"Ben and Mom get on the bus.","🚌"),
+      choice("men","Ben and Mom walk and see six men. What are the men doing?",["They use a drill and fill cracks.","They sell bread.","They help a dog get well."],"They use a drill and fill cracks.","🚧"),
+      choice("last","What do Ben and Mom do LAST?",["They stop to get books.","They get on the bus.","They step in for bread."],"They stop to get books.","📚")
+    ],"Story order: Ben and Mom get on the bus → they can not cross yet → six men use a drill and fill cracks → they step in for bread → they get Jet from the vet → they stop to get books."),
     la("Story elements","Choose the correct word.",[
       choice("characters","___ are the people or animals in a story.",["Characters","Settings","Events"],"Characters","🧑"),
       choice("setting","The ___ is where the story takes place.",["setting","event","character"],"setting","🗺️"),

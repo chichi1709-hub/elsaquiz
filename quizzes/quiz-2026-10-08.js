@@ -45,12 +45,11 @@
       tf("protect","Their special clothes protect them.",true,"🦺"),
       tf("slow","The firefighters put on their clothes slowly.",false,"🐢")
     ],"1. TRUE (The red truck speeds to the fire.) · 2. FALSE (It has a loud siren.) · 3. TRUE · 4. FALSE (They put on special clothes fast!)","Đối chiếu với bài đọc: đúng chọn TRUE, sai chọn FALSE."),
-    la("Firefighters at Work · Order","Put the events in order. 1 = first, 4 = last.",[
-      order("truck","The firefighters jump in a fire truck.",4,4,"🚒"),
-      order("bell","A bell rings at the firehouse.",1,4,"🔔"),
-      order("clothes","They put on special clothes.",3,4,"🦺"),
-      order("pole","Firefighters slide down a pole.",2,4,"🧗")
-    ],"1. A bell rings at the firehouse. · 2. Firefighters slide down a pole. · 3. They put on special clothes. · 4. The firefighters jump in a fire truck.","Việc nào xảy ra trước tiên khi chuông reo?"),
+    la("Firefighters at Work · What happens?","Think about the order in the text.",[
+      choice("first","What happens FIRST at the firehouse?",["A bell rings.","They spray water.","They jump in the fire truck."],"A bell rings.","🔔"),
+      choice("next","The bell rings. What do the firefighters do next?",["They slide down a pole and put on special clothes fast.","They go to sleep.","They eat lunch."],"They slide down a pole and put on special clothes fast.","🧗"),
+      choice("truck","When do they jump in the fire truck?",["after they put on their special clothes","before the bell rings","after the fire is out"],"after they put on their special clothes","🚒")
+    ],"A bell rings at the firehouse. Firefighters slide down a pole. They put on special clothes fast! Then the firefighters jump in a fire truck."),
     {section:"Firefighters at Work · Labels",img:IMG("firefighters-at-work"),text:"Look at the photos and labels.",type:"compound",fields:[
       multi("truck","Which labels are on the fire truck photo? Choose 3.",["lights","hose","ladder","boots","hat","pole"],["lights","hose","ladder"],"🚒"),
       multi("author","How does the author help you learn what firefighters do? Choose 3.",["text","photos","labels","songs","games"],["text","photos","labels"],"✍️")

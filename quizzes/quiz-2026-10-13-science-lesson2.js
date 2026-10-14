@@ -48,13 +48,13 @@
       select("claws","claws",["structure","function"],"structure","🐾"),
       select("catch","catch food",["structure","function"],"function","🍖")
     ],"Structures (body parts): wings, shell, claws · Functions (what they do): fly, swim, catch food.","Bộ phận cơ thể = structure · việc làm = function."),
-    q("Keywords · True or false","Read and choose TRUE or FALSE.",[
-      tf("eq","Lesson 2 asks: What are the functions of different animal body parts?",true,"❓"),
+    q("Keywords · Main question","Read and choose the answer.",[
+      choice("eq","In Lesson 2 we read: “Wings help birds fly.” “Fins help fish swim.” “A shell protects the turtle.” So what is the main question of Lesson 2?",["What are the functions of different animal body parts?","How do plants grow?","What jobs need to be done in a community?","What buildings do you know?"],"What are the functions of different animal body parts?","❓"),
       tf("structure","A structure is what the body part does.",false,"🦴"),
       tf("protection","Protection keeps things safe from harm.",true,"🛡️"),
       tf("wildlife","Wildlife biologists study animals.",true,"🔬"),
       tf("defend","“A bear uses its sharp claws to defend itself.” Defend means to protect.",true,"🐻")
-    ],"1. TRUE (Essential Question) · 2. FALSE (structure = a body part; function = what it does) · 3. TRUE · 4. TRUE · 5. TRUE","Đúng chọn TRUE, sai chọn FALSE."),
+    ],"1. What are the functions of different animal body parts? (the Essential Question of Lesson 2) · 2. FALSE (structure = a body part; function = what it does) · 3. TRUE · 4. TRUE · 5. TRUE","Đúng chọn TRUE, sai chọn FALSE."),
 
     // ── 2. STRUCTURE → FUNCTION ──
     q("Structure and Function · What is it for?","What job does each structure do?",[
@@ -127,10 +127,10 @@
     q("Inquiry · Animals Move","The rabbit model (06/10).",[
       choice("hop","How does a rabbit move?",["A rabbit hops.","A rabbit swims.","A rabbit flies."],"A rabbit hops.","🐇"),
       choice("parts","Which structures help the rabbit move?",["its legs and feet","its ears","its nose"],"its legs and feet","🦶"),
-      order("research","Research how an animal moves.",1,3,"🔍"),
-      order("record","Record Data in the table.",2,3,"📝"),
-      order("model","Make a model to show how your animal moves.",3,3,"✂️")
-    ],"A rabbit hops. Rabbits use their feet and legs to move. Investigate: 1. Research · 2. Record Data · 3. Make a model.","3 bước cuối: đánh số theo thứ tự làm."),
+      choice("first","You want to make a model of a moving animal. What do you do FIRST?",["Research how the animal moves.","Make the model.","Throw the paper away."],"Research how the animal moves.","🔍"),
+      choice("table","Where do you write what you learn?",["in the data table (Record Data)","on the wall","nowhere"],"in the data table (Record Data)","📝"),
+      choice("model","What does your model show?",["how your animal moves","what your animal eats","where your animal sleeps"],"how your animal moves","✂️")
+    ],"A rabbit hops. Rabbits use their feet and legs to move. Investigate: first research how an animal moves, then record data in the table, then make a model to show how your animal moves."),
 
     // ── 5. STEM CONNECTION ──
     photo("STEM Connection · Wildlife biologist",A("13","biologist"),"What Does a Wildlife Biologist Do? (13/10)",[

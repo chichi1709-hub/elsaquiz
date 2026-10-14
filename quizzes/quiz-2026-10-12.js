@@ -181,11 +181,11 @@
       choice("claws","Two claws help it ___.",["catch food and protect itself","walk sideways","see far"],"catch food and protect itself","🦀"),
       choice("legs","Eight legs help it ___.",["walk sideways","catch food","jump high"],"walk sideways","🦀")
     ],"Crab: A hard shell protects its body. Two claws help it catch food and protect itself. Eight legs help it walk sideways.","Mỗi bộ phận của cua giúp nó làm gì?"),
-    sci("Explore Animal Structures · Investigate","Put the steps in order. 1 = first.",[
-      order("record","Record Data: Choose two animals. Tell how they get food.",3,3,"📝"),
-      order("play","Play the simulation.",1,3,"💻"),
-      order("observe","Observe how a bear, a crab, a frog, and a woodpecker use their structures.",2,3,"👀")
-    ],"1. Play the simulation. · 2. Observe how a bear, a crab, a frog, and a woodpecker use their structures. · 3. Record Data.","Bước nào làm trước?"),
+    sci("Explore Animal Structures · Investigate","How did we investigate?",[
+      choice("first","What do you do FIRST?",["Play the simulation.","Record data.","Make a claim about plants."],"Play the simulation.","💻"),
+      choice("watch","What do you observe in the simulation?",["how a bear, a crab, a frog, and a woodpecker use their structures","how plants grow","how cars move"],"how a bear, a crab, a frog, and a woodpecker use their structures","👀"),
+      choice("record","What do you write when you record data?",["Choose two animals. Tell how they get food.","Draw your house.","Write your name only."],"Choose two animals. Tell how they get food.","📝")
+    ],"Investigate: 1. Play the simulation. 2. Observe how a bear, a crab, a frog, and a woodpecker use their structures. 3. Record Data: choose two animals and tell how they get food."),
     sci("Explore Animal Structures · True or false","Read and choose TRUE or FALSE.",[
       tf("crablegs","A crab has eight legs.",true,"🦀"),
       tf("frog","A frog uses its beak to get food.",false,"🐸"),
