@@ -18,8 +18,11 @@
     try{const u=new URL(url);const v=u.hostname.includes("youtube")?u.searchParams.get("v"):null;
       return (u.hostname.replace(/^www\./,"")+u.pathname.replace("/index.php","").replace(/\/$/,"")+(v?`?v=${v}`:"")).toLowerCase()}catch{return url}
   };
-  function bonus({id,urls,subjectKey="language",title,source,cards}){
+  // remember: ý cần nhớ lấy từ nội dung link → hiện trong thẻ REMEMBER của bài có link này (tiêu đề = tên link).
+  window.BONUS_REMEMBER=window.BONUS_REMEMBER||{};
+  function bonus({id,urls,subjectKey="language",title,source,cards,remember}){
     for(const url of urls) window.BONUS_QUIZ_BY_URL[window.normalizeBonusUrl(url)]=id;
+    if(remember) window.BONUS_REMEMBER[id]=remember;
     registerQuiz({id,hidden:true,uploadDate:"2026-10-14",subjectKey,title:`Bonus – ${title}`,
       subject:{name:subjectKey==="science"?"Science":subjectKey==="math"?"Math":"Language Arts",icon:ICON[subjectKey],accent:ACC[subjectKey],soft:"#f5efff",
         subtitle:`Bonus quiz · ${source}`,scoreByField:true,
@@ -40,13 +43,13 @@
 
   // ───────── 2. Video "Sit or Stand Short E Words" ─────────
   const shortE=[["pen",1],["web",1],["rug",0],["ten",1],["jet",1],["pan",0],["red",1],["leg",1],["pin",0],["fox",0],["net",1],["sun",0],["gem",1],["zip",0],["wet",1],["cap",0]];
-  bonus({id:"bonus-video-short-e-sit-or-stand",urls:["https://www.youtube.com/watch?v=Lkuucy5Fegk"],title:"Short e: Sit or Stand",source:"Video · Sit or Stand Short E Words (Little Playful Learners)",
+  bonus({id:"bonus-video-short-e-sit-or-stand",remember:["Short e: Stand up if the word has the short e sound in the middle: pen, web, ten, jet, red, leg, net, gem, wet."],urls:["https://www.youtube.com/watch?v=Lkuucy5Fegk"],title:"Short e: Sit or Stand",source:"Video · Sit or Stand Short E Words (Little Playful Learners)",
     cards:[card("Short e","Stand up if the middle sound is short e. Sit down if it is not.",[fixed("rule","In the video, you STAND UP when you hear…",["the short e sound","the short a sound"],"the short e sound","🧍")],"Stand up if the word has the short e sound in the middle."),
       ...chunk(shortE,8).map((rows,k)=>card("Short e",`Stand or sit? (${k*8+1}–${k*8+rows.length})`,rows.map(([w,e],i)=>sel(`e${k}${i}`,w,["stand (short e)","sit (not short e)"],e?"stand (short e)":"sit (not short e)")),
         "Short e (stand): pen, web, ten, jet, red, leg, net, gem, wet · Not short e (sit): rug, pan, pin, fox, sun, zip, cap"))]});
 
   // ───────── 3. Video "The -ed song" (Nessy) ─────────
-  bonus({id:"bonus-video-ed-song",urls:["https://www.youtube.com/watch?v=w1tDY0pPq3w"],title:"The -ed Song",source:"Video · Nessy · The -ed song",
+  bonus({id:"bonus-video-ed-song",remember:["-ed: e + d makes -ed. It goes at the end of a word.", "-ed works on verbs (action words) and sends them into the past: jump → jumped."],urls:["https://www.youtube.com/watch?v=w1tDY0pPq3w"],title:"The -ed Song",source:"Video · Nessy · The -ed song",
     cards:[card("-ed","Answer the questions about the -ed song.",[
       ch("make","Which letters make -ed?",["e + d","a + d","e + t"],"e + d","🔤"),
       ch("where","Where does -ed go?",["at the end of a word","at the start of a word","in the middle of a word"],"at the end of a word","➡️"),
@@ -58,14 +61,14 @@
   // ───────── 4. Wordwall 12306745 "ed ending" ─────────
   const SND=["/t/","/d/","/id/"];
   const edEnding=[["lived","/d/"],["tired","/d/"],["called","/d/"],["loved","/d/"],["asked","/t/"],["looked","/t/"],["scratched","/t/"],["laughed","/t/"],["wanted","/id/"],["needed","/id/"],["folded","/id/"],["started","/id/"]];
-  bonus({id:"bonus-wordwall-ed-ending",urls:["https://wordwall.net/resource/12306745/ed-ending"],title:"-ed Ending Sort",source:"Wordwall · ed ending (group sort)",
+  bonus({id:"bonus-wordwall-ed-ending",remember:["/d/: lived, tired, called, loved", "/t/: asked, looked, scratched, laughed", "/id/: wanted, needed, folded, started"],urls:["https://wordwall.net/resource/12306745/ed-ending"],title:"-ed Ending Sort",source:"Wordwall · ed ending (group sort)",
     cards:chunk(rot(edEnding,"edEnding"),6).map((rows,k)=>card("-ed ending","Which sound does -ed make? (/id/ is written /ed/ in the game)",rows.map(([w,a],i)=>sel(`w${k}${i}`,w,SND,a)),
       "/d/: lived, tired, called, loved · /t/: asked, looked, scratched, laughed · /id/: wanted, needed, folded, started"))});
 
   // ───────── 5. Video "What is a Noun?" (Jack Hartmann) ─────────
   const PPT=["person","place","thing"];
   const jh=[["teacher","person"],["scientist","person"],["mother","person"],["firefighter","person"],["sister","person"],["library","place"],["schoolyard","place"],["classroom","place"],["mall","place"],["bicycle","thing"],["pencil","thing"],["pumpkin","thing"],["computer","thing"],["star","thing"]];
-  bonus({id:"bonus-video-what-is-a-noun",urls:["https://www.youtube.com/watch?v=9cu7C07pNbA"],title:"What is a Noun?",source:"Video · Jack Hartmann · What is a Noun?",
+  bonus({id:"bonus-video-what-is-a-noun",remember:["A noun is a person, place or thing.", "Person: teacher, scientist, mother, firefighter, sister", "Place: library, schoolyard, classroom, mall", "Thing: bicycle, pencil, pumpkin, computer, star"],urls:["https://www.youtube.com/watch?v=9cu7C07pNbA"],title:"What is a Noun?",source:"Video · Jack Hartmann · What is a Noun?",
     cards:[card("Nouns","What is a noun?",[ch("def","A noun is a…",["person, place or thing","color","action word"],"person, place or thing","📛")],"A noun is a person, place or thing."),
       ...chunk(rot(jh,"jh"),7).map((rows,k)=>card("Nouns","Is it a person, a place or a thing?",rows.map(([w,a],i)=>sel(`n${k}${i}`,w,PPT,a)),
         "Person: teacher, scientist, mother, firefighter, sister · Place: library, schoolyard, classroom, mall · Thing: bicycle, pencil, pumpkin, computer, star"))]});
@@ -92,7 +95,7 @@
         "ice cream · supermarket · children · sofa · tree")]});
 
   // ───────── 8. Video "Captain Comma" (ABCmouse) ─────────
-  bonus({id:"bonus-video-captain-comma",urls:["https://www.youtube.com/watch?v=zGvlH1YVPc4"],title:"Captain Comma",source:"Video · ABCmouse · Learn about Commas with Captain Comma",
+  bonus({id:"bonus-video-captain-comma",remember:["Commas: lion, tiger, and bear · salad, soup, and bread · jump, swim, and splash", "A comma in the wrong place can be as confusing as no commas at all."],urls:["https://www.youtube.com/watch?v=zGvlH1YVPc4"],title:"Captain Comma",source:"Video · ABCmouse · Learn about Commas with Captain Comma",
     cards:[card("Commas","Captain Comma fixes the signs. Choose the sign with the commas in the right places.",[
       ch("zoo","At the zoo, visit a…",["lion, tiger, and bear","lion tiger and bear","lion, tiger and, bear"],"lion, tiger, and bear","🦁"),
       ch("diner","At Jane's Diner, enjoy…",["salad, soup, and bread","salad soup, and bread","salad, soup and, bread"],"salad, soup, and bread","🥗"),
@@ -102,7 +105,7 @@
       "lion, tiger, and bear · salad, soup, and bread · jump, swim, and splash · apples, oranges, and bananas · A comma in the wrong place can be confusing too. Use commas wisely!")]});
 
   // ───────── 9. Video "Commas in a Series" (LollyPond) ─────────
-  bonus({id:"bonus-video-commas-lollypond",urls:["https://www.youtube.com/watch?v=cQOX3UdeAZI"],title:"Commas in a Series (song)",source:"Video · LollyPond · Commas in a Series",
+  bonus({id:"bonus-video-commas-lollypond",remember:["Commas make lists clear: My best friends are Jenny, Bruce, and Dennis.", "Without commas it is confusing: Jenny Bruce and Dennis."],urls:["https://www.youtube.com/watch?v=cQOX3UdeAZI"],title:"Commas in a Series (song)",source:"Video · LollyPond · Commas in a Series",
     cards:[card("Commas","Answer the questions about the song.",[
       ch("friends","My best friends are Jenny, Bruce, and Dennis. How many friends?",["3","2","1"],"3","👫"),
       ch("nocomma","My best friends are Jenny Bruce and Dennis. Without commas, can you tell how many friends?",["No, it is confusing.","Yes, it is easy."],"No, it is confusing.","😕"),
@@ -120,7 +123,7 @@
     cards:chunk(commas,6).map((rows,k)=>card("Commas","Is the comma use correct?",rows.map(([s,c],i)=>fixed(`c${k}${i}`,s,OK,c?OK[0]:OK[1])),rows.map(([s,c])=>`${c?"✓":"✗"} ${s}`).join(" · ")))});
 
   // ───────── 11. Video "The Suffix ED Makes 3 Sounds" (Sue's Strategies) ─────────
-  bonus({id:"bonus-video-ed-3-sounds",urls:["https://www.youtube.com/watch?v=Dsd0eFgU0m8"],title:"The Suffix -ed Makes 3 Sounds",source:"Video · Sue's Strategies · Episode 18",
+  bonus({id:"bonus-video-ed-3-sounds",remember:["-ed shows that an action happened in the past.", "/id/: words ending in d or t (Ded Ted): landed, started", "/t/: whisper sounds (k, p, sh, ch): kicked, pumped, pitched", "/d/: noisy (voice) sounds: roared, chewed, sneezed"],urls:["https://www.youtube.com/watch?v=Dsd0eFgU0m8"],title:"The Suffix -ed Makes 3 Sounds",source:"Video · Sue's Strategies · Episode 18",
     cards:[card("-ed","The suffix -ed shows that an action happened in the past.",[
       ch("past","-ed shows that an action happened…",["in the past","right now","tomorrow"],"in the past","⏮️"),
       ch("ded","When the root word ends in d or t, -ed sounds like…",["/id/","/t/","/d/"],"/id/","📏"),
@@ -139,7 +142,7 @@
 
   // ───────── 13. Video "Community Places" (Teacher Lily) ─────────
   const PLACES=["hospital","police station","school","fire station","playground","bakery","barbershop","mall","restaurant","market","bank","drugstore"];
-  bonus({id:"bonus-video-community-places",urls:["https://www.youtube.com/watch?v=A_Gy6DbFFeo"],title:"Community Places",source:"Video · Community Places for Kindergarten (Teacher Lily)",
+  bonus({id:"bonus-video-community-places",remember:["Community: a group of people who share something in common.", "Hospital: Doctors and nurses treat sick or hurt people.", "Fire station: Firefighters work here.", "Bakery: The baker sells bread, cakes, muffins and cookies."],urls:["https://www.youtube.com/watch?v=A_Gy6DbFFeo"],title:"Community Places",source:"Video · Community Places for Kindergarten (Teacher Lily)",
     cards:[card("Community","A community is a group of people who share something in common. Where do you go?",[
       sel("hosp","Doctors and nurses treat sick or hurt people.",PLACES,"hospital","🏥"),sel("pol","Policemen and policewomen work here.",PLACES,"police station","🚓"),
       sel("sch","We learn to read, write and count with our teachers.",PLACES,"school","🏫"),sel("fire","We call for help when there is a fire. Firefighters work here.",PLACES,"fire station","🚒"),
@@ -197,7 +200,7 @@
 
   // ───────── 18. Video StoryBots "Nouns, Adjectives & Verbs" ─────────
   const NAV=["noun","adjective","verb"];
-  bonus({id:"bonus-video-storybots-nouns",urls:["https://www.youtube.com/watch?v=_II6ySgUtWc"],title:"Nouns, Adjectives & Verbs",source:"Video · StoryBots: Learn About Nouns, Adjectives & Verbs",
+  bonus({id:"bonus-video-storybots-nouns",remember:["Noun: a person, place or thing.", "Adjective: a word that describes a noun.", "Verb: an action word."],urls:["https://www.youtube.com/watch?v=_II6ySgUtWc"],title:"Nouns, Adjectives & Verbs",source:"Video · StoryBots: Learn About Nouns, Adjectives & Verbs",
     cards:[card("Words","Choose the correct answer.",[
       ch("noun","A noun is…",["a person, place or thing","an action word","a word that describes a noun"],"a person, place or thing","📛"),
       ch("adj","An adjective is…",["a word that describes a noun","an action word","a place"],"a word that describes a noun","🎨"),
@@ -260,7 +263,7 @@
 
   // ───────── 24. Wordwall 14757170 "Animals Structure Function" ─────────
   const SF=["body part that helps an animal survive","job of a body part","help animals see","help animal walk","help animal fly","help animal find food","protects body and sheds as the animal grows"];
-  bonus({id:"bonus-wordwall-animal-structure-function",subjectKey:"science",urls:["https://wordwall.net/resource/14757170/science/animals-structure-function"],title:"Animals Structure Function",source:"Wordwall · Animals Structure Function (match up)",
+  bonus({id:"bonus-wordwall-animal-structure-function",remember:["structure → body part that helps an animal survive", "function → job of a body part", "Eyes help animals see · Legs help animal walk · Wings help animal fly · Antennae help animal find food · Exoskeleton protects body and sheds as the animal grows"],subjectKey:"science",urls:["https://wordwall.net/resource/14757170/science/animals-structure-function"],title:"Animals Structure Function",source:"Wordwall · Animals Structure Function (match up)",
     cards:[{...card("Structure and function","Match each word with its meaning.",[sel("structure","structure",SF,SF[0],"🦴"),sel("function","function",SF,SF[1],"⚙️"),sel("eyes","eyes",SF,SF[2],"👀"),
       sel("legs","legs",SF,SF[3],"🦵"),sel("wings","wings",SF,SF[4],"🪽"),sel("antennae","antennae",SF,SF[5],"🐜"),sel("exo","exoskeleton",SF,SF[6],"🦀")],
       "structure → body part that helps an animal survive · function → job of a body part · eyes → help animals see · legs → help animal walk · wings → help animal fly · antennae → help animal find food · exoskeleton → protects body and sheds as the animal grows"),img:"assets/mascot/academy/science.webp"}]});

@@ -688,7 +688,12 @@ function readingCardMarkup(reading){
     const body=cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${hfw?`<b>${escapeHtml(chip)}</b>`:escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${emph(cell.text,cell.term)}</span>`;
     return `<div class="note-cell${cell.wide?" wide":""}">${label}${body}</div>`;
   };
-  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3>${dayMarkup(day.items)}</li>`).join("")}</ol>`:"";
+  // Link online (thẻ Bonus) có nội dung liên quan → thêm mục ghi nhớ, tiêu đề = tên link. Chỉ thêm ở thẻ REMEMBER đầu tiên.
+  const subjectNow=days?subjectFor(active):null;
+  const firstNotes=subjectNow?.readings?.find(entry=>entry.mode==="notes"&&Array.isArray(entry.days));
+  const linkNotes=firstNotes===reading?[...new Map((subjectNow.readings||[]).filter(entry=>entry.mode==="bonus").flatMap(entry=>entry.links||[])
+    .map(link=>[bonusQuizFor(link.url),link]).filter(([id])=>id&&(window.BONUS_REMEMBER||{})[id])).entries()].map(([id,link])=>({title:link.label,items:window.BONUS_REMEMBER[id]})):[];
+  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3>${dayMarkup(day.items)}</li>`).join("")}${linkNotes.map(note=>`<li class="notes-link"><h3>${escapeHtml(note.title)}</h3>${dayMarkup(note.items)}</li>`).join("")}</ol>`:"";
   const listening=reading.mode==="listen";
   // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
   const notes=reading.mode==="notes",bonus=reading.mode==="bonus";

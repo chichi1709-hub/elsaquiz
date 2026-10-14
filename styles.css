@@ -543,3 +543,4 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .note-cell span b{font-weight:900;color:#1d1d33}
 .note-cell span b::after{content:none}
 .note-cell span b{margin-right:0}
+.notes-days .notes-link h3{background:#e6f6ec;color:#23824a}
