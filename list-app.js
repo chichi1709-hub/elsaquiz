@@ -632,11 +632,35 @@ function readingCardMarkup(reading){
   const transcript=escapeHtml(reading.text||"").replace(/\n/g,"<br>");
   // Thẻ REMEMBER: "1. Class Diary 13/10/2026" + nội dung, "2. Class Diary …" (days do quiz-registry.js tạo).
   const days=reading.mode==="notes"&&Array.isArray(reading.days)?reading.days:null;
-  // Mỗi ý là 1 ô của bảng; ý gộp bằng "·" được tách thành nhiều ô; "Term: …" → term in đậm.
+  // Mỗi ngày: (1) định nghĩa "Term: …" và ghi chú → lưới 2 cột không viền, term in đậm;
+  // (2) Science "X help(s)/protect(s)/keep(s) …" → bảng "Animal structure | Function";
+  // (3) Science "A turtle has… / Bears use…" → bảng "Animal | What it has or does". Ý gộp bằng "·" được tách riêng.
+  const science=reading.mode==="notes"&&libraryEntry(active)?.subjectKey==="science";
+  const TERMS=/^(protection|structure|function|structures|functions)$/i;
+  const trim=text=>String(text).trim().replace(/\.$/,"");
+  const cap=text=>text.charAt(0).toUpperCase()+text.slice(1);
+  const classify=part=>{
+    let m;
+    if(science&&(m=part.match(/^(\w+)\s+→\s+(.+)$/))) return {kind:"def",term:cap(m[1]),text:m[2]};
+    if((m=part.match(/^([^:]{1,32}):\s+(.+)$/))&&m[1].split(" ").length<=4) return {kind:"def",term:m[1],text:m[2]};
+    if(science&&(m=part.match(/^(.+?)\s+((?:helps?|protects?|keeps?)\s+.+)$/))&&m[1].split(" ").length<=5&&!TERMS.test(m[1])) return {kind:"sf",a:cap(trim(m[1]).replace(/^the\s+/i,"")),b:trim(m[2])};
+    if(science&&(m=part.match(/^((?:A|An)\s+\w+|[A-Z][a-z]+s(?:\s+and\s+[a-z]+s)?)\s+((?:has|have|uses|use|sprays|blends|can blend)\s+.+)$/))) return {kind:"animal",a:cap(m[1].replace(/^(A|An)\s+/,"")),b:trim(m[2])};
+    return {kind:"note",text:part};
+  };
   const noteCells=item=>{
     const head=String(item).match(/^([^:·]{1,40}):\s+(.+)$/);
-    if(head&&/\s[·•]\s/.test(head[2])&&!head[2].includes(":")) return [{term:head[1],chips:head[2].replace(/\.$/,"").split(/\s+[·•]\s+/)}];
-    return String(item).split(/\s+[·•]\s+/).map(part=>{const m=part.match(/^([^:]{1,32}):\s+(.+)$/);return m&&m[1].split(" ").length<=4?{term:m[1],text:m[2]}:{text:part}});
+    if(head&&/\s[·•]\s/.test(head[2])&&!head[2].includes(":")) return [{kind:"def",term:head[1],chips:head[2].replace(/\.$/,"").split(/\s+[·•]\s+/)}];
+    const parts=String(item).split(/\s+[·•]\s+/);
+    // "Bears and crabs use claws. Frogs use their tongue." → tách câu nếu câu nào cũng là dạng con vật + hành động.
+    const sentences=parts.length===1?parts[0].split(/(?<=\.)\s+(?=[A-Z])/):[];
+    if(science&&sentences.length>1&&sentences.every(sentence=>classify(sentence).kind==="animal")) return sentences.map(classify);
+    return parts.map(classify);
+  };
+  const tableMarkup=(rows,head)=>rows.length?`<table class="note-grid"><thead><tr><th>${head[0]}</th><th>${head[1]}</th></tr></thead><tbody>${rows.map(row=>`<tr><td>${escapeHtml(row.a)}</td><td>${escapeHtml(row.b)}</td></tr>`).join("")}</tbody></table>`:"";
+  const dayMarkup=items=>{
+    const cells=items.flatMap(noteCells);
+    const plain=cells.filter(cell=>cell.kind==="def"||cell.kind==="note");
+    return `${plain.length?`<div class="note-table">${layoutCells(plain).map(cellMarkup).join("")}</div>`:""}${tableMarkup(cells.filter(cell=>cell.kind==="sf"),["Animal structure","Function"])}${tableMarkup(cells.filter(cell=>cell.kind==="animal"),["Animal","What it has or does"])}`;
   };
   // Ô dài/chip chiếm cả dòng; ô lẻ cuối hàng (không có ô bên cạnh) cũng kéo cả dòng để bảng không bị ô trống.
   const layoutCells=cells=>{
@@ -649,7 +673,7 @@ function readingCardMarkup(reading){
     });
   };
   const cellMarkup=cell=>`<div class="note-cell${cell.wide?" wide":""}">${cell.term?`<b>${escapeHtml(cell.term)}</b>`:""}${cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${escapeHtml(cell.text)}</span>`}</div>`;
-  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3><div class="note-table">${layoutCells(day.items.flatMap(noteCells)).map(cellMarkup).join("")}</div></li>`).join("")}</ol>`:"";
+  const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3>${dayMarkup(day.items)}</li>`).join("")}</ol>`:"";
   const listening=reading.mode==="listen";
   // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
   const notes=reading.mode==="notes",bonus=reading.mode==="bonus";
