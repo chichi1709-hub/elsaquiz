@@ -626,13 +626,6 @@ function questionMarkup(item,index){
   </article>`;
 }
 
-// Keyword cần nhớ theo môn (tô đậm trong thẻ REMEMBER).
-const NOTE_KEYWORDS={
-  science:["structure","structures","function","functions","protection","protect","protects","protect its body","protect itself","defend itself","keeps things safe","safe","from harm","body part","survive","job","biologists","wildlife biologists","scientists","study life","study animals","predators","hide","blend in","blends in","surroundings","hard shell","shell","sharp spines","spines","sharp claws","claws","quills","wings","fins","trunk","sharp teeth","webbed feet","strong back legs","long neck","large ears","ears","feet","tongue","beak","bad-smelling liquid","bad smelling liquid","thick mane","strong horns","hops","fly","swim","jump","hear","move very fast","danger","pick up food and drink water","eat meat","reach leaves","THURSDAY","Review Lesson 2"],
-  language:["noun","nouns","person","place","thing","an animal","comma","1 less comma","list","realistic fiction","fantasy","fantasies","made-up","made-up stories","real life","characters","setting","events","nonfiction","real people","real things","short e","short u","middle sound","beginning","final sounds","final sound","-ed","/t/","/d/","/id/","/u/","/e/","/i/","/ug/","rhyme","same sounds","high-frequency words","one idea","descriptive details","shelter","protects you","keeps you safe","materials","problem and solution","genre","action word","already happened","stay on the lines","another time","not old","picks up quickly","e or ea","letter u","buildings","made of","metal","stone","glass","wood","brick","plastic","good pets","pet show"],
-  math:["subtraction sentence","take away","left","doubles","addends","missing part","missing parts","subtract","difference","minus sign","equal sign","makes sense","the same"]
-};
-
 function readingCardMarkup(reading){
   if(!reading) return "";
   const images=(reading.images||[]).map((src,index)=>`<figure><img src="${escapeHtml(src)}" alt="${escapeHtml(reading.title)} page ${index+1}" loading="${index===0?"eager":"lazy"}"></figure>`).join("");
@@ -663,11 +656,7 @@ function readingCardMarkup(reading){
     if(science&&sentences.length>1&&sentences.every(sentence=>classify(sentence).kind==="animal")) return sentences.map(classify);
     return parts.map(classify);
   };
-  // Tô đậm keyword trong từng câu: từ khoá cố định của môn + các term được định nghĩa + tên bộ phận ở cột "Animal structure".
-  const keywordList=days?[...(NOTE_KEYWORDS[libraryEntry(active)?.subjectKey]||[]),...days.flatMap(day=>day.items.flatMap(noteCells)).flatMap(cell=>cell.kind==="def"&&!cell.chips&&cell.term.split(" ").length<=3?[cell.term]:cell.kind==="sf"?[cell.a]:[])]:[];
-  const keywordRe=keywordList.length?new RegExp(`(?<![\\w/-])(${[...new Set(keywordList.map(word=>word.toLowerCase()))].sort((a,b)=>b.length-a.length).map(word=>word.replace(/[.*+?^${}()|[\]\\/]/g,"\\$&")).join("|")})(?![\\w])`,"gi"):null;
-  const hl=text=>{const safe=escapeHtml(text);return keywordRe?safe.replace(keywordRe,"<mark class=\"kw\">$1</mark>"):safe};
-  const tableMarkup=(rows,head)=>rows.length?`<table class="note-grid"><thead><tr><th>${head[0]}</th><th>${head[1]}</th></tr></thead><tbody>${rows.map(row=>`<tr><td><b>${escapeHtml(row.a)}</b></td><td>${hl(row.b)}</td></tr>`).join("")}</tbody></table>`:"";
+  const tableMarkup=(rows,head)=>rows.length?`<table class="note-grid"><thead><tr><th>${head[0]}</th><th>${head[1]}</th></tr></thead><tbody>${rows.map(row=>`<tr><td>${escapeHtml(row.a)}</td><td>${escapeHtml(row.b)}</td></tr>`).join("")}</tbody></table>`:"";
   const dayMarkup=items=>{
     const cells=items.flatMap(noteCells);
     const plain=cells.filter(cell=>cell.kind==="def"||cell.kind==="note");
@@ -683,7 +672,7 @@ function readingCardMarkup(reading){
       col=1-col;return cell;
     });
   };
-  const cellMarkup=cell=>`<div class="note-cell${cell.wide?" wide":""}">${cell.term?`<b>${escapeHtml(cell.term)}</b>`:""}${cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${hl(cell.text)}</span>`}</div>`;
+  const cellMarkup=cell=>`<div class="note-cell${cell.wide?" wide":""}">${cell.term?`<b>${escapeHtml(cell.term)}</b>`:""}${cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${escapeHtml(cell.text)}</span>`}</div>`;
   const daysMarkup=days?`<ol class="notes-days">${days.map(day=>`<li><h3>Class Diary ${escapeHtml(day.date)}</h3>${dayMarkup(day.items)}</li>`).join("")}</ol>`:"";
   const listening=reading.mode==="listen";
   // "notes": khối Ghi nhớ quy tắc · "bonus": danh sách link luyện thêm (không tính điểm).
