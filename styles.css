@@ -532,3 +532,7 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .note-grid th{background:#efe9ff;color:#5b3fc4;font-weight:800;text-align:center;padding:6px 10px;border:1.5px solid #8f7fc0}
 .note-grid td{padding:5px 10px;border:1.5px solid #8f7fc0;vertical-align:top}
 .note-grid td:first-child{width:42%}
+/* REMEMBER v3: mỗi định nghĩa / ghi chú 1 dòng riêng */
+.note-table{grid-template-columns:1fr;gap:2px}
+.note-table .note-cell{grid-column:auto}
+.note-cell b{color:#24243d;font-weight:900}
