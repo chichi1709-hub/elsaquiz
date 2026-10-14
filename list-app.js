@@ -53,7 +53,7 @@ const subjectOrder=["close-reading","language","math","science","wellbeing"];
 // Bài bonus (hidden) không hiện trong Danh sách; chỉ mở từ nút "Do the quiz here" trong thẻ Bonus.
 const quizCatalog=registeredQuizzes.filter(entry=>!entry.hidden).map(({subject,...item})=>item);
 let bonusReturnId=null;
-const bonusQuizFor=url=>{const key=window.normalizeBonusUrl?window.normalizeBonusUrl(url):url;const id=(window.BONUS_QUIZ_BY_URL||{})[key];return id&&quizLibrary[id]?id:null};
+const bonusQuizFor=url=>{const key=window.normalizeBonusUrl?window.normalizeBonusUrl(url):url;const id=(window.BONUS_QUIZ_BY_URL||{})[key];return id&&(quizLibrary[id]||quizLibrary[`${id}-p1`])?id:null};
 const quizLibrary=Object.fromEntries(registeredQuizzes.map(entry=>[entry.id,entry]));
 const uploadLabels=Object.fromEntries(quizCatalog.filter(item=>item.uploadLabel).map(item=>[item.uploadDate,item.uploadLabel]));
 // Tab môn học trong màn làm bài trỏ tới bài mới nhất của từng môn.
@@ -640,8 +640,11 @@ function readingCardMarkup(reading){
   const sourceLink=reading.url?`<a class="reading-source-link" href="${escapeHtml(reading.url)}" target="_blank" rel="noopener noreferrer">▶ ${listening?"Listen to the story video":"Open the source"}</a>`:"";
   const extraLinks=(reading.links||[]).map(link=>{
     const quizId=bonusQuizFor(link.url);
-    const doHere=quizId&&quizId!==active?`<button class="reading-source-link do-here" type="button" data-open-quiz="${escapeHtml(quizId)}">✏️ Do the quiz here</button>`:"";
-    return `<span class="bonus-link"><b>${escapeHtml(link.label)}</b><a class="reading-source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">▶ Open online</a>${doHere}</span>`;
+    const inline=quizId&&quizId!==active;
+    const open=inline&&bonusInlineState[quizId]?.open;
+    const doHere=inline?`<button class="reading-source-link do-here" type="button" data-bonus-toggle="${escapeHtml(quizId)}" aria-expanded="${open?"true":"false"}">${open?"▲ Hide the quiz":"✏️ Do the quiz here"}</button>`:"";
+    const panel=inline?`<div class="bonus-inline"${open?"":" hidden"}>${open?bonusInlineMarkup(quizId):""}</div>`:"";
+    return `<div class="bonus-item"><span class="bonus-link"><b>${escapeHtml(link.label)}</b><a class="reading-source-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">▶ Open online</a>${doHere}</span>${panel}</div>`;
   }).join("");
   const instruction=notes?"Read these notes first.":bonus?"Extra practice from the class diary (not scored).":reference?"Use this source page for the questions in this section.":listening?"Listen to the complete story collection before answering its questions.":"Read this complete text before answering its questions.";
   const eyebrow=notes?"REMEMBER":bonus?"BONUS":reference?"LOOK AT THIS SOURCE PAGE":listening?"LISTEN TO THE WHOLE STORY FIRST":"READ THE WHOLE TEXT FIRST";
@@ -651,6 +654,73 @@ function readingCardMarkup(reading){
     ${images?`${transcript?`<p class="reading-step">📖 Look at the book: <b>${escapeHtml(reading.title)}</b></p>`:""}<div class="reading-gallery">${images}</div>`:""}
     ${daysMarkup||(transcript?`${images?`<p class="reading-step">📝 Read the text</p>`:""}<div class="reading-transcript" aria-label="Full text of ${escapeHtml(reading.title)}">${transcript}</div>`:"")}
   </article></section>`;
+}
+
+// Bonus quiz làm ngay trong thẻ Bonus: bấm "Do the quiz here" → câu hỏi của link sổ ra bên dưới (không tính điểm bài chính).
+const bonusInlineState={};
+const bonusQuestions=id=>Object.keys(quizLibrary).filter(key=>key===id||key.startsWith(`${id}-p`)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true})).flatMap(key=>subjectFor(key).questions);
+const bonusAnswerText=field=>Array.isArray(field.answer)?(field.type==="fill"?field.answer[0]:field.answer.join(", ")):field.answer;
+
+function bonusInlineMarkup(id){
+  const state=bonusInlineState[id]||(bonusInlineState[id]={open:false,values:{},checked:false});
+  const cards=bonusQuestions(id);
+  const total=cards.reduce((sum,card)=>sum+(card.fields?card.fields.length:1),0);
+  const fieldsOf=card=>card.type==="compound"?card.fields:[{...card,id:"q",label:""}];
+  let correct=0;
+  const body=cards.map((card,ci)=>{
+    let cardWrong=false;
+    const fields=fieldsOf(card).map(field=>{
+      const key=`${ci}:${field.id}`,value=state.values[key];
+      const ok=state.checked&&fieldCorrect(field,value);
+      if(state.checked){if(ok) correct++; else cardWrong=true}
+      const name=`bq-${id}-${ci}-${field.id}`;
+      let input;
+      if(field.type==="select") input=`<select data-bq="${key}"${state.checked?" disabled":""}><option value="">Choose…</option>${field.choices.map(choice=>`<option value="${escapeHtml(choice)}"${value===choice?" selected":""}>${escapeHtml(choice)}</option>`).join("")}</select>`;
+      else if(field.type==="fill") input=`<input type="text" data-bq="${key}" value="${escapeHtml(value||"")}" placeholder="Type your answer"${state.checked?" disabled":""}>`;
+      else{
+        const multi=field.type==="multi",picked=multi?(Array.isArray(value)?value:[]):[value];
+        input=`<div class="bq-options">${field.choices.map(choice=>`<label class="bq-option${picked.includes(choice)?" picked":""}"><input type="${multi?"checkbox":"radio"}" name="${escapeHtml(name)}" data-bq="${key}" value="${escapeHtml(choice)}"${picked.includes(choice)?" checked":""}${state.checked?" disabled":""}><span>${escapeHtml(choice)}</span></label>`).join("")}</div>${multi?`<small class="bq-hint">Choose ${field.answer.length}.</small>`:""}`;
+      }
+      const mark=state.checked?(ok?`<span class="bq-mark good">✓</span>`:`<span class="bq-mark bad">✕ Answer: ${escapeHtml(bonusAnswerText(field))}</span>`):"";
+      return `<div class="bq-field${state.checked?(ok?" right":" wrong"):""}">${field.label?`<p class="bq-label">${field.icon?`${escapeHtml(field.icon)} `:""}${escapeHtml(field.label)}</p>`:""}${input}${mark}</div>`;
+    }).join("");
+    const img=card.img&&!card.img.includes("assets/mascot/")?`<img class="bq-img" src="${escapeHtml(card.img)}" alt="" loading="lazy">`:"";
+    const bank=card.wordBank?`<p class="bq-bank"><b>Word Bank:</b> ${card.wordBank.map(word=>`<span>${escapeHtml(word)}</span>`).join("")}</p>`:"";
+    const explain=state.checked&&cardWrong&&card.explain?`<p class="bq-explain">💡 ${escapeHtml(card.explain)}</p>`:"";
+    return `<section class="bq-card"><h4><span>${ci+1}</span>${escapeHtml(card.text)}</h4>${img}${bank}${fields}${explain}</section>`;
+  }).join("");
+  const answered=Object.values(state.values).filter(value=>Array.isArray(value)?value.length:String(value??"").trim()).length;
+  const score=state.checked?`<b class="bq-score">⭐ ${correct} / ${total} correct</b>`:`<span class="bq-progress">${answered} / ${total} answered</span>`;
+  return `<div class="bq" data-bq-quiz="${escapeHtml(id)}">${body}<div class="bq-actions">${state.checked?`<button type="button" class="bq-retry" data-bq-retry>↺ Try again</button>`:`<button type="button" class="bq-check" data-bq-check>✅ Check my answers</button>`}${score}</div></div>`;
+}
+
+function attachBonusInline(){
+  document.querySelectorAll("[data-bonus-toggle]").forEach(button=>button.addEventListener("click",()=>{
+    const id=button.dataset.bonusToggle,panel=button.closest(".bonus-item").querySelector(".bonus-inline");
+    const state=bonusInlineState[id]||(bonusInlineState[id]={open:false,values:{},checked:false});
+    state.open=!state.open;
+    button.setAttribute("aria-expanded",String(state.open));
+    button.textContent=state.open?"▲ Hide the quiz":"✏️ Do the quiz here";
+    panel.hidden=!state.open;
+    if(state.open){panel.innerHTML=bonusInlineMarkup(id);bindBonusPanel(panel,id)}
+  }));
+  document.querySelectorAll(".bonus-inline:not([hidden])").forEach(panel=>{const quiz=panel.querySelector("[data-bq-quiz]");if(quiz) bindBonusPanel(panel,quiz.dataset.bqQuiz)});
+}
+
+function bindBonusPanel(panel,id){
+  const state=bonusInlineState[id];
+  const redraw=scroll=>{panel.innerHTML=bonusInlineMarkup(id);bindBonusPanel(panel,id);if(scroll) panel.scrollIntoView({block:"start",behavior:"smooth"})};
+  panel.querySelectorAll("[data-bq]").forEach(input=>input.addEventListener(input.tagName==="INPUT"&&input.type==="text"?"input":"change",()=>{
+    const key=input.dataset.bq;
+    if(input.type==="checkbox") state.values[key]=[...panel.querySelectorAll(`[data-bq="${CSS.escape(key)}"]:checked`)].map(box=>box.value);
+    else state.values[key]=input.value;
+    if(input.type==="radio"||input.type==="checkbox") input.closest(".bq-options").querySelectorAll(".bq-option").forEach(option=>option.classList.toggle("picked",option.querySelector("input").checked));
+    const total=panel.querySelectorAll(".bq-field").length;
+    const answered=Object.values(state.values).filter(value=>Array.isArray(value)?value.length:String(value??"").trim()).length;
+    const progress=panel.querySelector(".bq-progress");if(progress) progress.textContent=`${answered} / ${total} answered`;
+  }));
+  panel.querySelector("[data-bq-check]")?.addEventListener("click",()=>{state.checked=true;redraw(true)});
+  panel.querySelector("[data-bq-retry]")?.addEventListener("click",()=>{state.checked=false;state.values={};redraw(true)});
 }
 
 function readingLibraryMarkup(subject,position="start"){
@@ -700,6 +770,7 @@ function renderSubject(scrollTarget){
   $("#submitBtn").disabled=state.submitted;
   attachQuestionEvents();
   document.querySelectorAll("[data-open-quiz]").forEach(button=>button.addEventListener("click",()=>{if(!libraryEntry(active)?.hidden) bonusReturnId=active;openSubject(button.dataset.openQuiz)}));
+  attachBonusInline();
   if(scrollTarget) requestAnimationFrame(()=>document.getElementById(scrollTarget)?.scrollIntoView({block:"start"}));
 }
 
