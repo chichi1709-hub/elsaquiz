@@ -544,3 +544,5 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .note-cell span b::after{content:none}
 .note-cell span b{margin-right:0}
 .notes-days .notes-link h3{background:#e6f6ec;color:#23824a}
+.weekly-group .catalog-date-heading{background:linear-gradient(90deg,#fff4d6,#fdf0ff)}
+.weekly-title{display:block;font-size:1.35rem;color:#7a4bd6}

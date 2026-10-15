@@ -281,4 +281,27 @@
   const SHORT2=["he’s","she’s","it’s","that’s","what’s","where’s","who’s","there’s"],LONG2=SHORT2.map(w=>w.replace("’s"," is"));
   bonus({id:"bonus-contractions-s-game",remember:["’s Contractions: he’s · she’s · it’s · that’s · what’s · where’s · who’s · there’s","there’s = there is · who’s = who is · that’s = that is"],urls:["https://www.baamboozle.com/index.php/slideshow/2941674","https://www.baamboozle.com/slideshow/2941674","https://www.baamboozle.com/game/2941674"],title:"’s Contractions Game",source:"Baamboozle · ’s Contractions (match the 2 words)",
     cards:chunk(S2,8).map((rows,k)=>card("’s contractions","Match the contraction and the two words.",rows.map(([q,a],i)=>sel(`s${k}${i}`,q,a.includes("’")?SHORT2:LONG2,a)),rows.map(([q,a])=>`${q} → ${a}`).join(" · ")))});
+  // ───────── 27. Wordwall 5186766 "Plural Nouns - s or es" (group sort) ─────────
+  const PL=[["boy","s"],["park","s"],["doll","s"],["car","s"],["shirt","s"],["pencil","s"],["marker","s"],["ball","s"],["lunch","es"],["glass","es"],["brush","es"],["box","es"],["dish","es"],["bush","es"],["porch","es"],["inch","es"]];
+  bonus({id:"bonus-wordwall-plural-s-es",remember:["Add s: boy · park · doll · car · shirt · pencil · marker · ball","Add es: lunch · glass · brush · box · dish · bush · porch · inch"],urls:["https://wordwall.net/resource/5186766/plural-nouns-s-or-es"],title:"Plural Nouns – s or es",source:"Wordwall · Plural Nouns - s or es (group sort)",
+    cards:chunk(rot(PL,"PL"),8).map((rows,k)=>card("Plural nouns","Add “s” or add “es”?",rows.map(([w,a],i)=>sel(`p${k}${i}`,w,["s","es"],a)),
+      "Add s: boys, parks, dolls, cars, shirts, pencils, markers, balls · Add es: lunches, glasses, brushes, boxes, dishes, bushes, porches, inches"))});
+
+  // ───────── 28. Video "The Pigs, the Wolf, and the Mud" (Mrs. Kania read-aloud) ─────────
+  bonus({id:"bonus-video-pigs-wolf-mud",urls:["https://www.youtube.com/watch?v=vvR2yjmbWGE"],title:"The Pigs, the Wolf, and the Mud (read-aloud)",source:"Video · First Grade Wonders · The Pigs, the Wolf, and the Mud",
+    cards:[card("The Pigs, the Wolf, and the Mud","Listen to the story. Answer the questions.",[
+      ch("love","The three pigs love…",["mud and a mess","a clean house","bricks"],"mud and a mess","🐷"),
+      ch("door","The wolf rings the bell. What do the pigs say?",["No, you will eat us up!","Come in!","Hello, friend!"],"No, you will eat us up!","🔔"),
+      ch("huff","What happens when the wolf huffs and puffs?",["He gets mud all over him.","The hut flies away.","The pigs run away."],"He gets mud all over him.","💨"),
+      ch("kick","Then the wolf kicks the hut. What happens?",["The hut falls in.","The hut gets bigger.","Nothing happens."],"The hut falls in.","🦵"),
+      ch("leave","Why does the wolf leave?",["He does not like the mud.","He is sleepy.","He wants to swim."],"He does not like the mud.","🚪"),
+      ch("new","What do the pigs use for their new hut?",["mud","bricks","sticks"],"mud","🛖")],
+      "The pigs love mud and a mess. The wolf huffs and puffs, but he gets mud all over him — he can’t huff and puff in mud. He kicks the hut and it falls in. He does not like the mud, so he leaves. The pigs build a new hut out of mud.")]});
+  // ───────── 29. Video StoryBots "Adding S & ES to Words" (bài hát, không có phụ đề → lấy từ chữ trên màn hình) ─────────
+  const VS=[["cup","s"],["pup","s"],["lollipop","s"],["apple","s"],["tree","s"],["bus","es"],["glass","es"],["brush","es"],["dress","es"],["box","es"],["fox","es"],["dish","es"],["peach","es"]];
+  bonus({id:"bonus-video-adding-s-es",remember:["S and ES turn one thing into many things.","Add s: cups · pups · lollipops · apples · trees","Add es: buses · glasses · brushes · dresses · boxes · foxes · dishes · peaches"],urls:["https://www.youtube.com/watch?v=S36TFFcYe0I"],title:"Adding S & ES (StoryBots)",source:"Video · StoryBots · Adding “S” & “ES” to Words",
+    cards:[card("Plural nouns","Watch the video. Answer the question.",[
+      ch("many","Adding s or es turns one thing into…",["many things","one thing","no things"],"many things","🔢")],"S and ES turn one thing into many things."),
+      card("Plural nouns","Add “s” or “es”?",VS.map(([w,a],i)=>sel(`v${i}`,w,["s","es"],a)),
+      "Add s: cups, pups, lollipops, apples, trees · Add es: buses, glasses, brushes, dresses, boxes, foxes, dishes, peaches")]});
 })();

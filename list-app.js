@@ -55,10 +55,13 @@ const quizCatalog=registeredQuizzes.filter(entry=>!entry.hidden).map(({subject,.
 let bonusReturnId=null;
 const bonusQuizFor=url=>{const key=window.normalizeBonusUrl?window.normalizeBonusUrl(url):url;const id=(window.BONUS_QUIZ_BY_URL||{})[key];return id&&(quizLibrary[id]||quizLibrary[`${id}-p1`])?id:null};
 const quizLibrary=Object.fromEntries(registeredQuizzes.map(entry=>[entry.id,entry]));
+// Bài "Tổng hợp kiến thức tuần": uploadDate bắt đầu bằng "weekly" → nhóm riêng, đứng đầu Danh sách, không ghi ngày.
+const isWeeklyKey=key=>String(key).startsWith("weekly");
+const catalogKeyOrder=(a,b)=>(isWeeklyKey(b)-isWeeklyKey(a))||(isWeeklyKey(a)?a.localeCompare(b):b.localeCompare(a));
 const uploadLabels=Object.fromEntries(quizCatalog.filter(item=>item.uploadLabel).map(item=>[item.uploadDate,item.uploadLabel]));
 // Tab môn học trong màn làm bài trỏ tới bài mới nhất của từng môn.
 const defaultQuizIds=Object.fromEntries(subjectOrder.map(subjectKey=>{
-  const latest=quizCatalog.filter(item=>item.subjectKey===subjectKey).reduce((best,item)=>!best||item.uploadDate>=best.uploadDate?item:best,null);
+  const latest=quizCatalog.filter(item=>item.subjectKey===subjectKey&&!isWeeklyKey(item.uploadDate)).reduce((best,item)=>!best||item.uploadDate>=best.uploadDate?item:best,null);
   return latest?[subjectKey,latest.id]:null;
 }).filter(Boolean));
 const resolveQuizId=key=>key;
@@ -128,6 +131,7 @@ function elsaWelcomeForHour(hour){
 
 function formatUploadDate(isoDate){
   if(uploadLabels[isoDate]) return uploadLabels[isoDate];
+  if(isWeeklyKey(isoDate)) return "Tổng hợp kiến thức tuần";
   const [year,month,day]=isoDate.split("-");
   return `${day}/${month}/${year}`;
 }
@@ -675,7 +679,7 @@ function readingCardMarkup(reading){
   // In đậm theo Class Diary: nhãn trước ":" là từ khoá (trừ nhãn chung như Example/Define/Writing Trait/Lesson n),
   // chữ diary in đậm (HFW, THURSDAY, Protection, Characters/Setting/Events, Genre: Fantasy), từ được Define.
   const PLAIN_LABEL=/^(example|define|writing trait|writing skill|homework check|lesson \d+)$/i;
-  const DIARY_BOLD=[/^(Characters) are /,/^The (setting) is /,/^The (events) are /,/^(Protection) keeps /,/\b(THURSDAY)\b/,/^(Fantasy)\./,/^A (contraction) is /];
+  const DIARY_BOLD=[/^(Characters) are /,/^The (setting) is /,/^The (events) are /,/^(Protection) keeps /,/\b(THURSDAY)\b/,/^(Fantasy)\./,/^A (contraction) is /,/^A (singular noun) names /,/^A (plural noun) names /];
   const emph=(text,term)=>{
     let safe=escapeHtml(text);
     const rules=/^define$/i.test(term||"")?[/^(?:A |An )?(\w+) (?:is|are) /]:DIARY_BOLD;
@@ -1014,13 +1018,15 @@ function renderHistory(){
   </article>`).join("");
 }
 
+const latestDateKey=groups=>Object.keys(groups).filter(key=>!isWeeklyKey(key)).sort((a,b)=>b.localeCompare(a))[0];
+
 function catalogFilteredItems(subjectKey="all",uploadDate="all"){
   return quizCatalog.filter(item=>(subjectKey==="all"||item.subjectKey===subjectKey)&&(uploadDate==="all"||item.uploadDate===uploadDate));
 }
 
 function buildCatalogDateFilter(){
   const select=$("#catalogDateFilter"),selected=select.value||"all";
-  const dates=[...new Set(quizCatalog.map(item=>item.uploadDate))].sort((a,b)=>b.localeCompare(a));
+  const dates=[...new Set(quizCatalog.map(item=>item.uploadDate))].sort(catalogKeyOrder);
   select.innerHTML='<option value="all">Tất cả ngày</option>'+dates.map(date=>`<option value="${date}">${formatUploadDate(date)}</option>`).join("");
   select.value=dates.includes(selected)?selected:"all";
 }
@@ -1030,8 +1036,8 @@ function renderCatalog(){
   const dateGroups=catalogGroupsByUploadDate(items);
   $("#catalogEmpty").hidden=items.length>0;
   $("#catalogEmpty").textContent=quizCatalog.length?"Không có bài quiz phù hợp với bộ lọc.":"Chưa có bài quiz nào. Thêm bài mới vào thư mục quizzes/.";
-  $("#catalogGroups").innerHTML=Object.keys(dateGroups).sort((a,b)=>b.localeCompare(a)).map((date,dateIndex)=>`<section class="catalog-date-group">
-    <header class="catalog-date-heading"><div><small>NGÀY UPLOAD</small><time datetime="${date}">${formatUploadDate(date)}</time></div>${dateIndex===0?'<span>Mới nhất</span>':""}</header>
+  $("#catalogGroups").innerHTML=Object.keys(dateGroups).sort(catalogKeyOrder).map(date=>`<section class="catalog-date-group${isWeeklyKey(date)?" weekly-group":""}">
+    <header class="catalog-date-heading"><div><small>${isWeeklyKey(date)?"TỔNG HỢP":"NGÀY UPLOAD"}</small>${isWeeklyKey(date)?`<strong class="weekly-title">${escapeHtml(formatUploadDate(date))}</strong>`:`<time datetime="${date}">${formatUploadDate(date)}</time>`}</div>${date===latestDateKey(dateGroups)?'<span>Mới nhất</span>':""}</header>
     <div class="catalog-cards">${dateGroups[date].map(item=>{
       const subject=subjectFor(item.id),count=counts(item.id);
       return `<article class="catalog-card ${escapeHtml(item.subjectKey)}">
