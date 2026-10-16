@@ -11,7 +11,7 @@
   const tf=(id,label,isTrue,icon="")=>fixed(id,label,["TRUE","FALSE"],isTrue?"TRUE":"FALSE",icon);
   const card=(section,text,fields,explain)=>({section,text,type:"compound",layout:"icon-activity",img:"assets/mascot/academy/language.webp",fields,explain});
   const chunk=(list,size)=>Array.from({length:Math.ceil(list.length/size)},(_,i)=>list.slice(i*size,i*size+size));
-  const ICON={language:"📚",science:"🐾",math:"🧮"},ACC={language:"#9b69e8",science:"#31a66d",math:"#ff8a3d"};
+  const ICON={language:"📚",science:"🐾",math:"🧮",wellbeing:"💞"},ACC={language:"#9b69e8",science:"#31a66d",math:"#ff8a3d",wellbeing:"#e45d9c"};
   window.BONUS_QUIZ_BY_URL=window.BONUS_QUIZ_BY_URL||{};
   // Chuẩn hoá link để so khớp: bỏ "index.php/", bỏ tham số (trừ ?v= của YouTube), bỏ "/" cuối.
   window.normalizeBonusUrl=url=>{
@@ -24,7 +24,7 @@
     for(const url of urls) window.BONUS_QUIZ_BY_URL[window.normalizeBonusUrl(url)]=id;
     if(remember) window.BONUS_REMEMBER[id]=remember;
     registerQuiz({id,hidden:true,uploadDate:"2026-10-14",subjectKey,title:`Bonus – ${title}`,
-      subject:{name:subjectKey==="science"?"Science":subjectKey==="math"?"Math":"Language Arts",icon:ICON[subjectKey],accent:ACC[subjectKey],soft:"#f5efff",
+      subject:{name:subjectKey==="science"?"Science":subjectKey==="math"?"Math":subjectKey==="wellbeing"?"Wellbeing":"Language Arts",icon:ICON[subjectKey],accent:ACC[subjectKey],soft:"#f5efff",
         subtitle:`Bonus quiz · ${source}`,scoreByField:true,
         groups:[{title:`1. ${title}`,subtitle:source,start:0,end:cards.length-1}],questions:cards,
         readings:[{id:`${id}-src`,title:"Bonus",byline:source,mode:"bonus",links:urls.slice(0,1).map(url=>({label:"Open the original",url})),text:""}]}});
@@ -304,4 +304,40 @@
       ch("many","Adding s or es turns one thing into…",["many things","one thing","no things"],"many things","🔢")],"S and ES turn one thing into many things."),
       card("Plural nouns","Add “s” or “es”?",VS.map(([w,a],i)=>sel(`v${i}`,w,["s","es"],a)),
       "Add s: cups, pups, lollipops, apples, trees · Add es: buses, glasses, brushes, dresses, boxes, foxes, dishes, peaches")]});
+  // ───────── 30. Baamboozle 1116709 "Basic Grammar Contractions" (24 câu) ─────────
+  const BG=[["I am Doraemon.","I’m"],["It is a dog.","It’s"],["What is your name?","What’s"],["No, I do not.","don’t"],["No, I can not.","can’t"],["There is 1 fish.","There’s"],["They are fish.","They’re"],["I am from America.","I’m"],["How is the weather?","How’s"],["I am happy.","I’m"],["It is 3 o'clock.","It’s"],["It is blue.","It’s"],["They are dogs.","They’re"],["I am Urashimatarou.","I’m"],["It is a cat.","It’s"],["I am sad.","I’m"],["It is snowy.","It’s"],["It is sunny.","It’s"],["They are cats.","They’re"],["What is the time?","What’s"],["It is a triangle.","It’s"]];
+  const BGW=["I’m","It’s","What’s","There’s","How’s","They’re","don’t","can’t"];
+  bonus({id:"bonus-contractions-basic",remember:["I am → I’m · it is → it’s · what is → what’s · there is → there’s · how is → how’s","they are → they’re · do not → don’t · can not → can’t"],urls:["https://www.baamboozle.com/game/1116709"],title:"Basic Grammar Contractions",source:"Baamboozle · Basic Grammar Contractions",
+    cards:[...chunk(BG,7).map((rows,k)=>card("Contractions","Say it with a contraction.",rows.map(([q,a],i)=>sel(`b${k}${i}`,q,BGW,a)),rows.map(([q,a])=>`${q} → ${a}`).join(" · "))),
+      card("Contractions","Choose the answer.",[
+        ch("isnt","No, it is not. → No, it ___.",["isn’t","aren’t","don’t"],"isn’t","❌"),
+        ch("arent","No, they are not. → No, they ___.",["aren’t","isn’t","can’t"],"aren’t","❌"),
+        ch("bye","“God be with ye” became which word?",["Goodbye","Good night","Hello"],"Goodbye","👋")],
+        "No, it isn’t (No, it’s not). · No, they aren’t (No, they’re not). · Goodbye comes from “God be with ye”.")]});
+
+  // ───────── 31. Baamboozle 71105 "Short U sound" (câu hỏi là tranh → thêm emoji gợi ý) ─────────
+  const SU2=[["🐞","bug",["bug","bag","big"]],["🛖","hut",["hut","hat","hit"]],["🐷🟫 (pigs play in it)","mud",["mud","mad","mid"]],["🎉","fun",["fun","fan","fin"]],["🥜","nut",["nut","net","not"]],["🛁","tub",["tub","tab","tib"]],["✂️","cut",["cut","cat","cot"]],["🐶 (a baby dog)","pup",["pup","pop","pip"]],
+    ["🥁","drum",["drum","dram","drim"]],["🏺 (it holds water)","jug",["jug","jog","jig"]],["☀️","sun",["sun","son","sin"]],["🏃","run",["run","ran","rin"]],["☕","cup",["cup","cap","cop"]],["🟫 (a small carpet on the floor)","rug",["rug","rag","rig"]],["🤗","hug",["hug","hog","hag"]]];
+  bonus({id:"bonus-short-u-sound-game",urls:["https://www.baamboozle.com/game/71105"],title:"Short U Sound",source:"Baamboozle · Short U sound (Teacher Bi)",
+    cards:chunk(SU2,8).map((rows,k)=>card("Short u","What is it? Choose the short u word.",rows.map(([q,a,c],i)=>ch(`s${k}${i}`,q,c,a)),rows.map(([,a])=>a).join(" · ")))});
+
+  // ───────── 32. Video "ph" (Kids vs Phonics) ─────────
+  bonus({id:"bonus-video-ph",remember:["ph makes the /f/ sound: photo · phone · dolphin · elephant"],urls:["https://www.youtube.com/watch?v=DXvp4Ybx0W4"],title:"ph (Kids vs Phonics)",source:"Video · Kids vs Phonics · ph",
+    cards:[card("ph","Watch the video. Answer the questions.",[
+      ch("sound","ph makes the sound…",["/f/","/p/","/h/"],"/f/","🔊"),
+      sel("photo","In photo and phone, ph sounds like…",["/f/","/p/"],"/f/","📷"),
+      ch("dolphin","Phin is a…",["dolphin","elephant","dog"],"dolphin","🐬"),
+      ch("elephant","Phil is an…",["elephant","dolphin","eagle"],"elephant","🐘"),
+      ch("call","How does Phil call Phin at the end?",["from the pay phone","with a letter","by shouting"],"from the pay phone","📞"),
+      multi("words","Which words have ph? Choose 4.",["photo","phone","dolphin","elephant","fish","fun"],["photo","phone","dolphin","elephant"],"🔤")],
+      "ph makes the /f/ sound: photo, phone, dolphin, elephant. Phin the dolphin and Phil the elephant: in the end, Phil phones Phin from the pay phone.")]});
+
+  // ───────── 33. Video "Sesame Street: Family Song" (Wellbeing) ─────────
+  bonus({id:"bonus-video-family-song",subjectKey:"wellbeing",remember:["Family is the people you love: brothers, sisters, mom and dad, grandparents, aunts and uncles.","Near or far, they are still your family."],urls:["https://www.youtube.com/watch?v=ii_LtHrEiao"],title:"Family Song (Sesame Street)",source:"Video · Sesame Street: Family Song",
+    cards:[card("Family","Listen to the song. Answer the questions.",[
+      ch("q","What question does the girl ask in the song?",["What is a family?","Where is my dog?","What time is it?"],"What is a family?","❓"),
+      multi("who","Who is in a family? Choose 4.",["brothers","sisters","mom and dad","grandpa","a car"],["brothers","sisters","mom and dad","grandpa"],"👪"),
+      multi("animals","Which animal families are in the song? Choose 3.",["fish in the sea","monkeys in a tree","ducks in the mud","cars on the road"],["fish in the sea","monkeys in a tree","ducks in the mud"],"🐒"),
+      ch("far","Family can live near or far. Are they still your family?",["Yes","No"],"Yes","🌍")],
+      "A family can be brothers, sisters, mom and dad, grandparents, aunts and uncles. There are animal families too: fish in the sea, monkeys in a tree, ducks in the mud. Near or far, they are still your family.")]});
 })();

@@ -1,4 +1,4 @@
-// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 15/10/2026).
+// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 16/10/2026).
 // Không ghi ngày upload: uploadDate bắt đầu bằng "weekly" → nhóm riêng "Tổng hợp kiến thức tuần" trên đầu Danh sách.
 // Mỗi điểm kiến thức của 2 tuần có câu hỏi; nội dung lấy từ các đề ngày (đã đối chiếu diary và link).
 (()=>{
@@ -14,6 +14,8 @@
   const GENRES=["Fantasy","Realistic fiction","Nonfiction"];
   const HFW1=["again","help","new","there","use"],HFW2=["could","live","one","then","three"];
   const SND=["/t/","/d/","/id/"],SES=["s","es"];
+  const VOC2W=["shelter","materials","collapsed","furious","refused"];
+  const VOC2=["A building that keeps you safe.","The things we use to build and make.","If something has fallen down, it has collapsed.","When someone is really angry.","When you say no to something."];
   const VOC=["The job that somebody does.","The things that you need to do something. Like play sports or go to school.","This word means luckily!","SURPRISING!! Or AMAZING!!!","The place where we live and all the people that live there."];
 
   const Q=[
@@ -36,6 +38,9 @@
       choice("grabs","grabs means ___.",["picks up quickly","puts down slowly","looks at"],"picks up quickly","✊"),
       choice("mess","mess means ___.",["dirty place","clean room","big house"],"dirty place","🧹")
     ],"Define: A shelter is a building that protects you or keeps you safe. Materials are the things used to make something else: metal, stone, glass, wood, brick, plastic. grabs: picks up quickly (06/10). mess: dirty place (15/10)."),
+
+    la("Oral Vocabulary · Week 2 (16/10)","Match each word with its meaning.",VOC2W.map((word,i)=>select(word,word,VOC2,VOC2[i],["🏠","🧱","🗼","😡","🙅"][i])),
+      "shelter – A building that keeps you safe. · materials – The things we use to build and make. · collapsed – If something has fallen down, it has collapsed. · furious – When someone is really angry. · refused – When you say no to something. (16/10)"),
 
     // ───── Genres & Story Elements ─────
     la("Genres","Fantasy, realistic fiction, or nonfiction?",[
@@ -99,6 +104,12 @@
       choice("eat","Why doesn’t the wolf eat the pigs?",["Because the pigs are a mess.","Because he is not hungry.","Because the pigs run away."],"Because the pigs are a mess.","🍽️"),
       choice("end","At the end, the pigs decide ___.",["to build a hut out of mud","to build a hut out of bricks","to move to the city"],"to build a hut out of mud","🛖")
     ],"He can’t huff and puff in mud. The wolf kicks the hut and it falls in, but he does not like the mud and leaves. Because the pigs are a mess, he does not eat them. The pigs decide to build a hut out of mud."),
+    la("The Pigs, the Wolf, and the Mud · Reread (16/10)","Reading and Writing Companion pages 67–69.",[
+      choice("feel","How do the pigs feel about their home?",["They think mud is fun.","They are sad.","They want to move."],"They think mud is fun.","🐷"),
+      choice("yuck","What does the wolf say about the mud?",["“Yuck!”","“Yum!”","“Hello!”"],"“Yuck!”","🤢"),
+      select("likes","Who likes the plan for a new mud hut?",["The pigs","The wolf"],"The pigs","🛖"),
+      choice("idea","Why is a new mud hut a good idea?",["The wolf doesn’t like mud.","Mud is very strong.","The wolf loves mud."],"The wolf doesn’t like mud.","💡")
+    ],"The pigs think mud is fun. The wolf says “yuck!” — he doesn’t like mud. The pigs like the plan; the wolf does not. A new mud hut is a good idea because the wolf doesn’t like mud."),
 
     // ───── Phonics & Word Work ─────
     {section:"High-Frequency Words · Week 1",img:L,layout:"icon-activity",type:"compound",wordBank:HFW1,text:"Complete the sentences.",fields:[
@@ -121,6 +132,11 @@
       choice("u","The letter u can make the short u sound you hear in ___.",["rug","rag","rig"],"rug","🟫"),
       multi("shortU","Which words have the short u sound? Choose 4.",["run","fun","bug","nut","net","pig"],["run","fun","bug","nut"],"🐞")
     ],"Short e: e (leg, pen, web) or ea (bread, head). Short u: u (rug, run, fun, bug, nut, cut, mud, cub)."),
+    la("Phonics · Read Together and ph (16/10)","Short u sentences and the letters ph.",[
+      multi("pup","The pup dug in the mud. Choose 3 short u words.",["pup","dug","mud","the","in"],["pup","dug","mud"],"🐶"),
+      choice("ph","ph makes the sound ___.",["/f/","/p/","/h/"],"/f/","📞"),
+      multi("phw","Which words have ph? Choose 2.",["phone","dolphin","fun","pup"],["phone","dolphin"],"🐬")
+    ],"The pup dug in the mud. Gus put the bug in a cup. The sun is up and hot. · ph makes the /f/ sound: photo, phone, dolphin, elephant."),
     la("Sounds in words","Beginning, middle, and final sounds · rhyme.",[
       choice("bat","What is the beginning sound in bat?",["/b/","/a/","/t/"],"/b/","🦇"),
       choice("set","What is the middle sound in set?",["/e/","/s/","/t/"],"/e/","🎯"),
@@ -140,6 +156,8 @@
       select("it","it is",["he’s","it’s","let’s","there’s"],"it’s","🌧️"),
       select("let","let us",["he’s","it’s","let’s","there’s"],"let’s","🎲"),
       select("there","there is",["he’s","it’s","let’s","there’s"],"there’s","🚚"),
+      select("what","what is",["what’s","where’s","how’s"],"what’s","🔊"),
+      select("how","how is",["what’s","where’s","how’s"],"how’s","🌤️"),
       choice("letter","In it’s, the apostrophe (’) replaces the letter ___.",["i","s","t"],"i","❓"),
       rewrite("book","Rewrite with a contraction: Where is the book?","Where’s the book?","📖")
     ],"he is → he’s · it is → it’s · let us → let’s · there is → there’s. The apostrophe (’) stands for the missing letter i in is. Where is the book? → Where’s the book?"),
@@ -157,7 +175,9 @@
       select("box","box → box___",SES,"es","📦"),
       select("dog","dog → dog___",SES,"s","🐶"),
       select("dish","dish → dish___",SES,"es","🍽️"),
-      choice("fox","one fox → two ___",["foxes","foxs","fox"],"foxes","🦊")
+      choice("fox","one fox → two ___",["foxes","foxs","fox"],"foxes","🦊"),
+      choice("dress","Lin will hang the ___ up.",["dresses","dresss","dress"],"dresses","👗"),
+      choice("glass","Pat will set up the ___.",["glasses","glasss","glass"],"glasses","🥛")
     ],"cub – singular · cubs – plural. If a word ends in s, ss, sh, ch, x, z → add -es: boxes, dishes, foxes. Otherwise add s: dogs."),
     la("Commas in a series","In a list with three or more nouns, a comma is used after all but the last noun.",[
       choice("right","Which sentence is correct?",["Frogs, cats, and dogs are in the pet show.","Frogs cats and dogs are in the pet show.","Frogs, cats and, dogs are in the pet show."],"Frogs, cats, and dogs are in the pet show.","🐸"),
@@ -176,19 +196,25 @@
     uploadDate:"weekly-la-u2-w1-w2",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Unit 2 Week 1 + Week 2",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"Weekly review · Unit 2 Week 1 + Week 2 · Class Diary 01/10–15/10/2026",scoreByField:true,
+    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"Weekly review · Unit 2 Week 1 + Week 2 · Class Diary 01/10–16/10/2026",scoreByField:true,
       groups:groupsOf([
-        ["Essential Questions and Vocabulary","Jobs in a community · buildings and materials",3],
+        ["Essential Questions and Vocabulary","Jobs in a community · buildings and materials · shelter, collapsed, furious, refused",4],
         ["Genres and Story Elements","Fantasy · realistic fiction · nonfiction · characters, setting, events",3],
         ["Week 1 Stories","Millie · Good Job, Ben! · The Red Hat · Firefighters at Work",4],
-        ["Week 2 Stories","The 3 Little Dassies · Cubs in a Hut · The Pigs, the Wolf, and the Mud",3],
-        ["Phonics and Word Work","High-frequency words · short e and u · sounds · -ed · contractions",6],
+        ["Week 2 Stories","The 3 Little Dassies · Cubs in a Hut · The Pigs, the Wolf, and the Mud",4],
+        ["Phonics and Word Work","High-frequency words · short e and u · ph · sounds · -ed · contractions",7],
         ["Grammar and Writing","Nouns · singular and plural · commas · writing",4]
       ]),
       questions:Q,
       readings:[
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–15/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 15/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–16/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 16/10/2026",
+          "(16/10) shelter: A building that keeps you safe.",
+          "(16/10) collapsed: If something has fallen down, it has collapsed.",
+          "(16/10) furious: When someone is really angry.",
+          "(16/10) refused: When you say no to something.",
+          "(16/10) ph makes the /f/ sound: photo · phone · dolphin · elephant",
+          "(16/10) The pigs think mud is fun. The wolf doesn’t like mud.",
           "(15/10) A singular noun names one person, one place, or one thing.",
           "(15/10) A plural noun names more than one person, place, or thing.",
           "(15/10) If a word ends in s, ss, sh, ch, x, z, add -es to the end: bus → buses, dish → dishes.",
