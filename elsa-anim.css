@@ -1,0 +1,33 @@
+/* Hoạt họa trang chủ (flat motion): Elsa vẫy tay → hôn gió → bung sao & tim. */
+.elsa-stage-wrap{display:grid;justify-items:center;gap:14px;width:100%}
+.elsa-stage{position:relative;width:min(100%,373px);aspect-ratio:600/900;isolation:isolate}
+.elsa-stage .ea-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.elsa-stage .ea-bg{position:absolute;inset:0;border-radius:28px;background:#f6d5f7;box-shadow:0 22px 34px rgba(93,54,92,.2)}
+/* Bàn tay gốc tách riêng (toạ độ ảnh 600×900), trục xoay ở cổ tay. */
+.elsa-stage .ea-hand-r{position:absolute;left:71.667%;top:32.889%;width:16.667%;height:12%;transform-origin:32% 88.9%}
+.elsa-stage .ea-hand-l{position:absolute;left:15.6%;top:30.13%;width:17.5%;height:12.6%;transform-origin:68% 88.9%}
+.elsa-stage .ea-rig{position:absolute;inset:0;transform-origin:50% 92%}
+.elsa-stage .ea-blush{position:absolute;width:9%;aspect-ratio:1.6;border-radius:50%;background:radial-gradient(closest-side,rgba(255,120,150,.75),rgba(255,120,150,0));opacity:0}
+.elsa-stage .ea-blush.l{left:31%;top:29.6%}.elsa-stage .ea-blush.r{left:57.5%;top:28.6%}
+.elsa-stage .ea-fx{position:absolute;inset:-12%;pointer-events:none;overflow:visible;z-index:2}
+.elsa-stage .ea-p{position:absolute;left:50%;top:50%;width:var(--s,28px);height:var(--s,28px);margin:calc(var(--s,28px)/-2) 0 0 calc(var(--s,28px)/-2);opacity:0}
+.elsa-stage .ea-p svg{width:100%;height:100%;display:block}
+.elsa-stage .ea-ring{position:absolute;left:50%;top:44%;width:60%;aspect-ratio:1;margin-left:-30%;margin-top:-30%;border-radius:50%;border:6px solid #ffd54d;opacity:0}
+.elsa-stage .ea-kiss{position:absolute;left:48.3%;top:32.2%;width:10%;aspect-ratio:1;margin:-5% 0 0 -5%;opacity:0;z-index:3}
+.elsa-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.elsa-controls button{min-height:40px;padding:6px 16px;border:0;border-radius:999px;font:inherit;font-weight:800;color:#fff;background:#9b69e8;cursor:pointer;box-shadow:0 6px 14px rgba(155,105,232,.25)}
+.elsa-controls button[data-ea="pause"]{background:#ff8a3d}
+.elsa-controls button[data-ea="restart"]{background:#31a66d}
+.elsa-controls button:focus-visible{outline:3px solid #2b2b45;outline-offset:2px}
+.elsa-controls button[aria-pressed="true"]{filter:saturate(.6) brightness(.95)}
+@media(max-width:699px){.elsa-stage-wrap{grid-row:1}.elsa-stage{width:min(100%,207px)}}
+.elsa-stage .ea-pose-a{position:absolute;inset:0}
+.elsa-stage .ea-pose{opacity:0}
+.elsa-stage .ea-pose-jump{top:-2%}
+.elsa-stage .ea-subj{position:absolute;inset:0;pointer-events:none;z-index:3}
+.elsa-stage .ea-tok{position:absolute;width:12%;aspect-ratio:1;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 6px 14px rgba(93,54,92,.18);opacity:0;font-size:calc(var(--u,3px) * 7.5);line-height:1}
+.elsa-stage .ea-tok b{font-weight:900}
+.elsa-stage .ea-spark{position:absolute;width:6.5%;aspect-ratio:1;opacity:0}
+.elsa-stage .ea-spark.lens{width:5%}
+.elsa-stage .ea-spark svg{width:100%;height:100%;display:block}
+.elsa-stage .ea-pulse{position:absolute;width:15%;aspect-ratio:1;border-radius:50%;border:4px solid #ffd54d;opacity:0}

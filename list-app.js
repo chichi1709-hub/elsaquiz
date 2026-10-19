@@ -460,7 +460,7 @@ function buildHome(){
   const greeting=elsaWelcomeForHour(new Date().getHours());
   $("#landingGreeting").textContent=greeting.title;
   $("#landingWish").textContent=greeting.wish;
-  $("#landingMascot").src=greeting.image;
+  const mascot=$("#landingMascot");if(mascot) mascot.src=greeting.image;
 }
 
 function buildCatalogHeader(){

@@ -9,7 +9,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23ff76aa'/%3E%3Cpath d='M32 9l6.2 14.2L54 25l-11.7 10.7L45.6 51 32 43.2 18.4 51l3.3-15.3L10 25l15.8-1.8z' fill='%23ffd95e' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
   <title>Grade 1 Colorful Review</title>
   <meta name="description" content="Interactive Grade 1 review for Language Arts, Math, and Science.">
-  <link rel="stylesheet" href="styles.css?v=202610190827">
+  <link rel="stylesheet" href="styles.css?v=202610191708">
+  <link rel="stylesheet" href="elsa-anim.css?v=202610191708">
 </head>
 <body data-quiz-mode="list">
   <header class="topbar">
@@ -26,7 +27,31 @@
     <section id="homeView" class="home-view">
       <section class="elsa-landing" aria-labelledby="landingGreeting">
         <div class="elsa-landing-copy"><p class="eyebrow">ELSA'S LEARNING WORLD</p><h1 id="landingGreeting">Hello! My name is Elsa!</h1><p id="landingWish">Welcome to my website. Let’s learn together!</p><button id="letsGoBtn" class="landing-cta" type="button">Let’s go! <span aria-hidden="true">→</span></button></div>
-        <img id="landingMascot" src="assets/mascot/academy/welcome.webp" alt="Elsa welcomes you to learn">
+        <div class="elsa-stage-wrap">
+          <div id="elsaStage" class="elsa-stage" role="img" aria-label="Elsa waves with both hands, then shows Language Arts, Math and Science, jumps with a star and blows a kiss">
+            <div class="ea-fx" aria-hidden="true"><span class="ea-ring"></span></div>
+            <div class="ea-bg"></div>
+            <div class="ea-subj" aria-hidden="true"></div>
+            <div class="ea-rig">
+              <div class="ea-pose-a">
+                <img class="ea-layer ea-body" src="assets/mascot/anim/elsa-body.webp" alt="">
+                <img class="ea-hand-l" src="assets/mascot/anim/elsa-hand-l-open.png" alt="">
+                <img class="ea-hand-r" src="assets/mascot/anim/elsa-hand-r.png" alt="">
+                <span class="ea-blush l"></span><span class="ea-blush r"></span>
+              </div>
+              <img class="ea-layer ea-pose ea-pose-lang" src="assets/mascot/anim/elsa-language.webp" alt="">
+              <img class="ea-layer ea-pose ea-pose-math" src="assets/mascot/anim/elsa-math.webp" alt="">
+              <img class="ea-layer ea-pose ea-pose-sci" src="assets/mascot/anim/elsa-science.webp" alt="">
+              <img class="ea-layer ea-pose ea-pose-jump" src="assets/mascot/anim/elsa-success.webp" alt="">
+              <span class="ea-kiss" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="#ff4f8b" d="M12 21.2l-1.4-1.3C5.4 15.2 2 12.1 2 8.3 2 5.2 4.4 2.8 7.5 2.8c1.7 0 3.4.8 4.5 2.1 1.1-1.3 2.8-2.1 4.5-2.1 3.1 0 5.5 2.4 5.5 5.5 0 3.8-3.4 6.9-8.6 11.6z"/></svg></span>
+            </div>
+          </div>
+          <div class="elsa-controls" role="group" aria-label="Animation controls">
+            <button type="button" data-ea="play">▶ Play</button>
+            <button type="button" data-ea="pause">⏸ Pause</button>
+            <button type="button" data-ea="restart">↻ Restart</button>
+          </div>
+        </div>
       </section>
     </section>
     <section id="catalogView" class="catalog-view" hidden>
@@ -126,21 +151,22 @@
       <div class="add-user-actions"><button id="cancelAddUserFooterBtn" class="ghost-btn" type="button">Cancel • Hủy</button><button id="saveUserBtn" class="check-btn" type="submit">Create user • Tạo hồ sơ</button></div>
     </form>
   </dialog>
-  <script src="quiz-registry.js?v=202610190827"></script>
+  <script src="quiz-registry.js?v=202610191708"></script>
   <!-- QUIZ FILES: thêm một dòng cho mỗi file mới trong quizzes/ (xem HUONG-DAN.md) -->
-  <script src="quizzes/quiz-2026-10-07.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-08.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-12.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-13.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-13-science-lesson2.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-13-math-l22-26.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-14.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-15.js?v=202610190827"></script>
-  <script src="quizzes/quiz-2026-10-16.js?v=202610190827"></script>
-  <script src="quizzes/quiz-summary-la-u2-w1-w2.js?v=202610190827"></script>
-  <script src="quizzes/bonus-links.js?v=202610190827"></script>
+  <script src="quizzes/quiz-2026-10-07.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-08.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-12.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-13.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-13-science-lesson2.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-13-math-l22-26.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-14.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-15.js?v=202610191708"></script>
+  <script src="quizzes/quiz-2026-10-16.js?v=202610191708"></script>
+  <script src="quizzes/quiz-summary-la-u2-w1-w2.js?v=202610191708"></script>
+  <script src="quizzes/bonus-links.js?v=202610191708"></script>
   <!-- /QUIZ FILES -->
-  <script src="list-app.js?v=202610190827"></script>
-  <script src="mindmap-app.js?v=202610190827"></script>
+  <script src="list-app.js?v=202610191708"></script>
+  <script src="mindmap-app.js?v=202610191708"></script>
+  <script src="elsa-anim.js?v=202610191708"></script>
 </body>
 </html>
