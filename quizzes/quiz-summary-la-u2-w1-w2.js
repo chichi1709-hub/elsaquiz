@@ -1,4 +1,4 @@
-// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 16/10/2026).
+// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 19/10/2026).
 // Không ghi ngày upload: uploadDate bắt đầu bằng "weekly" → nhóm riêng "Tổng hợp kiến thức tuần" trên đầu Danh sách.
 // 2 bài: (1) Practice Test theo format bài kiểm tra thật (20 câu): 1 truyện + đọc hiểu (1–6) · High-frequency words (7–10)
 // · Phonemic Awareness (11–13) · Phonics (14–17) · Grammar/Structural Analysis (18–20) — 1 Part, đúng thứ tự;
@@ -59,7 +59,8 @@
       choice("plural","one box → two ___",["boxes","boxs","box"],"boxes","📦"),
       choice("contraction","it is → ___",["it’s","its","it is’"],"it’s","🌧️"),
       choice("comma","Which sentence is correct?",["I see a cat, a dog, and a pig.","I see a cat a dog and a pig.","I see a cat, a dog and, a pig."],"I see a cat, a dog, and a pig.","🐱"),
-      choice("ed","Yesterday I ___ my mom.",["helped","help","helps"],"helped","🙋")
+      choice("ed","Yesterday I ___ my mom.",["helped","help","helps"],"helped","🙋"),
+      choice("dont","do not → ___",["don’t","dont’","do’nt"],"don’t","🚫")
     ],"roof is a noun (a thing) · box → boxes (ends in x → add -es) · it is → it’s · Commas: a cat, a dog, and a pig · Yesterday = already happened → add -ed: helped."),
   ];
 
@@ -79,6 +80,13 @@
       bank("then","What did you do ___?",HFW2,"then","❓"),
       bank("three","___ black dogs run in the grass.",HFW2,"three","🐕")
     ],explain:"I could pull a big sled. · Does a fox live in a den? · There is one frog on the log. · What did you do then? · Three black dogs run in the grass. (13/10)"},
+    {section:"High-Frequency Words · Let’s Review (19/10)",img:L,layout:"icon-activity",type:"compound",wordBank:HFW2,text:"Complete the sentences.",fields:[
+      bank("could","___ you help me, please?",HFW2,"could","🙋"),
+      bank("live","I ___ in a big house.",HFW2,"live","🏠"),
+      bank("then","Put on your shoes, ___ go outside.",HFW2,"then","👟"),
+      bank("one","I have ___ red ball.",HFW2,"one","🔴"),
+      bank("three","He has ___ blue pens.",HFW2,"three","🖊️")
+    ],explain:"Could you help me, please? · I live in a big house. · Put on your shoes, then go outside. · I have one red ball. · He has three blue pens. (19/10)"},
     // ───── Phonemic Awareness ─────
     la("Sounds in words","Beginning, middle, and final sounds · rhyme.",[
       choice("bat","What is the beginning sound in bat?",["/b/","/a/","/t/"],"/b/","🦇"),
@@ -86,6 +94,12 @@
       choice("wig","What is the final sound in wig?",["/g/","/w/","/i/"],"/g/","💇"),
       choice("rhyme","Bug and rug rhyme because they both end with the same sounds: ___.",["/ug/","/un/","/up/"],"/ug/","🐞")
     ],"bat → /b/ · set → middle sound /e/ · wig → final sound /g/ · Bug and rug rhyme: they both end with /ug/."),
+    la("Rhyme · Pictures (19/10)","Which word rhymes?",[
+      choice("well","well",["bell","sun","pencil"],"bell","🔔"),
+      choice("crown","crown",["frown","pan","mouse"],"frown","👑"),
+      choice("school","school",["pool","car","mug"],"pool","🏫"),
+      choice("pot","pot",["hot","dog","pickle"],"hot","🍲")
+    ],"well – bell · crown – frown · school – pool · pot – hot (game Rhyming Pictures)"),
     // ───── Phonics ─────
     la("Short e and short u","Which word has the sound?",[
       choice("ea","The letters e or ea can make the short e sound. Which word has ea?",["bread","bed","bud"],"bread","🍞"),
@@ -146,6 +160,12 @@
       choice("letter","In it’s, the apostrophe (’) replaces the letter ___.",["i","s","t"],"i","❓"),
       rewrite("book","Rewrite with a contraction: Where is the book?","Where’s the book?","📖")
     ],"he is → he’s · it is → it’s · let us → let’s · there is → there’s. The apostrophe (’) stands for the missing letter i in is. Where is the book? → Where’s the book?"),
+    la("Contractions · Notebook (19/10)","Two words → one word.",[
+      select("donot","do not",["don’t","can’t","who’s","that’s"],"don’t","🚫"),
+      select("cannot","can not",["don’t","can’t","who’s","that’s"],"can’t","🙅"),
+      select("whois","who is",["don’t","can’t","who’s","that’s"],"who’s","🙋"),
+      select("thatis","that is",["don’t","can’t","who’s","that’s"],"that’s","👉")
+    ],"do not → don’t · can not → can’t · who is → who’s · that is → that’s (Notebook 19/10/2026)"),
     // ───── Essential Questions and Vocabulary ─────
     la("Essential Questions","Think about the stories. Then choose the Essential Question.",[
       choice("w1","In Week 1 we read “Good Job, Ben!” (a bus driver, a baker, a vet), “The Red Hat” (Jen is a firefighter) and “Firefighters at Work”. So what is the Essential Question of Week 1?",["What jobs need to be done in a community?","What buildings do you know? What are they made of?","How do plants grow?","What are the functions of different animal body parts?"],"What jobs need to be done in a community?","👷"),
@@ -235,6 +255,14 @@
       select("likes","Who likes the plan for a new mud hut?",["The pigs","The wolf"],"The pigs","🛖"),
       choice("idea","Why is a new mud hut a good idea?",["The wolf doesn’t like mud.","Mud is very strong.","The wolf loves mud."],"The wolf doesn’t like mud.","💡")
     ],"The pigs think mud is fun. The wolf says “yuck!” — he doesn’t like mud. The pigs like the plan; the wolf does not. A new mud hut is a good idea because the wolf doesn’t like mud."),
+    la("Homes Around the World","Compare Text · Nonfiction (19/10).",[
+      choice("main","People build their homes to ___.",["fit the place they live","look the same","be very tall"],"fit the place they live","🌍"),
+      select("stilts","home on stilts",["wood","ice","mud"],"wood","🛖"),
+      select("igloo","igloo",["wood","ice","mud"],"ice","🧊"),
+      choice("dry","Why is the wood home good for a wet place?",["The stilts help keep this home dry.","It is built into a rock.","It is made of ice."],"The stilts help keep this home dry.","💧"),
+      choice("shelter","Igloos are good shelter from the ___.",["cold","rain","sun"],"cold","🥶"),
+      choice("caption","Use the ___ to understand what you see in the photos.",["captions","page numbers","title"],"captions","🏷️")
+    ],"Homes Around the World (nonfiction): People build their homes to fit the place they live. The home on stilts is made of wood; the stilts help keep it dry. An igloo is made of ice; it is good shelter from the cold. Use the captions to understand the photos."),
     // ───── Writing ─────
     la("Writing","Writing traits and skills.",[
       choice("idea","Writing Trait: A sentence tells about ___.",["one idea","many ideas","no ideas"],"one idea","💡"),
@@ -246,7 +274,7 @@
   // Bài kiểm tra mẫu (≤ 30 ý → 1 Part, giữ đúng thứ tự đề thật).
   registerQuiz({
     id:"la-u2-w1-w2-test",
-    uploadDate:"weekly-la-u2-w1-w2",
+    uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức tuần (W1&2)",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Practice Test",
     subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"Test format · Reading 1–6 · High-frequency words 7–10 · Phonemic awareness 11–13 · Phonics 14–17 · Grammar 18–20",scoreByField:true,
@@ -260,8 +288,14 @@
       questions:TEST,
       readings:[
         {id:"testStory",title:"Gus and Jen Fix the Hut",byline:"Test-style reading · a new story with words from Week 1 and Week 2",mode:"reference",text:"Gus and Jen live with Mom and Dad in a red hut.\n\nOne night, the wind huffed and puffed. The hut fell down! Gus was very sad.\n\n“We could make a new hut,” said Jen. “I will help,” said Mom. Then Dad came to help, too.\n\nThey got mud, sticks, and grass. They set the sticks in the mud. They put the grass on top.\n\nAt the end, the new hut was snug and dry. “It is fun to live here again!” said Gus."},
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–16/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 16/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–19/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 19/10/2026",
+          "(19/10) Homes Around the World (Nonfiction): People build their homes to fit the place they live.",
+          "(19/10) The stilts help keep this home dry. An igloo is made of ice; igloos are good shelter from the cold.",
+          "(19/10) Use the captions to understand what you see in the photos.",
+          "(19/10) If a noun ends in -x, -s, or -ss, add -es to make it plural: one box → three boxes.",
+          "(19/10) Contractions: don’t · can’t · who’s · that’s · how’s · there’s",
+          "(19/10) Rhyming words end with the same sounds: well – bell · bug – rug · car – star",
           "(16/10) shelter: A building that keeps you safe.",
           "(16/10) collapsed: If something has fallen down, it has collapsed.",
           "(16/10) furious: When someone is really angry.",
@@ -304,23 +338,29 @@
 
   registerQuiz({
     id:"la-u2-w1-w2-summary",
-    uploadDate:"weekly-la-u2-w1-w2",
+    uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức tuần (W1&2)",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Review (more practice)",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–16/10/2026",scoreByField:true,
+    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–19/10/2026",scoreByField:true,
       groups:groupsOf([
-        ["High-Frequency Words","again · help · new · there · use · could · live · one · then · three",2],
-        ["Phonemic Awareness","beginning, middle, final sounds · rhyme",1],
+        ["High-Frequency Words","again · help · new · there · use · could · live · one · then · three",3],
+        ["Phonemic Awareness","beginning, middle, final sounds · rhyme · rhyming pictures",2],
         ["Phonics","short e (e, ea) · short u · ph",3],
-        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s",5],
+        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s",6],
         ["Essential Questions and Vocabulary","jobs in a community · buildings and materials · oral vocabulary · shades of meaning",5],
-        ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2",11],
+        ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2 · Homes Around the World",12],
         ["Writing","writing traits and skills",1]
       ]),
       questions:Q,
       readings:[
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–16/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 16/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–19/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 19/10/2026",
+          "(19/10) Homes Around the World (Nonfiction): People build their homes to fit the place they live.",
+          "(19/10) The stilts help keep this home dry. An igloo is made of ice; igloos are good shelter from the cold.",
+          "(19/10) Use the captions to understand what you see in the photos.",
+          "(19/10) If a noun ends in -x, -s, or -ss, add -es to make it plural: one box → three boxes.",
+          "(19/10) Contractions: don’t · can’t · who’s · that’s · how’s · there’s",
+          "(19/10) Rhyming words end with the same sounds: well – bell · bug – rug · car – star",
           "(16/10) shelter: A building that keeps you safe.",
           "(16/10) collapsed: If something has fallen down, it has collapsed.",
           "(16/10) furious: When someone is really angry.",

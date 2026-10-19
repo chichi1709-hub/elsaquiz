@@ -340,4 +340,56 @@
       multi("animals","Which animal families are in the song? Choose 3.",["fish in the sea","monkeys in a tree","ducks in the mud","cars on the road"],["fish in the sea","monkeys in a tree","ducks in the mud"],"🐒"),
       ch("far","Family can live near or far. Are they still your family?",["Yes","No"],"Yes","🌍")],
       "A family can be brothers, sisters, mom and dad, grandparents, aunts and uncles. There are animal families too: fish in the sea, monkeys in a tree, ducks in the mud. Near or far, they are still your family.")]});
+  // ───────── 34. Baamboozle 1091989 "Singular & Plural regular Nouns (s, es, ies, ves)" ─────────
+  // Trang công khai không đánh dấu đáp án đúng → chọn theo ngữ pháp; bỏ 3 câu phụ thuộc hình (mango/key/book) và câu a/an; sửa lỗi chính tả của nguồn.
+  const SP=[["There are many ___ in the classroom.",["boys","boy"],"boys"],["There is a ___ at the bus stop.",["bus","buses"],"bus"],["There are ___ in the tree.",["monkeys","monkeies"],"monkeys"],
+    ["Maple ___ are falling on the ground.",["leaves","leaf"],"leaves"],["Don’t eat too many ___. You will have to see a dentist.",["candies","candys"],"candies"],["I am looking for ___ to cut paper.",["scissors","scissor"],"scissors"],
+    ["A chef uses many ___ when making food.",["knives","knife"],"knives"],["I want to buy two ___ of bread. (loaf)",["loaves","loaf"],"loaves"],["The pianists are playing ___ on the stage.",["pianos","piano"],"pianos"],
+    ["There are three ___ in my house.",["bedrooms","bedroom"],"bedrooms"],["Tony loves music, so he listens to the ___.",["radio","radioes"],"radio"],["The police caught two ___ who stole the diamond.",["thieves","thief"],"thieves"],
+    ["Businessmen wear a shirt and ___ with a tie.",["trousers","a trouser"],"trousers"],["Most girls like cartoons about ___. (princess)",["princesses","princess"],"princesses"],
+    ["There is ___ on the bed.",["a pillow","pillows"],"a pillow"],["There are five ___. (box)",["boxes","boxs","box"],"boxes"],["There are two ___. (cherry)",["cherries","cherrys","cherry"],"cherries"]];
+  bonus({id:"bonus-singular-plural-game",remember:["Plural: add s (boys, monkeys) · add es (buses, boxes, princesses)","Some plurals change: leaf → leaves · knife → knives · cherry → cherries"],urls:["https://www.baamboozle.com/game/1091989"],title:"Singular & Plural Nouns Game",source:"Baamboozle · Singular & Plural regular Nouns (s, es, ies, ves)",
+    cards:chunk(SP,6).map((rows,k)=>card("Singular and plural","Choose the right noun.",rows.map(([q,c,a],i)=>fixed(`p${k}${i}`,q,c,a)),rows.map(([q,,a])=>q.replace("___",a)).join(" · ")))});
+
+  // ───────── 35. Video "Homes Around the World" (read-aloud, Kristen Hunter) ─────────
+  bonus({id:"bonus-video-homes-around-world",remember:["People build homes to fit the place where they live.","Wood home on stilts (wet place) · clay home (hot place, keeps cool) · igloo of ice (cold place)"],urls:["https://www.youtube.com/watch?v=SESo805XIAg"],title:"Homes Around the World (read-aloud)",source:"Video · Homes Around the World (Wonders read-aloud)",
+    cards:[card("Homes Around the World","Listen to the text. Answer the questions.",[
+      ch("main","People build homes to ___.",["fit the place where they live","look the same everywhere","be very small"],"fit the place where they live","🌍"),
+      sel("stilts","home on stilts",["wet place","hot place","cold place"],"wet place","🛖"),
+      sel("clay","clay home",["wet place","hot place","cold place"],"hot place","☀️"),
+      sel("igloo","igloo",["wet place","hot place","cold place"],"cold place","🧊"),
+      ch("cool","What does the clay do for the home?",["It keeps the home cool inside.","It keeps the home wet.","It makes the home float."],"It keeps the home cool inside.","🏜️"),
+      ch("ask","The text ends with a question. What is it?",["What is your home like?","Where is the igloo?","Who built the house?"],"What is your home like?","❓")],
+      "People build homes to fit the place where they live: a wood home on stilts for a wet place, a clay home for a hot place (clay keeps it cool), an igloo of ice for a cold place. What is your home like?")]});
+
+  // ───────── 36. Video "Contractions Rap Song" (Mr Spelling) ─────────
+  const RAP=[["I am","I’m"],["you are","you’re"],["he is","he’s"],["it is","it’s"],["we are","we’re"],["they are","they’re"],["that is","that’s"],["there is","there’s"],["do not","don’t"],["would not","wouldn’t"]];
+  bonus({id:"bonus-video-contractions-rap",remember:["Take two words, make them one. Take out some letters and put an apostrophe (’) where they were."],urls:["https://www.youtube.com/watch?v=XXjt8CLBHWw"],title:"Contractions Rap",source:"Video · Mr Spelling · Contractions Rap Song",
+    cards:[card("Contractions","Take two words and make them one.",[
+      ch("mark","Where the letters were taken out, we put ___.",["an apostrophe (’)","a comma (,)","a period (.)"],"an apostrophe (’)","✏️"),
+      ch("they","they + have →",["they’ve","theyhave","they’s"],"they’ve","🔗")],
+      "Take two words and make them one. Take out some letters and mark the place with an apostrophe: they + have → they’ve."),
+      card("Contractions","Two words → one word.",RAP.map(([a,b],i)=>sel(`r${i}`,a,RAP.map(r=>r[1]),b)),RAP.map(([a,b])=>`${a} → ${b}`).join(" · "))]});
+
+  // ───────── 37. Close Reading "The Crows and the Bear" (Little Fox) ─────────
+  bonus({id:"bonus-close-reading-crows-bear",urls:["https://www.youtube.com/watch?v=-igkhaZFWSs"],title:"The Crows and the Bear (Close Reading)",source:"Video · Little Fox · The Crows and the Bear",
+    cards:[card("The Crows","Retell the first story.",[
+      ch("where","Where do the friends pick apples?",["in the apple orchard on the farm","in a shop","in the city"],"in the apple orchard on the farm","🍎"),
+      ch("scare","What does the scarecrow do?",["It scares crows so they don’t eat the corn.","It picks apples.","It plays with Pig."],"It scares crows so they don’t eat the corn.","🌾"),
+      ch("gone","The apples are gone. What do the friends think?",["Pig ate them.","Dog ate them.","The bear ate them."],"Pig ate them.","🐷"),
+      ch("truth","What did Pig really do with the apples?",["He gave them to the hungry crows.","He ate them all.","He hid them in the barn."],"He gave them to the hungry crows.","🐦"),
+      ch("lesson","What is the lesson?",["Share, be honest, and don’t blame before you know.","Keep all the apples for you.","Never help others."],"Share, be honest, and don’t blame before you know.","💡")],
+      "The friends pick apples in the orchard. The scarecrow keeps crows from the corn, so the crows are hungry. The apples are gone and everyone blames Pig, but Pig gave them to the crows and picked more apples for his friends. “You are a good friend, Pig.”"),
+      card("The Bear","Retell the second story.",[
+        ch("ate","Something big and black ate Red Bird’s food. What was it?",["a bear","a monster","a cat"],"a bear","🐻"),
+        ch("plan","What is Cow’s plan?",["Put blueberries on the path.","Build a big wall.","Run away from the farm."],"Put blueberries on the path.","🫐"),
+        ch("end","How does the story end?",["The bear eats the blueberries and everyone is safe.","The bear eats Red Bird’s food again.","Dog runs away."],"The bear eats the blueberries and everyone is safe.","😊")],
+        "Dog sees a big, black animal eat Red Bird’s food. Cow says it is just the bear. Her plan: pick blueberries and put them on the path. The bear follows Dog to the path and eats the blueberries. Everyone is safe.")]});
+  // ───────── 38. Wordwall 26481293 "Rhyming Pictures" (quiz bằng hình → ghi tên + emoji) ─────────
+  const RP=[["🪣 well",["☀️ sun","✏️ pencil","🔔 bell"],"🔔 bell"],["🧹 rake",["🐍 snake","🏃 run","🏠 house"],"🐍 snake"],["👑 crown",["🍳 pan","☹️ frown","🐭 mouse"],"☹️ frown"],
+    ["🚪 door",["⬇️ floor","🦇 bat","🐞 ladybug"],"⬇️ floor"],["🐞 bug",["🍜 noodles","🟫 rug","🐱 cat"],"🟫 rug"],["😢 cry",["🪰 fly","🚌 bus","💍 ring"],"🪰 fly"],
+    ["🏫 school",["🚗 car","☕ mug","🏊 pool"],"🏊 pool"],["🚗 car",["🫗 jug","⭐ star","🐸 frog"],"⭐ star"],["🦈 fin",["🌀 fan","🍳 pan","🗑️ bin"],"🗑️ bin"],
+    ["🍲 pot",["🥵 hot","🐶 dog","🥒 pickle"],"🥵 hot"],["⚾ bat",["👶 baby","🍎 apple","🦇 bat"],"🦇 bat"],["🍔 bun",["🤡 clown","🌭 hot dog","🎉 fun"],"🎉 fun"]];
+  bonus({id:"bonus-wordwall-rhyming-pictures",remember:["Rhyming words end with the same sounds: well – bell · rake – snake · bug – rug · car – star · bun – fun"],urls:["https://wordwall.net/resource/26481293/phonics/rhyming-pictures"],title:"Rhyming Pictures",source:"Wordwall · Rhyming Pictures (quiz)",
+    cards:chunk(RP,6).map((rows,k)=>card("Rhyme","Which picture rhymes?",rows.map(([q,c,a],i)=>fixed(`r${k}${i}`,q,c,a)),rows.map(([q,,a])=>`${q.split(" ")[1]} – ${a.split(" ").slice(1).join(" ")}`).join(" · ")))});
 })();
