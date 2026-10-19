@@ -215,6 +215,7 @@ function correctFor(item,given){
     const actual=(Array.isArray(given)?given:[]).map(normalizeChoice).sort();
     return expected.length===actual.length&&expected.every((value,index)=>value===actual[index]);
   }
+  if(item.type==="fill"){const numeric=numericAnswerMatch(item.answer,given);if(numeric!==null) return numeric}
   if(item.type==="fill") return item.answer.some(answer=>normalize(answer)===normalize(given));
   return normalizeChoice(item.answer)===normalizeChoice(given);
 }
@@ -224,6 +225,29 @@ function fieldHasAnswer(field,given){
   if(field.type==="multi-any") return Array.isArray(given)&&given.length>=field.min;
   if(field.type==="draw") return Boolean(given&&Array.isArray(given.strokes)&&given.strokes.some(stroke=>Array.isArray(stroke)&&stroke.length>1));
   return String(given??"").trim().length>0;
+}
+
+// Toán: đáp án là số → chấp nhận chỉ ghi số ("6", "6 birds") hoặc viết cả phép tính đúng ("2 + 4 = 6").
+// Phép tính phải đúng (hai vế bằng nhau) và có chứa số đáp án. Trả về null nếu đáp án không phải số.
+function evalArithmetic(expression){
+  const clean=String(expression).replace(/[−–]/g,"-").replace(/×/g,"*").replace(/÷/g,"/").replace(/\s+/g,"");
+  if(!clean||!/\d/.test(clean)||!/^[\d+\-*/().]+$/.test(clean)) return NaN;
+  try{const value=Function(`"use strict";return (${clean});`)();return Number.isFinite(value)?value:NaN}catch{return NaN}
+}
+function numericAnswerMatch(answers,given){
+  const numbers=(answers||[]).map(answer=>String(answer).trim()).filter(answer=>/^-?\d+(\.\d+)?$/.test(answer)).map(Number);
+  if(!numbers.length) return null;
+  const text=String(given??"").trim().replace(/[.!]$/,"");
+  if(!text) return false;
+  if(!text.includes("=")){
+    const match=text.match(/^(-?\d+(?:\.\d+)?)(?:\s+[a-zA-Z][a-zA-Z\s]*)?$/);
+    return Boolean(match)&&numbers.includes(Number(match[1]));
+  }
+  const sides=text.split("=").map(side=>side.replace(/[a-zA-Z]+/g,"").trim());
+  const values=sides.map(evalArithmetic);
+  if(values.length<2||values.some(Number.isNaN)||!values.every(value=>Math.abs(value-values[0])<1e-9)) return false;
+  const used=(text.match(/\d+(?:\.\d+)?/g)||[]).map(Number);
+  return numbers.some(number=>used.includes(number));
 }
 
 function fieldCorrect(field,given){
@@ -236,6 +260,7 @@ function fieldCorrect(field,given){
     const actual=(Array.isArray(given)?given:[]).map(normalizeChoice).sort();
     return expected.length===actual.length&&expected.every((value,index)=>value===actual[index]);
   }
+  if(field.type==="fill"&&!field.strict&&!field.flexible){const numeric=numericAnswerMatch(field.answer,given);if(numeric!==null) return numeric}
   if(field.type==="fill") return field.answer.some(answer=>{
     if(field.flexible) return normalize(answer)===normalize(given)||flexibleSentenceMatch(given,answer);
     return (field.strict?normalizeSentence(answer):normalize(answer))===(field.strict?normalizeSentence(given):normalize(given));
@@ -1105,7 +1130,7 @@ function showHome(){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
-window.quizTestApi={bonusQuizFor,quizCatalog,quizLibrary,defaultQuizIds,resolveQuizId,libraryEntry,subjectFor,groupsFor,mergeSharedContentGroups,displayGroupsFor,readingCardMarkup,readingLibraryMarkup,mascotSets,greetingForHour,elsaWelcomeForHour,formatUploadDate,catalogGroupsByUploadDate,catalogFilteredItems,wheelScrollAmount,multiChoiceCount,multiChoiceHint,readState,writeState,saveGiven,correctFor,isExpectedChoice,expectedAnswerText,scorePercent,scoreBand,resultMessage,formatTestDate,readHistory,persistJson,recordHistory,hasAnswer,toggleChoice,questionUnitCount,questionUnitTotal,counts,unansweredIndexes,submitSubject,resetSubject,reviewSubmission,retrySubmission,storageKey,historyKey,usersKey,readCustomUsers,availableBuddies,visibleBuddies,getBuddy,addCustomUser,setChosenCharacter,fallbackAvatar};
+window.quizTestApi={bonusQuizFor,quizCatalog,quizLibrary,defaultQuizIds,resolveQuizId,libraryEntry,subjectFor,groupsFor,mergeSharedContentGroups,displayGroupsFor,readingCardMarkup,readingLibraryMarkup,mascotSets,greetingForHour,elsaWelcomeForHour,formatUploadDate,catalogGroupsByUploadDate,catalogFilteredItems,wheelScrollAmount,multiChoiceCount,multiChoiceHint,readState,writeState,saveGiven,correctFor,isExpectedChoice,expectedAnswerText,scorePercent,scoreBand,resultMessage,formatTestDate,readHistory,persistJson,recordHistory,hasAnswer,toggleChoice,questionUnitCount,questionUnitTotal,counts,unansweredIndexes,submitSubject,resetSubject,reviewSubmission,retrySubmission,storageKey,historyKey,usersKey,readCustomUsers,availableBuddies,visibleBuddies,getBuddy,numericAnswerMatch,addCustomUser,setChosenCharacter,fallbackAvatar};
 
 if(!window.QUIZ_TEST_MODE){
   $("#homeBtn").addEventListener("click",showHome);

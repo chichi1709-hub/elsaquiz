@@ -200,9 +200,10 @@
       select("astonishing","astonishing",["The job that somebody does.","The things that you need to do something. Like play sports or go to school.","This word means luckily!","SURPRISING!! Or AMAZING!!!","The place where we live and all the people that live there."],"SURPRISING!! Or AMAZING!!!","🤩"),
       select("community","community",["The job that somebody does.","The things that you need to do something. Like play sports or go to school.","This word means luckily!","SURPRISING!! Or AMAZING!!!","The place where we live and all the people that live there."],"The place where we live and all the people that live there.","🏘️")
     ],"occupation – The job that somebody does. · equipment – The things that you need to do something. · fortunately – luckily · astonishing – surprising or amazing · community – The place where we live and all the people that live there. (Oral Vocabulary, 07/10)"),
-    la("Essential Question","What jobs need to be done in a community?",[
+    la("Essential Question","Think about the stories we read this week.",[
+      choice("eq","In “Good Job, Ben!” we meet a bus driver, a baker, and a vet. In “The Red Hat”, Jen is a firefighter. So what is the Essential Question of this week?",["What jobs need to be done in a community?","What buildings do you know? What are they made of?","How do plants grow?"],"What jobs need to be done in a community?","❓"),
       multi("jobs","Which people do jobs in Ben's community? Choose 4.",["bus driver","baker","vet","crossing guard","dragon"],["bus driver","baker","vet","crossing guard"],"🏘️")
-    ],"In Good Job, Ben! the bus driver, the crossing guard, the workers, the baker, the vet and Miss Glenn all do jobs in the community. A dragon is not real.")
+    ],"The stories are about people and their jobs → What jobs need to be done in a community? In Good Job, Ben! the bus driver, the crossing guard, the workers, the baker, the vet and Miss Glenn all do jobs in the community. A dragon is not real.")
   ]);
 
   const laSubject=(subtitle,questions,groups,readings=[])=>({name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle,scoreByField:true,groups,questions:withHints(questions),readings});

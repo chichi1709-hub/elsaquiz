@@ -20,10 +20,10 @@
 
   const Q=[
     // ───── Essential Questions & Vocabulary ─────
-    la("Essential Questions","Unit 2 Week 1 and Week 2.",[
-      choice("w1","Week 1 Essential Question:",["What jobs need to be done in a community?","What buildings do you know? What are they made of?","How do plants grow?"],"What jobs need to be done in a community?","👷"),
-      choice("w2","Week 2 Essential Question:",["What buildings do you know? What are they made of?","What jobs need to be done in a community?","What are the functions of different animal body parts?"],"What buildings do you know? What are they made of?","🏠")
-    ],"Week 1: What jobs need to be done in a community? · Week 2: What buildings do you know? What are they made of?"),
+    la("Essential Questions","Think about the stories. Then choose the Essential Question.",[
+      choice("w1","In Week 1 we read “Good Job, Ben!” (a bus driver, a baker, a vet), “The Red Hat” (Jen is a firefighter) and “Firefighters at Work”. So what is the Essential Question of Week 1?",["What jobs need to be done in a community?","What buildings do you know? What are they made of?","How do plants grow?","What are the functions of different animal body parts?"],"What jobs need to be done in a community?","👷"),
+      choice("w2","In Week 2 we read “Cubs in a Hut” (a hut of mud, sticks, and grass), “The 3 Little Dassies” (houses of grass, sticks, and stones) and “The Pigs, the Wolf, and the Mud” (a hut made of mud). So what is the Essential Question of Week 2?",["What buildings do you know? What are they made of?","What jobs need to be done in a community?","How do plants grow?","What are the functions of different animal body parts?"],"What buildings do you know? What are they made of?","🏠")
+    ],"Week 1 stories are about people and their jobs → What jobs need to be done in a community? · Week 2 stories are about huts and houses and what they are made of → What buildings do you know? What are they made of?"),
     la("Oral Vocabulary · Week 1","Choose the meaning of each word.",[
       select("occupation","occupation",VOC,VOC[0],"👷"),
       select("equipment","equipment",VOC,VOC[1],"🎒"),
