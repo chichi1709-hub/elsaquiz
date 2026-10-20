@@ -1,4 +1,4 @@
-// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 19/10/2026).
+// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 20/10/2026).
 // Không ghi ngày upload: uploadDate bắt đầu bằng "weekly" → nhóm riêng "Tổng hợp kiến thức tuần" trên đầu Danh sách.
 // 2 bài: (1) Practice Test theo format bài kiểm tra thật (20 câu): 1 truyện + đọc hiểu (1–6) · High-frequency words (7–10)
 // · Phonemic Awareness (11–13) · Phonics (14–17) · Grammar/Structural Analysis (18–20) — 1 Part, đúng thứ tự;
@@ -52,8 +52,10 @@
       choice("bread","🍞",["bread","bred","brud"],"bread","🍞"),
       choice("head","🙂 (on top of your body)",["head","hed","hud"],"head","🙂"),
       choice("bug","🐞",["bug","beg","big"],"bug","🐞"),
-      choice("cut","✂️",["cut","cat","cot"],"cut","✂️")
-    ],"Unit 2 spelling words — short e: leg, beg, men, hen, head, bread · short u: run, fun, nut, cut, bug, rug."),
+      choice("cut","✂️",["cut","cat","cot"],"cut","✂️"),
+      select("fam1","bug → word family",["-ug","-un","-ut"],"-ug","🐞"),
+      select("fam2","nut → word family",["-ug","-un","-ut"],"-ut","🥜")
+    ],"Unit 2 spelling words — short e: leg, beg, men, hen, head, bread · short u: run, fun, nut, cut, bug, rug. Word families: bug (-ug), nut (-ut)."),
     la("Grammar and Structural Analysis","Choose the correct answer.",[
       choice("noun","Find the noun: The cubs fix the roof.",["roof","fix","the"],"roof","🏠"),
       choice("plural","one box → two ___",["boxes","boxs","box"],"boxes","📦"),
@@ -120,6 +122,13 @@
       select("beg","beg",["short e","short u"],"short e","🐶"),
       select("fun","fun",["short e","short u"],"short u","🎉")
     ],"Short e: men, head, beg (e and ea) · Short u: nut, rug, fun."),
+    la("Phonics · Word families (20/10)","Sort the words: -ug, -un, -ut.",[
+      select("rug","rug",["-ug","-un","-ut"],"-ug","🟫"),
+      select("run","run",["-ug","-un","-ut"],"-un","🏃"),
+      select("lunch","lunch",["-ug","-un","-ut"],"-un","🍱"),
+      select("cut","cut",["-ug","-un","-ut"],"-ut","✂️"),
+      select("skunk","skunk",["-ug","-un","-ut"],"-un","🦨")
+    ],"Words with ug: bug, rug · Words with un: fun, run, lunch, skunk · Words with ut: cut, nut. (Practice Book 102A–102B)"),
     // ───── Grammar and Structural Analysis ─────
     la("Nouns","A noun names a person, place, or thing.",[
       select("teacher","teacher",["person","place","thing"],"person","👩‍🏫"),
@@ -166,6 +175,12 @@
       select("whois","who is",["don’t","can’t","who’s","that’s"],"who’s","🙋"),
       select("thatis","that is",["don’t","can’t","who’s","that’s"],"that’s","👉")
     ],"do not → don’t · can not → can’t · who is → who’s · that is → that’s (Notebook 19/10/2026)"),
+    la("Contractions · Game (20/10)","Choose the correct contraction.",[
+      choice("im","I am →",["I’m","I’am"],"I’m","🙋"),
+      choice("lets","let us →",["let’s","le’ts"],"let’s","🎲"),
+      choice("were","we are →",["we’re","w’ere"],"we’re","👫"),
+      choice("didnt","did not →",["didn’t","did’nt"],"didn’t","🚫")
+    ],"I am → I’m · let us → let’s · we are → we’re · did not → didn’t. The apostrophe goes where the letters are taken out."),
     // ───── Essential Questions and Vocabulary ─────
     la("Essential Questions","Think about the stories. Then choose the Essential Question.",[
       choice("w1","In Week 1 we read “Good Job, Ben!” (a bus driver, a baker, a vet), “The Red Hat” (Jen is a firefighter) and “Firefighters at Work”. So what is the Essential Question of Week 1?",["What jobs need to be done in a community?","What buildings do you know? What are they made of?","How do plants grow?","What are the functions of different animal body parts?"],"What jobs need to be done in a community?","👷"),
@@ -191,6 +206,13 @@
       choice("furious","furious means ___.",["really angry","a little sad","happy"],"really angry","😡"),
       choice("strong","Which word is STRONGER than angry?",["furious","glad","calm"],"furious","🌋")
     ],"furious – When someone is really angry. It is stronger than angry. (Unit 2 Week 2 Vocabulary: shades of meaning)"),
+    la("Oral Vocabulary · Let’s Discuss (20/10)","Choose the word that fits.",[
+      bank("hot","What would be a good ___ in a very hot place?",["shelter","materials","collapsed","furious","refuse"],"shelter","🏜️"),
+      bank("house","What ___ could you use to make a house?",["shelter","materials","collapsed","furious","refuse"],"materials","🧱"),
+      bank("fall","What would you do if your shelter ___?",["shelter","materials","collapsed","furious","refuse"],"collapsed","🏚️"),
+      bank("angry","Would you be ___ if your shelter collapsed?",["shelter","materials","collapsed","furious","refuse"],"furious","😡"),
+      bank("mud","Would you ___ to live in a house made of mud?",["shelter","materials","collapsed","furious","refuse"],"refuse","🙅")
+    ],"shelter · materials · collapsed · furious · refuse (Let’s Discuss, 20/10)",{wordBank:["shelter","materials","collapsed","furious","refuse"]}),
     // ───── Genres and Stories ─────
     la("Genres","Fantasy, realistic fiction, or nonfiction?",[
       choice("fantasy","Made-up stories with characters, settings, and events that could not exist in real life.",GENRES,"Fantasy","🦄"),
@@ -263,6 +285,12 @@
       choice("shelter","Igloos are good shelter from the ___.",["cold","rain","sun"],"cold","🥶"),
       choice("caption","Use the ___ to understand what you see in the photos.",["captions","page numbers","title"],"captions","🏷️")
     ],"Homes Around the World (nonfiction): People build their homes to fit the place they live. The home on stilts is made of wood; the stilts help keep it dry. An igloo is made of ice; it is good shelter from the cold. Use the captions to understand the photos."),
+    la("Text Feature · Captions (20/10)","Captions can tell us more information about a picture.",[
+      choice("what","What do captions tell us?",["more information about a picture","the name of the author","the page number"],"more information about a picture","🏷️"),
+      choice("where","We find captions in ___ texts.",["non-fiction","fantasy","song"],"non-fiction","📰"),
+      choice("sky","Tall buildings are called ___.",["skyscrapers","parks","huts"],"skyscrapers","🏙️"),
+      choice("title","Why is “Homes Around the World” a good title?",["Because we read about homes in many places.","Because it is about one house.","Because it is about a wolf."],"Because we read about homes in many places.","🌍")
+    ],"Captions can tell us more information about a picture. We find them in non-fiction texts. Tall buildings are called skyscrapers. “Homes Around the World” is a good title because we read about homes in many places."),
     // ───── Writing ─────
     la("Writing","Writing traits and skills.",[
       choice("idea","Writing Trait: A sentence tells about ___.",["one idea","many ideas","no ideas"],"one idea","💡"),
@@ -288,8 +316,13 @@
       questions:TEST,
       readings:[
         {id:"testStory",title:"Gus and Jen Fix the Hut",byline:"Test-style reading · a new story with words from Week 1 and Week 2",mode:"reference",text:"Gus and Jen live with Mom and Dad in a red hut.\n\nOne night, the wind huffed and puffed. The hut fell down! Gus was very sad.\n\n“We could make a new hut,” said Jen. “I will help,” said Mom. Then Dad came to help, too.\n\nThey got mud, sticks, and grass. They set the sticks in the mud. They put the grass on top.\n\nAt the end, the new hut was snug and dry. “It is fun to live here again!” said Gus."},
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–19/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 19/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–20/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 20/10/2026",
+          "(20/10) Word families: -ug (bug, rug) · -un (fun, run, lunch, skunk) · -ut (cut, nut)",
+          "(20/10) Captions can tell us more information about a picture. We find them in non-fiction texts.",
+          "(20/10) “Homes Around the World” is a good title because we read about homes in many places.",
+          "(20/10) Oral Vocabulary: shelter · materials · collapsed · furious · refuse",
+          "(20/10) Contractions: I’m · let’s · we’re · don’t · didn’t · isn’t · doesn’t",
           "(19/10) Homes Around the World (Nonfiction): People build their homes to fit the place they live.",
           "(19/10) The stilts help keep this home dry. An igloo is made of ice; igloos are good shelter from the cold.",
           "(19/10) Use the captions to understand what you see in the photos.",
@@ -341,20 +374,25 @@
     uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức tuần (W1&2)",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Review (more practice)",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–19/10/2026",scoreByField:true,
+    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–20/10/2026",scoreByField:true,
       groups:groupsOf([
         ["High-Frequency Words","again · help · new · there · use · could · live · one · then · three",3],
         ["Phonemic Awareness","beginning, middle, final sounds · rhyme · rhyming pictures",2],
-        ["Phonics","short e (e, ea) · short u · ph",3],
-        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s",6],
-        ["Essential Questions and Vocabulary","jobs in a community · buildings and materials · oral vocabulary · shades of meaning",5],
-        ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2 · Homes Around the World",12],
+        ["Phonics","short e (e, ea) · short u · ph · word families -ug -un -ut",4],
+        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s",7],
+        ["Essential Questions and Vocabulary","jobs in a community · buildings and materials · oral vocabulary · shades of meaning",6],
+        ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2 · Homes Around the World · captions",13],
         ["Writing","writing traits and skills",1]
       ]),
       questions:Q,
       readings:[
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–19/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 19/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–20/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 20/10/2026",
+          "(20/10) Word families: -ug (bug, rug) · -un (fun, run, lunch, skunk) · -ut (cut, nut)",
+          "(20/10) Captions can tell us more information about a picture. We find them in non-fiction texts.",
+          "(20/10) “Homes Around the World” is a good title because we read about homes in many places.",
+          "(20/10) Oral Vocabulary: shelter · materials · collapsed · furious · refuse",
+          "(20/10) Contractions: I’m · let’s · we’re · don’t · didn’t · isn’t · doesn’t",
           "(19/10) Homes Around the World (Nonfiction): People build their homes to fit the place they live.",
           "(19/10) The stilts help keep this home dry. An igloo is made of ice; igloos are good shelter from the cold.",
           "(19/10) Use the captions to understand what you see in the photos.",

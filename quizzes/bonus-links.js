@@ -392,4 +392,10 @@
     ["🍲 pot",["🥵 hot","🐶 dog","🥒 pickle"],"🥵 hot"],["⚾ bat",["👶 baby","🍎 apple","🦇 bat"],"🦇 bat"],["🍔 bun",["🤡 clown","🌭 hot dog","🎉 fun"],"🎉 fun"]];
   bonus({id:"bonus-wordwall-rhyming-pictures",remember:["Rhyming words end with the same sounds: well – bell · rake – snake · bug – rug · car – star · bun – fun"],urls:["https://wordwall.net/resource/26481293/phonics/rhyming-pictures"],title:"Rhyming Pictures",source:"Wordwall · Rhyming Pictures (quiz)",
     cards:chunk(RP,6).map((rows,k)=>card("Rhyme","Which picture rhymes?",rows.map(([q,c,a],i)=>fixed(`r${k}${i}`,q,c,a)),rows.map(([q,,a])=>`${q.split(" ")[1]} – ${a.split(" ").slice(1).join(" ")}`).join(" · ")))});
+  // ───────── 39. Baamboozle 3616560 "Contractions" (9 câu; trang không đánh dấu đáp án → chọn theo ngữ pháp, sửa lỗi chính tả nguồn) ─────────
+  const CT=[["I am very tired today. (I am)",["I’m","I’am"],"I’m"],["He is bored because his work is boring. (He is)",["He’s","His"],"He’s"],["Let us go and see the chimpanzees! (Let us)",["Let’s","Le’ts"],"Let’s"],
+    ["We are so excited to go to the party. (We are)",["We’re","W’ere"],"We’re"],["She is not going bowling. (is not)",["isn’t","is’nt"],"isn’t"],["I do not know when my dad will finish work. (do not)",["don’t","do’nt"],"don’t"],
+    ["He did not go to school today because he was ill. (did not)",["didn’t","did’nt"],"didn’t"],["It is not time to go to swimming practice yet. (is not)",["it isn’t","it’s isn’t"],"it isn’t"],["She does not have enough money to buy ice cream. (does not)",["doesn’t","does’nt"],"doesn’t"]];
+  bonus({id:"bonus-contractions-baamboozle-3616560",remember:["The apostrophe (’) goes where the letters are taken out: do not → don’t (not do’nt) · let us → let’s (not le’ts)"],urls:["https://www.baamboozle.com/game/3616560"],title:"Contractions Game",source:"Baamboozle · Contractions (ARCHER1875)",
+    cards:chunk(CT,5).map((rows,k)=>card("Contractions","Choose the correct contraction.",rows.map(([q,c,a],i)=>fixed(`c${k}${i}`,q,c,a)),rows.map(([q,,a])=>`${q.match(/\(([^)]*)\)$/)[1]} → ${a}`).join(" · ")))});
 })();
