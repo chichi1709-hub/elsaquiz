@@ -194,6 +194,41 @@
       select("cats","The cats ate the chicken. → cats",["singular noun","plural noun"],"plural noun","🐱"),
       select("chicken","The cats ate the chicken. → chicken",["singular noun","plural noun"],"singular noun","🍗")
     ],"The trucks are stuck in mud. There are boxes in the trucks. (Practice Book 109) · cats = plural, chicken = singular."),
+    la("Singular and Plural · Choose the correct sentence","Which sentence uses singular and plural nouns correctly?",[
+      choice("c1","🐱🐱🐱",["I see three cats.","I see three cat.","I see three cates."],"I see three cats.","🐱"),
+      choice("c2","📦📦",["There are two boxes on the bed.","There are two boxs on the bed.","There are two box on the bed."],"There are two boxes on the bed.","📦"),
+      choice("c3","🚌",["The bus is at the stop.","The buses is at the stop.","The buss is at the stop."],"The bus is at the stop.","🚌"),
+      choice("c4","🍽️🍽️🍽️",["Mom washes the dishes.","Mom washes the dishs.","Mom washes the dish."],"Mom washes the dishes.","🍽️"),
+      choice("c5","🐻🐻",["The cubs fix the hut.","The cub fix the hut.","The cubes fix the hut."],"The cubs fix the hut.","🐻"),
+      choice("c6","🦊🦊🦊🦊",["Four foxes run in the grass.","Four foxs run in the grass.","Four fox run in the grass."],"Four foxes run in the grass.","🦊")
+    ],"three cats (add s) · two boxes (x → es) · the bus (one bus → singular) · dishes (sh → es) · the cubs (add s) · four foxes (x → es)."),
+    la("Singular and Plural · Choose the right word","Choose the noun that makes the sentence correct.",[
+      choice("w1","I have one red ___.",["ball","balls","balles"],"ball","⚽"),
+      choice("w2","She has two blue ___.",["pens","pen","penes"],"pens","🖊️"),
+      choice("w3","We eat our ___ at school.",["lunches","lunchs","lunch’s"],"lunches","🍱"),
+      choice("w4","I brush my teeth with my ___. (one)",["brush","brushes","brushs"],"brush","🪥"),
+      choice("w5","There are many ___ in the sink.",["glasses","glasss","glass"],"glasses","🥛"),
+      choice("w6","Lin will hang the ___ up. (more than one)",["dresses","dresss","dress"],"dresses","👗"),
+      choice("w7","The ___ fly to the tree.",["birds","bird","birdes"],"birds","🐦"),
+      choice("w8","Three ___ live in the hut.",["pigs","pig","piges"],"pigs","🐷")
+    ],"one ball · two pens · lunches (ch → es) · one brush · glasses (ss → es) · dresses (ss → es) · birds · three pigs."),
+    la("Singular and Plural · Add s or es?","If a noun ends in s, ss, sh, ch, x, or z, add es. Most other nouns add s.",[
+      choice("e1","bench → two ___",["benches","benchs","bench"],"benches","🪑"),
+      choice("e2","hat → two ___",["hats","hates","hat"],"hats","🎩"),
+      choice("e3","bush → many ___",["bushes","bushs","bush"],"bushes","🌳"),
+      choice("e4","kiss → three ___",["kisses","kisss","kiss"],"kisses","💋"),
+      choice("e5","bug → five ___",["bugs","buges","bug"],"bugs","🐞"),
+      choice("e6","fox → two ___",["foxes","foxs","fox"],"foxes","🦊"),
+      choice("e7","peach → four ___",["peaches","peachs","peach"],"peaches","🍑"),
+      choice("e8","rug → two ___",["rugs","ruges","rug"],"rugs","🟫")
+    ],"es: benches (ch), bushes (sh), kisses (ss), foxes (x), peaches (ch) · s: hats, bugs, rugs."),
+    la("Singular and Plural · Why?","Choose the reason.",[
+      choice("r1","Why do we write boxes, not boxs?",["box ends in x, so we add es.","box is singular.","We always add es."],"box ends in x, so we add es.","📦"),
+      choice("r2","Why do we write dogs, not doges?",["dog does not end in s, ss, sh, ch, x, or z, so we add s.","dog ends in sh.","dog is a place."],"dog does not end in s, ss, sh, ch, x, or z, so we add s.","🐶"),
+      choice("r3","“The truck are stuck in mud.” What is wrong?",["truck should be trucks, because are means more than one.","mud should be muds.","are should be ares."],"truck should be trucks, because are means more than one.","🚚"),
+      choice("r4","Which noun is singular?",["the hut","the cubs","the dishes"],"the hut","🛖"),
+      choice("r5","Which noun is plural?",["the buses","the bus","the fox"],"the buses","🚌")
+    ],"x, s, ss, sh, ch, z → add es (boxes, buses). Other nouns → add s (dogs). are / many / two… → plural noun: The trucks are stuck in mud. Singular = one (the hut); plural = more than one (the buses)."),
     la("Punctuation · Fix the sentence (21/10)","Choose the sentence that is written correctly.",[
       choice("oh","oh no",["Oh no!","oh no!","Oh no"],"Oh no!","😮"),
       choice("team","there are 3 team in my class.",["There are 3 teams in my class.","there are 3 teams in my class.","There are 3 team in my class."],"There are 3 teams in my class.","👥"),
@@ -408,7 +443,7 @@
         ["High-Frequency Words","again · help · new · there · use · could · live · one · then · three",3],
         ["Phonemic Awareness","beginning, middle, final sounds · rhyme · rhyming pictures",2],
         ["Phonics","short e (e, ea) · short u · ph · word families -ug -un -ut · short u vs short a",5],
-        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s · punctuation",9],
+        ["Grammar and Structural Analysis","nouns · singular and plural (s / es) · commas · -ed · contractions with ’s · punctuation",13],
         ["Essential Questions and Vocabulary","jobs in a community · buildings and materials · oral vocabulary · shades of meaning",6],
         ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2 · Homes Around the World · captions · research a building",14],
         ["Writing","writing traits and skills",1]
