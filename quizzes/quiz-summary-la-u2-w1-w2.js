@@ -1,4 +1,4 @@
-// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 20/10/2026).
+// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 1 + Week 2 (Class Diary 01/10 → 21/10/2026).
 // Không ghi ngày upload: uploadDate bắt đầu bằng "weekly" → nhóm riêng "Tổng hợp kiến thức tuần" trên đầu Danh sách.
 // 2 bài: (1) Practice Test theo format bài kiểm tra thật (20 câu): 1 truyện + đọc hiểu (1–6) · High-frequency words (7–10)
 // · Phonemic Awareness (11–13) · Phonics (14–17) · Grammar/Structural Analysis (18–20) — 1 Part, đúng thứ tự;
@@ -62,7 +62,7 @@
       choice("contraction","it is → ___",["it’s","its","it is’"],"it’s","🌧️"),
       choice("comma","Which sentence is correct?",["I see a cat, a dog, and a pig.","I see a cat a dog and a pig.","I see a cat, a dog and, a pig."],"I see a cat, a dog, and a pig.","🐱"),
       choice("ed","Yesterday I ___ my mom.",["helped","help","helps"],"helped","🙋"),
-      choice("dont","do not → ___",["don’t","dont’","do’nt"],"don’t","🚫")
+      choice("trucks","Which sentence is correct?",["The trucks are stuck in mud.","The truck are stuck in mud.","The trucks is stuck in mud."],"The trucks are stuck in mud.","🚚")
     ],"roof is a noun (a thing) · box → boxes (ends in x → add -es) · it is → it’s · Commas: a cat, a dog, and a pig · Yesterday = already happened → add -ed: helped."),
   ];
 
@@ -129,6 +129,13 @@
       select("cut","cut",["-ug","-un","-ut"],"-ut","✂️"),
       select("skunk","skunk",["-ug","-un","-ut"],"-un","🦨")
     ],"Words with ug: bug, rug · Words with un: fun, run, lunch, skunk · Words with ut: cut, nut. (Practice Book 102A–102B)"),
+    la("Phonics · Short u or short a? (21/10)","Listen to the middle sound.",[
+      select("cup","cup",["short u","short a"],"short u","☕"),
+      select("cap","cap",["short u","short a"],"short a","🧢"),
+      select("hut","hut",["short u","short a"],"short u","🛖"),
+      select("hat","hat",["short u","short a"],"short a","🎩"),
+      multi("tub","The tub is so much fun. Choose 3 short u words.",["tub","much","fun","so","is"],["tub","much","fun"],"🛁")
+    ],"Short u: cup, hut, tub, much, fun · Short a: cap, hat. (Board Race and Read Together, 21/10)"),
     // ───── Grammar and Structural Analysis ─────
     la("Nouns","A noun names a person, place, or thing.",[
       select("teacher","teacher",["person","place","thing"],"person","👩‍🏫"),
@@ -181,6 +188,17 @@
       choice("were","we are →",["we’re","w’ere"],"we’re","👫"),
       choice("didnt","did not →",["didn’t","did’nt"],"didn’t","🚫")
     ],"I am → I’m · let us → let’s · we are → we’re · did not → didn’t. The apostrophe goes where the letters are taken out."),
+    la("Grammar · Fix the draft and identify plurals (21/10)","Singular and plural nouns.",[
+      choice("draft","Which sentence is correct?",["The trucks are stuck in mud.","The truck are stuck in mud.","The trucks is stuck in mud."],"The trucks are stuck in mud.","🚚"),
+      choice("boxes","There are ___ in the trucks.",["boxes","box","boxs"],"boxes","📦"),
+      select("cats","The cats ate the chicken. → cats",["singular noun","plural noun"],"plural noun","🐱"),
+      select("chicken","The cats ate the chicken. → chicken",["singular noun","plural noun"],"singular noun","🍗")
+    ],"The trucks are stuck in mud. There are boxes in the trucks. (Practice Book 109) · cats = plural, chicken = singular."),
+    la("Punctuation · Fix the sentence (21/10)","Choose the sentence that is written correctly.",[
+      choice("oh","oh no",["Oh no!","oh no!","Oh no"],"Oh no!","😮"),
+      choice("team","there are 3 team in my class.",["There are 3 teams in my class.","there are 3 teams in my class.","There are 3 team in my class."],"There are 3 teams in my class.","👥"),
+      choice("list","I need bread milk oranges and eggs.",["I need bread, milk, oranges, and eggs.","I need bread milk, oranges, and eggs.","I need, bread, milk, oranges and eggs."],"I need bread, milk, oranges, and eggs.","🛒")
+    ],"Oh no! · There are 3 teams in my class. · I need bread, milk, oranges, and eggs. A sentence begins with a capital letter and ends with a punctuation mark."),
     // ───── Essential Questions and Vocabulary ─────
     la("Essential Questions","Think about the stories. Then choose the Essential Question.",[
       choice("w1","In Week 1 we read “Good Job, Ben!” (a bus driver, a baker, a vet), “The Red Hat” (Jen is a firefighter) and “Firefighters at Work”. So what is the Essential Question of Week 1?",["What jobs need to be done in a community?","What buildings do you know? What are they made of?","How do plants grow?","What are the functions of different animal body parts?"],"What jobs need to be done in a community?","👷"),
@@ -291,6 +309,11 @@
       choice("sky","Tall buildings are called ___.",["skyscrapers","parks","huts"],"skyscrapers","🏙️"),
       choice("title","Why is “Homes Around the World” a good title?",["Because we read about homes in many places.","Because it is about one house.","Because it is about a wolf."],"Because we read about homes in many places.","🌍")
     ],"Captions can tell us more information about a picture. We find them in non-fiction texts. Tall buildings are called skyscrapers. “Homes Around the World” is a good title because we read about homes in many places."),
+    la("Research and Inquiry · Choose a Building (21/10)","Reading and Writing Companion, pages 74 and 75.",[
+      choice("s1","What do you do first?",["Pick a type of building to write about.","Draw your building.","Present your work."],"Pick a type of building to write about.","🏛️"),
+      choice("label","When you draw your building, you use ___ to give information.",["labels","stickers","colors only"],"labels","🏷️"),
+      choice("paris","Where is the Eiffel Tower?",["It’s in Paris.","It’s in Hanoi.","It’s in London."],"It’s in Paris.","🗼")
+    ],"Pick a building → write your questions → find the information → write what you learned → draw it with labels → present. Eiffel Tower: It’s in Paris. It is 330 meters."),
     // ───── Writing ─────
     la("Writing","Writing traits and skills.",[
       choice("idea","Writing Trait: A sentence tells about ___.",["one idea","many ideas","no ideas"],"one idea","💡"),
@@ -316,8 +339,14 @@
       questions:TEST,
       readings:[
         {id:"testStory",title:"Gus and Jen Fix the Hut",byline:"Test-style reading · a new story with words from Week 1 and Week 2",mode:"reference",text:"Gus and Jen live with Mom and Dad in a red hut.\n\nOne night, the wind huffed and puffed. The hut fell down! Gus was very sad.\n\n“We could make a new hut,” said Jen. “I will help,” said Mom. Then Dad came to help, too.\n\nThey got mud, sticks, and grass. They set the sticks in the mud. They put the grass on top.\n\nAt the end, the new hut was snug and dry. “It is fun to live here again!” said Gus."},
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–20/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 20/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–21/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 21/10/2026",
+          "(21/10) The trucks are stuck in mud. There are boxes in the trucks.",
+          "(21/10) Short u: The bus is coming up. The tub is so much fun. The cup has gum and bugs.",
+          "(21/10) Short u or short a: cup – cap · hut – hat · bug – bag",
+          "(21/10) Singular: chicken · Plural: cats, boys, dogs, bones",
+          "(21/10) A sentence begins with a capital letter and ends with a punctuation mark: Oh no!",
+          "(21/10) Research a building: pick a building → questions → find information → write → draw with labels → present.",
           "(20/10) Word families: -ug (bug, rug) · -un (fun, run, lunch, skunk) · -ut (cut, nut)",
           "(20/10) Captions can tell us more information about a picture. We find them in non-fiction texts.",
           "(20/10) “Homes Around the World” is a good title because we read about homes in many places.",
@@ -374,20 +403,26 @@
     uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức tuần (W1&2)",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Review (more practice)",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–20/10/2026",scoreByField:true,
+    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–21/10/2026",scoreByField:true,
       groups:groupsOf([
         ["High-Frequency Words","again · help · new · there · use · could · live · one · then · three",3],
         ["Phonemic Awareness","beginning, middle, final sounds · rhyme · rhyming pictures",2],
-        ["Phonics","short e (e, ea) · short u · ph · word families -ug -un -ut",4],
-        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s",7],
+        ["Phonics","short e (e, ea) · short u · ph · word families -ug -un -ut · short u vs short a",5],
+        ["Grammar and Structural Analysis","nouns · singular and plural · commas · -ed · contractions with ’s · punctuation",9],
         ["Essential Questions and Vocabulary","jobs in a community · buildings and materials · oral vocabulary · shades of meaning",6],
-        ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2 · Homes Around the World · captions",13],
+        ["Genres and Stories","fantasy · realistic fiction · nonfiction · the stories of Week 1 and Week 2 · Homes Around the World · captions · research a building",14],
         ["Writing","writing traits and skills",1]
       ]),
       questions:Q,
       readings:[
-        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–20/10/2026",mode:"notes",text:[
-          "📅 Class Diary: 20/10/2026",
+        {id:"notes-la-u2w12",title:"Remember — Unit 2 Week 1 + Week 2",byline:"Language Arts · Class Diary 01/10–21/10/2026",mode:"notes",text:[
+          "📅 Class Diary: 21/10/2026",
+          "(21/10) The trucks are stuck in mud. There are boxes in the trucks.",
+          "(21/10) Short u: The bus is coming up. The tub is so much fun. The cup has gum and bugs.",
+          "(21/10) Short u or short a: cup – cap · hut – hat · bug – bag",
+          "(21/10) Singular: chicken · Plural: cats, boys, dogs, bones",
+          "(21/10) A sentence begins with a capital letter and ends with a punctuation mark: Oh no!",
+          "(21/10) Research a building: pick a building → questions → find information → write → draw with labels → present.",
           "(20/10) Word families: -ug (bug, rug) · -un (fun, run, lunch, skunk) · -ut (cut, nut)",
           "(20/10) Captions can tell us more information about a picture. We find them in non-fiction texts.",
           "(20/10) “Homes Around the World” is a good title because we read about homes in many places.",

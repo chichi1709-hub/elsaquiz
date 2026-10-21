@@ -398,4 +398,20 @@
     ["He did not go to school today because he was ill. (did not)",["didn’t","did’nt"],"didn’t"],["It is not time to go to swimming practice yet. (is not)",["it isn’t","it’s isn’t"],"it isn’t"],["She does not have enough money to buy ice cream. (does not)",["doesn’t","does’nt"],"doesn’t"]];
   bonus({id:"bonus-contractions-baamboozle-3616560",remember:["The apostrophe (’) goes where the letters are taken out: do not → don’t (not do’nt) · let us → let’s (not le’ts)"],urls:["https://www.baamboozle.com/game/3616560"],title:"Contractions Game",source:"Baamboozle · Contractions (ARCHER1875)",
     cards:chunk(CT,5).map((rows,k)=>card("Contractions","Choose the correct contraction.",rows.map(([q,c,a],i)=>fixed(`c${k}${i}`,q,c,a)),rows.map(([q,,a])=>`${q.match(/\(([^)]*)\)$/)[1]} → ${a}`).join(" · ")))});
+  // ───────── 40. Video Alphablocks "Up (Short Vowel U)" ─────────
+  bonus({id:"bonus-video-alphablocks-up",remember:["Short u words from Alphablocks: up · cup · pup · sum · mug · mud"],urls:["https://www.youtube.com/watch?v=LgLbumOrXMA"],title:"Alphablocks: Up (short u)",source:"Video · Alphablocks · Up (Short Vowel U)",
+    cards:[card("Short u","Watch the video. Answer the questions.",[
+      ch("sound","The letter U says the sound you hear in ___.",["up","ape","you"],"up","🎈"),
+      sel("cup","c + u + p =",["cup","pup","mug","mud","sum"],"cup","☕"),
+      sel("pup","p + u + p =",["cup","pup","mug","mud","sum"],"pup","🐶"),
+      sel("mug","m + u + g =",["cup","pup","mug","mud","sum"],"mug","🍺"),
+      sel("mud","m + u + d =",["cup","pup","mug","mud","sum"],"mud","🟤"),
+      ch("pop","When o takes the place of u, pup becomes ___.",["pop","pip","pap"],"pop","🎈")],
+      "U says /u/ as in up. Short u words in the video: up, cup, pup, sum, mug, mud. When o replaces u, pup becomes pop (short o).")]});
+
+  // ───────── 41. Baamboozle 2385375 "regular plurals" (16 câu điền, thêm -s) ─────────
+  const RPL=[["crayon","many","crayons"],["dog","two","dogs"],["apple","many","apples"],["chair","many","chairs"],["cat","two","cats"],["computer","many","computers"],["cup","many","cups"],["plate","many","plates"],
+    ["bird","many","birds"],["shoe","two","shoes"],["house","many","houses"],["banana","many","bananas"],["coin","many","coins"],["hand","two","hands"],["eye","two","eyes"],["car","many","cars"]];
+  bonus({id:"bonus-regular-plurals-game",remember:["Regular plurals: add -s → crayons · dogs · apples · shoes · houses · eyes"],urls:["https://www.baamboozle.com/game/2385375"],title:"Regular Plurals Game",source:"Baamboozle · regular plurals (Dipo)",
+    cards:chunk(RPL,8).map((rows,k)=>card("Plural nouns","Write the plural noun.",rows.map(([w,q,a],i)=>({id:`p${k}${i}`,label:`one ${w}, ${q} ___`,type:"fill",answer:[a]})),rows.map(([w,q,a])=>`one ${w}, ${q} ${a}`).join(" · ")))});
 })();
