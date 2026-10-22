@@ -341,6 +341,21 @@ function persistJson(key,value){
   }catch{return false}
 }
 
+// Tên bài cho History: tên bài + chủ đề lấy từ phụ đề (bỏ ngày và "Part x/y"), kèm môn · ngày · Part.
+function quizLessonInfo(key){
+  const entry=libraryEntry(key);if(!entry) return null;
+  const subtitle=String(entry.subject.subtitle||"");
+  const part=(subtitle.match(/Part (\d+\/\d+)/)||[])[1]||"";
+  const topics=subtitle.split(/\s+·\s+/).filter(t=>t&&!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(t)&&!/^Part \d+\/\d+$/.test(t)&&!/^Class Diary/.test(t));
+  const baseTitle=String(entry.title).replace(/\s*\((?:[^()]*·\s*)?Part \d+[a-z]?\)$/,"").replace(/\s*\(Part \d+[a-z]?:[^)]*\)$/,"");
+  const generic=/^(Language Arts|Science|Math|Wellbeing|Close Reading)$/.test(baseTitle);
+  const shortTitle=baseTitle.replace(/^(Language Arts|Science|Math|Wellbeing|Close Reading)\s+[–-]\s+/,"");
+  const extra=topics.filter(t=>!shortTitle.toLowerCase().includes(t.toLowerCase())&&!t.toLowerCase().startsWith(shortTitle.toLowerCase().replace(/\s*\(.*$/,""))).slice(0,2);
+  const lesson=generic?topics.slice(0,3).join(" · "):`${shortTitle}${extra.length?` — ${extra.join(" · ")}`:""}`;
+  const date=formatUploadDate(entry.uploadDate);
+  return {lesson:lesson||baseTitle,subject:entry.subject.name,date,part};
+}
+
 function recordHistory(key,result,date=new Date()){
   const buddy=getBuddy(chosenCharacter)||getBuddy("academy");
   const entryData=libraryEntry(key);
@@ -350,6 +365,8 @@ function recordHistory(key,result,date=new Date()){
     character:buddy.label,
     subject:entryData.subject.name,
     quizTitle:entryData.title,
+    quizId:resolveQuizId(key),
+    ...(()=>{const info=quizLessonInfo(key)||{};return {lesson:info.lesson,lessonDate:info.date,part:info.part}})(),
     correct:result.correct,
     total:result.total,
     percent:scorePercent(result.correct,result.total)
@@ -1041,7 +1058,7 @@ function renderHistory(){
   $("#historyList").innerHTML=history.map(entry=>`<article class="history-row">
     <time>${escapeHtml(entry.date)}</time>
     <span>${escapeHtml(entry.character)}</span>
-    <strong>${escapeHtml(entry.subject)}</strong>
+    <strong class="history-lesson">${escapeHtml((entry.lesson||(entry.quizId&&quizLessonInfo(entry.quizId)?.lesson))||entry.quizTitle||entry.subject)}<small>${escapeHtml([entry.subject,entry.lessonDate||(entry.quizId&&quizLessonInfo(entry.quizId)?.date),entry.part?`Part ${entry.part}`:""].filter(Boolean).join(" · "))}</small></strong>
     <b class="history-score ${scoreBand(entry.percent)}">${entry.correct}/${entry.total} (~${entry.percent}%)</b>
   </article>`).join("");
 }
