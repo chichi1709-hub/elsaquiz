@@ -1081,25 +1081,17 @@ function buildCatalogDateFilter(){
 let catalogTab=(()=>{try{return localStorage.getItem("grade1-catalog-tab")||"daily"}catch{return "daily"}})();
 function setCatalogTab(tab){catalogTab=tab;try{localStorage.setItem("grade1-catalog-tab",tab)}catch{}renderCatalog()}
 const baseQuizId=id=>String(id).replace(/-p\d+$/,"");
-function summaryRowMarkup(baseId,parts){
-  const first=parts[0],subject=subjectFor(first.id);
-  const title=(window.quizSources&&window.quizSources[baseId]?.title)||first.title;
-  const total=parts.reduce((sum,p)=>sum+questionUnitTotal(subjectFor(p.id)),0);
-  if(parts.length===1){
-    const count=counts(first.id);
-    return `<article class="catalog-card ${escapeHtml(first.subjectKey)}"><div class="catalog-subject-icon" aria-hidden="true">📝</div>
-      <div class="catalog-card-copy"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subject.subtitle)}</p><small>${count.answered}/${count.total} câu đã trả lời${readState(first.id).submitted?" · ✅ Đã nộp":""}</small></div>
-      <div class="catalog-card-action"><strong>${total} câu hỏi</strong><button class="check-btn" type="button" data-quiz="${escapeHtml(first.id)}">Mở bài ▸</button></div></article>`;
-  }
-  const done=parts.filter(p=>readState(p.id).submitted).length;
-  const next=parts.find(p=>!readState(p.id).submitted)||parts[0];
-  const options=parts.map((p,i)=>`<option value="${escapeHtml(p.id)}"${p===next?" selected":""}>Phần ${i+1}${readState(p.id).submitted?" ✅":""}</option>`).join("");
-  return `<article class="catalog-card ${escapeHtml(first.subjectKey)} summary-row"><div class="catalog-subject-icon" aria-hidden="true">📚</div>
-    <div class="catalog-card-copy"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(String(subject.subtitle).replace(/\s*·\s*Part \d+\/\d+$/,""))}</p>
-      <small>${total} câu · ${parts.length} phần · ✅ ${done}/${parts.length} phần đã nộp</small>
-      <div class="summary-progress" aria-hidden="true"><span style="width:${Math.round(done/parts.length*100)}%"></span></div></div>
-    <div class="catalog-card-action"><select class="summary-part" aria-label="Chọn phần của ${escapeHtml(title)}">${options}</select>
-      <button class="check-btn" type="button" data-summary-open>${done?"Làm tiếp ▸":"Bắt đầu ▸"}</button></div></article>`;
+// Một hàng trong Danh sách. Bài đã nộp (chưa reset) hiện điểm % của lần nộp gần nhất; bài chưa làm giữ nguyên.
+function catalogCardMarkup(item){
+  const subject=subjectFor(item.id),count=counts(item.id),state=readState(item.id);
+  const submitted=Boolean(state.submitted);
+  const percent=submitted?scorePercent(count.correct,count.total):0;
+  const score=submitted?`<b class="catalog-score history-score ${scoreBand(percent)}" title="Điểm lần nộp gần nhất">⭐ ${percent}%<small>${count.correct}/${count.total}</small></b>`:"";
+  return `<article class="catalog-card ${escapeHtml(item.subjectKey)}${submitted?" is-done":""}">
+    <div class="catalog-subject-icon" aria-hidden="true">${subject.icon}</div>
+    <div class="catalog-card-copy"><p class="catalog-version">QUIZ THEO MÔN HỌC</p><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(subject.subtitle)}</p><small>${submitted?`✅ Đã nộp · ${count.correct}/${count.total} câu đúng`:`${count.answered}/${count.total} ${subject.itemLabel||"câu"} đã trả lời`}</small></div>
+    <div class="catalog-card-action">${score||`<strong>${questionUnitTotal(subject)} ${subject.itemLabel||"câu hỏi"}</strong>`}<button class="check-btn" type="button" data-quiz="${escapeHtml(item.id)}" aria-label="Mở bài ${escapeHtml(subject.name)}: ${escapeHtml(item.title)}">${submitted?"Xem lại ▸":"Mở bài ▸"}</button></div>
+  </article>`;
 }
 function renderSummaryCatalog(){
   const weekly=quizCatalog.filter(item=>isWeeklyKey(item.uploadDate));
@@ -1107,13 +1099,12 @@ function renderSummaryCatalog(){
   $("#catalogEmpty").hidden=weekly.length>0;
   $("#catalogEmpty").textContent="Chưa có bài tổng hợp nào.";
   $("#catalogGroups").innerHTML=Object.keys(groups).sort(catalogKeyOrder).map(key=>{
-    const byBase=new Map();groups[key].forEach(item=>{const b=baseQuizId(item.id);if(!byBase.has(b)) byBase.set(b,[]);byBase.get(b).push(item)});
-    byBase.forEach(list=>list.sort((x,y)=>x.id.localeCompare(y.id,undefined,{numeric:true})));
-    return `<section class="catalog-date-group weekly-group"><header class="catalog-date-heading"><div><small>TỔNG HỢP</small><strong class="weekly-title">${escapeHtml(formatUploadDate(key))}</strong></div></header>
-      <div class="catalog-cards">${[...byBase].map(([b,list])=>summaryRowMarkup(b,list)).join("")}</div></section>`;
+    const list=[...groups[key]].sort((x,y)=>{const bx=baseQuizId(x.id),by=baseQuizId(y.id);return bx===by?x.id.localeCompare(y.id,undefined,{numeric:true}):0});
+    const done=list.filter(item=>readState(item.id).submitted).length;
+    return `<section class="catalog-date-group weekly-group"><header class="catalog-date-heading"><div><small>TỔNG HỢP</small><strong class="weekly-title">${escapeHtml(formatUploadDate(key))}</strong></div><span>✅ ${done}/${list.length} bài đã nộp</span></header>
+      <div class="catalog-cards">${list.map(catalogCardMarkup).join("")}</div></section>`;
   }).join("");
   document.querySelectorAll("#catalogGroups [data-quiz]").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
-  document.querySelectorAll("#catalogGroups [data-summary-open]").forEach(button=>button.addEventListener("click",()=>openSubject(button.closest(".catalog-card").querySelector(".summary-part").value)));
 }
 
 function renderCatalog(){
@@ -1130,14 +1121,7 @@ function renderCatalog(){
   $("#catalogEmpty").textContent=quizCatalog.length?"Không có bài quiz phù hợp với bộ lọc.":"Chưa có bài quiz nào. Thêm bài mới vào thư mục quizzes/.";
   $("#catalogGroups").innerHTML=Object.keys(dateGroups).sort(catalogKeyOrder).map(date=>`<section class="catalog-date-group${isWeeklyKey(date)?" weekly-group":""}">
     <header class="catalog-date-heading"><div><small>${isWeeklyKey(date)?"TỔNG HỢP":"NGÀY UPLOAD"}</small>${isWeeklyKey(date)?`<strong class="weekly-title">${escapeHtml(formatUploadDate(date))}</strong>`:`<time datetime="${date}">${formatUploadDate(date)}</time>`}</div>${date===latestDateKey(dateGroups)?'<span>Mới nhất</span>':""}</header>
-    <div class="catalog-cards">${dateGroups[date].map(item=>{
-      const subject=subjectFor(item.id),count=counts(item.id);
-      return `<article class="catalog-card ${escapeHtml(item.subjectKey)}">
-        <div class="catalog-subject-icon" aria-hidden="true">${subject.icon}</div>
-        <div class="catalog-card-copy"><p class="catalog-version">QUIZ THEO MÔN HỌC</p><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(subject.subtitle)}</p><small>${count.answered}/${count.total} ${subject.itemLabel||"câu"} đã trả lời</small></div>
-        <div class="catalog-card-action"><strong>${questionUnitTotal(subject)} ${subject.itemLabel||"câu hỏi"}</strong><button class="check-btn" type="button" data-quiz="${escapeHtml(item.id)}" aria-label="Mở bài ${escapeHtml(subject.name)}: ${escapeHtml(item.title)}">Mở bài ▸</button></div>
-      </article>`;
-    }).join("")}</div>
+    <div class="catalog-cards">${dateGroups[date].map(catalogCardMarkup).join("")}</div>
   </section>`).join("");
   document.querySelectorAll("#catalogGroups [data-quiz]").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
 }
