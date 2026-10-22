@@ -565,3 +565,15 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
   .catalog-card-action button{flex:1}
 }
 @media (max-width:699px){.catalog-card-action button{flex:0 0 auto;min-height:36px!important;padding:4px 14px}}
+
+/* Danh sách: 2 tab "Quiz theo ngày" | "Tổng hợp" */
+.catalog-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px;margin:0 0 12px;background:#fff;border:2px solid #e3deea;border-radius:16px}
+.catalog-tab{min-height:48px;border:0;border-radius:11px;background:transparent;font:inherit;font-weight:900;font-size:1rem;color:#625d71;cursor:pointer}
+.catalog-tab b{display:inline-block;min-width:26px;margin-left:6px;padding:1px 8px;border-radius:99px;background:#efe9ff;color:#5b3fc4;font-size:.8rem}
+.catalog-tab.active{background:linear-gradient(90deg,#9b69e8,#ff7aa8);color:#fff;box-shadow:0 6px 14px rgba(155,105,232,.25)}
+.catalog-tab.active b{background:rgba(255,255,255,.3);color:#fff}
+.catalog-tab:focus-visible{outline:3px solid #2b2b45;outline-offset:2px}
+.catalog-filters[hidden]{display:none!important}
+.summary-row .summary-part{min-height:40px;border:2px solid #e3deea;border-radius:10px;padding:4px 8px;font:inherit;font-weight:800;background:#fff}
+.summary-progress{height:6px;margin-top:6px;border-radius:99px;background:#f0ebf7;overflow:hidden;max-width:260px}
+.summary-progress span{display:block;height:100%;background:linear-gradient(90deg,#5fd39a,#31a66d)}

@@ -1054,13 +1054,60 @@ function catalogFilteredItems(subjectKey="all",uploadDate="all"){
 
 function buildCatalogDateFilter(){
   const select=$("#catalogDateFilter"),selected=select.value||"all";
-  const dates=[...new Set(quizCatalog.map(item=>item.uploadDate))].sort(catalogKeyOrder);
+  const dates=[...new Set(quizCatalog.filter(item=>!isWeeklyKey(item.uploadDate)).map(item=>item.uploadDate))].sort(catalogKeyOrder);
   select.innerHTML='<option value="all">Tất cả ngày</option>'+dates.map(date=>`<option value="${date}">${formatUploadDate(date)}</option>`).join("");
   select.value=dates.includes(selected)?selected:"all";
 }
 
+// Danh sách chia 2 tab: "Quiz theo ngày" (bài theo ngày, có bộ lọc) và "Tổng hợp" (mỗi đợt tổng hợp một khối;
+// bài nhiều Part gom thành MỘT hàng có ô chọn Part, số Part đã nộp và nút "Làm tiếp").
+let catalogTab=(()=>{try{return localStorage.getItem("grade1-catalog-tab")||"daily"}catch{return "daily"}})();
+function setCatalogTab(tab){catalogTab=tab;try{localStorage.setItem("grade1-catalog-tab",tab)}catch{}renderCatalog()}
+const baseQuizId=id=>String(id).replace(/-p\d+$/,"");
+function summaryRowMarkup(baseId,parts){
+  const first=parts[0],subject=subjectFor(first.id);
+  const title=(window.quizSources&&window.quizSources[baseId]?.title)||first.title;
+  const total=parts.reduce((sum,p)=>sum+questionUnitTotal(subjectFor(p.id)),0);
+  if(parts.length===1){
+    const count=counts(first.id);
+    return `<article class="catalog-card ${escapeHtml(first.subjectKey)}"><div class="catalog-subject-icon" aria-hidden="true">📝</div>
+      <div class="catalog-card-copy"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(subject.subtitle)}</p><small>${count.answered}/${count.total} câu đã trả lời${readState(first.id).submitted?" · ✅ Đã nộp":""}</small></div>
+      <div class="catalog-card-action"><strong>${total} câu hỏi</strong><button class="check-btn" type="button" data-quiz="${escapeHtml(first.id)}">Mở bài ▸</button></div></article>`;
+  }
+  const done=parts.filter(p=>readState(p.id).submitted).length;
+  const next=parts.find(p=>!readState(p.id).submitted)||parts[0];
+  const options=parts.map((p,i)=>`<option value="${escapeHtml(p.id)}"${p===next?" selected":""}>Phần ${i+1}${readState(p.id).submitted?" ✅":""}</option>`).join("");
+  return `<article class="catalog-card ${escapeHtml(first.subjectKey)} summary-row"><div class="catalog-subject-icon" aria-hidden="true">📚</div>
+    <div class="catalog-card-copy"><h2>${escapeHtml(title)}</h2><p>${escapeHtml(String(subject.subtitle).replace(/\s*·\s*Part \d+\/\d+$/,""))}</p>
+      <small>${total} câu · ${parts.length} phần · ✅ ${done}/${parts.length} phần đã nộp</small>
+      <div class="summary-progress" aria-hidden="true"><span style="width:${Math.round(done/parts.length*100)}%"></span></div></div>
+    <div class="catalog-card-action"><select class="summary-part" aria-label="Chọn phần của ${escapeHtml(title)}">${options}</select>
+      <button class="check-btn" type="button" data-summary-open>${done?"Làm tiếp ▸":"Bắt đầu ▸"}</button></div></article>`;
+}
+function renderSummaryCatalog(){
+  const weekly=quizCatalog.filter(item=>isWeeklyKey(item.uploadDate));
+  const groups=catalogGroupsByUploadDate(weekly);
+  $("#catalogEmpty").hidden=weekly.length>0;
+  $("#catalogEmpty").textContent="Chưa có bài tổng hợp nào.";
+  $("#catalogGroups").innerHTML=Object.keys(groups).sort(catalogKeyOrder).map(key=>{
+    const byBase=new Map();groups[key].forEach(item=>{const b=baseQuizId(item.id);if(!byBase.has(b)) byBase.set(b,[]);byBase.get(b).push(item)});
+    byBase.forEach(list=>list.sort((x,y)=>x.id.localeCompare(y.id,undefined,{numeric:true})));
+    return `<section class="catalog-date-group weekly-group"><header class="catalog-date-heading"><div><small>TỔNG HỢP</small><strong class="weekly-title">${escapeHtml(formatUploadDate(key))}</strong></div></header>
+      <div class="catalog-cards">${[...byBase].map(([b,list])=>summaryRowMarkup(b,list)).join("")}</div></section>`;
+  }).join("");
+  document.querySelectorAll("#catalogGroups [data-quiz]").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
+  document.querySelectorAll("#catalogGroups [data-summary-open]").forEach(button=>button.addEventListener("click",()=>openSubject(button.closest(".catalog-card").querySelector(".summary-part").value)));
+}
+
 function renderCatalog(){
-  const items=catalogFilteredItems($("#catalogSubjectFilter").value,$("#catalogDateFilter").value);
+  const dailyCount=quizCatalog.filter(item=>!isWeeklyKey(item.uploadDate)).length;
+  const summaryCount=new Set(quizCatalog.filter(item=>isWeeklyKey(item.uploadDate)).map(item=>baseQuizId(item.id))).size;
+  if(catalogTab==="summary"&&!summaryCount) catalogTab="daily";
+  $("#catalogCountDaily").textContent=dailyCount;$("#catalogCountSummary").textContent=summaryCount;
+  document.querySelectorAll("[data-catalog-tab]").forEach(tab=>{const on=tab.dataset.catalogTab===catalogTab;tab.classList.toggle("active",on);tab.setAttribute("aria-selected",String(on))});
+  $(".catalog-filters").hidden=catalogTab==="summary";
+  if(catalogTab==="summary"){renderSummaryCatalog();return}
+  const items=catalogFilteredItems($("#catalogSubjectFilter").value,$("#catalogDateFilter").value).filter(item=>!isWeeklyKey(item.uploadDate));
   const dateGroups=catalogGroupsByUploadDate(items);
   $("#catalogEmpty").hidden=items.length>0;
   $("#catalogEmpty").textContent=quizCatalog.length?"Không có bài quiz phù hợp với bộ lọc.":"Chưa có bài quiz nào. Thêm bài mới vào thư mục quizzes/.";
@@ -1150,6 +1197,7 @@ if(!window.QUIZ_TEST_MODE){
   $("#userListBtn").addEventListener("click",toggleUserList);
   $("#catalogSubjectFilter").addEventListener("change",renderCatalog);
   $("#catalogDateFilter").addEventListener("change",renderCatalog);
+  document.querySelectorAll("[data-catalog-tab]").forEach(tab=>tab.addEventListener("click",()=>setCatalogTab(tab.dataset.catalogTab)));
   $("#cancelAddUserBtn").addEventListener("click",closeAddUserDialog);
   $("#cancelAddUserFooterBtn").addEventListener("click",closeAddUserDialog);
   $("#addUserDialog").addEventListener("cancel",event=>{event.preventDefault();closeAddUserDialog()});
