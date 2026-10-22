@@ -61,7 +61,10 @@ const catalogKeyOrder=(a,b)=>(isWeeklyKey(b)-isWeeklyKey(a))||(isWeeklyKey(a)?a.
 const uploadLabels=Object.fromEntries(quizCatalog.filter(item=>item.uploadLabel).map(item=>[item.uploadDate,item.uploadLabel]));
 // Tab môn học trong màn làm bài trỏ tới bài mới nhất của từng môn.
 const defaultQuizIds=Object.fromEntries(subjectOrder.map(subjectKey=>{
-  const latest=quizCatalog.filter(item=>item.subjectKey===subjectKey&&!isWeeklyKey(item.uploadDate)).reduce((best,item)=>!best||item.uploadDate>=best.uploadDate?item:best,null);
+  const pick=list=>list.reduce((best,item)=>!best||item.uploadDate>=best.uploadDate?item:best,null);
+  const ofSubject=quizCatalog.filter(item=>item.subjectKey===subjectKey);
+  // Ưu tiên bài theo ngày mới nhất; môn chỉ còn bài tổng hợp tuần (vd. LA W1&2) thì mở bài tổng hợp đầu tiên.
+  const latest=pick(ofSubject.filter(item=>!isWeeklyKey(item.uploadDate)))||ofSubject.find(item=>isWeeklyKey(item.uploadDate));
   return latest?[subjectKey,latest.id]:null;
 }).filter(Boolean));
 const resolveQuizId=key=>key;
@@ -1068,7 +1071,7 @@ function renderCatalog(){
       return `<article class="catalog-card ${escapeHtml(item.subjectKey)}">
         <div class="catalog-subject-icon" aria-hidden="true">${subject.icon}</div>
         <div class="catalog-card-copy"><p class="catalog-version">QUIZ THEO MÔN HỌC</p><h2>${escapeHtml(item.title)}</h2><p>${escapeHtml(subject.subtitle)}</p><small>${count.answered}/${count.total} ${subject.itemLabel||"câu"} đã trả lời</small></div>
-        <div class="catalog-card-action"><strong>${questionUnitTotal(subject)} ${subject.itemLabel||"câu hỏi"}</strong><button class="check-btn" type="button" data-quiz="${escapeHtml(item.id)}">Mở bài ${escapeHtml(subject.name)}</button></div>
+        <div class="catalog-card-action"><strong>${questionUnitTotal(subject)} ${subject.itemLabel||"câu hỏi"}</strong><button class="check-btn" type="button" data-quiz="${escapeHtml(item.id)}" aria-label="Mở bài ${escapeHtml(subject.name)}: ${escapeHtml(item.title)}">Mở bài ▸</button></div>
       </article>`;
     }).join("")}</div>
   </section>`).join("");

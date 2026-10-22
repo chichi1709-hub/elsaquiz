@@ -103,5 +103,9 @@ window.QUIZ_PART_LIMIT=30;
         subject:{...subject,subtitle:`${subject.subtitle} · Part ${k+1}/${count}`,questions,groups:groups.map(({source,...g})=>g),readings}};
     });
   }
-  window.registerQuiz=entry=>{window.quizRegistry.push(...split(englishOnly(entry)))};
+  // quizSources: bản đầy đủ (chưa chia Part) của mỗi bài — để bài tổng hợp có thể gộp câu từ các bài ngày.
+  window.quizSources=window.quizSources||{};
+  window.registerQuiz=entry=>{const clean=englishOnly(entry);window.quizSources[clean.id]=clean;window.quizRegistry.push(...split(clean))};
+  // Gỡ một bài (và mọi Part của nó) khỏi Danh sách.
+  window.unregisterQuiz=id=>{window.quizRegistry=window.quizRegistry.filter(q=>q.id!==id&&!q.id.startsWith(`${id}-p`))};
 })();

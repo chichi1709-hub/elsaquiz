@@ -433,7 +433,54 @@
       ]}
   });
 
-  registerQuiz({
+  // ───── Gộp các bài LA theo ngày của Unit 2 Week 1 + Week 2 vào bài Review (yêu cầu 22/10/2026) ─────
+  // Câu nào trong bài ngày CHƯA có trong Tổng hợp (so theo nội dung câu hỏi + đáp án) thì được thêm vào đúng nhóm;
+  // bài đọc mà câu đó dùng được mang theo; mọi link Bonus được gom về một thẻ Bonus. Sau đó các bài LA theo ngày
+  // bị gỡ khỏi Danh sách — chỉ còn "Tổng hợp kiến thức tuần (W1&2)". File bài ngày vẫn giữ làm nguồn dữ liệu.
+  const DAILY_LA=["class-diary-2026-10-07-language-reading","class-diary-2026-10-07-language-words","class-diary-2026-10-07-language-grammar",
+    "class-diary-2026-10-08-language","class-diary-2026-10-12-language-week2","class-diary-2026-10-12-language-week1","class-diary-2026-10-13-language",
+    "class-diary-2026-10-14-language","class-diary-2026-10-15-language","class-diary-2026-10-16-language","class-diary-2026-10-19-language",
+    "class-diary-2026-10-20-language","class-diary-2026-10-21-language"];
+  const norm=v=>String(Array.isArray(v)?v.join("|"):v??"").toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'|/+=-]+/g," ").trim();
+  const fieldKeys=q=>(q.type==="compound"?q.fields:[q]).map(f=>`${norm(f.label||q.text)}#${norm(f.answer)}`);
+  const BUCKET=[
+    ["High-Frequency Words",/high-frequency|\bhfw\b/i],
+    ["Phonemic Awareness",/phonemic|phonological|rhyme|odd one out|beginning sound|middle sound|final sound|sounds in words|same middle/i],
+    ["Grammar and Structural Analysis",/grammar|noun|comma|-ed|contraction|plural|singular|punctuation|word order|sentence type|mechanic|fix the/i],
+    ["Phonics",/phonics|short [aeiou]|spelling|word famil|\bph\b|sort the words|homework check/i],
+    ["Writing",/writing|descriptive/i],
+    ["Essential Questions and Vocabulary",/vocabulary|essential question|build knowledge|define|shelter|materials/i]];
+  const bucketOf=q=>(BUCKET.find(([,re])=>re.test(q.section||""))||["Genres and Stories"])[0];
+  function mergeDailyLA(entry){
+    const subj=entry.subject,groups=subj.groups,questions=subj.questions;
+    const buckets=new Map(groups.map(g=>[g.title.replace(/^\d+\.\s*/,""),{subtitle:g.subtitle,items:questions.slice(g.start,g.end+1)}]));
+    const seen=new Set(questions.flatMap(fieldKeys));
+    const readings=[...subj.readings],links=new Map(),added=[];
+    for(const id of DAILY_LA){
+      const src=(window.quizSources||{})[id];if(!src) continue;
+      const day=(src.uploadDate||"").slice(5).split("-").reverse().join("/");
+      for(const q of src.subject.questions){
+        const keys=fieldKeys(q);if(!keys.some(k=>!seen.has(k))) continue;
+        keys.forEach(k=>seen.add(k));
+        const copy={...q,section:/\(\d\d\/\d\d\)/.test(q.section)?q.section:`${q.section} (${day})`};
+        if(q.readingId){
+          const rid=`${id}--${q.readingId}`;copy.readingId=rid;
+          if(!readings.some(r=>r.id===rid)){const r=(src.subject.readings||[]).find(x=>x.id===q.readingId);if(r) readings.push({...r,id:rid})}
+        }
+        const b=bucketOf(q);if(!buckets.has(b)) buckets.set(b,{subtitle:"",items:[]});
+        buckets.get(b).items.push(copy);added.push(copy);
+      }
+      (src.subject.readings||[]).filter(r=>r.mode==="bonus").forEach(r=>(r.links||[]).forEach(l=>{if(!links.has(l.url)) links.set(l.url,l)}));
+      window.unregisterQuiz(id);
+    }
+    if(links.size) readings.push({id:"bonus-la-u2w12",title:"Bonus · Video & game",byline:"All links from the Class Diaries of Unit 2 Week 1 and Week 2",mode:"bonus",links:[...links.values()],text:""});
+    let start=0;const newGroups=[],newQ=[];
+    for(const [title,b] of buckets){if(!b.items.length) continue;newGroups.push({title:`${newGroups.length+1}. ${title}`,subtitle:b.subtitle,start,end:start+b.items.length-1});start+=b.items.length;newQ.push(...b.items)}
+    window.LA_U2W12_MERGED=added.length;
+    return {...entry,subject:{...subj,groups:newGroups,questions:newQ,readings}};
+  }
+
+  registerQuiz(mergeDailyLA({
     id:"la-u2-w1-w2-summary",
     uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức tuần (W1&2)",
     subjectKey:"language",
@@ -507,5 +554,5 @@
           "(01/10) The letters e or ea can make the short e sound: leg, bread."
         ].join("\n")}
       ]}
-  });
+  }));
 })();
