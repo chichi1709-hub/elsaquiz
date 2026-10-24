@@ -140,7 +140,7 @@
   // ───────────────────────── SCIENCE ─────────────────────────
   const SCI_Q=[
     sci("Lesson 3 · Animals and Their Parents","Explore the phenomenon: Which of these eggs does not belong in the nest?",[
-      choice("title","In Lesson 3 we learn that chicks hatch from eggs and baby animals (offspring) look like their mom and dad. Hint: baby animals + mom and dad. So Lesson 3 is called ___.",["Animals and Their Parents","Functions of Animal Structures","Animal Protection"],"Animals and Their Parents","🐣"),
+      choice("title","In Lesson 3 we learned about animals and their babies: birds and chicks that hatch from eggs, reptiles, baby animals that look like their mom and dad… So the topic of Lesson 3 is called ___.",["Animals and Their Parents","Functions of Animal Structures","Animal Protection"],"Animals and Their Parents","🐣"),
       multi("hatch","What animals hatch from eggs? Choose 2.",["birds","reptiles","dogs","cats"],["birds","reptiles"],"🥚"),
       choice("nest","🥚🥚🥚 + 🥚(big) Look at the eggs in the nest. What do you observe?",["One egg is bigger than the other three eggs.","All the eggs are the same.","There are no eggs."],"One egg is bigger than the other three eggs.","🪺"),
       choice("belong","Which egg does not belong in the nest?",["the egg that is bigger than the other three eggs","the smallest egg","all the eggs belong"],"the egg that is bigger than the other three eggs","🐦")

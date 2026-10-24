@@ -203,7 +203,7 @@
   const WB_Q=[
     wb("Vocabulary · People who love me","Unit 1.4 People who are special to me · Lesson 1 People who love me.",[
       multi("vocab","Which words did we learn? Choose 6.",["special","family","care","friends","love","feelings","truck","rain"],WB_VOCAB,"❤️"),
-      choice("lesson","In Lesson 1 we talked about our family and friends who care for us and love us. Hint: love. So Lesson 1 is called ___.",["People who love me","Animals and Their Parents","Our Community"],"People who love me","💞")
+      choice("lesson","In Lesson 1 we learned about the people in our life: Mum, Dad, brothers, sisters, grandparents, friends… They care for us and love us. So the topic of Lesson 1 is called ___.",["People who love me","Animals and Their Parents","Our Community"],"People who love me","💞")
     ],"Vocabulary: special · family · care · friends · love · feelings. Unit 1.4 People who are special to me · Lesson 1 People who love me.",{readingId:"wbVocab"}),
     wb("Six of Us · Who is it?","Read the story “Six of Us”. What can each person do?",[
       select("chaz","I am Chaz. I can…",WB_DO,"run","🏃"),

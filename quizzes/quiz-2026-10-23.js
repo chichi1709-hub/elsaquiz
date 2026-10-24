@@ -155,7 +155,7 @@
       select("tet","Tet",["Wear costumes & trick-or-treat","Watch fireworks & party","Receive lucky money & eat special food"],"Receive lucky money & eat special food","🧧")
     ],"Special days: Birthday, Beach day, Tet, Christmas. Halloween: wear costumes & trick-or-treat · New Year: watch fireworks & party · Tet: receive lucky money & eat special food.",{readingId:"specialdays"}),
     wb("Big Question · Can we be different and the same?","Vocabulary: different, same, celebrate, eyes, hair, likes, dislike, skin tone, respect.",[
-      choice("big","We learned that people can have different eyes, hair, and likes, but we all celebrate special days. Hint: different + same. So what is the Big Question?",["Can we be different and the same?","Who is special to you?","What is a comic strip?"],"Can we be different and the same?","❓"),
+      choice("big","In Lesson 2 we learned about people: different eyes, different hair, different likes… but we all have special days and celebrate together. So the Big Question of Lesson 2 is ___.",["Can we be different and the same?","Who is special to you?","What is a comic strip?"],"Can we be different and the same?","❓"),
       multi("diff","People can be different in their… Choose 4.",["eyes","hair","skin tone","likes"],["eyes","hair","skin tone","likes"],"👀"),
       choice("respect","When people are different from us, we should show ___.",["respect","anger","nothing"],"respect","🤝"),
       choice("celebrate","To celebrate means to ___ a special day.",["enjoy and do something special for","forget","stay sad on"],"enjoy and do something special for","🎊")

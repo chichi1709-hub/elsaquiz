@@ -31,7 +31,7 @@
   // ───── (1) Key Concepts Test ─────
   const TEST=[
     sci("Key vocabulary","Choose the answer.",[
-      choice("title","In Lesson 3 we saw a cat and her kittens, birds and their chicks, and a puppy that grows into a big dog. Hint: baby animals + mom and dad. So Lesson 3 is called ___.",["Animals and Their Parents","Functions of Animal Structures","Animal Protection"],"Animals and Their Parents","🐣"),
+      choice("title","In Lesson 3 we learned about animals and their babies: a cat and her kittens, birds and their chicks, a cow and her calf, a puppy that grows into a big dog… So the topic of Lesson 3 is called ___.",["Animals and Their Parents","Functions of Animal Structures","Animal Protection"],"Animals and Their Parents","🐣"),
       choice("trait","A trait is ___.",["a feature of a living thing","a kind of home","a food"],"a feature of a living thing","🔎"),
       choice("offspring","Offspring are ___.",["the young of an animal","the parents","the home of an animal"],"the young of an animal","👶"),
       choice("young","Young means ___.",["recently born","very old","very big"],"recently born","🍼"),
