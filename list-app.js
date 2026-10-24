@@ -1093,7 +1093,7 @@ function catalogCardMarkup(item){
     <div class="catalog-card-action">${score||`<strong>${questionUnitTotal(subject)} ${subject.itemLabel||"câu hỏi"}</strong>`}<button class="check-btn" type="button" data-quiz="${escapeHtml(item.id)}" aria-label="Mở bài ${escapeHtml(subject.name)}: ${escapeHtml(item.title)}">${submitted?"Xem lại ▸":"Mở bài ▸"}</button></div>
   </article>`;
 }
-// Tab "Tổng hợp": chia theo môn (LA / Science / Math…). Mỗi môn hiện tối đa 3 bộ tổng hợp mới nhất (nút "Xem thêm" nếu nhiều hơn).
+// Tab "Tổng hợp": chia theo môn (LA / Science / Math…), môn có bài mới nhất lên đầu. Mỗi môn hiện tối đa 3 bộ tổng hợp mới nhất (nút "Xem thêm" nếu nhiều hơn).
 // Bấm vào một bộ (ví dụ "Tổng hợp kiến thức tuần (W1&2)") → hiện toàn bộ danh sách quiz của bộ đó, có nút quay lại.
 const SUMMARY_SUBJECTS=[["language","📖","Language Arts"],["science","🔬","Science"],["math","🧮","Math"]];
 const SUMMARY_LIMIT=3;
@@ -1140,7 +1140,10 @@ function renderSummaryCatalog(){
     summaryOpen=null;
     const extra=[...new Set(collections.map(entry=>entry.subjectKey))].filter(key=>!SUMMARY_SUBJECTS.some(([k])=>k===key))
       .map(key=>{const first=collections.find(entry=>entry.subjectKey===key).items[0];return [key,subjectFor(first.id).icon,subjectFor(first.id).name]});
-    $("#catalogGroups").innerHTML=[...SUMMARY_SUBJECTS,...extra].map(([key,icon,name])=>{
+    // Môn có bộ tổng hợp upload mới nhất lên đầu; môn chưa có bộ nào xếp cuối (giữ thứ tự LA → Science → Math).
+    const latest=key=>{const first=collections.find(entry=>entry.subjectKey===key);return first?first.order:-1};
+    const subjects=[...SUMMARY_SUBJECTS,...extra].map((meta,index)=>({meta,index})).sort((x,y)=>(latest(y.meta[0])-latest(x.meta[0]))||(x.index-y.index)).map(({meta})=>meta);
+    $("#catalogGroups").innerHTML=subjects.map(([key,icon,name])=>{
       const list=collections.filter(entry=>entry.subjectKey===key);
       const shown=summaryExpanded.has(key)?list:list.slice(0,SUMMARY_LIMIT);
       const more=list.length>SUMMARY_LIMIT?`<button class="summary-more" type="button" data-summary-more="${key}">${summaryExpanded.has(key)?"Thu gọn ▴":`Xem thêm ${list.length-SUMMARY_LIMIT} bộ tổng hợp ▾`}</button>`:"";
