@@ -30,7 +30,7 @@
       choice("problem","What is the problem in the story?",["The wind made the hut fall down.","The pups ran away.","Gus lost his red hat."],"The wind made the hut fall down.","💨"),
       multi("made","What did they use to make the new hut? Choose 3.",["mud","sticks","grass","glass","bricks"],["mud","sticks","grass"],"🪵"),
       choice("end","What happens at the end?",["The new hut is snug and dry.","The new hut falls down again.","They move to the city."],"The new hut is snug and dry.","🏠"),
-      choice("genre","Could this story happen in real life? What is the genre?",["Realistic fiction","Fantasy","Nonfiction"],"Realistic fiction","📖")
+      choice("genre","Could this story happen in real life? Hint: Fantasy = made-up, could not happen in real life (animals talk). Realistic fiction = made-up, but could happen in real life. Nonfiction = real people and real things (photos). What is the genre?",["Realistic fiction","Fantasy","Nonfiction"],"Realistic fiction","📖")
     ],"Characters: Gus, Jen, Mom, and Dad · Setting: a red hut · Problem: the wind huffed and puffed and the hut fell down · Solution: they made a new hut with mud, sticks, and grass · End: the new hut is snug and dry. The family does things that could happen in real life → realistic fiction.",{readingId:"testStory"}),
     {section:"High-Frequency Words · Mixed",img:L,layout:"icon-activity",type:"compound",wordBank:["live","one","could","three","then","again","help","there"],text:"Choose the word that makes the sentence make sense.",fields:[
       bank("live","I ___ in the city.",["live","one","could","three","then","again","help","there"],"live","🏙️"),
@@ -272,7 +272,7 @@
       choice("realistic","A made-up story with characters that do things that could happen in real life.",GENRES,"Realistic fiction","🏙️"),
       choice("nonfiction","Tells about real people and real things.",GENRES,"Nonfiction","📰")
     ],"Fantasy: made-up, could not exist in real life (it can also have a problem and solution). Realistic fiction: made-up, could happen in real life. Nonfiction: tells about real people and real things."),
-    la("Genres · Our stories","What is the genre of each story?",[
+    la("Genres · Our stories","What is the genre of each story? Hint: Fantasy = made-up, could not happen in real life (animals talk). Realistic fiction = made-up, but could happen in real life. Nonfiction = real people and real things (photos).",[
       select("millie","Millie Waits for the Mail",GENRES,"Fantasy","🐄"),
       select("ben","Good Job, Ben!",GENRES,"Realistic fiction","🚌"),
       select("redhat","The Red Hat",GENRES,"Realistic fiction","⛑️"),

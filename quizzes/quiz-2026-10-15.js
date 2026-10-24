@@ -88,7 +88,7 @@
 
     // ── Anchor Text: The Pigs, the Wolf, and the Mud ──
     la("The Pigs, the Wolf, and the Mud · Fantasy","Look at the book. Then choose.",[
-      choice("genre","What is the genre of the story?",["Fantasy","Nonfiction","Realistic fiction"],"Fantasy","📚"),
+      choice("genre","The animals in this story talk and build houses. Could that happen in real life? Hint: Fantasy = made-up, could not happen in real life (animals talk). Realistic fiction = made-up, but could happen in real life. Nonfiction = real people and real things (photos). What is the genre of the story?",["Fantasy","Nonfiction","Realistic fiction"],"Fantasy","📚"),
       choice("hut","What is the pigs’ hut made of?",["mud","bricks","glass"],"mud","🐷"),
       choice("mess","mess means ___.",["dirty place","clean room","big house"],"dirty place","🧹")
     ],"Genre: Fantasy. The three pigs live in a hut made of mud. Build Vocabulary — mess: dirty place.",{readingId:"pigs"}),
@@ -140,7 +140,7 @@
   // ───────────────────────── SCIENCE ─────────────────────────
   const SCI_Q=[
     sci("Lesson 3 · Animals and Their Parents","Explore the phenomenon: Which of these eggs does not belong in the nest?",[
-      choice("title","Lesson 3 is called ___.",["Animals and Their Parents","Functions of Animal Structures","Animal Protection"],"Animals and Their Parents","🐣"),
+      choice("title","In Lesson 3 we learn that chicks hatch from eggs and baby animals (offspring) look like their mom and dad. Hint: baby animals + mom and dad. So Lesson 3 is called ___.",["Animals and Their Parents","Functions of Animal Structures","Animal Protection"],"Animals and Their Parents","🐣"),
       multi("hatch","What animals hatch from eggs? Choose 2.",["birds","reptiles","dogs","cats"],["birds","reptiles"],"🥚"),
       choice("nest","🥚🥚🥚 + 🥚(big) Look at the eggs in the nest. What do you observe?",["One egg is bigger than the other three eggs.","All the eggs are the same.","There are no eggs."],"One egg is bigger than the other three eggs.","🪺"),
       choice("belong","Which egg does not belong in the nest?",["the egg that is bigger than the other three eggs","the smallest egg","all the eggs belong"],"the egg that is bigger than the other three eggs","🐦")

@@ -67,7 +67,7 @@
 
     // ── Compare Text: Homes Around the World (Nonfiction) ──
     la("Homes Around the World · Nonfiction","Look at the book. Read the text. Then choose.",[
-      choice("genre","What is the genre?",["Nonfiction","Fantasy","Realistic fiction"],"Nonfiction","📰"),
+      choice("genre","This book has photos of real homes around the world. Hint: Fantasy = made-up, could not happen in real life (animals talk). Realistic fiction = made-up, but could happen in real life. Nonfiction = real people and real things (photos). What is the genre?",["Nonfiction","Fantasy","Realistic fiction"],"Nonfiction","📰"),
       choice("main","Main idea: People build their homes to ___.",["fit the place they live","look like a castle","be very tall"],"fit the place they live","🌍"),
       choice("rock","One home in the book is built into a ___.",["rock","tree","cloud"],"rock","🪨")
     ],"Homes Around the World is nonfiction: it tells about real homes. There are many kinds of homes. People build their homes to fit the place they live! One home is built into a rock.",{readingId:"homes"}),
