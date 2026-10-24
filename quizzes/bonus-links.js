@@ -414,4 +414,42 @@
     ["bird","many","birds"],["shoe","two","shoes"],["house","many","houses"],["banana","many","bananas"],["coin","many","coins"],["hand","two","hands"],["eye","two","eyes"],["car","many","cars"]];
   bonus({id:"bonus-regular-plurals-game",remember:["Regular plurals: add -s → crayons · dogs · apples · shoes · houses · eyes"],urls:["https://www.baamboozle.com/game/2385375"],title:"Regular Plurals Game",source:"Baamboozle · regular plurals (Dipo)",
     cards:chunk(RPL,8).map((rows,k)=>card("Plural nouns","Write the plural noun.",rows.map(([w,q,a],i)=>({id:`p${k}${i}`,label:`one ${w}, ${q} ___`,type:"fill",answer:[a]})),rows.map(([w,q,a])=>`one ${w}, ${q} ${a}`).join(" · ")))});
+  // ───────── 42. Wordwall 30459871 "Animals Offspring" (find the match; sửa chính tả "cayote" → coyote) ─────────
+  const OFF=[["lion","cub"],["goat","kid"],["horse","foal"],["deer","fawn"],["cat","kitten"],["dog","puppy"],["coyote","whelp"],["bat","pup"],["cow","calf"],["zebra","colt"]];
+  bonus({id:"bonus-wordwall-animals-offspring",subjectKey:"science",remember:["Baby animals: lion – cub · goat – kid · horse – foal · deer – fawn · cat – kitten · dog – puppy · bat – pup · cow – calf"],urls:["https://wordwall.net/resource/30459871/animals-offspring"],title:"Animals Offspring",source:"Wordwall · Animals Offspring (find the match)",
+    cards:chunk(OFF,5).map((rows,k)=>card("Animals and their babies","Match the animal with its baby.",rows.map(([a,b],i)=>sel(`o${k}${i}`,a,OFF.map(r=>r[1]),b)),
+      rows.map(([a,b])=>`${a} → ${b}`).join(" · ")+(k===1?" (In the game a baby coyote is a whelp and a baby zebra is a colt; they can also be called a pup and a foal.)":"")))});
+
+  // ───────── 43. Video "Sesame Street: Celebrations | Elmo's World" (Wellbeing) ─────────
+  bonus({id:"bonus-video-elmo-celebrations",subjectKey:"wellbeing",remember:["Celebrations are a fun way to enjoy special occasions, like birthdays. People celebrate all over the world."],urls:["https://www.youtube.com/watch?v=KYsoVzzG2cM"],title:"Elmo’s World: Celebrations",source:"Video · Sesame Street · Celebrations | Elmo’s World",
+    cards:[card("Celebrations","Watch the video. Answer the questions.",[
+      ch("what","Celebrations are a fun way to enjoy ___.",["special occasions","homework","rainy days"],"special occasions","🎉"),
+      multi("holidays","Which holidays have celebrations in the video? Choose 3.",["4th of July","Halloween","Christmas","Monday"],["4th of July","Halloween","Christmas"],"🎃"),
+      ch("clothes","At celebrations, people sometimes wear special clothes and make special ___.",["food","homework","cars"],"food","🍰"),
+      ch("hats","Stripes, polka dots, stripes, polka dots, stripes, ___ — which hat comes next?",["polka dots","zigzag","stripes"],"polka dots","🥳"),
+      ch("friends","What do Mr. Noodle and his dog celebrate?",["being friends","a big storm","a new car"],"being friends","🐶")],
+      "Celebrations are a fun way to enjoy special occasions like birthdays or winning a big game. Holidays have celebrations too. People celebrate all over the world. Mr. Noodle and Schmoodle celebrate being friends.")]});
+
+  // ───────── 44. Video "Where Plants and Animals Live" (NGScience) ─────────
+  bonus({id:"bonus-video-where-animals-live",remember:["A habitat gives plants and animals what they need: plants – sunlight, water, air · animals – food, water, air","Habitats: desert · rainforest · under the water · grasslands"],urls:["https://www.youtube.com/watch?v=9_a68jGhJVc"],title:"Where Plants and Animals Live",source:"Video · Next Generation Science · Where Plants and Animals Live",
+    cards:[card("Habitats","Watch the video. Answer the questions.",[
+      ch("habitat","The places where plants and animals live are called ___.",["habitats","houses","schools"],"habitats","🏞️"),
+      multi("animals","What do animals get from their habitat? Choose 3.",["food","water","air","toys"],["food","water","air"],"🦒"),
+      sel("camel","camels and lizards",["desert","rainforest","under the water","grasslands"],"desert","🐫"),
+      sel("bird","tall trees and colorful birds, lots of rain",["desert","rainforest","under the water","grasslands"],"rainforest","🦜"),
+      sel("fish","fish, dolphins, octopuses, sea turtles",["desert","rainforest","under the water","grasslands"],"under the water","🐠"),
+      sel("rabbit","rabbits, butterflies, grasshoppers",["desert","rainforest","under the water","grasslands"],"grasslands","🐇")],
+      "Habitats give plants (sunlight, water, air) and animals (food, water, air) what they need. Desert: camels, lizards · Rainforest: tall trees, colorful birds · Under the water: fish, dolphins, octopuses, sea turtles · Grasslands: rabbits, butterflies, grasshoppers.")]});
+
+  // ───────── 45. Video "ST Ending Consonant Blend" (Rock 'N Learn) ─────────
+  const STW=["first","last","rest","test","list","lost","nest","dust"];
+  bonus({id:"bonus-video-st-ending-blend",remember:["s + t at the end of a word make /st/: first · last · rest · test · nest · dust · must"],urls:["https://www.youtube.com/watch?v=30JDH6k-rsE"],title:"ST Ending Blend",source:"Video · Rock ’N Learn · ST Ending Consonant Blend",
+    cards:[card("Ending blend st","Watch the video. Answer the questions.",[
+      ch("sound","At the end of a word, s and t together make the sound ___.",["/st/","/sh/","/ts/"],"/st/","🔊"),
+      ch("blend","In a blend, each letter ___.",["keeps its own sound","is silent","makes a new sound"],"keeps its own sound","🔤"),
+      multi("words","Which words end with st? Choose 4.",["fast","nest","must","dust","fun","sink"],["fast","nest","must","dust"],"🪺")],
+      "s says /s/, t says /t/; at the end of a word they blend to /st/ and each letter keeps its sound: first, last, rest, test, mast, gust, list, lost, chest, fast, best, nest, must, dust."),
+      card("Ending blend st","Finish the word with st.",[
+        sel("ne","🪺 ne__",["st","sk","nd"],"st","🪺"),sel("ve","🦺 ve__",["st","sk","nd"],"st","🦺"),sel("fi","✊ fi__",["st","sk","nd"],"st","✊"),sel("ma","🎭 ma__",["st","sk","nd"],"sk","🎭"),sel("ha","✋ ha__",["st","sk","nd"],"nd","✋")],
+        "nest · vest · fist (st) · mask (sk) · hand (nd)")]});
 })();

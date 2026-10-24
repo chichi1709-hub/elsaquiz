@@ -1079,7 +1079,7 @@ function buildCatalogDateFilter(){
 // Danh sách chia 2 tab: "Quiz theo ngày" (bài theo ngày, có bộ lọc) và "Tổng hợp" (mỗi đợt tổng hợp một khối;
 // bài nhiều Part gom thành MỘT hàng có ô chọn Part, số Part đã nộp và nút "Làm tiếp").
 let catalogTab=(()=>{try{return localStorage.getItem("grade1-catalog-tab")||"daily"}catch{return "daily"}})();
-function setCatalogTab(tab){catalogTab=tab;try{localStorage.setItem("grade1-catalog-tab",tab)}catch{}renderCatalog()}
+function setCatalogTab(tab){if(tab==="summary") summaryOpen=null;catalogTab=tab;try{localStorage.setItem("grade1-catalog-tab",tab)}catch{}renderCatalog()}
 const baseQuizId=id=>String(id).replace(/-p\d+$/,"");
 // Một hàng trong Danh sách. Bài đã nộp (chưa reset) hiện điểm % của lần nộp gần nhất; bài chưa làm giữ nguyên.
 function catalogCardMarkup(item){
@@ -1093,23 +1093,70 @@ function catalogCardMarkup(item){
     <div class="catalog-card-action">${score||`<strong>${questionUnitTotal(subject)} ${subject.itemLabel||"câu hỏi"}</strong>`}<button class="check-btn" type="button" data-quiz="${escapeHtml(item.id)}" aria-label="Mở bài ${escapeHtml(subject.name)}: ${escapeHtml(item.title)}">${submitted?"Xem lại ▸":"Mở bài ▸"}</button></div>
   </article>`;
 }
+// Tab "Tổng hợp": chia theo môn (LA / Science / Math…). Mỗi môn hiện tối đa 3 bộ tổng hợp mới nhất (nút "Xem thêm" nếu nhiều hơn).
+// Bấm vào một bộ (ví dụ "Tổng hợp kiến thức tuần (W1&2)") → hiện toàn bộ danh sách quiz của bộ đó, có nút quay lại.
+const SUMMARY_SUBJECTS=[["language","📖","Language Arts"],["science","🔬","Science"],["math","🧮","Math"]];
+const SUMMARY_LIMIT=3;
+let summaryOpen=null;const summaryExpanded=new Set();
+function summaryCollections(){
+  const map=new Map();
+  quizCatalog.forEach((item,index)=>{
+    if(!isWeeklyKey(item.uploadDate)) return;
+    if(!map.has(item.uploadDate)) map.set(item.uploadDate,{key:item.uploadDate,subjectKey:item.subjectKey,order:index,items:[]});
+    const entry=map.get(item.uploadDate);entry.items.push(item);entry.order=Math.max(entry.order,index);
+  });
+  map.forEach(entry=>entry.items.sort((x,y)=>{const bx=baseQuizId(x.id),by=baseQuizId(y.id);return bx===by?x.id.localeCompare(y.id,undefined,{numeric:true}):0}));
+  return [...map.values()].sort((x,y)=>y.order-x.order);
+}
+function summaryStats(items){
+  const done=items.filter(item=>readState(item.id).submitted);
+  const questions=items.reduce((sum,item)=>sum+questionUnitTotal(subjectFor(item.id)),0);
+  const scores=done.map(item=>{const c=counts(item.id);return scorePercent(c.correct,c.total)});
+  return {done:done.length,total:items.length,questions,average:scores.length?Math.round(scores.reduce((x,y)=>x+y,0)/scores.length):null};
+}
+function summaryCollectionMarkup(entry){
+  const stats=summaryStats(entry.items),percent=Math.round(stats.done/stats.total*100);
+  const subtitle=String(subjectFor(entry.items[0].id).subtitle).replace(/\s*·\s*Part \d+\/\d+$/,"");
+  const average=stats.average===null?"":`<b class="catalog-score history-score ${scoreBand(stats.average)}" title="Điểm trung bình các bài đã nộp">⭐ ${stats.average}%<small>trung bình</small></b>`;
+  return `<article class="catalog-card summary-collection ${escapeHtml(entry.subjectKey)}${stats.done===stats.total?" is-done":""}">
+    <div class="catalog-subject-icon" aria-hidden="true">📚</div>
+    <div class="catalog-card-copy"><h2>${escapeHtml(formatUploadDate(entry.key))}</h2><p>${escapeHtml(subtitle)}</p>
+      <small>${stats.total} bài quiz · ${stats.questions} câu · ✅ ${stats.done}/${stats.total} bài đã nộp</small>
+      <div class="summary-progress" aria-hidden="true"><span style="width:${percent}%"></span></div></div>
+    <div class="catalog-card-action">${average}<button class="check-btn" type="button" data-summary-key="${escapeHtml(entry.key)}">Xem danh sách ▸</button></div>
+  </article>`;
+}
 function renderSummaryCatalog(){
-  const weekly=quizCatalog.filter(item=>isWeeklyKey(item.uploadDate));
-  const groups=catalogGroupsByUploadDate(weekly);
-  $("#catalogEmpty").hidden=weekly.length>0;
+  const collections=summaryCollections();
+  $("#catalogEmpty").hidden=collections.length>0;
   $("#catalogEmpty").textContent="Chưa có bài tổng hợp nào.";
-  $("#catalogGroups").innerHTML=Object.keys(groups).sort(catalogKeyOrder).map(key=>{
-    const list=[...groups[key]].sort((x,y)=>{const bx=baseQuizId(x.id),by=baseQuizId(y.id);return bx===by?x.id.localeCompare(y.id,undefined,{numeric:true}):0});
-    const done=list.filter(item=>readState(item.id).submitted).length;
-    return `<section class="catalog-date-group weekly-group"><header class="catalog-date-heading"><div><small>TỔNG HỢP</small><strong class="weekly-title">${escapeHtml(formatUploadDate(key))}</strong></div><span>✅ ${done}/${list.length} bài đã nộp</span></header>
-      <div class="catalog-cards">${list.map(catalogCardMarkup).join("")}</div></section>`;
-  }).join("");
+  const open=collections.find(entry=>entry.key===summaryOpen);
+  if(open){
+    const stats=summaryStats(open.items),meta=SUMMARY_SUBJECTS.find(([key])=>key===open.subjectKey);
+    $("#catalogGroups").innerHTML=`<button class="summary-back" type="button" data-summary-back>◂ Tất cả bài tổng hợp</button>
+      <section class="catalog-date-group weekly-group"><header class="catalog-date-heading"><div><small>TỔNG HỢP · ${escapeHtml(meta?meta[2]:subjectFor(open.items[0].id).name).toUpperCase()}</small><strong class="weekly-title">${escapeHtml(formatUploadDate(open.key))}</strong></div><span>✅ ${stats.done}/${stats.total} bài đã nộp</span></header>
+      <div class="catalog-cards">${open.items.map(catalogCardMarkup).join("")}</div></section>`;
+  }else{
+    summaryOpen=null;
+    const extra=[...new Set(collections.map(entry=>entry.subjectKey))].filter(key=>!SUMMARY_SUBJECTS.some(([k])=>k===key))
+      .map(key=>{const first=collections.find(entry=>entry.subjectKey===key).items[0];return [key,subjectFor(first.id).icon,subjectFor(first.id).name]});
+    $("#catalogGroups").innerHTML=[...SUMMARY_SUBJECTS,...extra].map(([key,icon,name])=>{
+      const list=collections.filter(entry=>entry.subjectKey===key);
+      const shown=summaryExpanded.has(key)?list:list.slice(0,SUMMARY_LIMIT);
+      const more=list.length>SUMMARY_LIMIT?`<button class="summary-more" type="button" data-summary-more="${key}">${summaryExpanded.has(key)?"Thu gọn ▴":`Xem thêm ${list.length-SUMMARY_LIMIT} bộ tổng hợp ▾`}</button>`:"";
+      return `<section class="summary-subject ${key}"><header class="summary-subject-heading"><span aria-hidden="true">${icon}</span><strong>${escapeHtml(name)}</strong><small>${list.length} bộ tổng hợp</small></header>
+        ${list.length?`<div class="catalog-cards">${shown.map(summaryCollectionMarkup).join("")}</div>${more}`:'<p class="summary-none">Chưa có bài tổng hợp cho môn này.</p>'}</section>`;
+    }).join("");
+  }
   document.querySelectorAll("#catalogGroups [data-quiz]").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
+  document.querySelectorAll("#catalogGroups [data-summary-key]").forEach(button=>button.addEventListener("click",()=>{summaryOpen=button.dataset.summaryKey;renderSummaryCatalog();window.scrollTo({top:0,behavior:"smooth"})}));
+  document.querySelectorAll("#catalogGroups [data-summary-more]").forEach(button=>button.addEventListener("click",()=>{const key=button.dataset.summaryMore;summaryExpanded.has(key)?summaryExpanded.delete(key):summaryExpanded.add(key);renderSummaryCatalog()}));
+  document.querySelectorAll("#catalogGroups [data-summary-back]").forEach(button=>button.addEventListener("click",()=>{summaryOpen=null;renderSummaryCatalog()}));
 }
 
 function renderCatalog(){
   const dailyCount=quizCatalog.filter(item=>!isWeeklyKey(item.uploadDate)).length;
-  const summaryCount=new Set(quizCatalog.filter(item=>isWeeklyKey(item.uploadDate)).map(item=>baseQuizId(item.id))).size;
+  const summaryCount=new Set(quizCatalog.filter(item=>isWeeklyKey(item.uploadDate)).map(item=>item.uploadDate)).size;
   if(catalogTab==="summary"&&!summaryCount) catalogTab="daily";
   $("#catalogCountDaily").textContent=dailyCount;$("#catalogCountSummary").textContent=summaryCount;
   document.querySelectorAll("[data-catalog-tab]").forEach(tab=>{const on=tab.dataset.catalogTab===catalogTab;tab.classList.toggle("active",on);tab.setAttribute("aria-selected",String(on))});
