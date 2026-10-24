@@ -1,9 +1,13 @@
 // Mục "🧠 Mind Map": danh sách mindmap (ảnh) + trình xem phóng to/thu nhỏ.
-// Thêm mindmap mới: đặt ảnh vào assets/mindmaps/ rồi thêm 1 dòng vào MINDMAPS.
+// Thêm mindmap mới: đặt ảnh vào assets/mindmaps/ rồi thêm 1 dòng vào ĐẦU MINDMAPS (mới nhất trước).
+// Tên mindmap: "Môn - Unit Module Lesson" (Science, ví dụ "Science - Unit 2 Module 1 - Lesson 3") hoặc "Môn - Unit - Week" (LA, ví dụ "LA - Unit 2 - Week 3").
 (()=>{
   const MINDMAPS=[
-    {id:"science-u2m1-lesson2",subject:"🐾 Science",title:"Lesson 2: Functions of Animal Structures",
-     subtitle:"Unit 2 Module 1 · Mind Map 1 + 2 · Class Diary 01–13/10/2026",date:"13/10/2026",
+    {id:"science-u2m1-lesson3",subject:"🐾 Science",title:"Science - Unit 2 Module 1 - Lesson 3",
+     subtitle:"Animals and Their Parents · Mind Map 1 + 2 · Class Diary 13–23/10/2026",date:"24/10/2026",
+     src:"assets/mindmaps/science-u2m1-lesson3.webp",thumb:"assets/mindmaps/science-u2m1-lesson3-thumb.webp"},
+    {id:"science-u2m1-lesson2",subject:"🐾 Science",title:"Science - Unit 2 Module 1 - Lesson 2",
+     subtitle:"Functions of Animal Structures · Mind Map 1 + 2 · Class Diary 01–13/10/2026",date:"13/10/2026",
      src:"assets/mindmaps/science-u2m1-lesson2.webp",thumb:"assets/mindmaps/science-u2m1-lesson2-thumb.webp"}
   ];
   const $=s=>document.querySelector(s);
