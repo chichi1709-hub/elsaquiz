@@ -452,4 +452,46 @@
       card("Ending blend st","Finish the word with st.",[
         sel("ne","🪺 ne__",["st","sk","nd"],"st","🪺"),sel("ve","🦺 ve__",["st","sk","nd"],"st","🦺"),sel("fi","✊ fi__",["st","sk","nd"],"st","✊"),sel("ma","🎭 ma__",["st","sk","nd"],"sk","🎭"),sel("ha","✋ ha__",["st","sk","nd"],"nd","✋")],
         "nest · vest · fist (st) · mask (sk) · hand (nd)")]});
+
+  // ───────── 46. Video Close Reading 26/10 "Cat Falls In the Well | Fun in Snow" (Little Fox · Bat and Friends) ─────────
+  bonus({id:"bonus-video-cat-falls-in-the-well",remember:["Characters: Dog, Cat, Pig, Cow (and Bat) · Setting: a farm","The Dark Well: Cat falls in the well → the friends help → they pull Cat up in a pail with a rope."],urls:["https://www.youtube.com/watch?v=ve8aXtEubx4"],title:"The Dark Well · Winter Fun",source:"Video · Little Fox · Bat and Friends: Cat Falls In the Well · Fun in Snow",
+    cards:[card("The Dark Well","Listen and read along. Then answer.",[
+      multi("chars","Who are the friends in the story? Choose 4.",["Dog","Cat","Pig","Cow","Lion","Fish"],["Dog","Cat","Pig","Cow"],"🐶"),
+      ch("where","Where do the friends live?",["on a farm","in a city","in the ocean"],"on a farm","🏡"),
+      ch("problem","What is the problem?",["Cat falls into the well.","Dog loses his newspaper.","Pig cannot find her hat."],"Cat falls into the well.","🕳️"),
+      ch("well","The well is deep and very ___.",["dark","hot","small"],"dark","🌑"),
+      ch("first","What does Dog do FIRST?",["He runs to Cow and Pig for help.","He jumps into the well.","He goes to sleep."],"He runs to Cow and Pig for help.","1️⃣"),
+      ch("wish","Pig makes a wish. Does the wish get Cat out?",["No, it does not work.","Yes, Cat jumps out."],"No, it does not work.","🌟"),
+      ch("legs","Pig and Cow hold Dog’s legs. Can Dog reach Cat?",["No, the well is too deep.","Yes, he gets Cat out."],"No, the well is too deep.","🦵"),
+      ch("next","NEXT, Dog runs into the barn. What does he bring back?",["a rope and a pail","a sled","a ball"],"a rope and a pail","🪣"),
+      ch("last","What happens LAST?",["Cat jumps into the pail and the friends pull her up.","Cat stays in the well.","Dog falls into the well too."],"Cat jumps into the pail and the friends pull her up.","🔚"),
+      ch("came","At the end, Pig says: “My wish came ___!”",["true","back","down"],"true","✨")],
+      "The Dark Well: Dog, Cat, Pig, and Cow live on a farm. Cat falls into the well. The well is deep and very dark. Dog runs to Cow and Pig. Pig makes a wish, but it does not work. Pig and Cow hold Dog’s legs, but the well is too deep. Dog gets a rope and a pail from the barn. Cat jumps into the pail and they pull her up. “My wish came true!”"),
+      card("Winter Fun","The second story in the video.",[
+        ch("snow","What falls outside the barn?",["snow","rain","leaves"],"snow","❄️"),
+        ch("sled","Dog wants to slide down the hill. What do they use?",["a sled","a car","a boat"],"a sled","🛷"),
+        ch("whee","What does Dog say when he goes down the hill?",["Whee!","Oh no!","Beep! Beep!"],"Whee!","🎢"),
+        ch("cow","Does Cow want to ride the sled?",["No, thanks.","Yes, she goes first."],"No, thanks.","🐄"),
+        ch("make","What do the friends make at the end?",["snow friends (snowmen)","a snow house","a cake"],"snow friends (snowmen)","☃️"),
+        ch("bat","They make one more. What is it?",["a Snow Bat","a Snow Fox","a Snow Fish"],"a Snow Bat","🦇")],
+        "Winter Fun: Snow falls. Dog finds a sled in the barn. Dog goes down the hill: “Whee!” Pig and Cat ride together and fall off. Cow says no thanks. They make Snow Cow, Snow Cat, Snow Dog, Snow Pig, and one more: a Snow Bat. They are all snow friends.")]});
+
+  // ───────── 47. Video "Words that end in -ing" (English4abc) ─────────
+  const INGV=[["drive","driving","🚗"],["fish","fishing","🎣"],["ride","riding","🫏"],["read","reading","📖"],["sing","singing","🎤"],["run","running","🏃"],["swim","swimming","🏊"],["skip","skipping","🪢"]];
+  bonus({id:"bonus-video-words-end-in-ing",remember:["Add -ing to an action word: fish → fishing · read → reading · sing → singing","drive → driving · ride → riding (drop the e) · run → running · swim → swimming · skip → skipping (double the last letter)"],urls:["https://www.youtube.com/watch?v=Tgir2JRG5Q4"],title:"Words that end in -ing",source:"Video · English4abc · Words that end in “-ing”",
+    cards:[card("Words that end in -ing","Watch the video. Which word ends in -ing?",INGV.map(([b,w,e])=>ch(b,`${e} ${b} → ___`,[w,b,`${b}s`],w,e)),
+      "The video words: "+INGV.map(([b,w])=>`${b} → ${w}`).join(" · ")+". drive/ride: drop the e · run/swim/skip: double the last letter.")]});
+
+  // ───────── 48. Baamboozle 1544210 "Base Words, Suffix -ing" (đáp án đúng có đánh dấu trên trang) ─────────
+  const ING=[["sleep","sleeping",["sliping","sleepng"]],["clean","cleaning",["clining","clean ing"]],["cook","cooking",["cuking","cook ing"]],
+    ["take a bath","taking a bath",["take a bathing","taking a bathing"]],["eat","eating",["eat ing","iting"]],["watch TV","watching TV",["watching TVing","watch TVing"]],
+    ["talk","talking",["talk ing","tall king"]],["run","running",["run ning","raw ning"]],["drink","drinking",["drin king","dreanking"]],
+    ["swim","swimming",["sweam ming","swim ming"]],["fly","flying",["fling","fly ing"]],["jump","jumping",["jump ping","jumming"]],
+    ["read","reading",["read ding","riding"]],["write","writing",["write ing","wreting"]],["smell","smelling",["smiling","smell ing"]],
+    ["cut","cutting",["cut ting","coating"]],["smile","smiling",["smileling","smile ling"]],["draw","drawing",["draw wing","drawwing"]],
+    ["paint","painting",["paint ting","paing"]],["erase","erasing",["eraseing","erase sing"]],["sing","singing",["sininging","sing ging"]],
+    ["think","thinking",["think king","thining"]],["walk","walking",["wall king","walling"]],["slide","sliding",["slide ding","slideing"]],["dance","dancing",["danceing","dance sing"]]];
+  bonus({id:"bonus-baamboozle-suffix-ing",remember:["Add the suffix -ing to the base verb: sleep → sleeping · eat → eating · fly → flying","Drop the e: write → writing · smile → smiling · dance → dancing · Double the last letter: run → running · swim → swimming · cut → cutting"],urls:["https://www.baamboozle.com/game/1544210"],title:"Base Words, Suffix -ing",source:"Game · Baamboozle · Base Words, Suffix -ing",
+    cards:chunk(ING,9).map((rows,k)=>card("Base words + -ing","Add the suffix -ing to the base verb.",rows.map(([b,w,x],i)=>ch(`g${k}${i}`,`${b} → ___`,[w,...x],w)),
+      rows.map(([b,w])=>`${b} → ${w}`).join(" · ")))});
 })();

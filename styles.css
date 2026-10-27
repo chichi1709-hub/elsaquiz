@@ -602,3 +602,7 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .summary-back{margin:0 0 12px}
 .summary-more:hover,.summary-back:hover{background:#efe6ff}
 .summary-more:focus-visible,.summary-back:focus-visible{outline:3px solid #2b2b45;outline-offset:2px}
+
+/* Ảnh minh hoạ to trong câu hỏi (field.bigImg): ảnh nằm trên, rộng hết ô */
+.compound-field.big-field-visual:not(.drawing-field){grid-template-columns:minmax(0,1fr)!important}
+.big-field-visual>.compound-field-image{width:100%!important;max-width:340px;height:190px!important;justify-self:center;padding:4px}

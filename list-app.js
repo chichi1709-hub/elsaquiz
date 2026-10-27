@@ -592,7 +592,8 @@ function buildTabs(){
 
 function compoundFieldMarkup(field,value,index,showResult,disabled){
   const fieldId=escapeHtml(field.id),label=escapeHtml(field.label);
-  const visualClass=field.img||field.icon?"":" no-field-visual";
+  // field.bigImg: ảnh minh hoạ to, nằm trên câu hỏi (ảnh chụp/hình hoạt động cần nhìn rõ).
+  const visualClass=(field.img||field.icon?"":" no-field-visual")+(field.img&&field.bigImg?" big-field-visual":"");
   const typeClass=` ${escapeHtml(field.type)}-field`;
   const correct=showResult&&fieldCorrect(field,value);
   const result=showResult?`<small class="compound-field-result ${correct?"good":"try"}">${correct?"✓ Correct":"✕ Check this part"}</small>`:"";
