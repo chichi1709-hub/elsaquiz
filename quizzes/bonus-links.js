@@ -531,4 +531,34 @@
   bonus({id:"bonus-baamboozle-ending-blends",remember:["Ending blends: st (nest, list) · ft (left, craft) · nd (hand, sand) · nk (bank, pink)"],urls:["https://www.baamboozle.com/game/1017950"],title:"Ending Blends",source:"Game · Baamboozle · Ending blends",
     cards:chunk(EB,12).map((rows,k)=>card("Ending blends","Choose the correct ending blend of the word.",rows.map(([w,b,e],i)=>sel(`e${k}${i}`,`${e} ${w}`,["st","ft","nd","nk"],b,e)),
       rows.map(([w,b])=>`${w} (${b})`).join(" · ")))});
+
+  // ───────── 52. Baamboozle 3735670 "HFW - UNIT 2, WEEK 3" (đáp án ghi trên thẻ game) ─────────
+  const HFW3=["eat","no","of","under","who"],HFW3C=["Who","Eat","No","Of","Under"];
+  const H3=[["I like to ___ apples.","eat","🍎"],["We will ___ dinner soon.","eat","🍽️"],["He wants to ___ his lunch now.","eat","🥪"],["Let’s go out to ___ pizza!","eat","🍕"],["The cat began to ___ the fish.","eat","🐟"],
+    ["There is a box ___ toys on the floor.","of","🧸"],["She has a bag ___ marbles.","of","🔮"],["A cup ___ tea is on the table.","of","🍵"],["The room is full ___ balloons.","of","🎈"],["He drank a glass ___ milk.","of","🥛"],
+    ["The cat is hiding ___ the bed.","under","🛏️"],["Your shoes are ___ the chair.","under","👟"],["We sat ___ a big tree for shade.","under","🌳"],["The dog sleeps ___ the table.","under","🐶"],["The ball rolled ___ the car.","under","⚽"],
+    ["___ is your teacher?","who","👩‍🏫"],["Do you know ___ called me?","who","📞"],["I wonder ___ ate the cake.","who","🎂"],["There is ___ school today.","no","🏫"],["I said ___ when he asked to play.","no","🙅"]];
+  bonus({id:"bonus-baamboozle-hfw-u2w3",remember:["High-frequency words: eat · no · of · under · who"],urls:["https://www.baamboozle.com/game/3735670"],title:"HFW – Unit 2, Week 3",source:"Game · Baamboozle · HFW - UNIT 2, WEEK 3",
+    cards:chunk(H3,10).map((rows,k)=>card("High-frequency words","Read the sentence. Choose the word: eat, no, of, under, who.",rows.map(([q,a,e],i)=>q.startsWith("___")?sel(`h${k}${i}`,`${e} ${q}`,HFW3C,a[0].toUpperCase()+a.slice(1),e):sel(`h${k}${i}`,`${e} ${q}`,HFW3,a,e)),
+      rows.map(([q,a])=>q.replace("___",q.startsWith("___")?a[0].toUpperCase()+a.slice(1):a)).join(" · ")))});
+
+  // ───────── 53. Video ELF Kids "Present Continuous Verb Chant - What Are You Doing?" (8 động từ trong video) ─────────
+  const ELF=[["sit","sitting","I’m ___ in a chair.","🪑",["siting","sits"]],["push","pushing","I’m ___ a cart.","🛒",["push","pushs"]],["pull","pulling","I’m ___ a wagon.","🛻",["pull","puling"]],
+    ["sing","singing","I’m ___ a song.","🎤",["sing","singging"]],["read","reading","I’m ___ a book.","📖",["read","readding"]],["wash","washing","I’m ___ my hands.","🧼",["wash","washs"]],
+    ["brush","brushing","I’m ___ my hair.","🪮",["brush","brushs"]],["dry","drying","I’m ___ my hair.","💨",["dry","driing"]]];
+  bonus({id:"bonus-video-what-are-you-doing",remember:["What are you doing? → I’m sitting in a chair. · I’m reading a book. · I’m washing my hands.","sit → sitting · push → pushing · sing → singing · dry → drying"],urls:["https://www.youtube.com/watch?v=Dl8g2pZ82ME"],title:"What Are You Doing?",source:"Video · ELF Kids Videos · Present Continuous Verb Chant - What Are You Doing?",
+    cards:[card("What are you doing?","Watch the video. Choose the word with -ing.",ELF.map(([b,w,q,e,x])=>ch(b,`${e} ${b} → What are you doing? ${q}`,[w,...x],w,e)),
+      "What are you doing? "+ELF.map(([b,w,q])=>q.replace("___",w)).join(" · "))]});
+
+  // ───────── 54. Baamboozle 572397 "Verbs ending -ing" (đáp án ghi trên thẻ game) ─────────
+  const VI=[["What is the boy doing?","The boy is ___.","sleep","sleeping","😴"],["What is he doing?","He is ___.","eat","eating","🍔"],["What is she doing?","She is ___.","drink","drinking","🥤"],
+    ["What is the boy doing?","The boy is ___.","swim","swimming","🏊"],["What are they doing?","They are ___ books.","read","reading","📚"],["What is he doing?","He is ___.","fish","fishing","🎣"],
+    ["What are they doing?","They are ___.","sing","singing","🎶"],["What are they doing?","They are ___ with a ball.","play","playing","⚽"],["What is she doing?","She is ___ a bike.","ride","riding","🚲"],
+    ["What is the boy doing?","The boy is ___ a kite.","fly","flying","🪁"],["What is he doing?","He is ___ television.","watch","watching","📺"],["What are they doing?","They are ___ basketball.","play","playing","🏀"],
+    ["What is she doing?","She is ___ football.","play","playing","⚽"],["What is the boy doing?","The boy is ___ badminton.","play","playing","🏸"],["What is she doing?","She is ___.","cook","cooking","🍳"],
+    ["What is he doing?","He is ___ to music.","listen","listening","🎧"]];
+  const viWrong=(b,w)=>b==="swim"?["swim","swiming"]:b==="ride"?["ride","rideing"]:[b,b+"s"];
+  bonus({id:"bonus-baamboozle-verbs-ing",remember:["What is he doing? → He is fishing. · What are they doing? → They are singing.","swim → swimming · ride → riding"],urls:["https://www.baamboozle.com/game/572397"],title:"Verbs ending -ing",source:"Game · Baamboozle · Verbs ending -ing",
+    cards:chunk(VI,8).map((rows,k)=>card("What is he/she doing?","Look at the picture clue. Choose the verb with -ing.",rows.map(([q,a,b,w,e],i)=>ch(`v${k}${i}`,`${e} ${q} ${a}`,[w,...viWrong(b,w)],w,e)),
+      rows.map(([q,a,b,w])=>a.replace("___",w)).join(" · ")))});
 })();
