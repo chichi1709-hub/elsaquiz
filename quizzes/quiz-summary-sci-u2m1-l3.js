@@ -1,7 +1,7 @@
-// TỔNG HỢP KIẾN THỨC — Science Unit 2 Module 1 · Lesson 3: Animals and Their Parents (Class Diary 13/10 → 23/10/2026).
+// TỔNG HỢP KIẾN THỨC — Science Unit 2 Module 1 · Lesson 3: Animals and Their Parents (Class Diary 13/10 → 27/10/2026).
 // 2 bài trong nhóm Tổng hợp (uploadDate "weekly-…"):
 //   (1) Key Concepts Test: câu hỏi chắt lọc kiến thức chính của Lesson 3 (≤ 30 ý → 1 Part);
-//   (2) Review: gộp TOÀN BỘ câu của các bài Science theo ngày thuộc Lesson 3 (13/10 Science Probe, 15, 16, 20, 22, 23/10),
+//   (2) Review: gộp TOÀN BỘ câu của các bài Science theo ngày thuộc Lesson 3 (13/10 Science Probe, 15, 16, 20, 22, 23, 27/10),
 //       xếp theo chủ đề, mang theo bài đọc và link Bonus. Các bài ngày vẫn giữ ở tab "Quiz theo ngày".
 (()=>{
   const S="assets/mascot/academy/science.webp";
@@ -15,7 +15,9 @@
   const BABY=["kitten","puppy","calf","cub","fawn","duckling"];
 
   const NOTES=[
-    "📅 Class Diary: 23/10/2026",
+    "📅 Class Diary: 27/10/2026",
+    "(27/10) Summarize It: Young animals look like their parents. Their structures are the same. The way they move is the same. Parents and offspring can have a different coloring.",
+    "(27/10) Offspring are not always exactly the same as their parents.",
     "(23/10) The dog will be bigger as it grows. A dog grows: newborn puppy → puppy → young dog → adult dog.",
     "(22/10) trait: a feature of a living thing. Traits describe how an animal looks. The way an animal acts is also a trait.",
     "(22/10) Animals of the same kind look like each other. They sound the same. They act the same.",
@@ -60,20 +62,26 @@
     sci("Baby animals","Match the parent with its baby.",[
       select("cat","cat",BABY,"kitten","🐱"),select("dog","dog",BABY,"puppy","🐶"),select("cow","cow",BABY,"calf","🐄"),
       select("lion","lion",BABY,"cub","🦁"),select("deer","deer",BABY,"fawn","🦌"),select("duck","duck",BABY,"duckling","🦆")
-    ],"cat – kitten · dog – puppy · cow – calf · lion – cub · deer – fawn · duck – duckling")
+    ],"cat – kitten · dog – puppy · cow – calf · lion – cub · deer – fawn · duck – duckling"),
+    sci("Summarize It (27/10)","How are parents and their offspring similar and different?",[
+      choice("sumlook","Young animals look ___ their parents.",["like","nothing like"],"like","🐥"),
+      choice("sumstruct","Their structures are ___.",["the same","different"],"the same","🦴"),
+      choice("summove","The way they move is ___.",["the same","different"],"the same","🏃"),
+      choice("sumcolor","Parents and offspring can have a different ___.",["coloring","number of legs","body parts"],"coloring","🎨")
+    ],"Young animals look like their parents. Their structures are the same. The way they move is the same. Parents and offspring can have a different coloring.")
   ];
   registerQuiz({
     id:"sci-u2m1-l3-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Lesson 3 · Key Concepts Test",
-    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"Key concepts · Unit 2 Module 1 · Lesson 3: Animals and Their Parents · Class Diary 13/10–23/10/2026",scoreByField:true,
-      groups:groupsOf([["Key vocabulary","trait · offspring · young · life cycle",1],["Parents and offspring","similar, but not exactly the same",1],["Traits","looks · sounds · acts",1],["Growing and changing","eggs · dogs · meerkats",1],["Baby animals","parent and baby",1]]),
+    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"Key concepts · Unit 2 Module 1 · Lesson 3: Animals and Their Parents · Class Diary 13/10–27/10/2026",scoreByField:true,
+      groups:groupsOf([["Key vocabulary","trait · offspring · young · life cycle",1],["Parents and offspring","similar, but not exactly the same",1],["Traits","looks · sounds · acts",1],["Growing and changing","eggs · dogs · meerkats",1],["Baby animals","parent and baby",1],["Summarize It","Lesson 3 Review · Student Book pages 48–49",1]]),
       questions:TEST,
-      readings:[{id:"notes-sci-l3",title:"Remember — Science Lesson 3",byline:"Animals and Their Parents · Class Diary 13/10–23/10/2026",mode:"notes",text:NOTES.join("\n")}]}
+      readings:[{id:"notes-sci-l3",title:"Remember — Science Lesson 3",byline:"Animals and Their Parents · Class Diary 13/10–27/10/2026",mode:"notes",text:NOTES.join("\n")}]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 3 ─────
   const SOURCES=[["class-diary-2026-10-13-science",q=>/Lesson 3|Probe/i.test(q.section)],["class-diary-2026-10-15-science"],["class-diary-2026-10-16-science"],
-    ["class-diary-2026-10-20-science"],["class-diary-2026-10-22-science"],["class-diary-2026-10-23-science"]];
+    ["class-diary-2026-10-20-science"],["class-diary-2026-10-22-science"],["class-diary-2026-10-23-science"],["class-diary-2026-10-27-science"]];
   const TOPICS=[["Vocabulary and traits",/trait|vocabulary/i],["Stories and texts",/daisy|families|close reading|raccoon|cow|sound and act|reading connection|kitten/i],
     ["Inquiry activities",/inquiry|investigate|claim|communicate|record|prediction|dogs/i],["Parents and offspring",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l3r",title:"Remember — Science Lesson 3",byline:"Animals and Their Parents",mode:"notes",text:NOTES.join("\n")}],links=new Map();
@@ -93,7 +101,7 @@
   registerQuiz({
     id:"sci-u2m1-l3-review",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Lesson 3 · Review (all lessons)",
-    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"All Lesson 3 classes · Unit 2 Module 1 · Animals and Their Parents · Class Diary 13/10–23/10/2026",scoreByField:true,
+    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"All Lesson 3 classes · Unit 2 Module 1 · Animals and Their Parents · Class Diary 13/10–27/10/2026",scoreByField:true,
       groups:groupsOf(parts.map(([t,list])=>[t,"",list.length])),questions:parts.flatMap(([,list])=>list),readings}
   });
 })();

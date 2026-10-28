@@ -494,4 +494,41 @@
   bonus({id:"bonus-baamboozle-suffix-ing",remember:["Add the suffix -ing to the base verb: sleep → sleeping · eat → eating · fly → flying","Drop the e: write → writing · smile → smiling · dance → dancing · Double the last letter: run → running · swim → swimming · cut → cutting"],urls:["https://www.baamboozle.com/game/1544210"],title:"Base Words, Suffix -ing",source:"Game · Baamboozle · Base Words, Suffix -ing",
     cards:chunk(ING,9).map((rows,k)=>card("Base words + -ing","Add the suffix -ing to the base verb.",rows.map(([b,w,x],i)=>ch(`g${k}${i}`,`${b} → ___`,[w,...x],w)),
       rows.map(([b,w])=>`${b} → ${w}`).join(" · ")))});
+
+  // ───────── 49. Turtle Diary "Possessive Nouns" (Sling Sentence; đáp án theo dữ liệu game; chọn các câu hợp lớp 1) ─────────
+  const TDP=[["The boy’s tooth is loose.","boy’s",["tooth","loose","is"]],["The cat’s tail swished back and forth.","cat’s",["tail","swished","back"]],
+    ["The student’s answer was right.","student’s",["answer","was","right"]],["Jasmine’s aunt is visiting.","Jasmine’s",["is","visiting","aunt"]],
+    ["My friend’s party was fun.","friend’s",["party","was","fun"]],["The turtle’s shell was brown and green.","turtle’s",["shell","brown","was"]],
+    ["The pen’s ink is red.","pen’s",["ink","red","is"]],["The fireman’s truck is new.","fireman’s",["truck","new","is"]],
+    ["The cow’s baby was born yesterday.","cow’s",["baby","yesterday","born"]],["The zoo’s monkeys were loud.","zoo’s",["monkeys","were","loud"]],
+    ["The sun’s rays are bright.","sun’s",["rays","bright","are"]],["The boy’s shirt is red.","boy’s",["shirt","red","is"]],
+    ["The children’s toys are on the shelf.","children’s",["toys","shelf","are"]],["The dog’s owner walked him to the park.","dog’s",["owner","park","him"]],
+    ["My mother’s birthday is in November.","mother’s",["birthday","November","is"]],["The cat’s collar is missing.","cat’s",["collar","missing","is"]],
+    ["The girls’ shoes are soiled with mud.","girls’",["shoes","mud","with"]],["The students’ desks are arranged in rows.","students’",["desks","rows","are"]],
+    ["The birds’ nest was made of straw.","birds’",["nest","straw","made"]],["My sister’s name is Jenny.","sister’s",["name","Jenny","My"]],
+    ["My aunt’s house is nearby.","aunt’s",["house","nearby","My"]],["We heard the coach’s whistle.","coach’s",["the","heard","We"]],
+    ["I put milk in the baby’s bottle.","baby’s",["milk","bottle","put"]],["I respect my parents’ rules.","parents’",["my","respect","rules"]]];
+  bonus({id:"bonus-turtlediary-possessive-nouns",remember:["Possessive nouns show who owns or has something. Look for the apostrophe: the boy’s shirt · the girls’ shoes"],urls:["https://www.turtlediary.com/game/possessive-nouns.html"],title:"Possessive Nouns",source:"Game · Turtle Diary · Possessive Nouns (Sling Sentence)",
+    cards:chunk(TDP,8).map((rows,k)=>card("Find the possessive noun","Click on the possessive noun in the sentence.",rows.map(([q,a,x],i)=>ch(`t${k}${i}`,q,[a,...x],a)),
+      rows.map(([q,a])=>`${q} → ${a}`).join(" · ")))});
+
+  // ───────── 50. Wordwall 6822711 "Possessive and Plural nouns" (Quiz; đáp án có đánh dấu trong game) ─────────
+  const WWP=[["My _____ toy is green.","cat’s",["cat","cats"],"🐱"],["The _____ desk is a mess.","girl’s",["girls","girl"],"👧"],["He has a lot of ____.","books",["book’s","book"],"📚"],
+    ["Bill’s mom has two ___.","rings",["ring’s","ring"],"💍"],["____ mom has two rings.","Bill’s",["Bills","Bill"],"👦"],["He will sing two ___.","songs",["song","song’s"],"🎤"],
+    ["The ___ door is red.","car’s",["cars","car"],"🚗"],["I see the ____ pen.","kid’s",["kid","kids"],"🖊️"],["The ____ are full.","bags",["bag’s","bag"],"🛍️"],
+    ["The bat has ___.","fangs",["fang’s","fang"],"🦇"],["The ___ egg is blue.","bird’s",["birds","birdz"],"🥚"],["Can I see ____ hat?","Dan’s",["Dans","Dan"],"🎩"],
+    ["I can put on her ____.","socks",["sock’s","sox"],"🧦"],["I toss two ___ in the net.","balls",["ball’s","ball"],"🏀"],["I put the ___ tank by my bed.","fish’s",["fish","fishes"],"🐠"],
+    ["___ van is new.","Hank’s",["Hank","Hanks"],"🚐"],["(👑👑 two kings) The ___ can sing.","kings",["king’s","king"],"👑"],["Bess has the ___ tag.","pup’s",["pups","pup"],"🐶"],
+    ["____ wish is to sing.","Val’s",["Vals","Val"],"🎶"],["The ____ web is big.","bug’s",["bugz","bugs"],"🕸️"]];
+  bonus({id:"bonus-wordwall-possessive-plural-nouns",remember:["Plural noun = more than one: books · rings · socks","Possessive noun = who has something: the cat’s toy · Dan’s hat · the bug’s web"],urls:["https://wordwall.net/resource/6822711/english/possessive-and-plural-nouns"],title:"Possessive and Plural Nouns",source:"Game · Wordwall · Possessive and Plural nouns",
+    cards:chunk(WWP,10).map((rows,k)=>card("Possessive or plural?","Choose the word that fits.",rows.map(([q,a,x,e],i)=>ch(`w${k}${i}`,q,[a,...x],a,e)),
+      rows.map(([q,a])=>q.replace(/_+/,a)).join(" · ")))});
+
+  // ───────── 51. Baamboozle 1017950 "Ending blends" (đáp án do người tạo ghi trên thẻ; "hand" kết thúc bằng nd) ─────────
+  const EB=[["list","st","📝"],["fist","st","✊"],["rest","st","🏖️"],["nest","st","🪺"],["west","st","🧭"],["hand","nd","✋"],["left","ft","⬅️"],["craft","ft","🎨"],
+    ["loft","ft","🏠"],["shift","ft","⌨️"],["land","nd","🌴"],["wind","nd","🌬️"],["pond","nd","🐟"],["bend","nd","🙇"],["bond","nd","🔗"],["bank","nk","🏦"],
+    ["tank","nk","🛢️"],["pink","nk","🩷"],["think","nk","🤔"],["link","nk","⛓️"],["rank","nk","🏆"],["monk","nk","🧘"],["sand","nd","🏜️"]];
+  bonus({id:"bonus-baamboozle-ending-blends",remember:["Ending blends: st (nest, list) · ft (left, craft) · nd (hand, sand) · nk (bank, pink)"],urls:["https://www.baamboozle.com/game/1017950"],title:"Ending Blends",source:"Game · Baamboozle · Ending blends",
+    cards:chunk(EB,12).map((rows,k)=>card("Ending blends","Choose the correct ending blend of the word.",rows.map(([w,b,e],i)=>sel(`e${k}${i}`,`${e} ${w}`,["st","ft","nd","nk"],b,e)),
+      rows.map(([w,b])=>`${w} (${b})`).join(" · ")))});
 })();
