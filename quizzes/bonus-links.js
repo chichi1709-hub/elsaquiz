@@ -561,4 +561,33 @@
   bonus({id:"bonus-baamboozle-verbs-ing",remember:["What is he doing? → He is fishing. · What are they doing? → They are singing.","swim → swimming · ride → riding"],urls:["https://www.baamboozle.com/game/572397"],title:"Verbs ending -ing",source:"Game · Baamboozle · Verbs ending -ing",
     cards:chunk(VI,8).map((rows,k)=>card("What is he/she doing?","Look at the picture clue. Choose the verb with -ing.",rows.map(([q,a,b,w,e],i)=>ch(`v${k}${i}`,`${e} ${q} ${a}`,[w,...viWrong(b,w)],w,e)),
       rows.map(([q,a,b,w])=>a.replace("___",w)).join(" · ")))});
+
+  // ───────── 55. Baamboozle 569738 "Ending Blends" (R&V Tutorial; diary đặt link này dưới mục Grammar nhưng game là Ending Blends; bỏ thẻ "fart") ─────────
+  const RV_AR=[["arm","ar","💪"],["fork","or","🍴"],["farm","ar","🚜"],["barn","ar","🏚️"],["cart","ar","🛒"]];
+  const RV_BL=[["pond","nd","🪷"],["sand","nd","🏖️"],["band","nd","🎺"],["bank","nk","🏦"],["blink","nk","😉"],["ant","nt","🐜"],["mask","sk","🎭"],["desk","sk","🪑"],["cast","st","🦴"],["list","st","📝"]];
+  bonus({id:"bonus-baamboozle-ending-blends-rv",remember:["Read the words: arm · fork · farm · barn · cart","Ending blends: pond · sand · band (nd) · bank · blink (nk) · ant (nt) · mask · desk (sk) · cast · list (st)"],urls:["https://www.baamboozle.com/game/569738"],title:"Ending Blends (Read the words)",source:"Game · Baamboozle · Ending Blends (R&V Tutorial)",
+    cards:[card("Read the words · ar, or","Read the word. Which letters do you hear: ar or or?",RV_AR.map(([w,b,e],i)=>sel(`a${i}`,`${e} ${w}`,["ar","or"],b,e)),RV_AR.map(([w,b])=>`${w} (${b})`).join(" · ")),
+      card("Read the words · Ending blends","Read the word. Choose the ending blend.",RV_BL.map(([w,b,e],i)=>sel(`b${i}`,`${e} ${w}`,["nd","nk","nt","sk","st"],b,e)),RV_BL.map(([w,b])=>`${w} (${b})`).join(" · "))]});
+
+  // ───────── 56. Big Book "Babies in the Bayou" (Jim Arnosky; Drive folder Unit 2_Week 3) — câu hỏi dựng từ nội dung sách, không chép nguyên văn ─────────
+  const BAYOU=["baby alligators","baby raccoons","baby turtles","ducklings"];
+  bonus({id:"bonus-bigbook-babies-in-the-bayou",remember:["A bayou is a southern waterway that mixes with the sea.","Babies in the bayou: alligators · raccoons · turtles · ducklings. Each mother helps her babies."],urls:["https://drive.google.com/drive/folders/1PTUgfhZgxcmCDjxmE0LptXmnVENlGePd"],title:"Babies in the Bayou",source:"Big Book · Babies in the Bayou by Jim Arnosky",
+    cards:[card("Babies in the Bayou · Which baby?","Listen and read along with the story. Which babies are they?",[
+        sel("tails","🐊 They have black and yellow tails and rows of sharp white teeth.",BAYOU,"baby alligators","🐊"),
+        sel("log","😴 They are all sleeping on a log near their mother.",BAYOU,"baby alligators","🪵"),
+        sel("rings","🦝 They have rings around their tails. Each little face is masked in black.",BAYOU,"baby raccoons","🦝"),
+        sel("dig","🥚 Their mother shows them how to dig for tasty turtle eggs.",BAYOU,"baby raccoons","⛏️"),
+        sel("shells","🐢 They have shells upon their backs and strong little legs.",BAYOU,"baby turtles","🐢"),
+        sel("plop","💦 One after another, they plop into the water.",BAYOU,"baby turtles","💦"),
+        sel("webs","🦶 They have webs between their toes.",BAYOU,"ducklings","🦆"),
+        sel("row","🪷 They follow their mother in a row through the lily pads.",BAYOU,"ducklings","🪷")
+      ],"Baby alligators: black and yellow tails, sharp white teeth, sleeping on a log. · Baby raccoons: rings around their tails, faces masked in black, dig for turtle eggs. · Baby turtles: shells on their backs, strong little legs, plop into the water. · Ducklings: webs between their toes, follow their mother in a row."),
+      card("Babies in the Bayou · The mothers","How do the animal mothers help their babies?",[
+        ch("bayou","What is a bayou?",["a southern waterway that mixes with the sea","a big sandy desert","a snowy mountain"],"a southern waterway that mixes with the sea","🌊"),
+        ch("gator","How does the mother alligator help her babies?",["She guards them and lets no one come near.","She teaches them to fly.","She leaves them alone."],"She guards them and lets no one come near.","🐊"),
+        ch("duck","How does the mother duck help her ducklings?",["She leads them away from danger.","She digs for turtle eggs.","She sleeps on a log."],"She leads them away from danger.","🦆"),
+        ch("danger","The ducklings stay away from danger. Which animal has hungry mouths with sharp white teeth?",["the alligators","the turtles","the white birds"],"the alligators","⚠️"),
+        ch("birds","In the bayou, white birds ___ in shallow water.",["wade","dig","sleep"],"wade","🦩"),
+        ch("author","Who wrote and drew “Babies in the Bayou”?",["Jim Arnosky","Nancy Finton","Jack Prelutsky"],"Jim Arnosky","✍️")
+      ],"A bayou is a southern waterway that mixes with the sea. The mother alligator guards her babies and lets no one come near. The mother raccoon shows her babies how to dig for turtle eggs. The mother duck leads her ducklings away from danger — away from the alligators’ hungry mouths. White birds wade in shallow water. Author: Jim Arnosky.")]});
 })();
