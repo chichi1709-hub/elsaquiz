@@ -590,4 +590,41 @@
         ch("birds","In the bayou, white birds ___ in shallow water.",["wade","dig","sleep"],"wade","🦩"),
         ch("author","Who wrote and drew “Babies in the Bayou”?",["Jim Arnosky","Nancy Finton","Jack Prelutsky"],"Jim Arnosky","✍️")
       ],"A bayou is a southern waterway that mixes with the sea. The mother alligator guards her babies and lets no one come near. The mother raccoon shows her babies how to dig for turtle eggs. The mother duck leads her ducklings away from danger — away from the alligators’ hungry mouths. White birds wade in shallow water. Author: Jim Arnosky.")]});
+
+  // ───────── 57. Video Close Reading 02/11 "The Hungry Groundhog & Angry Bees" (Little Fox · Bat and Friends) — 2 truyện trong 1 video ─────────
+  bonus({id:"bonus-video-hungry-groundhog",subjectKey:"science",remember:["Groundhog digs holes all over the farm to look for food. He finds lots of carrots, and the friends have a feast.","Super Pig chases the bees away from the clover. He is not a very good super pig, but he is a super friend."],urls:["https://www.youtube.com/watch?v=HuBuzGaDgDA"],title:"The Hungry Groundhog & Angry Bees",source:"Video · Little Fox · Bat and Friends",
+    cards:[card("Story 1 · The Hungry Groundhog","Listen to the story. Choose the answer.",[
+        ch("trip","Cow, Cat, and Dog were not looking at the ground. What happened?",["They tripped on holes.","They found carrots.","They fell asleep."],"They tripped on holes.","🕳️"),
+        ch("bat","Bat fell in a hole. Who did he meet?",["Groundhog","Farmer","a bee"],"Groundhog","🦇"),
+        ch("why","“Did you make all the holes?” Why did Groundhog make the holes?",["He was looking for food.","He wanted to hide from Cat.","He wanted to make a pond."],"He was looking for food.","⛏️"),
+        ch("hungry","“Talking about food makes me hungry.” Who said it?",["Pig","Cow","Farmer"],"Pig","🐷"),
+        ch("farmer","Farmer went into the garden. What did he NOT see?",["any carrots","any vegetables","the barn"],"any carrots","👨‍🌾"),
+        ch("feast","Where did Groundhog find the carrots?",["Right here on the farm.","At the pond.","In the city."],"Right here on the farm.","🥕"),
+        ch("dogfood","“Carrots taste better than dog food.” Who said it?",["Dog","Cat","Bat"],"Dog","🐶")
+      ],"Cow, Cat, and Dog tripped on holes; Pig fell over; Bat fell in a hole and met Groundhog. Groundhog made the holes because he was looking for food. He found lots of carrots “right here on the farm”, and Farmer asked “Who took my carrots?” The friends had a carrot feast in the barn."),
+      card("Story 2 · Super Pig and the bees","Listen to the story. Choose the answer.",[
+        ch("clover","Cow likes clover, but there are ___ on it.",["bees","bugs","birds"],"bees","🐝"),
+        ch("sting","What happened to Super Pig’s nose?",["A big bee stung it.","It got very cold.","It turned blue."],"A big bee stung it.","🐽"),
+        ch("mud","Where did Super Pig put his nose?",["in the mud at the pond","in the clover","in the barn"],"in the mud at the pond","🟫"),
+        ch("roof","Super Pig helped Cat get down from the ___.",["roof","tree","hole"],"roof","🏠"),
+        ch("friend","“I am not a very good super pig.” What did Cow say?",["“But you are a super friend.”","“You are a bad pig.”","“Go away, bees!”"],"“But you are a super friend.”","💞")
+      ],"Cow likes clover, but there are bees on it. Super Pig chases the bees; a big bee stings his nose, so he puts it in the mud at the pond. He helps Cat down from the roof. “I am not a very good super pig.” “But you are a super friend,” said Cow.")]});
+
+  // ───────── 58. Video "First Grade Wonders At a Pond" (Mrs. Kania) — câu hỏi dựng theo nội dung truyện, không chép nguyên văn cả bài ─────────
+  bonus({id:"bonus-video-at-a-pond",remember:["At a Pond by Nancy Finton · Genre: nonfiction","Author’s Purpose: Nancy Finton wanted to write about animals that live at a pond. She wanted readers to see the animals close up."],urls:["https://www.youtube.com/watch?v=v4HEN27yPOA"],title:"At a Pond",source:"Video · Anchor Text · At a Pond by Nancy Finton",
+    cards:[card("At a Pond · Who lives at a pond?","Watch and listen. Choose the answer.",[
+        multi("frogs","What do frogs do? Choose 3.",["swim","hop","jump","fly"],["swim","hop","jump"],"🐸"),
+        ch("rest","Frogs rest on ___ on the pond.",["plants","rocks in the sun","nests"],"plants","🪷"),
+        ch("dip","This duck dips its ___ to get bugs.",["bill","tail","foot"],"bill","🦆"),
+        ch("eggs","“Who is in the eggs?”",["ducklings — Quack, quack!","fish — Gulp!","frogs — Yum, yum!"],"ducklings — Quack, quack!","🥚"),
+        ch("turtles","Turtles swim and swim. Then they stop and ___ in the sun.",["rest","dig","fly"],"rest","🐢"),
+        ch("gulp","“A big fish comes up to eat.”",["Gulp!","Quack, quack!","Dip, dip, dip!"],"Gulp!","🐟"),
+        multi("more","Which other animals can you see at a pond? Choose 3.",["raccoon","beaver","toad","camel","penguin"],["raccoon","beaver","toad"],"👀")
+      ],"Frogs swim, hop, and jump; they rest on plants on the pond. A duck dips its bill to get bugs. Ducks make nests on land — Quack, quack! Turtles swim, then rest in the sun. Fish live in water — Gulp! Other pond animals: egret, raccoon, newt, goldfish, toad, beaver."),
+      card("At a Pond · The author","Meet the Author. Author’s Purpose.",[
+        ch("author","Who wrote “At a Pond”?",["Nancy Finton","Jim Arnosky","Mrs. Kania"],"Nancy Finton","✍️"),
+        ch("city","Nancy Finton loves living and working in a big, busy ___.",["city","farm","forest"],"city","🏙️"),
+        ch("purpose","Why did Nancy Finton write “At a Pond”?",["She wanted readers to see the animals that live at a pond close up.","She wanted to tell a made-up story about talking frogs.","She wanted to teach us how to build a nest."],"She wanted readers to see the animals that live at a pond close up.","🎯"),
+        ch("draw","Response: Draw a place where animals live ___. Write about your picture.",["together","alone","in the sky"],"together","🖍️")
+      ],"Nancy Finton loves living and working in a big, busy city, but sometimes she wishes she were sitting by a quiet pond. Author’s purpose: she wanted to write about animals that live at a pond and wanted readers to see the animals close up.")]});
 })();

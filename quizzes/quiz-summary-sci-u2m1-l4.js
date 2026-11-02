@@ -1,0 +1,88 @@
+// TỔNG HỢP KIẾN THỨC — Science Unit 2 Module 1 · Lesson 4: Animal Behaviors (Class Diary từ 29/10/2026, sau bộ Lesson 3).
+// 2 bài trong nhóm Tổng hợp (uploadDate "weekly-…"), cùng cách với quiz-summary-sci-u2m1-l3.js:
+//   (1) Key Concepts Test: câu hỏi chắt lọc kiến thức chính của Lesson 4 (≤ 30 ý → 1 Part);
+//   (2) Review: gộp TOÀN BỘ câu của các bài Science theo ngày trong SOURCES, xếp theo chủ đề, mang theo bài đọc và link Bonus.
+// Diary mới của Lesson 4: thêm id vào SOURCES, thêm dòng NOTES, thêm câu chính vào Key Concepts Test (≤ 30).
+(()=>{
+  const S="assets/mascot/academy/science.webp";
+  const rotate=(items,key)=>{let hash=0;for(const char of key)hash=(hash*31+char.charCodeAt(0))>>>0;const shift=hash%items.length;return [...items.slice(shift),...items.slice(0,shift)]};
+  const choice=(id,label,choices,answer,icon)=>({id,label,type:"choice",choices:rotate(choices,id+label),answer,icon});
+  const fixed=(id,label,choices,answer,icon)=>({id,label,type:"choice",choices,answer,icon});
+  const multi=(id,label,choices,answer,icon)=>({id,label,type:"multi",choices:rotate(choices,id+label),answer,icon});
+  const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
+  const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
+  const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–02/11/2026";
+  const BEHAVIOR=["Taking care","Feed","Protect"];
+
+  const NOTES=[
+    "📅 Class Diary: 02/11/2026",
+    "(02/11) Listening Comprehension: The Hungry Groundhog — the groundhog digs holes all over the farm to find food.",
+    "(02/11) He finds lots of carrots. At the end, the friends have a carrot feast in the barn.",
+    "📅 Class Diary: 29/10/2026",
+    "(29/10) Lesson 4: Animal Behaviors",
+    "(29/10) There are some things that ducklings are born knowing how to do and some things they have to learn from their parents.",
+    "(29/10) The adult monkey is cleaning the baby monkey because it wants to take care of the baby.",
+    "(29/10) Parents feed, protect, teach, and take care of their young.",
+    "(29/10) Taking care: Parents groom their offspring to clean them.",
+    "(29/10) Feed: Parents get and give food to their offspring.",
+    "(29/10) Protect: Parents keep their offspring safe from harm."
+  ];
+
+  // ───── (1) Key Concepts Test ─────
+  const TEST=[
+    sci("Lesson 4 · Animal Behaviors","Choose the answer.",[
+      choice("title","In Lesson 4 we learned what animals do: an adult monkey cleans its baby, parents feed their young and keep them safe, ducklings learn from their parents, a groundhog digs holes to find food… So the topic of Lesson 4 is called ___.",["Animal Behaviors","Animals and Their Parents","Functions of Animal Structures"],"Animal Behaviors","🐾"),
+      choice("probe","How do baby animals like ducklings survive?",["They are born knowing how to do some things, and they learn some things from their parents.","They know nothing and learn nothing.","They never need their parents."],"They are born knowing how to do some things, and they learn some things from their parents.","🦆"),
+      choice("monkey","The adult monkey is cleaning the baby monkey. Why?",["It wants to take care of the baby.","It wants to play a game.","It is hungry."],"It wants to take care of the baby.","🐒")
+    ],"Lesson 4: Animal Behaviors. There are some things that ducklings are born knowing how to do and some things they have to learn from their parents. The adult monkey cleans the baby monkey because it wants to take care of the baby."),
+    sci("How animal parents help their young","Make a prediction. Then match the behavior.",[
+      multi("help","How do animal parents help their young? Choose 4.",["feed","protect","teach","take care of","ignore","scare"],["feed","protect","teach","take care of"],"🔮"),
+      select("groom","Parents groom their offspring to clean them.",BEHAVIOR,"Taking care","🪮"),
+      select("food","Parents get and give food to their offspring.",BEHAVIOR,"Feed","🍼"),
+      select("safe","Parents keep their offspring safe from harm.",BEHAVIOR,"Protect","🛡️")
+    ],"Parents feed, protect, teach, and take care of their young. Taking care: parents groom their offspring to clean them. Feed: parents get and give food to their offspring. Protect: parents keep their offspring safe from harm."),
+    sci("Inquiry Activity · What Animals Do","Student Book, pages 54–55.",[
+      fixed("first","What do you do FIRST?",["Look at the photo cards.","Sort the cards into three groups.","Write or draw how the animals help their young."],"Look at the photo cards.","1️⃣"),
+      fixed("next","You looked at the photo cards. What do you do NEXT?",["Sort the cards into three groups.","Look at the photo cards.","Write or draw how the animals help their young."],"Sort the cards into three groups.","➡️"),
+      fixed("last","What do you do LAST?",["Write or draw how the animals help their young.","Look at the photo cards.","Sort the cards into three groups."],"Write or draw how the animals help their young.","🔚")
+    ],"1. Look at the photo cards. 2. Sort the cards into three groups. 3. Record Data. 4. Write or draw how the animals help their young."),
+    sci("Listening Comprehension · The Hungry Groundhog (02/11)","Animals look for food.",[
+      choice("do","What does the groundhog do to find food?",["He digs holes.","He climbs trees.","He flies in the sky."],"He digs holes.","⛏️"),
+      choice("find","What does the groundhog find?",["lots of carrots","a big nest","dog food"],"lots of carrots","🥕"),
+      choice("end","What happens at the end of the story?",["Groundhog brings lots of carrots to the barn, and the friends have a feast.","Groundhog goes to sleep in a hole all winter.","The friends fill all the holes with mud."],"Groundhog brings lots of carrots to the barn, and the friends have a feast.","🎉")
+    ],"The groundhog digs holes all over the farm to find food. He finds lots of carrots, and the friends have a carrot feast in the barn.")
+  ];
+  registerQuiz({
+    id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    title:"Science Lesson 4 · Key Concepts Test",
+    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1 · Lesson 4: Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
+      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST",1],["Listening Comprehension","The Hungry Groundhog",1]]),
+      questions:TEST,
+      readings:[{id:"notes-sci-l4",title:"Remember — Science Lesson 4",byline:`Animal Behaviors · Class Diary ${RANGE}`,mode:"notes",text:NOTES.join("\n")}]}
+  });
+
+  // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"]];
+  const TOPICS=[["Stories and texts",/listening|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["Animal Behaviors",/.*/]];
+  const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
+  for(const [id,filter] of SOURCES){
+    const src=(window.quizSources||{})[id];if(!src) continue;
+    const day=src.uploadDate.slice(5).split("-").reverse().join("/");
+    src.subject.questions.filter(q=>!filter||filter(q)).forEach(q=>{
+      const copy={...q,section:`${q.section} (${day})`};
+      if(q.readingId){const rid=`${id}--${q.readingId}`;copy.readingId=rid;
+        if(!readings.some(r=>r.id===rid)){const r=(src.subject.readings||[]).find(x=>x.id===q.readingId);if(r) readings.push({...r,id:rid})}}
+      const topic=(TOPICS.find(([,re])=>re.test(q.section))||TOPICS[2])[0];buckets.get(topic).push(copy);
+    });
+    if(!filter) (src.subject.readings||[]).filter(r=>r.mode==="bonus").forEach(r=>(r.links||[]).forEach(l=>{if(!links.has(l.url)) links.set(l.url,l)}));
+  }
+  if(links.size) readings.push({id:"bonus-sci-l4",title:"Bonus · Video & game",byline:"Links from the Class Diaries of Lesson 4",mode:"bonus",links:[...links.values()],text:""});
+  const parts=[...buckets].filter(([,list])=>list.length);
+  registerQuiz({
+    id:"sci-u2m1-l4-review",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    title:"Science Lesson 4 · Review (all lessons)",
+    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`All Lesson 4 classes · Unit 2 Module 1 · Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
+      groups:groupsOf(parts.map(([t,list])=>[t,"",list.length])),questions:parts.flatMap(([,list])=>list),readings}
+  });
+})();
