@@ -640,7 +640,7 @@
   const doingCh=i=>{const others=DOING.filter((_,j)=>j!==i),a=(i*5+3)%others.length;return [DOING[i][2],others[a][2],others[(a+4)%others.length][2]]};
   bonus({id:"bonus-artifact-what-animals-do",subjectKey:"science",urls:["https://claude.ai/artifact/WbXGaapfUyVX5hjH5D2CGB"],title:"What Animals Do",source:"Homework link · Science U2 · Lesson 4 · pages 54–56",
     remember:["Feeding: Parents give food. · Protecting: Parents keep babies safe. · Teaching: Parents show babies how.","Other ways parents care for their offspring: carrying babies on their backs, cleaning and grooming, keeping babies warm, building nests and dens, listening to baby signals like chirps and cries."],
-    cards:[...chunk(DOING.map(([id,name,text,icon],i)=>ch(id,`${name}: Who is the parent? Who is the baby? What is the parent doing?`,doingCh(i),text,icon)),6).map((fields,i)=>
+    cards:[...chunk(DOING.map(([id,name,text,icon],i)=>({...ch(id,`${name}: Who is the parent? Who is the baby? What is the parent doing?`,doingCh(i),text,icon),img:`assets/2026-11-03/card-${id}.webp`,bigImg:true})),6).map((fields,i)=>
         card(`Look at the photo cards (${i+1}/2)`,"Tap “Show what’s happening”. Choose what the picture shows.",fields,fields.map(f=>f.answer).join(" · "))),
       card("Let’s talk about it (page 56)","Show ideas.",[
         sel("feed","Feeding: ___",["food and milk help babies grow big and strong.","babies stay safe from danger and cold.","babies learn how to find food and live on their own."],"food and milk help babies grow big and strong.","🍼"),

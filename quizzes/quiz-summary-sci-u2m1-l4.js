@@ -55,12 +55,12 @@
       fixed("last","What do you do LAST?",["Write or draw how the animals help their young.","Look at the photo cards.","Sort the cards into three groups."],"Write or draw how the animals help their young.","🔚")
     ],"1. Look at the photo cards. 2. Sort the cards into three groups. 3. Record Data. 4. Write or draw how the animals help their young."),
     sci("Inquiry Activity · Sort the cards (03/11)","Feeding: Parents give food. · Protecting: Parents keep babies safe. · Teaching: Parents show babies how.",[
-      select("cow","The calf drinks milk from its mother.",GROUPS,"Feeding","🐄"),
-      select("kangaroo","The baby kangaroo, called a joey, stays safe and warm in its mother’s pouch.",GROUPS,"Protecting","🦘"),
-      select("cheetah","The cheetah cubs watch their mother. They learn how to hunt.",GROUPS,"Teaching","🐆"),
-      select("penguin","The penguin feeds its chick food from its beak.",GROUPS,"Feeding","🐧"),
-      select("elephant","The big elephants stand around the baby to keep it safe.",GROUPS,"Protecting","🐘"),
-      select("duck","The ducklings follow their mother. They learn to swim and find food.",GROUPS,"Teaching","🦆")
+      {...select("cow","The calf drinks milk from its mother.",GROUPS,"Feeding","🐄"),img:"assets/2026-11-03/card-cow.webp",bigImg:true},
+      {...select("kangaroo","The baby kangaroo, called a joey, stays safe and warm in its mother’s pouch.",GROUPS,"Protecting","🦘"),img:"assets/2026-11-03/card-kangaroo.webp",bigImg:true},
+      {...select("cheetah","The cheetah cubs watch their mother. They learn how to hunt.",GROUPS,"Teaching","🐆"),img:"assets/2026-11-03/card-cheetah.webp",bigImg:true},
+      {...select("penguin","The penguin feeds its chick food from its beak.",GROUPS,"Feeding","🐧"),img:"assets/2026-11-03/card-penguin.webp",bigImg:true},
+      {...select("elephant","The big elephants stand around the baby to keep it safe.",GROUPS,"Protecting","🐘"),img:"assets/2026-11-03/card-elephant.webp",bigImg:true},
+      {...select("duck","The ducklings follow their mother. They learn to swim and find food.",GROUPS,"Teaching","🦆"),img:"assets/2026-11-03/card-duck.webp",bigImg:true}
     ],"Feeding: The heron, cow, penguin and pig give their babies food or milk. Protecting: The lion, kangaroo, hen and elephant keep their babies safe. Teaching: The duck, orangutan, cheetah and polar bear show their babies how to do things."),
     sci("Communicate (03/11)","Student Book, page 56.",[
       choice("survive","How do these behaviors help the young animals survive?",["Some young animals need their parents to protect and feed them because they cannot do it on their own.","Young animals never need their parents.","Young animals can find all their food on the first day."],"Some young animals need their parents to protect and feed them because they cannot do it on their own.","🌱"),

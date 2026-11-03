@@ -129,18 +129,18 @@
   const GROUPS=["Feeding","Protecting","Teaching"];
   const SCI_Q=[
     sci("Inquiry Activity · What Animals Do (cont.) · Sort the cards","Sort the photo cards into three groups. Feeding: Parents give food. · Protecting: Parents keep babies safe. · Teaching: Parents show babies how.",[
-      select("heron","Heron",GROUPS,"Feeding","🐦"),
-      select("lion","Lion",GROUPS,"Protecting","🦁"),
-      select("duck","Duck",GROUPS,"Teaching","🦆"),
-      select("cow","Cow",GROUPS,"Feeding","🐄"),
-      select("kangaroo","Kangaroo",GROUPS,"Protecting","🦘"),
-      select("orangutan","Orangutan",GROUPS,"Teaching","🦧"),
-      select("penguin","Penguin",GROUPS,"Feeding","🐧"),
-      select("hen","Hen",GROUPS,"Protecting","🐔"),
-      select("cheetah","Cheetah",GROUPS,"Teaching","🐆"),
-      select("pig","Pig",GROUPS,"Feeding","🐷"),
-      select("elephant","Elephant",GROUPS,"Protecting","🐘"),
-      select("polar","Polar Bear",GROUPS,"Teaching","🐻‍❄️")
+      {...select("heron","Heron: which group?",GROUPS,"Feeding","🐦"),img:IMG("card-heron"),bigImg:true},
+      {...select("lion","Lion: which group?",GROUPS,"Protecting","🦁"),img:IMG("card-lion"),bigImg:true},
+      {...select("duck","Duck: which group?",GROUPS,"Teaching","🦆"),img:IMG("card-duck"),bigImg:true},
+      {...select("cow","Cow: which group?",GROUPS,"Feeding","🐄"),img:IMG("card-cow"),bigImg:true},
+      {...select("kangaroo","Kangaroo: which group?",GROUPS,"Protecting","🦘"),img:IMG("card-kangaroo"),bigImg:true},
+      {...select("orangutan","Orangutan: which group?",GROUPS,"Teaching","🦧"),img:IMG("card-orangutan"),bigImg:true},
+      {...select("penguin","Penguin: which group?",GROUPS,"Feeding","🐧"),img:IMG("card-penguin"),bigImg:true},
+      {...select("hen","Hen: which group?",GROUPS,"Protecting","🐔"),img:IMG("card-hen"),bigImg:true},
+      {...select("cheetah","Cheetah: which group?",GROUPS,"Teaching","🐆"),img:IMG("card-cheetah"),bigImg:true},
+      {...select("pig","Pig: which group?",GROUPS,"Feeding","🐷"),img:IMG("card-pig"),bigImg:true},
+      {...select("elephant","Elephant: which group?",GROUPS,"Protecting","🐘"),img:IMG("card-elephant"),bigImg:true},
+      {...select("polar","Polar Bear: which group?",GROUPS,"Teaching","🐻‍❄️"),img:IMG("card-polar"),bigImg:true}
     ],"Feeding: The heron, cow, penguin and pig give their babies food or milk. · Protecting: The lion, kangaroo, hen and elephant keep their babies safe. · Teaching: The duck, orangutan, cheetah and polar bear show their babies how to do things.",{readingId:"cards"}),
     sci("Inquiry Activity · Our table (page 55)","Animal Behavior | Description. Match the behavior with the description.",[
       select("t-feed","The heron, cow, penguin and pig give their babies food or milk.",GROUPS,"Feeding","🍼"),
