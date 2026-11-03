@@ -728,7 +728,7 @@ function readingCardMarkup(reading){
   const DIARY_BOLD=[/^(Characters) are /,/^The (setting) is /,/^The (events) are /,/^(Protection) keeps /,/\b(THURSDAY)\b/,/^(Fantasy)\./,/^A (contraction) is /,/^A (singular noun) names /,/^A (plural noun) names /];
   const emph=(text,term)=>{
     let safe=escapeHtml(text);
-    const rules=/^define$/i.test(term||"")?[/^(?:A |An )?(\w+) (?:is|are) /]:DIARY_BOLD;
+    const rules=/^define$/i.test(term||"")?[/^(?:A |An |To )?(\w+) (?:is|are|means) /,/^When you (\w+) /]:DIARY_BOLD;
     for(const rule of rules){const m=String(text).match(rule);if(m){const word=escapeHtml(m[1]);safe=safe.replace(word,`<b>${word}</b>`);break}}
     return safe;
   };
