@@ -17,7 +17,7 @@
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
   const HFW=["eat","no","of","under","who"],BLENDS=["st","nk","nd","sk","mp","nt"];
   const DAILY_LA=["class-diary-2026-10-23-language","class-diary-2026-10-26-language","class-diary-2026-10-27-language","class-diary-2026-10-28-language",
-    "class-diary-2026-10-29-language","class-diary-2026-11-02-language"];
+    "class-diary-2026-10-29-language","class-diary-2026-11-02-language","class-diary-2026-11-03-language"];
   const sources=DAILY_LA.map(id=>[id,(window.quizSources||{})[id]]).filter(([,src])=>src);
   const dayOf=src=>(src.uploadDate||"").slice(5).split("-").reverse().join("/");
   const RANGE=sources.length?`${dayOf(sources[0][1])}–${dayOf(sources[sources.length-1][1])}/2026`:"";
@@ -47,10 +47,10 @@
       choice("count","How many sounds do you hear in jump? /j/ /u/ /m/ /p/",["4","3","5"],"4","🔢")
     ],"/p/ /o/ /n/ /d/ → pond · /r/ /e/ /s/ /t/ → rest · jump has 4 sounds: /j/ /u/ /m/ /p/."),
     la("Phonics · End blends","Choose the end blend that finishes the word.",[
-      select("nest","🪺 ne___",BLENDS,"st","🪺"),
-      select("sink","🚰 si___",BLENDS,"nk","🚰"),
-      select("land","🏝️ la___",BLENDS,"nd","🏝️"),
-      select("mask","🎭 ma___",BLENDS,"sk","🎭")
+      select("nest","ne___",BLENDS,"st","🪺"),
+      select("sink","si___",BLENDS,"nk","🚰"),
+      select("land","la___",BLENDS,"nd","🏝️"),
+      select("mask","ma___",BLENDS,"sk","🎭")
     ],"nest (st) · sink (nk) · land (nd) · mask (sk). Some words have end blends, such as st and nk: nest, sink."),
     la("Grammar and Structural Analysis","Choose the correct answer.",[
       choice("dog","One dog has a bed. Which is correct?",["The dog’s bed is little.","The dogs bed is little.","The dogs’ bed is little."],"The dog’s bed is little.","🐶"),
@@ -82,12 +82,12 @@
   const BUCKET=[
     ["High-Frequency Words","eat · no · of · under · who",/high-frequency|\bhfw\b/i],
     ["Phonemic Awareness","phoneme blending",/phonemic|phoneme/i],
-    ["Writing","write a sentence · Ben’s student model · capital letters",/writing/i],
+    ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text",/writing/i],
     ["Grammar","singular and plural possessive nouns ’s / s’",/grammar|possessive|fix the draft|write each sentence/i],
     ["Structural Analysis","inflectional ending -ing",/structural|-ing|circle the word/i],
-    ["Phonics","end blends st · nk · nd · nt · sk · mp · ft",/phonics|end blend|sort the words/i],
+    ["Phonics","end blends st · nk · nd · nt · sk · mp · ft · spelling words",/phonics|end blend|sort the words|spelling/i],
     ["Essential Question and Vocabulary","Where do animals live together? · habitat · depend · hibernate · tranquil · tolerate",/build knowledge|build background|build vocabulary|vocabulary|essential/i],
-    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · nonfiction · author’s purpose",/.*/]];
+    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · nonfiction · author’s purpose",/.*/]];
   const buckets=new Map(BUCKET.map(([t,sub])=>[t,{subtitle:sub,items:[]}]));
   const seen=new Set(),readings=[notesCard("notes-la-u2w34")],links=new Map();
   for(const [id,src] of sources){

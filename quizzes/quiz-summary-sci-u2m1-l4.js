@@ -12,10 +12,17 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–02/11/2026";
-  const BEHAVIOR=["Taking care","Feed","Protect"];
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–03/11/2026";
+  const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"];
 
   const NOTES=[
+    "📅 Class Diary: 03/11/2026",
+    "(03/11) Inquiry Activity: What Animals Do (cont.) · Communicate (Student Book, page 56)",
+    "(03/11) Feeding: The heron, cow, penguin and pig give their babies food or milk.",
+    "(03/11) Protecting: The lion, kangaroo, hen and elephant keep their babies safe.",
+    "(03/11) Teaching: The duck, orangutan, cheetah and polar bear show their babies how to do things.",
+    "(03/11) Some young animals need their parents to protect and feed them because they cannot do it on their own.",
+    "(03/11) Parents feed, protect, teach and take care of their young.",
     "📅 Class Diary: 02/11/2026",
     "(02/11) Listening Comprehension: The Hungry Groundhog — the groundhog digs holes all over the farm to find food.",
     "(02/11) He finds lots of carrots. At the end, the friends have a carrot feast in the barn.",
@@ -47,6 +54,18 @@
       fixed("next","You looked at the photo cards. What do you do NEXT?",["Sort the cards into three groups.","Look at the photo cards.","Write or draw how the animals help their young."],"Sort the cards into three groups.","➡️"),
       fixed("last","What do you do LAST?",["Write or draw how the animals help their young.","Look at the photo cards.","Sort the cards into three groups."],"Write or draw how the animals help their young.","🔚")
     ],"1. Look at the photo cards. 2. Sort the cards into three groups. 3. Record Data. 4. Write or draw how the animals help their young."),
+    sci("Inquiry Activity · Sort the cards (03/11)","Feeding: Parents give food. · Protecting: Parents keep babies safe. · Teaching: Parents show babies how.",[
+      select("cow","The calf drinks milk from its mother.",GROUPS,"Feeding","🐄"),
+      select("kangaroo","The baby kangaroo, called a joey, stays safe and warm in its mother’s pouch.",GROUPS,"Protecting","🦘"),
+      select("cheetah","The cheetah cubs watch their mother. They learn how to hunt.",GROUPS,"Teaching","🐆"),
+      select("penguin","The penguin feeds its chick food from its beak.",GROUPS,"Feeding","🐧"),
+      select("elephant","The big elephants stand around the baby to keep it safe.",GROUPS,"Protecting","🐘"),
+      select("duck","The ducklings follow their mother. They learn to swim and find food.",GROUPS,"Teaching","🦆")
+    ],"Feeding: The heron, cow, penguin and pig give their babies food or milk. Protecting: The lion, kangaroo, hen and elephant keep their babies safe. Teaching: The duck, orangutan, cheetah and polar bear show their babies how to do things."),
+    sci("Communicate (03/11)","Student Book, page 56.",[
+      choice("survive","How do these behaviors help the young animals survive?",["Some young animals need their parents to protect and feed them because they cannot do it on their own.","Young animals never need their parents.","Young animals can find all their food on the first day."],"Some young animals need their parents to protect and feed them because they cannot do it on their own.","🌱"),
+      multi("match","Did what you learned match your prediction? Parents do ___ their young. Choose 4.",["feed","protect","teach","take care of","scare","ignore"],["feed","protect","teach","take care of"],"🔮")
+    ],"Some young animals need their parents to protect and feed them because they cannot do it on their own. Yes, parents do feed, protect, teach and take care of their young."),
     sci("Listening Comprehension · The Hungry Groundhog (02/11)","Animals look for food.",[
       choice("do","What does the groundhog do to find food?",["He digs holes.","He climbs trees.","He flies in the sky."],"He digs holes.","⛏️"),
       choice("find","What does the groundhog find?",["lots of carrots","a big nest","dog food"],"lots of carrots","🥕"),
@@ -57,13 +76,13 @@
     id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Lesson 4 · Key Concepts Test",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1 · Lesson 4: Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
-      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST",1],["Listening Comprehension","The Hungry Groundhog",1]]),
+      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1]]),
       questions:TEST,
       readings:[{id:"notes-sci-l4",title:"Remember — Science Lesson 4",byline:`Animal Behaviors · Class Diary ${RANGE}`,mode:"notes",text:NOTES.join("\n")}]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
-  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"]];
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"]];
   const TOPICS=[["Stories and texts",/listening|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["Animal Behaviors",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
   for(const [id,filter] of SOURCES){

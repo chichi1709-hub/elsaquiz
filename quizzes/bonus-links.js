@@ -627,4 +627,39 @@
         ch("purpose","Why did Nancy Finton write “At a Pond”?",["She wanted readers to see the animals that live at a pond close up.","She wanted to tell a made-up story about talking frogs.","She wanted to teach us how to build a nest."],"She wanted readers to see the animals that live at a pond close up.","🎯"),
         ch("draw","Response: Draw a place where animals live ___. Write about your picture.",["together","alone","in the sky"],"together","🖍️")
       ],"Nancy Finton loves living and working in a big, busy city, but sometimes she wishes she were sitting by a quiet pond. Author’s purpose: she wanted to write about animals that live at a pond and wanted readers to see the animals close up.")]});
+
+  // ───────── 59. Homework 03/11 — Claude Artifact "What Animals Do" (Science U2 · Lesson 4 · pages 54–56) ─────────
+  // Đã mở đủ: tab Predict, Look (12 thẻ, nút "Show what's happening"), Sort (Show group names, Check, Our table), Talk (Show ideas), nút ⓘ.
+  // Câu mô tả từng thẻ và ý trong tab Talk lấy nguyên văn từ trang.
+  const DOING=[["heron","Heron","The heron parents bring food to their chicks in the nest.","🐦"],["lion","Lion","The mother lion carries her cub in her mouth to a safe place.","🦁"],
+    ["duck","Duck","The ducklings follow their mother. They learn to swim and find food.","🦆"],["cow","Cow","The calf drinks milk from its mother.","🐄"],
+    ["kangaroo","Kangaroo","The baby kangaroo, called a joey, stays safe and warm in its mother’s pouch.","🦘"],["orangutan","Orangutan","The mother orangutan stays close while her baby learns to stand and climb.","🦧"],
+    ["penguin","Penguin","The penguin feeds its chick food from its beak.","🐧"],["hen","Hen","The chicks hide under their mother’s feathers to stay safe and warm.","🐔"],
+    ["cheetah","Cheetah","The cheetah cubs watch their mother. They learn how to hunt.","🐆"],["pig","Pig","The piglets drink milk from their mother.","🐷"],
+    ["elephant","Elephant","The big elephants stand around the baby to keep it safe.","🐘"],["polar","Polar Bear","The cubs follow their mother. She shows them how to find food.","🐻‍❄️"]];
+  const doingCh=i=>{const others=DOING.filter((_,j)=>j!==i),a=(i*5+3)%others.length;return [DOING[i][2],others[a][2],others[(a+4)%others.length][2]]};
+  bonus({id:"bonus-artifact-what-animals-do",subjectKey:"science",urls:["https://claude.ai/artifact/WbXGaapfUyVX5hjH5D2CGB"],title:"What Animals Do",source:"Homework link · Science U2 · Lesson 4 · pages 54–56",
+    remember:["Feeding: Parents give food. · Protecting: Parents keep babies safe. · Teaching: Parents show babies how.","Other ways parents care for their offspring: carrying babies on their backs, cleaning and grooming, keeping babies warm, building nests and dens, listening to baby signals like chirps and cries."],
+    cards:[...chunk(DOING.map(([id,name,text,icon],i)=>ch(id,`${name}: Who is the parent? Who is the baby? What is the parent doing?`,doingCh(i),text,icon)),6).map((fields,i)=>
+        card(`Look at the photo cards (${i+1}/2)`,"Tap “Show what’s happening”. Choose what the picture shows.",fields,fields.map(f=>f.answer).join(" · "))),
+      card("Let’s talk about it (page 56)","Show ideas.",[
+        sel("feed","Feeding: ___",["food and milk help babies grow big and strong.","babies stay safe from danger and cold.","babies learn how to find food and live on their own."],"food and milk help babies grow big and strong.","🍼"),
+        sel("protect","Protecting: ___",["food and milk help babies grow big and strong.","babies stay safe from danger and cold.","babies learn how to find food and live on their own."],"babies stay safe from danger and cold.","🛡️"),
+        sel("teach","Teaching: ___",["food and milk help babies grow big and strong.","babies stay safe from danger and cold.","babies learn how to find food and live on their own."],"babies learn how to find food and live on their own.","🎓"),
+        multi("ways","What are some other ways parents care for their offspring? Choose 5.",["Carrying babies on their backs","Cleaning and grooming","Keeping babies warm","Building nests and dens","Listening to baby signals, like chirps and cries","Leaving babies alone in the cold","Taking food away from babies"],["Carrying babies on their backs","Cleaning and grooming","Keeping babies warm","Building nests and dens","Listening to baby signals, like chirps and cries"],"💞")
+      ],"These behaviors help babies survive because… Feeding: food and milk help babies grow big and strong. Protecting: babies stay safe from danger and cold. Teaching: babies learn how to find food and live on their own. Other ways parents care: carrying babies on their backs, cleaning and grooming, keeping babies warm, building nests and dens, listening to baby signals like chirps and cries.")]});
+
+  // ───────── 60. Video "Simple phonics (final consonant blends) phase 4" (Simply Phonics) — Phonics 03/11 ─────────
+  const FCB=[["bank","nk","🏦"],["think","nk","🤔"],["sunk","nk","🚣"],["last","st","🏁"],["rest","st","😴"],["fist","st","✊"],["sand","nd","🏖️"],["bend","nd","↪️"],["fund","nd","🪙"],
+    ["camp","mp","⛺"],["chimp","mp","🐒"],["jump","mp","🦘"],["raft","ft","🛶"],["left","ft","⬅️"],["soft","ft","🧸"]],FCB_BL=["nk","st","nd","mp","ft"];
+  bonus({id:"bonus-video-final-consonant-blends",urls:["https://www.youtube.com/watch?v=ZxlPKVURslA"],title:"Final consonant blends",source:"Video · Simply Phonics phase 4",
+    remember:["Some consonants can be blended to make a slightly different sound.","Final consonant blends appear at the end of words: bump, tank.","nk: bank, think, sunk · st: last, rest, fist · nd: sand, bend, fund · mp: camp, chimp, jump · ft: raft, left, soft"],
+    cards:[card("Final consonant blends","Watch the video. Choose the answer.",[
+        ch("where","Final consonant blends appear at the ___ of words.",["end","start","middle"],"end","🔚"),
+        ch("bump","“bump” — which blend is at the end?",["mp","nk","st"],"mp","💥"),
+        ch("tank","“tank” — which blend is at the end?",["nk","nd","ft"],"nk","🛢️"),
+        multi("five","Which final consonant blends are in the video? Choose 5.",["nk","st","nd","mp","ft","sh","ch"],["nk","st","nd","mp","ft"],"🔤")
+      ],"Some consonants can be blended to make a slightly different sound. Final consonant blends appear at the end of words: bump (mp), tank (nk). Blends in the video: nk, st, nd, mp, ft."),
+      ...chunk(FCB.map(([w,b,icon])=>sel(w,w,FCB_BL,b,icon)),8).map((fields,i)=>
+        card(`Read these words (${i+1}/2)`,"Read these words containing final consonant blends. Choose the blend.",fields,fields.map(f=>`${f.id} (${f.answer})`).join(" · ")))]});
 })();
