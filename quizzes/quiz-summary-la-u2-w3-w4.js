@@ -17,7 +17,7 @@
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
   const HFW=["eat","no","of","under","who"],BLENDS=["st","nk","nd","sk","mp","nt"];
   const DAILY_LA=["class-diary-2026-10-23-language","class-diary-2026-10-26-language","class-diary-2026-10-27-language","class-diary-2026-10-28-language",
-    "class-diary-2026-10-29-language","class-diary-2026-11-02-language","class-diary-2026-11-03-language"];
+    "class-diary-2026-10-29-language","class-diary-2026-11-02-language","class-diary-2026-11-03-language","class-diary-2026-11-04-language"];
   const sources=DAILY_LA.map(id=>[id,(window.quizSources||{})[id]]).filter(([,src])=>src);
   const dayOf=src=>(src.uploadDate||"").slice(5).split("-").reverse().join("/");
   const RANGE=sources.length?`${dayOf(sources[0][1])}–${dayOf(sources[sources.length-1][1])}/2026`:"";
@@ -82,10 +82,11 @@
   const BUCKET=[
     ["High-Frequency Words","eat · no · of · under · who",/high-frequency|\bhfw\b/i],
     ["Phonemic Awareness","phoneme blending",/phonemic|phoneme/i],
-    ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text",/writing/i],
-    ["Grammar","singular and plural possessive nouns ’s / s’",/grammar|possessive|fix the draft|write each sentence/i],
-    ["Structural Analysis","inflectional ending -ing",/structural|-ing|circle the word/i],
+    ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text",/writing(?! companion)/i],
+    ["Grammar","singular and plural possessive nouns ’s / s’ · fix the possessives",/grammar|possessive|fix the draft|write each sentence/i],
+    ["Structural Analysis","inflectional ending -ing · What is happening now?",/structural|-ing|circle the word/i],
     ["Phonics","end blends st · nk · nd · nt · sk · mp · ft · spelling words",/phonics|end blend|sort the words|spelling/i],
+    ["Research and Inquiry","Pick to research: animal · habitat · food · Where Animals Live",/research/i],
     ["Essential Question and Vocabulary","Where do animals live together? · habitat · depend · hibernate · tranquil · tolerate",/build knowledge|build background|build vocabulary|vocabulary|essential/i],
     ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · nonfiction · author’s purpose",/.*/]];
   const buckets=new Map(BUCKET.map(([t,sub])=>[t,{subtitle:sub,items:[]}]));

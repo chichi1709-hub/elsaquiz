@@ -662,4 +662,41 @@
       ],"Some consonants can be blended to make a slightly different sound. Final consonant blends appear at the end of words: bump (mp), tank (nk). Blends in the video: nk, st, nd, mp, ft."),
       ...chunk(FCB.map(([w,b,icon])=>sel(w,w,FCB_BL,b,icon)),8).map((fields,i)=>
         card(`Read these words (${i+1}/2)`,"Read these words containing final consonant blends. Choose the blend.",fields,fields.map(f=>`${f.id} (${f.answer})`).join(" · ")))]});
+
+  // ───────── 61. Video "Gerunds - Present Continuous (-ing) Song" (Rockin' English Lessons) — Structural Analysis -ing 04/11 ─────────
+  const RING=[["eat","eating",["eats","eated"],"🍎"],["drink","drinking",["drinks","drinked"],"🥤"],["sleep","sleeping",["sleeps","sleped"],"😴"],
+    ["dream","dreaming",["dreams","dreamed"],"💭"],["read","reading",["reads","readed"],"📖"],["write","writing",["writes","writeing"],"✍️"],
+    ["listen","listening",["listens","listend"],"👂"],["talk","talking",["talks","talkking"],"🗣️"],["laugh","laughing",["laughs","laughed"],"😂"],
+    ["cry","crying",["cries","cryed"],"😢"],["walk","walking",["walks","walked"],"🚶"],["sing","singing",["sings","singed"],"🎤"]];
+  bonus({id:"bonus-video-ing-song",urls:["https://www.youtube.com/watch?v=b7IjgaG9NOI"],title:"-ing Song",source:"Video · Rockin’ English Lessons · Present Continuous (-ing) Song",
+    remember:["Add -ing to an action word to tell what he is doing now: eat → eating · drink → drinking · sleep → sleeping · read → reading · write → writing · sing → singing"],
+    cards:[card("Add -ing","Watch the video. Add -ing to the action word.",RING.map(([w,a,x,e])=>ch(`r-${w}`,`${w} + ing = ___`,[a,...x],a,e)),RING.map(([w,a])=>`${w} → ${a}`).join(" · ")),
+      card("What is he doing?","Choose the word with -ing.",[
+        ch("apple","He is ___ an apple.",["eating","drinking","sleeping"],"eating","🍎"),
+        ch("water","He is ___ water.",["drinking","eating","reading"],"drinking","💧"),
+        ch("book","He is ___ a book.",["reading","singing","crying"],"reading","📖"),
+        ch("song","He is ___ a song.",["singing","walking","talking"],"singing","🎵")
+      ],"He is eating an apple. · He is drinking water. · He is reading a book. · He is singing a song.")]});
+
+  // ───────── 62. Wordwall 119464473 "verbs -ed or -ing" (Quiz; đáp án isCorrect trong content-model JSON) ─────────
+  const WWI=[["Yesterday, I ___ (play) football.","played","playing"],["He is ___ (sing) now.","singing","sang"],["Ahmed ___ (watch) TV yesterday.","watched","watching"],
+    ["I am ___ (visit) my family now.","visiting","visited"],["They are ___ (go) to the school now.","going","went"],["Ahmed ___ (visit) Egypt last week.","visited","visiting"],
+    ["Ahmed is ___ (swim) in the pool today.","swimming","swam"],["Ahmed ___ (paint) a picture yesterday.","painted","painting"],
+    ["Ahmed ___ (jump) on the trampoline last week.","jumped","jumping"],["I am ___ with my family.","staying","stayed"]];
+  bonus({id:"bonus-wordwall-verbs-ed-ing",urls:["https://wordwall.net/resource/119464473/verbs-ed-or-ing"],title:"Verbs -ed or -ing",source:"Game · Wordwall · verbs -ed or -ing",
+    remember:["is / am / are + -ing = happening now: He is singing now. · I am visiting my family now.","yesterday / last week: Ahmed watched TV yesterday. · Ahmed visited Egypt last week."],
+    cards:[card("-ed or -ing?","Choose the correct word.",WWI.map(([q,a,x],i)=>ch(`w${i}`,q,[a,x],a,"✏️")),WWI.map(([q,a])=>q.replace(/___( \(\w+\))?/,a)).join(" · "))]});
+
+  // ───────── 63. Video "The Apostrophe Song" (MC Grammar) — Grammar: Possessive Nouns 04/11 ─────────
+  bonus({id:"bonus-video-apostrophe-song",urls:["https://www.youtube.com/watch?v=QlOdsZhcKHE"],title:"The Apostrophe Song",source:"Video · MC Grammar · The Apostrophe Song",
+    remember:["Apostrophes: possess or omit.","Possession: when you possess something, that means you own it. Put the apostrophe after the owner (MC Grammar’s voice) or owners (the kids’ choice).","Omission: You are → You’re · I am → I’m"],
+    cards:[card("The Apostrophe Song","Watch the video. Choose the answer.",[
+      ch("two","What are the two ways to use an apostrophe?",["possess and omit","add and take away","read and write"],"possess and omit","🎤"),
+      ch("own","When you possess something, that means you ___ it.",["own","lose","eat"],"own","🔑"),
+      ch("after","To show who owns something, put the apostrophe after the ___.",["owner","last word","first letter"],"owner","📍"),
+      ch("mc","The voice of MC Grammar (one person) = MC ___ voice",["Grammar’s","Grammars’","Grammars"],"Grammar’s","🗣️"),
+      ch("kids","The choice of the kids (more than one kid) = the ___ choice",["kids’","kid’s","kids"],"kids’","🧒"),
+      ch("youre","Omit: You are a star! → ___ a star!",["You’re","Your","Youre"],"You’re","⭐"),
+      ch("im","Omit: I am your teacher. → ___ your teacher.",["I’m","Im","I’am"],"I’m","🧑‍🏫")
+    ],"Apostrophes: possess or omit. Possess = own: MC Grammar’s voice (one owner) · the kids’ choice (more than one owner). Omit: You are → You’re · I am → I’m.")]});
 })();
