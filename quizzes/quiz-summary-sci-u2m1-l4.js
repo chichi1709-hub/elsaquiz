@@ -12,10 +12,19 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–03/11/2026";
-  const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"];
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–05/11/2026";
+  const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"],VOC=["behavior","learn","signal"];
 
   const NOTES=[
+    "📅 Class Diary: 05/11/2026",
+    "(05/11) Behavior: the way a person, animal, or thing acts or does something.",
+    "(05/11) Learn: to gain knowledge or skill.",
+    "(05/11) Signal: a sound or movement that gives information.",
+    "(05/11) The Burrow: young groundhogs are called kits. Their mother gave them milk to help them grow. She whistles to communicate danger.",
+    "(05/11) Some animal parents care for their offspring. These behaviors help their offspring survive.",
+    "(05/11) Polar bears feed their offspring. They show their cubs how to find food. The lioness protects her cub.",
+    "(05/11) Baby birds make sounds. They also open their mouths when they are ready to eat.",
+    "(05/11) Some animals are born knowing behaviors that help them survive. A whale calf can swim right away.",
     "📅 Class Diary: 03/11/2026",
     "(03/11) Inquiry Activity: What Animals Do (cont.) · Communicate (Student Book, page 56)",
     "(03/11) Feeding: The heron, cow, penguin and pig give their babies food or milk.",
@@ -70,20 +79,29 @@
       choice("do","What does the groundhog do to find food?",["He digs holes.","He climbs trees.","He flies in the sky."],"He digs holes.","⛏️"),
       choice("find","What does the groundhog find?",["lots of carrots","a big nest","dog food"],"lots of carrots","🥕"),
       choice("end","What happens at the end of the story?",["Groundhog brings lots of carrots to the barn, and the friends have a feast.","Groundhog goes to sleep in a hole all winter.","The friends fill all the holes with mud."],"Groundhog brings lots of carrots to the barn, and the friends have a feast.","🎉")
-    ],"The groundhog digs holes all over the farm to find food. He finds lots of carrots, and the friends have a carrot feast in the barn.")
+    ],"The groundhog digs holes all over the farm to find food. He finds lots of carrots, and the friends have a carrot feast in the barn."),
+    sci("Vocabulary · Signals and behaviors (05/11)","The Burrow · Explain: Animal Behaviors · Close Reading: Animal Messages.",[
+      select("v-behavior","the way a person, animal, or thing acts or does something",VOC,"behavior","🐾"),
+      select("v-learn","to gain knowledge or skill",VOC,"learn","📘"),
+      select("v-signal","a sound or movement that gives information",VOC,"signal","🚦"),
+      choice("danger","The Burrow: How does the groundhog communicate danger to her kits?",["She whistles.","She sings a song.","She claps her paws."],"She whistles.","📢"),
+      choice("birds","How do baby birds signal to their parents?",["Baby birds make sounds. They also open their mouths when they are ready to eat.","Baby birds fly away from the nest.","Baby birds sleep all day."],"Baby birds make sounds. They also open their mouths when they are ready to eat.","🐦"),
+      {...choice("polar","What are the polar bears doing?",["Polar bears feed their offspring. They show their cubs how to find food.","Polar bears are sleeping in a den.","Polar bears are running away from their cubs."],"Polar bears feed their offspring. They show their cubs how to find food.","🐻‍❄️"),img:"assets/2026-11-05/sci-polar-bears.webp",bigImg:true},
+      {...choice("whale","Some animals are born knowing behaviors that help them survive. Which animal can swim right away?",["a whale calf","a baby bird","a groundhog kit"],"a whale calf","🐋"),img:"assets/2026-11-05/sci-whale.webp",bigImg:true}
+    ],"behavior: the way a person, animal, or thing acts or does something · learn: to gain knowledge or skill · signal: a sound or movement that gives information. The mother groundhog whistles. Baby birds make sounds and open their mouths when they are ready to eat. Polar bears feed their offspring and show their cubs how to find food. A whale calf can swim right away.")
   ];
   registerQuiz({
     id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Lesson 4 · Key Concepts Test",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1 · Lesson 4: Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
-      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1]]),
+      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1],["Signals and behaviors","behavior · learn · signal · The Burrow · Animal Messages",1]]),
       questions:TEST,
       readings:[{id:"notes-sci-l4",title:"Remember — Science Lesson 4",byline:`Animal Behaviors · Class Diary ${RANGE}`,mode:"notes",text:NOTES.join("\n")}]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
-  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"]];
-  const TOPICS=[["Stories and texts",/listening|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["Animal Behaviors",/.*/]];
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"]];
+  const TOPICS=[["Stories and texts",/listen|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["Animal Behaviors",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
   for(const [id,filter] of SOURCES){
     const src=(window.quizSources||{})[id];if(!src) continue;

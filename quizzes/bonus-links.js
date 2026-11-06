@@ -699,4 +699,46 @@
       ch("youre","Omit: You are a star! → ___ a star!",["You’re","Your","Youre"],"You’re","⭐"),
       ch("im","Omit: I am your teacher. → ___ your teacher.",["I’m","Im","I’am"],"I’m","🧑‍🏫")
     ],"Apostrophes: possess or omit. Possess = own: MC Grammar’s voice (one owner) · the kids’ choice (more than one owner). Omit: You are → You’re · I am → I’m.")]});
+
+  // ───────── 64. Wordwall 123033853 "Animal behaviours" (Gameshow quiz; đáp án isCorrect trong content-model JSON) — Science homework 05/11 ─────────
+  const WWB=[["What is behaviour?","The way a person, animal, or thing acts or does something",["The way a person, animal or thing gets something from its parents"]],
+    ["What is learn?","Learn means to gain knowledge or a skill",["Learn means to gain food and water"]],
+    ["What is signal?","is a sound or movement that gives information",["is the food an animal eats"]],
+    ["Which is an animal behaviour?","feeding",["chicken","family","happy"]],
+    ["What are the 4 animal behaviours?","Teaching, protecting, feeding and taking care",["Food, toys, teaching and eating"]],
+    ["What do baby birds do to signal when they are ready to eat?","They open their mouths and make sounds",["They open their mouths and sing a song"]],
+    ["What is it called when chimpanzees clean each other?","grooming",["eating","playing","bathing"]],
+    ["Why do animals groom each other?","To clean each other",["To taste what their friends taste like"]],
+    ["Are polar bears born knowing how to find food?","No",["Yes"]],
+    ["Are dolphins born knowing how to swim?","Yes",["No"]]];
+  bonus({id:"bonus-wordwall-animal-behaviours",subjectKey:"science",urls:["https://wordwall.net/resource/123033853/khoa-h%E1%BB%8Dc/animal-behaviours"],title:"Animal behaviours",source:"Game · Wordwall · Animal behaviours",
+    remember:["Animal behaviours: teaching, protecting, feeding and taking care","Grooming: chimpanzees clean each other.","Baby birds open their mouths and make sounds to signal when they are ready to eat.","Polar bears are not born knowing how to find food. Dolphins are born knowing how to swim."],
+    cards:[card("Animal behaviours","Choose the correct answer.",WWB.map(([q,a,x],i)=>{const yn=a==="Yes"||a==="No";return (yn?fixed:ch)(`b${i}`,q,yn?["Yes","No"]:[a,...x],a,"🐾")}),WWB.map(([q,a])=>`${q} ${a}`).join(" · "))]});
+
+  // ───────── 65. Video "Community Helpers for Kids" (Kids Academy) — LA warm-up 05/11 (Unit 2 Week 4) ─────────
+  // Video không có lời: nội dung đọc từ ảnh khung hình (storyboard) — 3 từ role · research · transportation và 3 câu đố Community Helper Trivia.
+  bonus({id:"bonus-video-community-helpers",urls:["https://www.youtube.com/watch?v=jt2q1cHsH6E"],title:"Community Helpers",source:"Video · Kids Academy · Community Helpers",
+    remember:["Community Helper Trivia: a hairdresser cuts hair · a librarian helps you research · a bus driver gives you transportation"],
+    cards:[card("Community Helper Trivia","Watch the video. Which community helper can help?",[
+      fixed("hair","1. A girl has long hair. She wants a haircut. Who can help her?",["hairdresser","tailor","butcher","lumberjack"],"hairdresser","💇"),
+      fixed("library","2. A boy wants to research an animal. Who can help him find books?",["mechanic","librarian","grocery store clerk","detective"],"librarian","📚"),
+      fixed("bus","3. A boy wants to go from his house to the store. Who can take him there?",["pilot","boat captain","bus driver","race car driver"],"bus driver","🚌"),
+      ch("transport","A bus, a car, a boat and a plane are kinds of ___.",["transportation","research","food"],"transportation","🚗"),
+      ch("research","You use books, a computer and a globe to ___.",["research","cook","drive"],"research","🌍")
+    ],"1. hairdresser · 2. librarian (research) · 3. bus driver (transportation). Bus, car, boat, plane = transportation. Books, computer, globe = research.")]});
+
+  // ───────── 66. Video "Digraphs" (Jack Hartmann) — Phonics: Consonant Digraphs 05/11 ─────────
+  const DGS=["sh","th","ch","ph","wh"];
+  const DGW=[["shake","sh","🫨"],["shine","sh","✨"],["shark","sh","🦈"],["thunder","th","⛈️"],["thirty","th","3️⃣"],["thumb","th","👍"],
+    ["chew","ch","😋"],["chair","ch","🪑"],["cheese","ch","🧀"],["phone","ph","📱"],["photo","ph","📷"],["phonics","ph","🔤"],
+    ["whale","wh","🐋"],["wheel","wh","🛞"],["white","wh","⚪"]];
+  bonus({id:"bonus-video-digraphs-song",urls:["https://www.youtube.com/watch?v=NK8_Tvu6bJk"],title:"Digraphs Song",source:"Video · Jack Hartmann · Digraphs",
+    remember:["Digraphs have two letters. Digraphs make one sound: sh · th · ch · ph · wh"],
+    cards:[card("What is a digraph?","Watch the video. Choose the answer.",[
+      ch("two","Digraphs have ___ letters.",["two","one","three"],"two","✌️"),
+      ch("one","Digraphs make ___ sound.",["one","two","three"],"one","☝️"),
+      ch("sh","Letter s says /s/. Letter h says /h/. Put the letters together and they make a new sound: ___",["/sh/","/s/","/h/"],"/sh/","🔊")
+    ],"Digraphs have two letters. Digraphs make one sound. s + h → /sh/."),
+      ...chunk(DGW.map(([w,d,icon])=>sel(w,w,DGS,d,icon)),8).map((fields,i)=>
+        card(`Which digraph? (${i+1}/2)`,"Say the word. Which digraph do you hear at the beginning?",fields,fields.map(f=>`${f.id} (${f.answer})`).join(" · ")))]});
 })();
