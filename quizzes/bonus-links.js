@@ -741,4 +741,42 @@
     ],"Digraphs have two letters. Digraphs make one sound. s + h → /sh/."),
       ...chunk(DGW.map(([w,d,icon])=>sel(w,w,DGS,d,icon)),8).map((fields,i)=>
         card(`Which digraph? (${i+1}/2)`,"Say the word. Which digraph do you hear at the beginning?",fields,fields.map(f=>`${f.id} (${f.answer})`).join(" · ")))]});
+
+  // ───────── 67. Baamboozle 425808 "Proper and Common Nouns" (21 câu, câu 14 trùng câu 2 → bỏ) — Grammar 06/11 ─────────
+  const BPN=[["Harry Potter","proper"],["McDonald's","proper"],["cookie","common"],["Honda","proper"],["restaurant","common"],["day","common"],["car","common"],
+    ["Oreo","proper"],["girl","common"],["Walmart","proper"],["Monday","proper"],["mountain","common"],["Justin Bieber","proper"],["boy","common"],
+    ["Taylor Swift","proper"],["movie","common"],["book","common"],["zoo","common"],["store","common"],["Saturn","proper"]];
+  bonus({id:"bonus-baamboozle-proper-common-nouns",urls:["https://www.baamboozle.com/game/425808"],title:"Proper and Common Nouns",source:"Game · Baamboozle · Proper and Common Nouns",
+    remember:["Proper nouns (names, begin with a capital letter): Harry Potter · McDonald's · Honda · Oreo · Walmart · Monday · Saturn","Common nouns: cookie · restaurant · day · car · girl · mountain · boy · movie · book · zoo · store"],
+    cards:chunk(BPN.map(([w,a],i)=>fixed(`n${i}`,`Is "${w}" a common noun or proper noun?`,["common","proper"],a,a==="proper"?"🔠":"🔡")),10).map((fields,i)=>
+      card(`Common or proper? (${i+1}/2)`,"Choose common or proper.",fields,fields.map(f=>`${f.label.match(/"(.+)"/)[1]}: ${f.answer}`).join(" · ")))});
+
+  // ───────── 68. Video "Thump Thump Helps Out" (Wonders Grade 1 Shared Read) — LA 06/11 ─────────
+  bonus({id:"bonus-video-thump-thump",urls:["https://www.youtube.com/watch?v=WmjIStt45Kk"],title:"Thump Thump Helps Out",source:"Video · Wonders Shared Read · Thump Thump Helps Out",
+    remember:["Thump Thump Helps Out (fantasy): the bus got stuck in the mud → Thump Thump thumped → big rabbits rushed to help fix the bus."],
+    cards:[card("Thump Thump Helps Out","Watch the video. Choose the answer.",[
+      fixed("first","What happens FIRST?",["Thump Thump thumps a lot, and the little rabbits say “Hush!”","Thump Thump’s bus hits a rock.","The big rabbits fix the bus."],"Thump Thump thumps a lot, and the little rabbits say “Hush!”","1️⃣"),
+      fixed("next","What happens NEXT?",["Thump Thump’s bus hits a rock and gets stuck in the mud.","The kids get home fast.","Thump Thump thumps a lot just for fun."],"Thump Thump’s bus hits a rock and gets stuck in the mud.","➡️"),
+      fixed("then","What does Thump Thump do to help?",["He thumps and thumps and thumps.","He pushes the bus.","He calls on the phone."],"He thumps and thumps and thumps.","🥁"),
+      fixed("last","What happens LAST?",["The big rabbits want Thump Thump to thump loud and long if a rabbit needs help.","The little rabbits say “Hush!”","The bus hits a rock."],"The big rabbits want Thump Thump to thump loud and long if a rabbit needs help.","🔚"),
+      ch("who","Who is the bus driver?",["Thump Thump","Miss Sheldon","a big rabbit"],"Thump Thump","🚌")
+    ],"First Thump Thump thumps a lot and the little rabbits say “Hush!” Next his bus hits a rock and gets stuck in the mud. He thumps and thumps, and the big rabbits rush to help fix the bus. Last, the big rabbits want him to thump loud and long if a rabbit needs help.")]});
+
+  // ───────── 69. Video "The Three Billy Goats Gruff" (A Thousand Little Dreams) — Close Reading 06/11 (đọc từ storyboard) ─────────
+  const GOATS=["Big Billy","Bigger Billy","Biggest Billy"];
+  bonus({id:"bonus-video-billy-goats-gruff",urls:["https://www.youtube.com/watch?v=zNlgGhYVxYU"],title:"The Three Billy Goats Gruff",source:"Video · A Thousand Little Dreams · The Three Billy Goats Gruff",
+    remember:["The Three Billy Goats Gruff: Big Billy (little), Bigger Billy, Biggest Billy and a grumpy troll.","When we are kind, and when we share, everybody is happy."],
+    cards:[card("The Three Billy Goats Gruff","Watch the video. Choose the answer.",[
+      sel("little","Which goat is little and always hungry?",GOATS,"Big Billy","🐐"),
+      sel("jump","Which goat likes to jump and play?",GOATS,"Bigger Billy","🤸"),
+      sel("brave","Which goat is big, strong and brave?",GOATS,"Biggest Billy","💪"),
+      ch("why","Why do the goats want to cross the bridge?",["to eat fresh green grass","to find the troll","to swim in the river"],"to eat fresh green grass","🌿"),
+      ch("troll","Who lives under the bridge?",["a grumpy troll","a big fish","a farmer"],"a grumpy troll","👹"),
+      ch("wait","Bigger Billy says: “Please don’t eat me! Wait for my ___. He is the biggest!”",["brother","mother","friend"],"brother","👬"),
+      ch("bump","What does Biggest Billy do to the troll?",["He bumps the troll off the bridge. SPLASH!","He gives the troll a cake.","He runs away."],"He bumps the troll off the bridge. SPLASH!","💥"),
+      ch("stick","The troll cannot swim. How do the goats help?",["They pull him out with a long stick.","They call a boat.","They throw grass."],"They pull him out with a long stick.","🪵"),
+      ch("sorry","Why was the troll grumpy?",["He was hungry and alone.","He did not like grass.","He was too hot."],"He was hungry and alone.","😢"),
+      fixed("end","How does the story end?",["The troll becomes the goats’ friend.","The troll eats the goats.","The goats never come back."],"The troll becomes the goats’ friend.","🤝"),
+      ch("message","What is the message of the story?",["When we are kind, and when we share, everybody is happy.","Big goats always win.","Never cross a bridge."],"When we are kind, and when we share, everybody is happy.","💛")
+    ],"Big Billy is little and hungry · Bigger Billy likes to jump and play · Biggest Billy is big, strong and brave. They want to eat the green grass across the bridge. Biggest Billy bumps the grumpy troll into the river. The troll cannot swim, so the goats pull him out with a long stick. He was hungry and alone. He says sorry and becomes their friend. When we are kind, and when we share, everybody is happy.")]});
 })();

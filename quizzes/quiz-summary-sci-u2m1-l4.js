@@ -12,10 +12,16 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–05/11/2026";
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–06/11/2026";
   const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"],VOC=["behavior","learn","signal"];
 
   const NOTES=[
+    "📅 Class Diary: 06/11/2026",
+    "(06/11) Essential Question: How does an animal’s behavior help it survive?",
+    "(06/11) Animal behaviorists learn about animals. Dr. Cathleen Cox works at the Los Angeles Zoo.",
+    "(06/11) Some animals are trained to help people. Dogs are the most common type of service animal.",
+    "(06/11) Summarize It: Baby animals make a sound or movement. They send a signal to their parents.",
+    "(06/11) A baby animal makes noise to call a parent when it is hungry. Parents will feed. Parents will protect.",
     "📅 Class Diary: 05/11/2026",
     "(05/11) Behavior: the way a person, animal, or thing acts or does something.",
     "(05/11) Learn: to gain knowledge or skill.",
@@ -88,19 +94,23 @@
       choice("birds","How do baby birds signal to their parents?",["Baby birds make sounds. They also open their mouths when they are ready to eat.","Baby birds fly away from the nest.","Baby birds sleep all day."],"Baby birds make sounds. They also open their mouths when they are ready to eat.","🐦"),
       {...choice("polar","What are the polar bears doing?",["Polar bears feed their offspring. They show their cubs how to find food.","Polar bears are sleeping in a den.","Polar bears are running away from their cubs."],"Polar bears feed their offspring. They show their cubs how to find food.","🐻‍❄️"),img:"assets/2026-11-05/sci-polar-bears.webp",bigImg:true},
       {...choice("whale","Some animals are born knowing behaviors that help them survive. Which animal can swim right away?",["a whale calf","a baby bird","a groundhog kit"],"a whale calf","🐋"),img:"assets/2026-11-05/sci-whale.webp",bigImg:true}
-    ],"behavior: the way a person, animal, or thing acts or does something · learn: to gain knowledge or skill · signal: a sound or movement that gives information. The mother groundhog whistles. Baby birds make sounds and open their mouths when they are ready to eat. Polar bears feed their offspring and show their cubs how to find food. A whale calf can swim right away.")
+    ],"behavior: the way a person, animal, or thing acts or does something · learn: to gain knowledge or skill · signal: a sound or movement that gives information. The mother groundhog whistles. Baby birds make sounds and open their mouths when they are ready to eat. Polar bears feed their offspring and show their cubs how to find food. A whale calf can swim right away."),
+    sci("Lesson 4 Review (06/11)","Essential Question · Summarize It.",[
+      choice("eq","In Lesson 4 we learned: parents feed, protect, teach and take care of their young; baby birds make sounds to signal to their parents; a whale calf can swim right away. So the Essential Question of Lesson 4 is ___.",["How does an animal’s behavior help it survive?","What are the functions of animal structures?","Where do animals live together?"],"How does an animal’s behavior help it survive?","❓"),
+      choice("summarize","How do baby animals get what they need to survive?",["Baby animals make a sound or movement. They send a signal to their parents.","Baby animals go to the store.","Baby animals sleep until they are big."],"Baby animals make a sound or movement. They send a signal to their parents.","📣")
+    ],"Essential Question: How does an animal’s behavior help it survive? Baby animals make a sound or movement. They send a signal to their parents.")
   ];
   registerQuiz({
     id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Lesson 4 · Key Concepts Test",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1 · Lesson 4: Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
-      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1],["Signals and behaviors","behavior · learn · signal · The Burrow · Animal Messages",1]]),
+      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1],["Signals and behaviors","behavior · learn · signal · The Burrow · Animal Messages",1],["Lesson 4 Review","Essential Question · Summarize It",1]]),
       questions:TEST,
       readings:[{id:"notes-sci-l4",title:"Remember — Science Lesson 4",byline:`Animal Behaviors · Class Diary ${RANGE}`,mode:"notes",text:NOTES.join("\n")}]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
-  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"]];
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"]];
   const TOPICS=[["Stories and texts",/listen|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["Animal Behaviors",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
   for(const [id,filter] of SOURCES){

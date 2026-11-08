@@ -18,7 +18,8 @@
   const HFW=["eat","no","of","under","who"],BLENDS=["st","nk","nd","sk","mp","nt"];
   const DAILY_LA=["class-diary-2026-10-23-language","class-diary-2026-10-26-language","class-diary-2026-10-27-language","class-diary-2026-10-28-language",
     "class-diary-2026-10-29-language","class-diary-2026-11-02-language","class-diary-2026-11-03-language","class-diary-2026-11-04-language",
-    "class-diary-2026-11-05-language"];
+    "class-diary-2026-11-05-language",
+    "class-diary-2026-11-06-language","la-common-proper-nouns-test-2026-11-06"];
   const sources=DAILY_LA.map(id=>[id,(window.quizSources||{})[id]]).filter(([,src])=>src);
   const dayOf=src=>(src.uploadDate||"").slice(5).split("-").reverse().join("/");
   const RANGE=sources.length?`${dayOf(sources[0][1])}–${dayOf(sources[sources.length-1][1])}/2026`:"";
@@ -81,15 +82,15 @@
   const norm=v=>String(Array.isArray(v)?v.join("|"):v??"").toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'|/+=-]+/g," ").trim();
   const fieldKeys=q=>(q.type==="compound"?q.fields:[q]).map(f=>`${norm(f.label||q.text)}#${norm(f.answer)}`);
   const BUCKET=[
-    ["High-Frequency Words","eat · no · of · under · who",/high-frequency|\bhfw\b/i],
+    ["High-Frequency Words","eat · no · of · under · who · all · call · day · her · want",/high-frequency|\bhfw\b/i],
     ["Phonemic Awareness","phoneme blending",/phonemic|phoneme/i],
-    ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text",/writing(?! companion)/i],
-    ["Grammar","singular and plural possessive nouns ’s / s’ · fix the possessives",/grammar|possessive|fix the draft|write each sentence/i],
+    ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text · a good beginning · end punctuation",/writing(?! companion)/i],
+    ["Grammar","singular and plural possessive nouns ’s / s’ · fix the possessives · common and proper nouns",/grammar|possessive|fix the draft|write each sentence/i],
     ["Structural Analysis","inflectional ending -ing · What is happening now?",/structural|-ing|circle the word/i],
     ["Phonics","end blends st · nk · nd · nt · sk · mp · ft · spelling words · consonant digraphs sh · th · -ng",/phonics|end blend|sort the words|spelling/i],
     ["Research and Inquiry","Pick to research: animal · habitat · food · Where Animals Live",/research/i],
     ["Essential Question and Vocabulary","Where do animals live together? · How do people help out in the community? · habitat · depend · hibernate · tranquil · tolerate · Ways to Help · leadership · admire",/build knowledge|build background|build vocabulary|vocabulary|essential/i],
-    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · nonfiction · author’s purpose",/.*/]];
+    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · Thump Thump Helps Out (fantasy) · The Three Billy Goats Gruff · nonfiction · author’s purpose",/.*/]];
   const buckets=new Map(BUCKET.map(([t,sub])=>[t,{subtitle:sub,items:[]}]));
   const seen=new Set(),readings=[notesCard("notes-la-u2w34")],links=new Map();
   for(const [id,src] of sources){
