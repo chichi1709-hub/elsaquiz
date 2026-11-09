@@ -728,7 +728,7 @@ function readingCardMarkup(reading){
   // In đậm theo Class Diary: nhãn trước ":" là từ khoá (trừ nhãn chung như Example/Define/Writing Trait/Lesson n),
   // chữ diary in đậm (HFW, THURSDAY, Protection, Characters/Setting/Events, Genre: Fantasy), từ được Define.
   const PLAIN_LABEL=/^(example|define|writing trait|writing skill|homework check|lesson \d+)$/i;
-  const DIARY_BOLD=[/^(Characters) are /,/^The (setting) is /,/^The (events) are /,/^(Protection) keeps /,/\b(THURSDAY)\b/,/^(Fantasy)\./,/^A (contraction) is /,/^A (singular noun) names /,/^A (plural noun) names /];
+  const DIARY_BOLD=[/^(Characters) are /,/^The (setting) is /,/^The (events) are /,/^(Protection) keeps /,/\b(THURSDAY)\b/,/^(Fantasy)\./,/^A (contraction) is /,/^A (singular noun) names /,/^A (plural noun) names /,/^(Setting) is /,/^(Events) are /,/(in the next lesson)/];
   const emph=(text,term)=>{
     let safe=escapeHtml(text);
     const rules=/^define$/i.test(term||"")?[/^(?:A |An |To )?(\w+) (?:is|are|means) /,/^When you (\w+) /]:DIARY_BOLD;

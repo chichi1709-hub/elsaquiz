@@ -779,4 +779,32 @@
       fixed("end","How does the story end?",["The troll becomes the goats’ friend.","The troll eats the goats.","The goats never come back."],"The troll becomes the goats’ friend.","🤝"),
       ch("message","What is the message of the story?",["When we are kind, and when we share, everybody is happy.","Big goats always win.","Never cross a bridge."],"When we are kind, and when we share, everybody is happy.","💛")
     ],"Big Billy is little and hungry · Bigger Billy likes to jump and play · Biggest Billy is big, strong and brave. They want to eat the green grass across the bridge. Biggest Billy bumps the grumpy troll into the river. The troll cannot swim, so the goats pull him out with a long stick. He was hungry and alone. He says sorry and becomes their friend. When we are kind, and when we share, everybody is happy.")]});
+  // ───────── 70. Video "The Chicks and the Fox" (Little Fox · Bat and Friends) — Close Reading 09/11 (đọc phụ đề từ storyboard) ─────────
+  bonus({id:"bonus-video-chicks-and-fox",urls:["https://www.youtube.com/watch?v=b-L-eY7boWA"],title:"The Chicks and the Fox",source:"Video · Little Fox · Bat and Friends · The Chicks and the Fox",
+    remember:["The Chicks and the Fox: Bat found a soft, yellow chick in the barn. The chick must go to its mother.","A fox came to the farm. Bat and his friends made some noise, and the fox ran far."],
+    cards:[card("The thing in the barn","Watch the video. Choose the answer.",[
+      ch("saw","What did Bat see in the barn?",["something brown and hard","a big red apple","a little white dog"],"something brown and hard","🦇"),
+      ch("hat","Cow asked, “Is it a hat?” What did Bat say?",["“It is not a hat.”","“Yes, it is a hat.”","“It is a box.”"],"“It is not a hat.”","🎩"),
+      ch("box","Who asked, “Is it a box?”",["Pig","Cow","Cat"],"Pig","📦"),
+      ch("rock","Cat said, “A rock is brown and hard. A rock can be small too.” Was it a rock?",["No, it was not a rock.","Yes, it was a rock."],"No, it was not a rock.","🪨"),
+      ch("cheep","The new thing was yellow. What did it say?",["“Cheep! Cheep!”","“Moo! Moo!”","“Oink! Oink!”"],"“Cheep! Cheep!”","🐥"),
+      ch("story","Cow said, “But you have something too.” What did Bat have?",["a story about the thing in the barn","a new hat","a big box"],"a story about the thing in the barn","📖")
+    ],"Bat saw something brown and hard in the barn. It was not a hat, a box, or a rock. The thing was a soft, yellow chick. It said, “Cheep! Cheep!” The chick must go to its mother. Cow said Bat has a story to tell his friends."),
+    card("The fox","Watch the video. Choose the answer.",[
+      ch("henhouse","Pig said, “The fox will see the henhouse.” What will the fox do?",["It will eat the hens.","It will build a house.","It will sleep."],"It will eat the hens.","🐔"),
+      ch("cat","Where did Cat watch from?",["the windmill","the apple tree","the henhouse"],"the windmill","🌬️"),
+      ch("noise","Bat swooped down at the fox. What noises did they make?",["“Hiss!” and “Moo!”","“Cheep!” and “Quack!”","“Woof!” and “Baa!”"],"“Hiss!” and “Moo!”","📢"),
+      ch("woke","The noise woke up someone. Who?",["Dog","Cow","the hens"],"Dog","🐶"),
+      ch("thanks","What did Dog say?",["“Thank you.”","“Go away.”","“Good night.”"],"“Thank you.”","🙏"),
+      ch("message","What does the story teach us?",["Friends can work together to keep others safe.","Foxes are good friends.","Never go into a barn."],"Friends can work together to keep others safe.","🤝")
+    ],"A fox came to the farm. Pig said the fox would eat the hens. They let Dog sleep and made a plan. Cow hid behind the henhouse, Pig behind the tractor, Cat watched from the windmill and Bat went to an apple tree. Bat swooped down at the fox. Hiss! Moo! The fox ran far. The noise woke up Dog. “Thank you,” said Dog. Friends can work together to keep others safe.")]});
+
+  // ───────── 71. Game Baamboozle 900749 "2 Syllables Word (Closed Syllables)" — LA 09/11 (25 từ; "insect" lặp 2 lần → giữ 1) ─────────
+  const CLOSED=["gob-lin","hic-cup","sel-fish","kit-ten","in-sect","nut-meg","back-pack","nap-kin","in-ject","sand-wich","fran-tic","splen-did","sub-mit","cac-tus","mas-cot","den-tist","con-tent","tab-let","plas-tic","sun-tan","tan-trum","bas-ket","un-plug","con-test","cob-web"];
+  const splitAt=(word,i)=>`${word.slice(0,i)}-${word.slice(i)}`;
+  bonus({id:"bonus-baamboozle-closed-syllables",urls:["https://www.baamboozle.com/game/900749"],title:"2 Syllables Word (Closed Syllables)",source:"Game · Baamboozle · 2 Syllables Word (Closed Syllables)",
+    remember:["Closed syllables: each part ends in a consonant and has one vowel letter → the vowel sound is short: gob-lin · kit-ten · nap-kin · bas-ket · cob-web"],
+    cards:chunk(CLOSED.map(answer=>{const word=answer.replace("-",""),i=answer.indexOf("-");
+      return ch(word,`Split the word into two closed syllables: ${word}`,[answer,splitAt(word,i-1),splitAt(word,i+1)],answer,"✂️")}),13).map((fields,i)=>
+      card(`Closed syllables (${i+1}/2)`,"Choose the correct way to split the word.",fields,fields.map(f=>f.answer).join(" · ")))});
 })();

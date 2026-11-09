@@ -11,7 +11,7 @@
   const fill=(id,label,answer,icon)=>({id,label,type:"fill",answer:[answer],icon});
   const math=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:M,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-math-test-5",LABEL="Tổng hợp kiến thức · Math · Test 5",RANGE="16/10–06/11/2026";
+  const KEY="weekly-math-test-5",LABEL="Tổng hợp kiến thức · Math · Test 5",RANGE="16/10–09/11/2026";
   const SUBJECT={name:"Math",icon:"🧮",accent:"#ff8a3d",soft:"#fff1e6",scoreByField:true};
 
   // Bài Math theo ngày (Class Diary 16/10 → 06/11), cũ trước
@@ -40,6 +40,15 @@
     "(L37) Extending Shape Patterns",
     "(L38) Problem Solving: Look for a Pattern",
     "(L39) Patterns in Tables",
+    // Class Diary 09/11: cô ôn Lesson 35–39 (không có bài Math theo ngày — user chỉ cần cập nhật vào bộ tổng hợp)
+    "📅 Class Diary: 09/11/2026",
+    "(09/11) Teacher will briefly review key concepts from lessons 35 to 39.",
+    "(09/11 · L35) This is a pattern. Sun, moon repeats over and over.",
+    "(09/11 · L36) The stripes make a pattern. What color should the white stripe be?",
+    "(09/11 · L37) A B repeats over and over.",
+    "(09/11 · L38) A pattern can be anything that repeats. It can be colors, shapes, numbers, letters, or objects. To find a pattern, look for what repeats.",
+    "(09/11 · L39) You can use a table to find how many mittens the children are wearing. The number of mittens increases by 2 each time.",
+    "(09/11) Homework: Review lessons 32 to 39 for the test in the next lesson.",
     ...[...SOURCES].reverse().flatMap(id=>[...(src(id)?.subject.readings||[]).filter(r=>r.mode==="notes").map(r=>r.text),...(EXAMPLES[id]||[])])
   ].join("\n");
   const lessonList={id:"lessons-math-t5",title:"Test 5 · Lessons 32–39",byline:`Math · Class Diary ${RANGE}`,mode:"reference",
@@ -135,7 +144,15 @@
     slideCard(39,[
       pic(fill("nests","Each nest has 2 eggs. 4 nests → ___ eggs","8","🥚"),SRC[39][2][0]),
       pic(fill("inc","The number of nests increases by 1. The number of eggs increases by ___.","2","📈"),SRC[39][2][0])
-    ],"Use a table to record the numbers. The number of eggs increases by 2. Skip count by 2s: 2, 4, 6, 8.")
+    ],"Use a table to record the numbers. The number of eggs increases by 2. Skip count by 2s: 2, 4, 6, 8."),
+    // Ôn tập 09/11: mỗi câu gắn đúng hình slide của câu đó (assets/2026-11-09/, tạo bằng _reference/tao_anh_2026-11-09.py)
+    math("Review · Lessons 35–39 (Class Diary 09/11)","Source: Math review slides · Class Diary 09/11/2026",[
+      pic(choice("stripes","Lesson 36: The stripes make a pattern. What color should the white stripe be?",["light gray","dark gray","white"],"light gray","🎨"),"assets/2026-11-09/math-stripes.webp"),
+      pic(choice("acb-part","Lesson 38: To find a pattern, look for what repeats. Which part repeats?",["A C B","A C","C B A"],"A C B","🔁"),"assets/2026-11-09/math-acb.webp"),
+      pic(choice("acb-next","A C B A C B A C B A C ___ What comes next?",["B","A","C"],"B","➡️"),"assets/2026-11-09/math-acb.webp"),
+      pic(fill("mittens","Lesson 39: 1 child → 2 mittens, 2 children → 4 mittens, 3 children → 6 mittens. 4 children → ___ mittens","8","🧤"),"assets/2026-11-09/math-mittens.webp"),
+      pic(fill("mit-inc","The number of mittens increases by ___ each time.","2","📈"),"assets/2026-11-09/math-mittens.webp")
+    ],"Dark gray, light gray repeats → the white stripe should be light gray. A C B repeats → B comes next. The number of mittens increases by 2 each time: 2, 4, 6, 8.")
   ];
   registerQuiz({
     id:"math-test-5",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"math",
@@ -143,7 +160,7 @@
     subject:{...SUBJECT,subtitle:`Test 5 · Lessons 32–39 · Workbook pages and lesson slides · Class Diary ${RANGE}`,
       groups:groupsOf([["Lesson 32","Representing Numbers on a Ten-Frame",2],["Lesson 33","Using Data from Real Graphs",1],["Lesson 34","Using Data from Picture Graphs",2],
         ["Lesson 35","Describing Patterns",1],["Lesson 36","Using Patterns to Predict",1],["Lesson 37","Extending Shape Patterns",1],
-        ["Lesson 38","Problem Solving: Look for a Pattern",2],["Lesson 39","Patterns in Tables",2]]),
+        ["Lesson 38","Problem Solving: Look for a Pattern",2],["Lesson 39","Patterns in Tables",2],["Review 09/11","Lessons 35–39 key concepts",1]]),
       questions:TEST,readings:[remember("notes-math-t5"),lessonList]}
   });
 
