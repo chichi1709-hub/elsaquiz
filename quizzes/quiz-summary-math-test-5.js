@@ -1,6 +1,6 @@
 // TỔNG HỢP KIẾN THỨC — Math · Test 5 (Class Diary 16/10–06/11/2026: Lesson 32 → Lesson 39, sau Test 4 ngày 15/10).
 // 2 bài trong nhóm Tổng hợp (uploadDate "weekly-…"), cùng cách với quiz-summary-sci-u2m1-l4.js:
-//   (1) "Math - Test 5": câu hỏi MỚI kiểu bài kiểm tra cho từng lesson (registry tự chia Part ≤ 30 ý);
+//   (1) "Math - Test 5": câu hỏi lấy từ trang Workbook bài về nhà + slide bài giảng trong diary, mỗi thẻ ghi rõ nguồn;
 //   (2) Review: gộp TOÀN BỘ câu của các bài Math theo ngày trong SOURCES, xếp theo chủ đề, mang theo bài đọc.
 // Remember ghép tự động từ thẻ Remember của từng bài ngày. Diary Math mới trước Test 5: thêm id vào SOURCES, sửa RANGE.
 // Tên lesson theo diary 05/11 (L32–L35) và mục Homework check các ngày sau (L36–L39).
@@ -13,7 +13,6 @@
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
   const KEY="weekly-math-test-5",LABEL="Tổng hợp kiến thức · Math · Test 5",RANGE="16/10–06/11/2026";
   const SUBJECT={name:"Math",icon:"🧮",accent:"#ff8a3d",soft:"#fff1e6",scoreByField:true};
-  const tf=n=>{const row=k=>Array.from({length:5},(_,i)=>i<k?"🔴":"⬜").join("");return `${row(Math.min(n,5))}\n${row(Math.max(0,n-5))}`};
 
   // Bài Math theo ngày (Class Diary 16/10 → 06/11), cũ trước
   const SOURCES=["math-lesson-32","math-lesson-33","math-lesson-33-picture-graph","math-lesson-35-pattern","math-lesson-36-predict",
@@ -36,79 +35,106 @@
   const remember=id=>({id,title:"Remember — Math Test 5",byline:`Lessons 32–39 · Class Diary ${RANGE}`,mode:"notes",text:NOTES.split("\n").slice(9).join("\n")});
 
   // ───── (1) Math - Test 5 ─────
+  // MỌI câu đều lấy từ tư liệu có thật: trang Workbook bài về nhà (diary mục Homework check) hoặc slide bài giảng trong diary.
+  // Hình đề: assets/math-test-5/ (tạo bằng _reference/tao_anh_math_test5.py, đã xoá đáp án màu hồng của cô).
+  // Câu cần nhìn hình thì gắn đúng hình đó (bigImg) ngay trên câu; mỗi thẻ ghi rõ nguồn; bài đọc "Lesson n · Source" có cả trang Workbook.
+  const WB=name=>`assets/math-test-5/${name}.webp`;
+  const pic=(field,img)=>({...field,img,bigImg:true});
+  const SRC={
+    32:["Representing Numbers on a Ten-Frame","21/10",["assets/2026-11-05/math-l32-tenframe.webp","05/11"]],
+    33:["Using Data from Real Graphs","22/10"],
+    34:["Using Data from Picture Graphs","26/10",["assets/2026-11-05/math-l34-picture-graph.webp","05/11"]],
+    35:["Describing Patterns","28/10"],
+    36:["Using Patterns to Predict","29/10"],
+    37:["Extending Shape Patterns","02/11"],
+    38:["Problem Solving: Look for a Pattern","04/11",["assets/2026-11-02/math-blanket-1.webp","02/11"],["assets/2026-11-02/math-blanket-2.webp","02/11"]],
+    39:["Patterns in Tables","05/11",["assets/2026-11-04/math-nests.webp","04/11"]]
+  };
+  const workbook=n=>`Source: Workbook page “${SRC[n][0]}” · homework check, Class Diary ${SRC[n][1]}/2026`;
+  const slide=n=>`Source: Lesson ${n} slide · Class Diary ${SRC[n][2][1]}/2026`;
+  const wbCard=(n,fields,explain)=>math(`Lesson ${n} · ${SRC[n][0]}`,workbook(n),fields,explain,{readingId:`src-l${n}`});
+  const slideCard=(n,fields,explain)=>math(`Lesson ${n} · ${SRC[n][0]} (lesson slide)`,slide(n),fields,explain,{readingId:`src-l${n}`});
+  const sourceReadings=Object.entries(SRC).map(([n,[title,day,...slides]])=>({id:`src-l${n}`,title:`Lesson ${n} · Source`,
+    byline:`Workbook “${title}” · homework check, Class Diary ${day}/2026`,mode:"reference",images:[WB(`wb-l${n}`),...slides.map(([img])=>img)],
+    text:[`Workbook page “${title}” (homework check, Class Diary ${day}/2026). The teacher’s answers are removed.`,...slides.map(([,d])=>`Lesson ${n} slide: Class Diary ${d}/2026.`)].join("\n")}));
   const TEST=[
-    math("Lesson 32 · Representing Numbers on a Ten-Frame","You can show numbers up to 10 on a ten-frame.",[
-      choice("start","To show a number, start at the ___ box.",["top left","bottom right","middle"],"top left","↖️"),
-      choice("row","Which row do you fill first?",["the top row","the bottom row","any row"],"the top row","⬆️"),
-      fill("count8",`${tf(8)}\nHow many?`,"8","🔴"),
-      fill("empty6",`${tf(6)}\nHow many boxes are empty?`,"4","⬜"),
-      fill("five","8 is 5 and ___.","3","8️⃣"),
-      fill("mia","Mia put 3 counters in a ten-frame. How many more counters should Mia put in the frame to make 10?","7","🔟"),
-      choice("show7","Which ten-frame shows 7?",["🔴🔴🔴🔴🔴 / 🔴🔴⬜⬜⬜","🔴🔴🔴🔴⬜ / 🔴🔴🔴⬜⬜","🔴🔴🔴🔴🔴 / 🔴⬜⬜⬜⬜"],"🔴🔴🔴🔴🔴 / 🔴🔴⬜⬜⬜","7️⃣")
-    ],"Start at the top left box. Fill the top row first. Then fill the bottom row as you need to. 8 is 5 and 3. 6 counters → 4 empty boxes. 3 and 7 more make 10."),
-    math("Lesson 33 · Using Data from Real Graphs","Circle each pair of counters. Then answer.",[
-      choice("more","🔴🔴🔴🔴🔴\n🟡🟡🟡🟡🟡🟡🟡🟡\nWhich color has more?",["yellow","red","the same"],"yellow","⚖️"),
-      fill("nopartner","How many counters do not have a partner?","3","🟡"),
-      choice("same","⚪⚪⚪⚪⚪⚪\n⚫⚫⚫⚫⚫⚫\nIs there the same number of colored counters?",["yes","no"],"yes","🟰"),
-      choice("show","Counters without a partner show ___.",["which color has more","which color has fewer","the same number"],"which color has more","🔍"),
-      choice("real","This is a real-object graph because ___.",["the counters are real objects","it has pictures","it has letters"],"the counters are real objects","🧮"),
-      fill("draw","There are 4 gray counters. How many black counters do you draw so 2 black counters do not have a partner?","6","✏️")
-    ],"Counters in pairs: each counter has a partner. 5 red and 8 yellow → 3 yellow counters do not have a partner, so yellow has more. 6 white and 6 black → the same number. 4 gray + 2 more = 6 black counters."),
-    math("Lesson 34 · Using Data from Picture Graphs","Picture graph · Favorite Fruit: Apple 🍎🍎🍎🍎 · Banana 🍌🍌 · Grapes 🍇🍇🍇",[
-      fill("vote","Look at the picture graph. Each picture stands for ___ vote.","1","🗳️"),
-      fill("banana","How many children chose Banana?","2","🍌"),
-      choice("most","Which fruit got the most votes?",["Apple","Banana","Grapes"],"Apple","🏅"),
-      choice("fewest","Which fruit got the fewest votes?",["Banana","Apple","Grapes"],"Banana","🔻"),
-      fill("moregrapes","How many more children chose Grapes than Banana?","1","🍇"),
-      fill("all","How many children voted in all?","9","👧"),
-      choice("about","What is the graph about?",["Favorite Fruit","Favorite Pets","Favorite Seasons"],"Favorite Fruit","📊")
-    ],"Each picture stands for 1 vote. Apple 4 · Banana 2 · Grapes 3. Apple got the most votes, Banana the fewest. Grapes has 1 more than Banana. 4 + 2 + 3 = 9 children voted."),
-    math("Lesson 35 · Describing Patterns","A pattern has a part that repeats over and over.",[
-      choice("repeat","🟩🟩🟨🟩🟩🟨🟩🟩🟨\nWhat repeats over and over?",["green, green, yellow","green, yellow","green, yellow, yellow"],"green, green, yellow","🔁"),
-      choice("letters","🟩🟩🟨🟩🟩🟨\nName each color with a letter: 🟩 = A, 🟨 = B. Which letters make the same pattern?",["A A B A A B","A B A B A B","A B B A B B"],"A A B A A B","🔤"),
-      choice("unit","🐱🐶🐭🐱🐶🐭🐱🐶🐭\nWhat is the pattern unit?",["🐱🐶🐭","🐱🐶","🐶🐭"],"🐱🐶🐭","⭕"),
-      choice("which","Which one is a pattern?",["🍎🍌🍎🍌🍎🍌","🍎🍌🍌🍎🍎🍎","🍌🍎🍎🍌🍌🍌"],"🍎🍌🍎🍌🍎🍌","🧩"),
-      choice("word","In a pattern, the same part ___ over and over.",["repeats","stops","hides"],"repeats","🔁")
-    ],"Green, green, yellow repeats over and over → A A B A A B. The pattern unit is the part that repeats: 🐱🐶🐭. 🍎🍌 repeats, so 🍎🍌🍎🍌🍎🍌 is a pattern."),
-    math("Lesson 36 · Using Patterns to Predict","When you predict, you tell what comes next.",[
-      choice("predict","When you ___, you tell what comes next.",["predict","repeat","count"],"predict","🔮"),
-      choice("flower","🌸🍀🌸🍀🌸 ___\nWhat comes next?",["🍀","🌸","🌼"],"🍀","➡️"),
-      choice("abc","A B C A B C A ___\nWhat letter comes next?",["B","A","C"],"B","🔤"),
-      choice("bug","🐞🐞🐝🐞🐞🐝🐞 ___\nWhat comes next?",["🐞","🐝","🦋"],"🐞","🐞"),
-      choice("three","Estimation: 🔴🔵🔵🔴🔵🔵🔴 …\nPredict the next 3.",["🔵🔵🔴","🔴🔵🔵","🔵🔴🔴"],"🔵🔵🔴","🔮")
-    ],"Find the part that repeats, then tell what comes next. 🌸🍀 repeats → 🍀. A B C repeats → B. 🐞🐞🐝 repeats → 🐞. 🔴🔵🔵 repeats → 🔵🔵🔴."),
-    math("Lesson 37 · Extending Shape Patterns","You can make a pattern go on and on. Use the part that repeats to tell what comes next.",[
-      choice("shape","⬛🔺⬛🔺⬛ ___\nSay each shape. What shape comes next?",["triangle 🔺","square ⬛","circle ⚪"],"triangle 🔺","🔺"),
-      choice("circle","⚪⚪⬛⚪⚪⬛⚪ ___\nWhat comes next?",["⚪","⬛","🔺"],"⚪","⚪"),
-      choice("ab","🔷⭐🔷⭐🔷⭐\nName the shapes with letters. 🔷 = A",["A B A B A B","A A B A A B","A B C A B C"],"A B A B A B","🔤"),
-      choice("abc","🔺⬜⚪🔺⬜⚪\nName the shapes with letters. 🔺 = A",["A B C A B C","A B A B A B","A A B C A A"],"A B C A B C","🔤"),
-      choice("part","⭐⭐🌙⭐⭐🌙⭐⭐🌙\nWhich picture shows the part that repeats?",["⭐⭐🌙","⭐🌙","🌙⭐🌙"],"⭐⭐🌙","🧩")
-    ],"⬛🔺 repeats → a triangle comes next. ⚪⚪⬛ repeats → ⚪. 🔷⭐ → A B A B A B. 🔺⬜⚪ → A B C A B C. The part that repeats is ⭐⭐🌙."),
-    math("Lesson 38 · Problem Solving: Look for a Pattern","Read and Understand → Plan → Solve → Look Back and Check",[
-      choice("first","What do you do FIRST?",["Read and Understand","Solve","Look Back and Check"],"Read and Understand","1️⃣"),
-      choice("next","You made a Plan. What do you do NEXT?",["Solve","Read and Understand","Look Back and Check"],"Solve","➡️"),
-      choice("last","What do you do LAST?",["Look Back and Check","Plan","Read and Understand"],"Look Back and Check","🔚"),
-      choice("scarf","Grandma is making a scarf with a pattern.\n🟥🟦🟥🟦🟥🟦 ⬜⬜\nWhat colors will the next 2 stripes be?",["🟥🟦","🟦🟥","🟥🟥"],"🟥🟦","🧣"),
-      choice("check","Look Back and Check: Do your stripes match the ___ of the pattern?",["rest","color of the sky","number of children"],"rest","✅")
-    ],"Read and Understand → Plan: find the color pattern → Solve: color the stripes to follow the pattern → Look Back and Check: do your stripes match the rest of the pattern? 🟥🟦 repeats, so the next stripes are 🟥🟦."),
-    math("Lesson 39 · Patterns in Tables","Use a table to record the numbers. Look for patterns.",[
-      fill("b3","Each bike has 2 wheels.\nNumber of Bikes | Number of Wheels: 1 | 2 · 2 | 4 · 3 | ___","6","🚲"),
-      fill("b4","Number of Bikes | Number of Wheels: 1 | 2 · 2 | 4 · 3 | 6 · 4 | ___","8","🚲"),
-      fill("inc","The number of bikes increases by 1. The number of wheels increases by ___.","2","📈"),
-      choice("how","How can you find the number of wheels on 5 bikes?",["Skip count by 2s.","Skip count by 10s.","Count back from 10."],"Skip count by 2s.","🦘"),
-      fill("by5","Number of Tanks | Number of Fish: 1 | 5 · 2 | 10 · 3 | 15 · 4 | ___","20","🐟"),
-      fill("by10","Skip count by 10s: 10, 20, 30, ___","40","🍪"),
-      fill("num","1 2 3 1 2 3 1 2 ___\nWhat number comes next?","3","🔢")
-    ],"Each bike has 2 wheels: 2, 4, 6, 8 — skip count by 2s. Fish in tanks: 5, 10, 15, 20 — skip count by 5s. Crackers in boxes: 10, 20, 30, 40 — skip count by 10s. 1 2 3 repeats → 3.")
+    wbCard(32,[
+      pic(choice("kyle","Kyle put 6 counters in a ten-frame. How many more counters should Kyle put in the frame to make 10?",["2","3","4","5"],"4","🔟"),WB("wb-l32-kyle")),
+      pic(fill("four","Draw counters in the ten-frame to show 4. How many boxes are still empty?","6","⬜"),WB("wb-l32-four")),
+      pic(fill("seven","Show how 7 is 5 and 2. Fill the top row first. How many counters go in the bottom row?","2","7️⃣"),WB("wb-l32-algebra")),
+      pic(fill("nine","Show how 9 is 5 and 4. How many counters go in the bottom row?","4","9️⃣"),WB("wb-l32-algebra"))
+    ],"6 and 4 more make 10. 4 counters → 6 empty boxes. Fill the top row first: 7 is 5 and 2 · 9 is 5 and 4."),
+    slideCard(32,[
+      choice("start","To show a number on a ten-frame, start at the ___ box.",["top left","bottom right","middle"],"top left","↖️"),
+      pic(fill("empty3","This ten-frame shows 3. How many boxes are empty?","7","⬜"),SRC[32][2][0])
+    ],"You can use a ten-frame to show numbers up to 10. To show 3, start at the top left box. 3 counters → 7 empty boxes."),
+    wbCard(33,[
+      pic(choice("same1","Is there the same number of colored counters?",["yes","no"],"no","🟰"),WB("wb-l33-g1")),
+      pic(choice("more1","Which color has more?",["gray","black"],"black","⚖️"),WB("wb-l33-g1")),
+      pic(fill("partner1","How many counters do not have a partner?","2","🔍"),WB("wb-l33-g1")),
+      pic(choice("more2","Which color has more?",["gray","black"],"gray","⚖️"),WB("wb-l33-g2")),
+      pic(fill("partner2","How many counters do not have a partner?","3","🔍"),WB("wb-l33-g2")),
+      pic(fill("journal","Draw black counters on the graph so 1 black counter does not have a partner. How many black counters do you draw?","7","✏️"),WB("wb-l33-journal"))
+    ],"Graph 1: 5 gray, 7 black → black has more, 2 counters do not have a partner. Graph 2: 8 gray, 5 black → gray has more, 3 counters do not have a partner. Journal: 6 gray → draw 7 black counters."),
+    wbCard(34,[
+      pic(fill("winter","How many children chose winter?","3","❄️"),WB("wb-l34-graph")),
+      pic(choice("favorite","Which season is the favorite?",["Summer","Fall","Winter","Spring"],"Summer","☀️"),WB("wb-l34-graph")),
+      pic(choice("four","Which season did 4 children choose?",["Fall","Summer","Winter","Spring"],"Fall","🍁"),WB("wb-l34-graph")),
+      pic(choice("more","Number Sense: How many more children chose summer than spring?",["11","6","5","1"],"1","➕"),WB("wb-l34-graph")),
+      pic(choice("about","Reasoning: What is the graph about?",["Favorite Subjects","Summer","Favorite Seasons","Fall"],"Favorite Seasons","📊"),WB("wb-l34-graph"))
+    ],"Favorite Seasons: Summer 6 · Fall 4 · Winter 3 · Spring 5. Summer is the favorite. 6 is 1 more than 5."),
+    slideCard(34,[
+      pic(fill("stripes","How many children voted for the hat with stripes?","4","🥳"),SRC[34][2][0]),
+      pic(fill("dots","How many children voted for the hat with polka dots?","6","🎈"),SRC[34][2][0]),
+      pic(choice("most","Which hat got the most votes?",["Stripes","Polka Dots"],"Polka Dots","🏅"),SRC[34][2][0])
+    ],"Each party hat stands for 1 vote. Stripes 4 · Polka Dots 6 → Polka Dots got the most votes. 10 children voted."),
+    wbCard(35,[
+      pic(choice("gifts","Circle the pattern unit. Which part repeats?",["1 tall gift, 1 wide gift","2 tall gifts","1 tall gift, 2 wide gifts"],"1 tall gift, 1 wide gift","🎁"),WB("wb-l35-gifts")),
+      pic(choice("shapes","Circle the pattern unit. Which part repeats?",["square, triangle","square, square","triangle, triangle, square"],"square, triangle","🔺"),WB("wb-l35-shapes")),
+      pic(choice("star","Circle the pattern unit. Which part repeats?",["star, fish, ball","star, fish","fish, ball"],"star, fish, ball","⭐"),WB("wb-l35-star")),
+      pic(choice("balls","Journal: Make the same pattern using letters.",["A B C A B C","A B A B A B","A A B A A B"],"A B C A B C","🔤"),WB("wb-l35-balls"))
+    ],"The pattern unit is the part that repeats: tall gift, wide gift · square, triangle · star, fish, ball. Baseball, football, basketball → A B C A B C."),
+    wbCard(36,[
+      pic(choice("tulips","Find the pattern. What comes next?",["a light tulip","a dark tulip"],"a light tulip","🌷"),WB("wb-l36-tulips")),
+      pic(choice("flowers","Find the pattern. What comes next?",["a white flower","a dark flower"],"a white flower","🌼"),WB("wb-l36-flowers")),
+      pic(choice("books","Find the pattern. What comes next?",["a light book","a dark book"],"a light book","📚"),WB("wb-l36-books")),
+      pic(choice("bikes","Estimation: Predict what comes next.",["bike, wagon, bike","bike, wagon, wagon","wagon, bike, bike","wagon, bike, wagon"],"bike, wagon, bike","🚲"),WB("wb-l36-bikes"))
+    ],"Dark, light repeats → a light tulip. White, dark repeats → a white flower. Light, light, dark repeats → a light book. Bike, bike, wagon repeats → bike, wagon, bike."),
+    wbCard(37,[
+      pic(choice("ab","Make the same pattern using letters.",["A B A B A B","A A B A A B","A B C A B C"],"A B A B A B","🔤"),WB("wb-l37-ab")),
+      pic(choice("abc","Make the same pattern using letters.",["A B C A B C","A B A B A B","A B B A B B"],"A B C A B C","🔤"),WB("wb-l37-abc")),
+      pic(choice("repeat","Reasoning: Which picture shows the part that repeats?",["△ ○ ○ ▱","△ ○ ▱","△ ○"],"△ ○ ○ ▱","🧩"),WB("wb-l37-repeat"))
+    ],"Triangle, square → A B A B A B. Trapezoid, circle, square → A B C A B C. The part that repeats is triangle, circle, circle, parallelogram."),
+    wbCard(38,[
+      pic(choice("shapes","Complete the pattern. What are the next 3?",["△ ○ □","○ □ △","△ □ ○"],"△ ○ □","🔺"),WB("wb-l38-shapes")),
+      pic(choice("letters","Complete the pattern. What are the next 3?",["A D C","D C A","A C D"],"A D C","🔤"),WB("wb-l38-letters")),
+      pic(choice("cubes","Color to complete the pattern. What are the last 3 cubes?",["dotted, striped, striped","striped, striped, dotted","dotted, dotted, striped"],"dotted, striped, striped","🧊"),WB("wb-l38-cubes")),
+      pic(choice("numbers","Complete the pattern. What are the next 3?",["2 4 6","4 6 2","6 4 2"],"2 4 6","🔢"),WB("wb-l38-numbers")),
+      pic(choice("ball","Visual Thinking: Which ball is missing?",["a dotted ball","a white ball with a star","a black ball","a black ball with a white star"],"a dotted ball","⚽"),WB("wb-l38-ball"))
+    ],"Find the part that repeats: △ ○ □ · A D C · dotted, striped, striped · 2 4 6 · ball with a star, dotted ball, black ball → the missing ball is the dotted ball."),
+    slideCard(38,[
+      choice("first","Tyler’s blanket: What do you do FIRST?",["Read and Understand","Solve","Look Back and Check"],"Read and Understand","1️⃣"),
+      choice("last","What do you do LAST?",["Look Back and Check","Plan","Read and Understand"],"Look Back and Check","🔚")
+    ],"Read and Understand → Plan: Find the color pattern → Solve: Color the stripes to follow the pattern → Look Back and Check: Do your stripes match the rest of the pattern?"),
+    wbCard(39,[
+      pic(fill("cones","Find the pattern. Complete the table. 4 ice cream cones → ___ scoops","8","🍦"),WB("wb-l39-cones")),
+      pic(fill("box3","Find the pattern. Complete the table. 3 boxes → ___ crackers","30","🍪"),WB("wb-l39-crackers")),
+      pic(fill("box4","4 boxes → ___ crackers","40","🍪"),WB("wb-l39-crackers")),
+      pic(choice("tanks","Algebra: Which number completes the table?",["11","14","15","25"],"15","🐟"),WB("wb-l39-tanks"))
+    ],"Scoops: 2, 4, 6, 8 · Crackers: 10, 20, 30, 40 · Fish: 5, 10, 15, 20."),
+    slideCard(39,[
+      pic(fill("nests","Each nest has 2 eggs. 4 nests → ___ eggs","8","🥚"),SRC[39][2][0]),
+      pic(fill("inc","The number of nests increases by 1. The number of eggs increases by ___.","2","📈"),SRC[39][2][0])
+    ],"Use a table to record the numbers. The number of eggs increases by 2. Skip count by 2s: 2, 4, 6, 8.")
   ];
   registerQuiz({
     id:"math-test-5",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"math",
     title:"Math - Test 5",
-    subject:{...SUBJECT,subtitle:`Test 5 · Lessons 32–39 · Ten-frames · Graphs · Patterns · Class Diary ${RANGE}`,
-      groups:groupsOf([["Lesson 32","Representing Numbers on a Ten-Frame",1],["Lesson 33","Using Data from Real Graphs",1],["Lesson 34","Using Data from Picture Graphs",1],
+    subject:{...SUBJECT,subtitle:`Test 5 · Lessons 32–39 · Workbook pages and lesson slides · Class Diary ${RANGE}`,
+      groups:groupsOf([["Lesson 32","Representing Numbers on a Ten-Frame",2],["Lesson 33","Using Data from Real Graphs",1],["Lesson 34","Using Data from Picture Graphs",2],
         ["Lesson 35","Describing Patterns",1],["Lesson 36","Using Patterns to Predict",1],["Lesson 37","Extending Shape Patterns",1],
-        ["Lesson 38","Problem Solving: Look for a Pattern",1],["Lesson 39","Patterns in Tables",1]]),
-      questions:TEST,readings:[remember("notes-math-t5"),lessonList]}
+        ["Lesson 38","Problem Solving: Look for a Pattern",2],["Lesson 39","Patterns in Tables",2]]),
+      questions:TEST,readings:[remember("notes-math-t5"),lessonList,...sourceReadings]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Math theo ngày ─────
