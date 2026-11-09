@@ -606,3 +606,8 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 /* Ảnh minh hoạ to trong câu hỏi (field.bigImg): ảnh nằm trên, rộng hết ô */
 .compound-field.big-field-visual:not(.drawing-field){grid-template-columns:minmax(0,1fr)!important}
 .big-field-visual>.compound-field-image{width:100%!important;max-width:340px;height:190px!important;justify-self:center;padding:4px}
+/* Ví dụ có hình trong thẻ REMEMBER (Example: [img:…] …) */
+.note-example .note-example-body{display:grid;gap:8px;margin-top:6px}
+.note-example .note-example-body strong{color:#31314d;font-size:1.02rem}
+.note-example .note-example-body img{display:block;width:100%;max-width:560px;height:auto;border:1px solid #ece6f6;border-radius:12px;background:#fff}
+.note-example .note-example-body ol{margin:0;padding-left:1.4em;display:grid;gap:4px}

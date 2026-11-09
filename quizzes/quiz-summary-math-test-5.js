@@ -18,18 +18,17 @@
   const SOURCES=["math-lesson-32","math-lesson-33","math-lesson-33-picture-graph","math-lesson-35-pattern","math-lesson-36-predict",
     "math-lesson-37-shape-pattern","math-lesson-38-color-pattern","math-lesson-39-number-patterns","math-review-lessons-32-35"];
   const src=id=>(window.quizSources||{})[id];
-  // Ví dụ cho từng ý kiến thức trong Remember (user yêu cầu 09/11), lấy từ slide bài giảng của chính ngày đó;
-  // mỗi dòng "Example: …" nằm ngay dưới ý của ngày học tương ứng.
+  // Ví dụ cho từng ý kiến thức trong Remember (user yêu cầu 09/11): ảnh slide bài giảng của chính ngày đó + các bước bằng câu ngắn.
+  // Cú pháp "Example: [img:…] Tiêu đề ¦ Bước 1 ¦ Bước 2 …" (list-app.js vẽ ảnh + danh sách đánh số); dòng nằm dưới ý của ngày học đó.
   const EXAMPLES={
-    "math-lesson-32":["Example: Let’s show 7. Fill the top row first, then the bottom row: 🔴🔴🔴🔴🔴 / 🔴🔴⬜⬜⬜ → 7 is 2 more than 5."],
-    "math-lesson-33":["Example: 🔴🔴🔴🔴🔴 / 🟡🟡🟡🟡🟡🟡🟡 → make pairs. Two yellow counters do not have partners, so there are more yellow counters than red counters."],
-    "math-lesson-33-picture-graph":["Example: Favorite Pets → 🐱 Cat 🐾🐾🐾🐾, 🐟 Fish 🐾, 🐶 Dog 🐾🐾. Each picture stands for one vote. Four children chose Cat. 4 + 1 + 2 = 7 children voted."],
-    "math-lesson-35-pattern":["Example: 🟥🟥🟦 🟥🟥🟦 🟥🟥🟦 → red, red, blue repeats over and over. With letters: R R B R R B R R B."],
-    "math-lesson-36-predict":["Example: tall, short, tall, short, tall, short, ? → name each picture with a letter: A B A B A B ?. A comes first, then B. A, B repeats, so A (tall) comes next."],
-    "math-lesson-37-shape-pattern":["Example: △ ○ △ ○ △ ○ ? → A B A B A B. The part that repeats is △ ○, so the shape that comes next is a triangle △."],
-    "math-lesson-38-color-pattern":["Example: Tyler’s blanket 🟪🟦🟨 🟪🟦🟨 🟪🟦🟨 → Plan: the color pattern is purple, blue, yellow. Solve: color the next stripes 🟪🟦🟨. Look Back and Check: they match the rest of the pattern."],
-    "math-lesson-39-number-patterns":["Example: Each nest has 2 eggs. 1 nest → 2 eggs, 2 nests → 4 eggs, 3 nests → 6 eggs. The number of nests increases by 1. The number of eggs increases by 2."],
-    "math-review-lessons-32-35":["Example: To show 3 → 🔴🔴🔴⬜⬜ / ⬜⬜⬜⬜⬜. Count 1, 2, 3 as you draw a counter for each number.","Example: ☀️🌙 ☀️🌙 ☀️🌙 → sun, moon repeats over and over. 🤍🤍🌼 🤍🤍🌼 → heart, heart, flower repeats over and over."]
+    "math-lesson-32":["Example: [img:assets/2026-10-19/math-tenframe-2.webp] Let’s show 7 on a ten-frame. ¦ Start at the top left box. ¦ Fill the top row first: 1, 2, 3, 4, 5. ¦ Then fill the bottom row: 6, 7. ¦ Now I have 7. 7 is 5 and 2 more."],
+    "math-lesson-33":["Example: [img:assets/2026-10-21/math-pairs-2.webp] Which color has more? ¦ Put the counters in pairs. Each red counter has a yellow partner. ¦ Look for counters with no partner. Two yellow counters do not have partners. ¦ So there are more yellow counters than red counters."],
+    "math-lesson-33-picture-graph":["Example: [img:assets/2026-10-22/picture-graph-1.webp] Favorite Pets picture graph. ¦ Each picture stands for one vote. ¦ Count the pictures in the Cat row. Four children chose Cat. ¦ Count all the pictures to find how many children voted."],
+    "math-lesson-35-pattern":["Example: [img:assets/2026-10-26/math-pattern-2.webp] A color pattern. ¦ Say the names of the colors: red, red, blue, red, red, blue. ¦ Red, red, blue repeats over and over. ¦ With letters it is R, R, B. The colors and letters make the same pattern."],
+    "math-lesson-36-predict":["Example: [img:assets/2026-10-28/math-predict-2.webp] What comes next? ¦ Find the part that repeats: a tall cube, then a short cube. ¦ Name each picture with a letter: tall is A, short is B. ¦ A, B repeats: A B A B A B. ¦ So A, the tall cube, comes next."],
+    "math-lesson-37-shape-pattern":["Example: [img:assets/2026-10-29/math-shape-2.webp] A shape pattern. ¦ Say each shape: triangle, circle, triangle, circle, triangle, circle. ¦ The part that repeats is triangle, circle. ¦ So the shape that comes next is a triangle."],
+    "math-lesson-38-color-pattern":["Example: [img:assets/2026-11-02/math-blanket-2.webp] Tyler’s blanket. ¦ Read and Understand: What colors will the next stripes be? ¦ Plan: Find the color pattern. Purple, blue, yellow repeats. ¦ Solve: Color the next stripes purple, blue, yellow. ¦ Look Back and Check: Do your stripes match the rest of the pattern?"],
+    "math-lesson-39-number-patterns":["Example: [img:assets/2026-11-04/math-nests.webp] How many eggs are in the nests? ¦ Each nest has 2 eggs. ¦ Use a table. 1 nest has 2 eggs. 2 nests have 4 eggs. 3 nests have 6 eggs. ¦ The number of eggs increases by 2 each time. Skip count by 2s: 2, 4, 6."]
   };
   const NOTES=[
     "Test 5 · Lessons 32 to 39",

@@ -698,6 +698,9 @@ function readingCardMarkup(reading){
     return {kind:"note",text:part};
   };
   const noteCells=item=>{
+    // Ví dụ có hình: "Example: [img:assets/…] Tiêu đề ¦ Bước 1 ¦ Bước 2" → ảnh slide + các bước đánh số (09/11/2026).
+    const ex=String(item).match(/^Example:\s*\[img:([^\]]+)\]\s*(.+)$/);
+    if(ex){const [title,...steps]=ex[2].split(/\s*¦\s*/);return [{kind:"example",img:ex[1],title,steps}]}
     const head=String(item).match(/^([^:·]{1,40}):\s+(.+)$/);
     if(head&&/\s[·•]\s/.test(head[2])&&!head[2].includes(":")) return [{kind:"def",term:head[1],chips:head[2].replace(/\.$/,"").split(/\s+[·•]\s+/)}];
     const parts=String(item).split(/\s+[·•]\s+/);
@@ -709,12 +712,12 @@ function readingCardMarkup(reading){
   const tableMarkup=(rows,head)=>rows.length?`<table class="note-grid"><thead><tr><th>${head[0]}</th><th>${head[1]}</th></tr></thead><tbody>${rows.map(row=>`<tr><td>${escapeHtml(row.a)}</td><td>${escapeHtml(row.b)}</td></tr>`).join("")}</tbody></table>`:"";
   const dayMarkup=items=>{
     const cells=items.flatMap(noteCells);
-    const plain=cells.filter(cell=>cell.kind==="def"||cell.kind==="note");
+    const plain=cells.filter(cell=>cell.kind==="def"||cell.kind==="note"||cell.kind==="example");
     return `${plain.length?`<div class="note-table">${layoutCells(plain).map(cellMarkup).join("")}</div>`:""}${tableMarkup(cells.filter(cell=>cell.kind==="sf"),["Animal structure","Function"])}${tableMarkup(cells.filter(cell=>cell.kind==="animal"),["Animal","What it has or does"])}`;
   };
   // Ô dài/chip chiếm cả dòng; ô lẻ cuối hàng (không có ô bên cạnh) cũng kéo cả dòng để bảng không bị ô trống.
   const layoutCells=cells=>{
-    const wide=cells.map(cell=>Boolean(cell.chips)||(cell.term||"").length+(cell.text||"").length>70);
+    const wide=cells.map(cell=>Boolean(cell.chips)||cell.kind==="example"||(cell.term||"").length+(cell.text||"").length>70);
     let col=0;
     return cells.map((cell,i)=>{
       if(wide[i]){col=0;return {...cell,wide:true}}
@@ -733,6 +736,7 @@ function readingCardMarkup(reading){
     return safe;
   };
   const cellMarkup=cell=>{
+    if(cell.kind==="example") return `<div class="note-cell wide note-example"><span class="note-label">Example</span><div class="note-example-body"><strong>${escapeHtml(cell.title)}</strong><img src="${escapeHtml(cell.img)}" alt="${escapeHtml(cell.title)}" loading="lazy"><ol>${cell.steps.map(step=>`<li>${escapeHtml(step)}</li>`).join("")}</ol></div></div>`;
     const label=cell.term?(PLAIN_LABEL.test(cell.term)?`<span class="note-label">${escapeHtml(cell.term)}</span>`:`<b>${escapeHtml(cell.term)}</b>`):"";
     const hfw=/high-frequency/i.test(cell.term||"");
     const body=cell.chips?`<span class="note-chips">${cell.chips.map(chip=>`<span>${hfw?`<b>${escapeHtml(chip)}</b>`:escapeHtml(chip)}</span>`).join("")}</span>`:`<span>${emph(cell.text,cell.term)}</span>`;
