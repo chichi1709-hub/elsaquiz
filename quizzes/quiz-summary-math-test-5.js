@@ -37,7 +37,8 @@
   // ───── (1) Math - Test 5 ─────
   // MỌI câu đều lấy từ tư liệu có thật: trang Workbook bài về nhà (diary mục Homework check) hoặc slide bài giảng trong diary.
   // Hình đề: assets/math-test-5/ (tạo bằng _reference/tao_anh_math_test5.py, đã xoá đáp án màu hồng của cô).
-  // Câu cần nhìn hình thì gắn đúng hình đó (bigImg) ngay trên câu; mỗi thẻ ghi rõ nguồn; bài đọc "Lesson n · Source" có cả trang Workbook.
+  // Mỗi câu chỉ gắn hình đề của CHÍNH câu đó (bigImg, cắt riêng từng bài) — không đưa cả trang Workbook/loạt đề lên trước rồi mới hỏi.
+  // Mỗi thẻ ghi rõ nguồn (Workbook page … · homework check / Lesson n slide · Class Diary dd/mm).
   const WB=name=>`assets/math-test-5/${name}.webp`;
   const pic=(field,img)=>({...field,img,bigImg:true});
   const SRC={
@@ -52,17 +53,14 @@
   };
   const workbook=n=>`Source: Workbook page “${SRC[n][0]}” · homework check, Class Diary ${SRC[n][1]}/2026`;
   const slide=n=>`Source: Lesson ${n} slide · Class Diary ${SRC[n][2][1]}/2026`;
-  const wbCard=(n,fields,explain)=>math(`Lesson ${n} · ${SRC[n][0]}`,workbook(n),fields,explain,{readingId:`src-l${n}`});
-  const slideCard=(n,fields,explain)=>math(`Lesson ${n} · ${SRC[n][0]} (lesson slide)`,slide(n),fields,explain,{readingId:`src-l${n}`});
-  const sourceReadings=Object.entries(SRC).map(([n,[title,day,...slides]])=>({id:`src-l${n}`,title:`Lesson ${n} · Source`,
-    byline:`Workbook “${title}” · homework check, Class Diary ${day}/2026`,mode:"reference",images:[WB(`wb-l${n}`),...slides.map(([img])=>img)],
-    text:[`Workbook page “${title}” (homework check, Class Diary ${day}/2026). The teacher’s answers are removed.`,...slides.map(([,d])=>`Lesson ${n} slide: Class Diary ${d}/2026.`)].join("\n")}));
+  const wbCard=(n,fields,explain)=>math(`Lesson ${n} · ${SRC[n][0]}`,workbook(n),fields,explain);
+  const slideCard=(n,fields,explain)=>math(`Lesson ${n} · ${SRC[n][0]} (lesson slide)`,slide(n),fields,explain);
   const TEST=[
     wbCard(32,[
       pic(choice("kyle","Kyle put 6 counters in a ten-frame. How many more counters should Kyle put in the frame to make 10?",["2","3","4","5"],"4","🔟"),WB("wb-l32-kyle")),
       pic(fill("four","Draw counters in the ten-frame to show 4. How many boxes are still empty?","6","⬜"),WB("wb-l32-four")),
-      pic(fill("seven","Show how 7 is 5 and 2. Fill the top row first. How many counters go in the bottom row?","2","7️⃣"),WB("wb-l32-algebra")),
-      pic(fill("nine","Show how 9 is 5 and 4. How many counters go in the bottom row?","4","9️⃣"),WB("wb-l32-algebra"))
+      pic(fill("seven","Show how 7 is 5 and 2. Fill the top row first. How many counters go in the bottom row?","2","7️⃣"),WB("wb-l32-seven")),
+      pic(fill("nine","Show how 9 is 5 and 4. How many counters go in the bottom row?","4","9️⃣"),WB("wb-l32-nine"))
     ],"6 and 4 more make 10. 4 counters → 6 empty boxes. Fill the top row first: 7 is 5 and 2 · 9 is 5 and 4."),
     slideCard(32,[
       choice("start","To show a number on a ten-frame, start at the ___ box.",["top left","bottom right","middle"],"top left","↖️"),
@@ -134,7 +132,7 @@
       groups:groupsOf([["Lesson 32","Representing Numbers on a Ten-Frame",2],["Lesson 33","Using Data from Real Graphs",1],["Lesson 34","Using Data from Picture Graphs",2],
         ["Lesson 35","Describing Patterns",1],["Lesson 36","Using Patterns to Predict",1],["Lesson 37","Extending Shape Patterns",1],
         ["Lesson 38","Problem Solving: Look for a Pattern",2],["Lesson 39","Patterns in Tables",2]]),
-      questions:TEST,readings:[remember("notes-math-t5"),lessonList,...sourceReadings]}
+      questions:TEST,readings:[remember("notes-math-t5"),lessonList]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Math theo ngày ─────
