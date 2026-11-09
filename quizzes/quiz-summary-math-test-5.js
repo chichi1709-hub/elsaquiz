@@ -54,8 +54,8 @@
       choice("real","This is a real-object graph because ___.",["the counters are real objects","it has pictures","it has letters"],"the counters are real objects","🧮"),
       fill("draw","There are 4 gray counters. How many black counters do you draw so 2 black counters do not have a partner?","6","✏️")
     ],"Counters in pairs: each counter has a partner. 5 red and 8 yellow → 3 yellow counters do not have a partner, so yellow has more. 6 white and 6 black → the same number. 4 gray + 2 more = 6 black counters."),
-    math("Lesson 34 · Using Data from Picture Graphs","Favorite Fruit. Each picture stands for 1 vote.",[
-      fill("vote","🍎 Apple 🍎🍎🍎🍎\n🍌 Banana 🍌🍌\n🍇 Grapes 🍇🍇🍇\nEach picture stands for ___ vote.","1","🗳️"),
+    math("Lesson 34 · Using Data from Picture Graphs","Picture graph · Favorite Fruit: Apple 🍎🍎🍎🍎 · Banana 🍌🍌 · Grapes 🍇🍇🍇",[
+      fill("vote","Look at the picture graph. Each picture stands for ___ vote.","1","🗳️"),
       fill("banana","How many children chose Banana?","2","🍌"),
       choice("most","Which fruit got the most votes?",["Apple","Banana","Grapes"],"Apple","🏅"),
       choice("fewest","Which fruit got the fewest votes?",["Banana","Apple","Grapes"],"Banana","🔻"),
