@@ -807,4 +807,29 @@
     cards:chunk(CLOSED.map(answer=>{const word=answer.replace("-",""),i=answer.indexOf("-");
       return ch(word,`Split the word into two closed syllables: ${word}`,[answer,splitAt(word,i-1),splitAt(word,i+1)],answer,"✂️")}),13).map((fields,i)=>
       card(`Closed syllables (${i+1}/2)`,"Choose the correct way to split the word.",fields,fields.map(f=>f.answer).join(" · ")))});
+
+  // ───────── 72. Video "Syllables!" (Scratch Garden) — LA 10/11 (đọc từ storyboard: chữ trên màn hình chia âm tiết) ─────────
+  const NUM=["1","2","3","4"];
+  const SYL=[["ball","ball"],["acorn","a·corn"],["unicorn","un·i·corn"],["invisible","in·vi·si·ble"],["seven","se·ven"],["cat","cat"],["scratch","scratch"],["garden","gar·den"],["January","Jan·u·ar·y"],["spectacles","spec·ta·cles"],["elephant","e·le·phant"],["watermelon","wa·ter·mel·on"]];
+  bonus({id:"bonus-video-syllables",urls:["https://www.youtube.com/watch?v=9S7DY2lgJlU"],title:"Syllables!",source:"Video · Scratch Garden · Syllables!",
+    remember:["Syllables: dog (1) · ap-ple (2) · la-dy-bug (3) · sal-a-man-der (4)","ball (1) · gar-den (2) · un-i-corn (3) · wa-ter-mel-on (4)"],
+    cards:[card("One, two, three, four syllables","Watch the video. Choose the answer.",[
+      sel("dog","How many syllables are in “dog”?",NUM,"1","🐶"),
+      sel("apple","How many syllables are in “apple”?",NUM,"2","🍎"),
+      ch("apple-split","How does the video split “apple”?",["ap · ple","a · pple","app · le"],"ap · ple","✂️"),
+      sel("ladybug","How many syllables are in “ladybug”?",NUM,"3","🐞"),
+      ch("ladybug-split","How does the video split “ladybug”?",["la · dy · bug","lad · ybug","lady · b · ug"],"la · dy · bug","✂️"),
+      sel("salamander","How many syllables are in “salamander”?",NUM,"4","🦎"),
+      ch("salamander-split","How does the video split “salamander”?",["sal · a · man · der","sa · la · mander","salam · an · der"],"sal · a · man · der","✂️")
+    ],"dog (1) · ap · ple (2) · la · dy · bug (3) · sal · a · man · der (4)"),
+    card("Words from the video","How many syllables does the word have?",SYL.map(([word,parts])=>sel(word.toLowerCase(),word,NUM,String(parts.split("·").length),"👏")),
+      SYL.map(([,parts])=>parts).join(" · "))]});
+
+  // ───────── 73. Game Baamboozle 118972 "1 Syllable, 2 Syllables, 3 Syllables!" — LA 10/11 (32 từ, đáp án nguyên văn) ─────────
+  const SYL3=[["queen","queen"],["remember","re/mem/ber"],["game","game"],["dog","dog"],["space","space"],["library","li/brar/y"],["mountain","moun/tain"],["cat","cat"],["computer","com/pu/ter"],["pineapple","pine/ap/ple"],["mango","man/go"],["flower","flow/er"],["alphabet","al/pha/bet"],["pencil","pen/cil"],["strawberry","straw/ber/ry"],["butterfly","but/ter/fly"],
+    ["halloween","ha/llo/ween"],["piano","pi/a/no"],["pumpkin","pump/kin"],["internet","in/ter/net"],["morning","morn/ing"],["house","house"],["notebook","note/book"],["astronaut","as/tro/naut"],["problem","prob/lem"],["galaxy","ga/lax/y"],["tower","tow/er"],["pancake","pan/cake"],["lantern","lan/tern"],["orange","or/ange"],["waterfall","wa/ter/fall"],["cape","cape"]];
+  bonus({id:"bonus-baamboozle-syllables-123",urls:["https://www.baamboozle.com/game/118972"],title:"1 Syllable, 2 Syllables, 3 Syllables!",source:"Game · Baamboozle · 1 Syllable, 2 Syllables, 3 Syllables!",
+    remember:["1 syllable: queen · game · dog · cat · house","2 syllables: moun/tain · pen/cil · pump/kin · note/book","3 syllables: re/mem/ber · com/pu/ter · but/ter/fly · wa/ter/fall"],
+    cards:chunk(SYL3.map(([word,parts])=>sel(word,`How many syllables? ${word}`,["1","2","3"],String(parts.split("/").length),"👏")),16).map((fields,i)=>
+      card(`Count the syllables (${i+1}/2)`,"Say the word. Clap the syllables. Choose 1, 2 or 3.",fields,SYL3.slice(i*16,i*16+16).map(([w,p])=>`${p} ${p.split("/").length}`).join(" · ")))});
 })();

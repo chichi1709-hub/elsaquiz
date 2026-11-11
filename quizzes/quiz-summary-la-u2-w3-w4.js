@@ -19,7 +19,7 @@
   const DAILY_LA=["class-diary-2026-10-23-language","class-diary-2026-10-26-language","class-diary-2026-10-27-language","class-diary-2026-10-28-language",
     "class-diary-2026-10-29-language","class-diary-2026-11-02-language","class-diary-2026-11-03-language","class-diary-2026-11-04-language",
     "class-diary-2026-11-05-language",
-    "class-diary-2026-11-06-language","la-common-proper-nouns-test-2026-11-06","class-diary-2026-11-09-language"];
+    "class-diary-2026-11-06-language","la-common-proper-nouns-test-2026-11-06","class-diary-2026-11-09-language","class-diary-2026-11-10-language"];
   const sources=DAILY_LA.map(id=>[id,(window.quizSources||{})[id]]).filter(([,src])=>src);
   const dayOf=src=>(src.uploadDate||"").slice(5).split("-").reverse().join("/");
   const RANGE=sources.length?`${dayOf(sources[0][1])}–${dayOf(sources[sources.length-1][1])}/2026`:"";
@@ -86,7 +86,7 @@
     ["Phonemic Awareness","phoneme blending",/phonemic|phoneme/i],
     ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text · a good beginning · end punctuation",/writing(?! companion)/i],
     ["Grammar","singular and plural possessive nouns ’s / s’ · fix the possessives · common and proper nouns",/grammar|possessive|fix the draft|write each sentence/i],
-    ["Structural Analysis","inflectional ending -ing · What is happening now? · closed syllables",/structural|-ing|circle the word/i],
+    ["Structural Analysis","inflectional ending -ing · What is happening now? · closed syllables · counting syllables",/structural|-ing|circle the word/i],
     ["Phonics","end blends st · nk · nd · nt · sk · mp · ft · spelling words · consonant digraphs sh · th · -ng",/phonics|end blend|sort the words|spelling/i],
     ["Research and Inquiry","Pick to research: animal · habitat · food · Where Animals Live",/research/i],
     ["Essential Question and Vocabulary","Where do animals live together? · How do people help out in the community? · habitat · depend · hibernate · tranquil · tolerate · Ways to Help · leadership · admire",/build knowledge|build background|build vocabulary|vocabulary|essential/i],

@@ -12,10 +12,17 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–06/11/2026";
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–10/11/2026";
   const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"],VOC=["behavior","learn","signal"];
 
   const NOTES=[
+    "📅 Class Diary: 10/11/2026",
+    "(10/11) STEM Module Project: Design Protective Gear for a Sport",
+    "(10/11) A school needs protective gear for its sports teams. Design protective gear to keep the players safe. The gear needs to protect at least one body part.",
+    "(10/11) Tip: Think about how animals protect themselves.",
+    "(10/11) The shell protects the turtle.",
+    "(10/11) Materials: Paper bowl · Elastic band · Colors · Pencils · Tape · Bubble wrap",
+    "(10/11) Test Your Model: We will wear it on our head and it will keep our head safe.",
     "📅 Class Diary: 06/11/2026",
     "(06/11) Essential Question: How does an animal’s behavior help it survive?",
     "(06/11) Animal behaviorists learn about animals. Dr. Cathleen Cox works at the Los Angeles Zoo.",
@@ -74,12 +81,10 @@
       {...select("kangaroo","The baby kangaroo, called a joey, stays safe and warm in its mother’s pouch.",GROUPS,"Protecting","🦘"),img:"assets/2026-11-03/card-kangaroo.webp",bigImg:true},
       {...select("cheetah","The cheetah cubs watch their mother. They learn how to hunt.",GROUPS,"Teaching","🐆"),img:"assets/2026-11-03/card-cheetah.webp",bigImg:true},
       {...select("penguin","The penguin feeds its chick food from its beak.",GROUPS,"Feeding","🐧"),img:"assets/2026-11-03/card-penguin.webp",bigImg:true},
-      {...select("elephant","The big elephants stand around the baby to keep it safe.",GROUPS,"Protecting","🐘"),img:"assets/2026-11-03/card-elephant.webp",bigImg:true},
-      {...select("duck","The ducklings follow their mother. They learn to swim and find food.",GROUPS,"Teaching","🦆"),img:"assets/2026-11-03/card-duck.webp",bigImg:true}
+      {...select("elephant","The big elephants stand around the baby to keep it safe.",GROUPS,"Protecting","🐘"),img:"assets/2026-11-03/card-elephant.webp",bigImg:true}
     ],"Feeding: The heron, cow, penguin and pig give their babies food or milk. Protecting: The lion, kangaroo, hen and elephant keep their babies safe. Teaching: The duck, orangutan, cheetah and polar bear show their babies how to do things."),
     sci("Communicate (03/11)","Student Book, page 56.",[
-      choice("survive","How do these behaviors help the young animals survive?",["Some young animals need their parents to protect and feed them because they cannot do it on their own.","Young animals never need their parents.","Young animals can find all their food on the first day."],"Some young animals need their parents to protect and feed them because they cannot do it on their own.","🌱"),
-      multi("match","Did what you learned match your prediction? Parents do ___ their young. Choose 4.",["feed","protect","teach","take care of","scare","ignore"],["feed","protect","teach","take care of"],"🔮")
+      choice("survive","How do these behaviors help the young animals survive?",["Some young animals need their parents to protect and feed them because they cannot do it on their own.","Young animals never need their parents.","Young animals can find all their food on the first day."],"Some young animals need their parents to protect and feed them because they cannot do it on their own.","🌱")
     ],"Some young animals need their parents to protect and feed them because they cannot do it on their own. Yes, parents do feed, protect, teach and take care of their young."),
     sci("Listening Comprehension · The Hungry Groundhog (02/11)","Animals look for food.",[
       choice("do","What does the groundhog do to find food?",["He digs holes.","He climbs trees.","He flies in the sky."],"He digs holes.","⛏️"),
@@ -98,20 +103,24 @@
     sci("Lesson 4 Review (06/11)","Essential Question · Summarize It.",[
       choice("eq","In Lesson 4 we learned: parents feed, protect, teach and take care of their young; baby birds make sounds to signal to their parents; a whale calf can swim right away. So the Essential Question of Lesson 4 is ___.",["How does an animal’s behavior help it survive?","What are the functions of animal structures?","Where do animals live together?"],"How does an animal’s behavior help it survive?","❓"),
       choice("summarize","How do baby animals get what they need to survive?",["Baby animals make a sound or movement. They send a signal to their parents.","Baby animals go to the store.","Baby animals sleep until they are big."],"Baby animals make a sound or movement. They send a signal to their parents.","📣")
-    ],"Essential Question: How does an animal’s behavior help it survive? Baby animals make a sound or movement. They send a signal to their parents.")
+    ],"Essential Question: How does an animal’s behavior help it survive? Baby animals make a sound or movement. They send a signal to their parents."),
+    sci("STEM Module Project · Design Protective Gear for a Sport (10/11)","Science Book, pages 69–70.",[
+      {...choice("gear","A school needs protective gear for its sports teams. What must the gear do?",["Keep the players safe. It needs to protect at least one body part.","Help the players run faster.","Make the players look funny."],"Keep the players safe. It needs to protect at least one body part.","🛡️"),img:"assets/2026-11-10/sci-gear-69.webp",bigImg:true},
+      choice("work","Our class made protective gear with a paper bowl, an elastic band and bubble wrap. How will it work?",["We will wear it on our head and it will keep our head safe.","We will wear it on our feet to run fast.","We will eat with it."],"We will wear it on our head and it will keep our head safe.","⛑️")
+    ],"A school needs protective gear for its sports teams. Design protective gear to keep the players safe. The gear needs to protect at least one body part. Think about how animals protect themselves. We will wear it on our head and it will keep our head safe.")
   ];
   registerQuiz({
     id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Lesson 4 · Key Concepts Test",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1 · Lesson 4: Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
-      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1],["Signals and behaviors","behavior · learn · signal · The Burrow · Animal Messages",1],["Lesson 4 Review","Essential Question · Summarize It",1]]),
+      groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1],["Signals and behaviors","behavior · learn · signal · The Burrow · Animal Messages",1],["Lesson 4 Review","Essential Question · Summarize It",1],["STEM Module Project","Design Protective Gear for a Sport",1]]),
       questions:TEST,
       readings:[{id:"notes-sci-l4",title:"Remember — Science Lesson 4",byline:`Animal Behaviors · Class Diary ${RANGE}`,mode:"notes",text:NOTES.join("\n")}]}
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
-  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"]];
-  const TOPICS=[["Stories and texts",/listen|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["Animal Behaviors",/.*/]];
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"],["class-diary-2026-11-10-science"]];
+  const TOPICS=[["Stories and texts",/listen|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["STEM Module Project",/stem module/i],["Animal Behaviors",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
   for(const [id,filter] of SOURCES){
     const src=(window.quizSources||{})[id];if(!src) continue;
@@ -120,7 +129,7 @@
       const copy={...q,section:`${q.section} (${day})`};
       if(q.readingId){const rid=`${id}--${q.readingId}`;copy.readingId=rid;
         if(!readings.some(r=>r.id===rid)){const r=(src.subject.readings||[]).find(x=>x.id===q.readingId);if(r) readings.push({...r,id:rid})}}
-      const topic=(TOPICS.find(([,re])=>re.test(q.section))||TOPICS[2])[0];buckets.get(topic).push(copy);
+      const topic=(TOPICS.find(([,re])=>re.test(q.section))||TOPICS.at(-1))[0];buckets.get(topic).push(copy);
     });
     if(!filter) (src.subject.readings||[]).filter(r=>r.mode==="bonus").forEach(r=>(r.links||[]).forEach(l=>{if(!links.has(l.url)) links.set(l.url,l)}));
   }
