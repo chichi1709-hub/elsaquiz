@@ -832,4 +832,87 @@
     remember:["1 syllable: queen · game · dog · cat · house","2 syllables: moun/tain · pen/cil · pump/kin · note/book","3 syllables: re/mem/ber · com/pu/ter · but/ter/fly · wa/ter/fall"],
     cards:chunk(SYL3.map(([word,parts])=>sel(word,`How many syllables? ${word}`,["1","2","3"],String(parts.split("/").length),"👏")),16).map((fields,i)=>
       card(`Count the syllables (${i+1}/2)`,"Say the word. Clap the syllables. Choose 1, 2 or 3.",fields,SYL3.slice(i*16,i*16+16).map(([w,p])=>`${p} ${p.split("/").length}`).join(" · ")))});
+
+  // ───────── 74. Big Book "The Story of Martin Luther King Jr." (Johnny Ray Moore; Drive folder Unit 2_Week 4) — LA 11/11
+  //            (câu hỏi dựng từ nội dung từng trang sách, không chép nguyên văn) ─────────
+  bonus({id:"bonus-bigbook-mlk",urls:["https://drive.google.com/drive/folders/1ZMWcDyl7pUDWeSug4w2w7CgdjpUmfmnT"],title:"The Story of Martin Luther King Jr. (Big Book)",source:"Big Book · The Story of Martin Luther King Jr. (Johnny Ray Moore)",
+    remember:["Biography: the story of a real person’s life, written by another person.","Martin Luther King Jr. was born in 1929 in Atlanta, Georgia. He had a dream: everyone can go to any school, eat in any restaurant and drink from any water fountain."],
+    cards:[card("Martin as a boy","Think about the Big Book. Choose the answer.",[
+      ch("when","We celebrate the birthday of Martin Luther King Jr. every ___.",["January","July","December"],"January","📅"),
+      ch("liked","Martin liked to go to ___.",["school","the zoo","the beach"],"school","🏫"),
+      ch("more","Martin always did ___ than his teachers asked him to do.",["more","less","nothing"],"more","📚"),
+      ch("fixing","Martin’s school was old. It needed a lot of ___.",["fixing","books","children"],"fixing","🔨"),
+      ch("sign","Martin had to find a water fountain with a sign. What did the sign read?",["COLORED","WHITE","STOP"],"COLORED","🚰"),
+      ch("best","Martin was angry. He wanted to go to the ___ school.",["best","oldest","smallest"],"best","⭐")
+    ],"Every January we celebrate his birthday. Martin liked school and always did more than his teachers asked. His school was old and needed a lot of fixing. He had to find a water fountain with a sign that read “COLORED.” He wanted to go to the best school."),
+    card("Martin’s dream","Think about the Big Book. Choose the answer.",[
+      fixed("first","What happens FIRST in the book?",["Martin is born in Atlanta, Georgia.","Martin speaks to more than 200,000 people.","Martin makes his dream come true."],"Martin is born in Atlanta, Georgia.","1️⃣"),
+      fixed("next","Martin grew up. What did he become NEXT?",["a preacher","a teacher","a doctor"],"a preacher","➡️"),
+      ch("true","Martin made his dream come ___.",["true","back","down"],"true","🌟"),
+      ch("like","At the end, we dream our dreams, just like ___.",["Martin Luther King Jr.","Nell the elephant","Thump Thump"],"Martin Luther King Jr.","💭")
+    ],"Martin was born in 1929 in Atlanta, Georgia. When he grew up, he became a preacher and spoke to more than 200,000 people. Martin made his dream come true. Now we can all dream our dreams, just like Martin Luther King Jr.")]});
+
+  // ───────── 75. Video "What Are Common and Proper Nouns?" (Tutoring Hour) — LA 11/11 (đọc từ storyboard: các cặp danh từ trên cuộn giấy) ─────────
+  const NOUN_PAIRS=[["boy","Oliver","👦"],["girl","Scarlet","👧"],["cat","Fluffy","🐱"],["park","Horizon Park","🛝"],["car","Lamborghini","🚗"],["school","Pleasant Grove Elementary School","🏫"],
+    ["continents","North America","🌎"],["mountains","The Rockies","🏔️"],["river","The Mississippi River","🏞️"],["city","Chicago","🏙️"],["dragon","Sydney","🐉"]];
+  bonus({id:"bonus-video-common-proper-nouns",urls:["https://www.youtube.com/watch?v=ZHwBhVsaqK8"],title:"What Are Common and Proper Nouns?",source:"Video · Tutoring Hour · Common and Proper Nouns",
+    remember:["A common noun is a general name given to a person, place, or thing. It is written in lowercase unless it starts a sentence.","A proper noun is a specific name given to a person, place, or thing. It always begins with an uppercase letter.","boy → Oliver · park → Horizon Park · city → Chicago · river → The Mississippi River"],
+    cards:[card("Common noun or proper noun?","Watch the video. Choose the answer.",[
+      fixed("common","A common noun is a ___ name given to a person, place, or thing.",["general","specific"],"general","📝"),
+      fixed("proper","A proper noun is a ___ name given to a person, place, or thing.",["specific","general"],"specific","🏷️"),
+      ch("upper","A proper noun always begins with ___.",["an uppercase letter","a lowercase letter","a number"],"an uppercase letter","🔠"),
+      ch("lower","A common noun is written in lowercase unless it ___.",["starts a sentence","is a place","is long"],"starts a sentence","🔡")
+    ],"Use a common noun to talk about something in general: boy, park, city. Use a proper noun to be specific: Oliver, Horizon Park, Chicago. A proper noun always begins with an uppercase letter."),
+    card("Find the proper noun","The wizard shows a common noun. Which proper noun goes with it?",NOUN_PAIRS.map(([common,proper,icon],i)=>
+      ch(common,`Common noun: ${common}. Which one is a proper noun for it?`,[proper,NOUN_PAIRS[(i+1)%NOUN_PAIRS.length][0],NOUN_PAIRS[(i+3)%NOUN_PAIRS.length][0]],proper,icon)),
+      NOUN_PAIRS.map(([c,p])=>`${c} → ${p}`).join(" · "))]});
+
+  // ───────── 76. Game Baamboozle 1743329 "Common and Proper Nouns" — LA 11/11 (đáp án nguyên văn; bỏ 7 câu "Choose the correct
+  //            abbreviation" vì các lựa chọn chỉ khác chữ hoa/dấu chấm (Ms./ms/MS), hệ thống chấm bỏ qua hoa thường và dấu câu;
+  //            câu "Lotte Tower" lặp 2 lần → giữ 1) ─────────
+  const BZ_NOUNS=[
+    ["Find the proper noun in the sentence: “Ms. Erica is the art teacher.”",["art teacher","Ms. Erica"],"Ms. Erica"],
+    ["Find the proper noun in the sentence: “I will go to Jeju Island next week.”",["I","Jeju Island","next week"],"Jeju Island"],
+    ["Find the common noun in the sentence: “I can see Lotte Tower from my home.”",["Lotte Tower","home"],"home"],
+    ["Find the common noun in the sentence: “Billy went to the amusement park.”",["amusement park","Billy"],"amusement park"],
+    ["Find the proper noun in the sentence: “We met at Mcdonalds at noon.”",["McDonalds","noon","We"],"McDonalds"],
+    ["Find the proper noun in the sentence: “I can see Lotte Tower from my home.”",["home","Lotte Tower"],"Lotte Tower"],
+    ["Which of the following is a proper noun?",["swimming pool","New York City","park","museum"],"New York City"],
+    ["Find the common noun in the sentence: “My teacher baked a cake.”",["teacher","baked"],"teacher"],
+    ["Find the proper noun in the sentence: “Lisa tied a ribbon in her hair.”",["ribbon","Lisa","her hair"],"Lisa"],
+    ["Find the common noun in the sentence: “Next week, my friends and I will go to Legoland!”",["friends","Legoland"],"friends"],
+    ["Find the proper noun in the sentence: “Everland is the best amusement park!”",["amusement park","Everland"],"Everland"],
+    ["Find the common noun in the sentence: “The students went to Lotte World.”",["Lotte World","students"],"students"],
+    ["Find the common noun in the sentence: “I like to play on my computer.”",["my","play","computer"],"computer"],
+    ["Find the common noun in the sentence: “Ms. Erica is the art teacher.”",["Ms. Erica","teacher"],"teacher"],
+    ["Choose the correct proper noun: “Shaun loves to eat cake!”",["Shaun","cake"],"Shaun"],
+    ["Find the common noun in the sentence: “Everland is the best amusement park!”",["amusement park","Everland"],"amusement park"],
+    ["Find the proper noun in the sentence: “My birthday is in April.”",["April","My","birthday"],"April"],
+    ["Which of the following is a common noun?",["Samsung","Ratatouille","bottle","George"],"bottle"]];
+  bonus({id:"bonus-baamboozle-common-proper-nouns",urls:["https://www.baamboozle.com/game/1743329"],title:"Common and Proper Nouns",source:"Game · Baamboozle · Common and Proper Nouns",
+    remember:["Proper nouns: Ms. Erica · Jeju Island · Lotte Tower · Everland · New York City · April","Common nouns: home · teacher · friends · students · computer · bottle"],
+    cards:chunk(BZ_NOUNS.map(([label,choices,answer],i)=>ch(`bz${i+1}`,label,choices,answer,/common/i.test(label)?"🔡":"🔠")),9).map((fields,i)=>
+      card(`Common and proper nouns (${i+1}/2)`,"Choose the correct answer.",fields,BZ_NOUNS.slice(i*9,i*9+9).map(([,,a])=>a).join(" · ")))});
+
+  // ───────── 77. Video "Nell's Books" (Literature Anthology pages 64–79, đọc to) — LA 11/11 (câu hỏi dựng từ từng trang, không chép nguyên văn) ─────────
+  bonus({id:"bonus-video-nells-books",urls:["https://www.youtube.com/watch?v=jvfgUSXTmEw"],title:"Nell’s Books",source:"Video · Literature Anthology · Nell’s Books (Miriam Cohen)",
+    remember:["shelf: a flat piece of material, such as wood or metal, that holds things","clang: a loud noise · bang: a sudden noise · wish: something you hope for or want"],
+    cards:[card("Nell’s Books · pages 66–73","Watch the video. Choose the answer.",[
+      ch("like","Nell liked to ___. She could do it all day long.",["read","dance","swim"],"read","📖"),
+      ch("pig","Pig asked Nell, “Will you ___ with me?”",["shop","read","sleep"],"shop","🛍️"),
+      ch("fun","Dog said, “That Nell is not ___ at all.”",["fun","big","sad"],"fun","😒"),
+      ch("rain","Then one day it ___. Dog and Cat set up a tent.",["rained","snowed","was hot"],"rained","🌧️"),
+      ch("sick","It rained the next day, too. The friends were sick of tents and ___.",["dressing up","reading","eating"],"dressing up","🎭"),
+      ch("shelf","Nell went to her ___ and gave books to her friends.",["shelf","truck","tent"],"shelf","📚"),
+      ch("yuck","What did Dog say when Nell gave him a book?",["“Yuck!”","“Thank you!”","“Hooray!”"],"“Yuck!”","🤢")
+    ],"Nell liked to read all day long. Pig wanted to shop and Dog said Nell was not fun. One day it rained, and it rained the next day too. Nell went to her shelf and gave books to her friends. “Yuck!” said Dog. “Ick!” said Cat and Pig."),
+    card("Nell’s Books · pages 74–79","Watch the video. Choose the answer.",[
+      fixed("where","Where did Dog read?",["in his tent","in a tub","in a pot"],"in his tent","⛺"),
+      fixed("pigtub","Where did Pig read?",["in a tub","in his tent","in a pot"],"in a tub","🛁"),
+      fixed("catpot","Where did Cat read?",["in a pot","in a tub","in his tent"],"in a pot","🪴"),
+      ch("noise","The next day, Nell heard clanging and ___.",["banging","singing","barking"],"banging","🔔"),
+      ch("bookmobile","What did the friends make for Nell?",["a truck full of books (Nell’s Books)","a new tent","a big cake"],"a truck full of books (Nell’s Books)","🚚"),
+      ch("wish","“You can hand out books to all,” said Cat. What did Nell say?",["“That is just my wish!”","“Shh! I am reading.”","“Yuck!”"],"“That is just my wish!”","🌟"),
+      ch("end","At the end, what did Dog and Cat and Pig say?",["“Shh! Let us read!”","“Let’s go shopping!”","“Let’s play tennis!”"],"“Shh! Let us read!”","🤫")
+    ],"Dog read in his tent, Pig read in a tub, Cat read in a pot. Nell heard clanging and banging: her friends made a bookmobile called Nell’s Books. “That is just my wish!” said Nell. At the end the friends said, “Shh! Let us read!”")]});
 })();
