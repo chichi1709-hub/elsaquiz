@@ -164,6 +164,96 @@
       questions:TEST,readings:[remember("notes-math-t5"),lessonList]}
   });
 
+  // ───── (1b) Practice Sheet: dạng đề linh động như phiếu bài tập (user gửi mẫu 11/11) ─────
+  // Hình vẽ bằng code (field.visual, list-app.js visualMarkup) thay cho ảnh chụp; 2 dạng bấm mới: tapframe (tô ten-frame), pick (chạm chọn pattern unit).
+  // Kiến thức và số liệu vẫn 100% từ diary: vẽ lại đúng dãy hình / biểu đồ / bảng của trang Workbook và slide (ghi nguồn trên thẻ), đổi cách hỏi.
+  // Chỉ dãy đếm cách 2, 5, 10 được kéo dài thêm vài số (2, 4, 6, 8 → 10, 12) theo đúng quy tắc "skip count" của Lesson 39.
+  const V={
+    ten:n=>({kind:"tenframe",n}),
+    counters:rows=>({kind:"counters",cols:8,rows}),
+    row:items=>({kind:"row",items}),
+    table:(head,rows)=>({kind:"table",head,rows}),
+    graph:(title,rows)=>({kind:"picgraph",title,rows})
+  };
+  const rep=(unit,times)=>Array.from({length:times},()=>unit).flat();
+  const vis=(field,visual)=>({...field,visual});
+  const tap=(id,label,answer,extra={})=>({id,label,type:"tapframe",cols:5,cells:10,answer,...extra});
+  const pickUnit=(id,label,items,unit)=>({id,label,type:"pick",items,answer:unit});
+  const shapes=(field,map)=>({...field,choiceShapes:map});
+  const both=n=>`Source: Workbook page “${SRC[n][0]}” (homework check, Class Diary ${SRC[n][1]}/2026) and Lesson ${n} slides`;
+  const practice=(n,title,source,fields,explain)=>math(`Lesson ${n} · ${title}`,`${source} · new question types`,fields,explain);
+  const G1=V.counters([["gray",5],["black",7]]),G2=V.counters([["gray",8],["black",5]]);
+  const SEASONS=V.graph("Favorite Seasons",[["Summer","☀️",6],["Fall","🍁",4],["Winter","❄️",3],["Spring","🌷",5]]);
+  const HATS=V.graph("Favorite Party Hat",[["Stripes","hat:striped",4],["Polka Dots","hat:dotted",6]]);
+  const PRACTICE=[
+    practice(32,"Ten-frames","Source: Lesson 32 slides “Let’s show 7 on a ten-frame” (Class Diary 19/10, 05/11/2026) and Workbook page “Representing Numbers on a Ten-Frame” (21/10)",[
+      tap("show7","Show 7 on the ten-frame. Start at the top left box. Fill the top row first.",7),
+      tap("show9","Show 9 on the ten-frame. 9 is 5 and 4.",9),
+      tap("show4","Show 4 on the ten-frame.",4),
+      vis(fill("count6","Count and write the number.","6"),V.ten(6)),
+      vis(fill("make10","Kyle put 6 counters in the ten-frame. How many more counters make 10?","4"),V.ten(6)),
+      vis(fill("seven","7 is 5 and ___.","2"),V.ten(7)),
+      vis(fill("empty3","This ten-frame shows 3. How many boxes are empty?","7"),V.ten(3))
+    ],"Start at the top left box and fill the top row first: 7 is 5 and 2 · 9 is 5 and 4. 6 and 4 more make 10. 3 counters → 7 empty boxes."),
+    practice(33,"Real graphs",workbook(33),[
+      vis(choice("same","Is there the same number of colored counters?",["yes","no"],"no","🟰"),G1),
+      vis(choice("fewer","Which color has FEWER counters?",["gray","black"],"gray","⚖️"),G1),
+      vis(fill("howmore","How many MORE black counters than gray counters?","2","➕"),G1),
+      vis(choice("fewer2","Which color has FEWER counters?",["gray","black"],"black","⚖️"),G2),
+      vis(fill("partner2","How many gray counters do not have a partner?","3","🔍"),G2),
+      tap("journal","Journal: Tap the boxes to draw black counters so 1 black counter does not have a partner.",7,{cols:8,cells:8,rows:[["gray",6]],color:"black"})
+    ],"Graph 1: 5 gray, 7 black → gray has fewer, 2 more black. Graph 2: 8 gray, 5 black → black has fewer, 3 gray counters have no partner. 6 gray → draw 7 black."),
+    practice(34,"Picture graphs",`${workbook(34)} and Lesson 34 slide (Class Diary 05/11/2026)`,[
+      vis(choice("fewest","Which season got the FEWEST votes?",["Summer","Fall","Winter","Spring"],"Winter","❄️"),SEASONS),
+      vis(fill("spring","How many children chose spring?","5","🌷"),SEASONS),
+      vis(fill("fallwinter","How many more children chose fall than winter?","1","➕"),SEASONS),
+      vis(choice("order","Which list goes from the MOST votes to the FEWEST votes?",["Summer, Spring, Fall, Winter","Winter, Fall, Spring, Summer","Summer, Fall, Spring, Winter"],"Summer, Spring, Fall, Winter","📊"),SEASONS),
+      vis(fill("allhats","Each party hat stands for 1 vote. How many children voted in all?","10","🥳"),HATS),
+      vis(fill("morehats","How many more children voted for polka dots than stripes?","2","➕"),HATS)
+    ],"Favorite Seasons: Summer 6 · Spring 5 · Fall 4 · Winter 3. Party hats: Stripes 4 + Polka Dots 6 = 10 children voted. 6 is 2 more than 4."),
+    practice(35,"Describing patterns",`${workbook(35)} and Lesson 35 slide (Class Diary 09/11/2026)`,[
+      pickUnit("unit-star","Circle the pattern unit: tap the pictures of ONE pattern unit.",rep(["emoji:⭐","emoji:🐟","emoji:⚽"],3),3),
+      pickUnit("unit-square","Circle the pattern unit: tap the shapes of ONE pattern unit.",rep(["square","triangle"],3),2),
+      vis(choice("sunmoon","Describe the pattern. The pattern is ___.",["sun, moon","sun, sun, moon","moon, moon, sun"],"sun, moon","☀️"),V.row(rep(["emoji:☀️","emoji:🌙"],3))),
+      vis({id:"balls5",label:"Make the same pattern using letters: A, B, C, A, ___",type:"select",choices:["A","B","C"],answer:"B"},V.row(rep(["emoji:⚾","emoji:🏈","emoji:🏀"],2))),
+      vis({id:"balls6",label:"A, B, C, A, B, ___",type:"select",choices:["A","B","C"],answer:"C"},V.row(rep(["emoji:⚾","emoji:🏈","emoji:🏀"],2)))
+    ],"The pattern unit is the part that repeats: star, fish, ball · square, triangle. Sun, moon repeats. Baseball, football, basketball → A, B, C, A, B, C."),
+    practice(36,"Using patterns to predict",workbook(36),[
+      vis(shapes(choice("tulip","Find the pattern. What comes next?",["a dark tulip","a light tulip"],"a light tulip"),{"a dark tulip":"tulip:dark","a light tulip":"tulip:light"}),V.row([...rep(["tulip:dark","tulip:light"],3),"tulip:dark","?"])),
+      vis(shapes(choice("flower","Find the pattern. What comes next?",["a white flower","a dark flower"],"a white flower"),{"a white flower":"flower:white","a dark flower":"flower:dark"}),V.row([...rep(["flower:white","flower:dark"],4),"?"])),
+      vis(shapes(choice("books","What are the next 3 books?",["light, light, dark","light, dark, dark","dark, light, light"],"light, light, dark"),
+        {"light, light, dark":["book:light","book:light","book:dark"],"light, dark, dark":["book:light","book:dark","book:dark"],"dark, light, light":["book:dark","book:light","book:light"]}),V.row([...rep(["book:light","book:light","book:dark"],3),"?","?","?"]))
+    ],"Dark, light repeats → a light tulip. White, dark repeats → a white flower. Light, light, dark repeats → light, light, dark."),
+    practice(37,"Extending shape patterns",workbook(37),[
+      vis(shapes(choice("blank1","Complete the pattern. What goes in the 1st blank?",["triangle","square","circle"],"square"),{triangle:"triangle",square:"square",circle:"circle"}),V.row(["triangle","square","triangle","square","triangle","?","?"])),
+      vis(shapes(choice("blank2","What goes in the 2nd blank?",["triangle","square","circle"],"triangle"),{triangle:"triangle",square:"square",circle:"circle"}),V.row(["triangle","square","triangle","square","triangle","?","?"])),
+      pickUnit("repeat4","Reasoning: Tap the part that repeats.",rep(["triangle","circle","circle","parallelogram"],2),4)
+    ],"Triangle, square repeats → square, triangle. The part that repeats is triangle, circle, circle, parallelogram."),
+    practice(38,"Look for a pattern",`${workbook(38)} and Lesson 38 slide “Tyler’s blanket” (Class Diary 02/11/2026)`,[
+      vis(shapes(choice("next1","Write, draw, or color to complete the pattern. What is the 1st missing shape?",["triangle","circle","square"],"triangle"),{triangle:"triangle",circle:"circle",square:"square"}),V.row([...rep(["triangle","circle","square"],3),"?","?","?"])),
+      vis(shapes(choice("next2","What is the 2nd missing shape?",["triangle","circle","square"],"circle"),{triangle:"triangle",circle:"circle",square:"square"}),V.row([...rep(["triangle","circle","square"],3),"?","?","?"])),
+      vis(shapes(choice("next3","What is the 3rd missing shape?",["triangle","circle","square"],"square"),{triangle:"triangle",circle:"circle",square:"square"}),V.row([...rep(["triangle","circle","square"],3),"?","?","?"])),
+      vis(shapes(choice("cube","Color the cube that comes next.",["dotted","striped"],"dotted"),{dotted:"cube:dotted",striped:"cube:striped"}),V.row([...rep(["cube:dotted","cube:striped","cube:striped"],3),"?"])),
+      vis(shapes(choice("blanket","Tyler’s blanket: What color is the next stripe?",["purple","blue","yellow"],"yellow"),{purple:"stripe:purple",blue:"stripe:blue",yellow:"stripe:yellow"}),V.row([...rep(["stripe:purple","stripe:blue","stripe:yellow"],2),"stripe:purple","stripe:blue","?"]))
+    ],"Triangle, circle, square repeats. Dotted, striped, striped repeats → a dotted cube comes next. Purple, blue, yellow repeats → the next stripe is yellow."),
+    practice(39,"Patterns in tables",both(39),[
+      vis(fill("tanks","Find the pattern. Complete the table.","15","🐟"),V.table(["Number of Tanks","Number of Fish"],[[1,5],[2,10],[3,"?"],[4,20]])),
+      vis(fill("cones","Complete the table.","8","🍦"),V.table(["Ice Cream Cones",1,2,3,4],[["Scoops",2,4,6,"?"]])),
+      vis(fill("by2a","Each nest has 2 eggs. Skip count by 2s. Continue the number pattern. 1st blank:","10","🥚"),V.row(["text:2","text:4","text:6","text:8","?","?"])),
+      vis(fill("by2b","2nd blank:","12","🥚"),V.row(["text:2","text:4","text:6","text:8","?","?"])),
+      vis(fill("by5","Each tank has 5 fish. Skip count by 5s. What comes next?","25","🐟"),V.row(["text:5","text:10","text:15","text:20","?"])),
+      vis(fill("by10","Each box has 10 crackers. Fill in the missing number.","30","🍪"),V.row(["text:10","text:20","?","text:40"]))
+    ],"Fish: 5, 10, 15, 20, 25 (+5). Scoops: 2, 4, 6, 8 (+2). Eggs: 2, 4, 6, 8, 10, 12 (+2). Crackers: 10, 20, 30, 40 (+10).")
+  ];
+  registerQuiz({
+    id:"math-test-5-practice",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"math",
+    title:"Math - Test 5 · Practice Sheet",
+    subject:{...SUBJECT,subtitle:`Test 5 · Lessons 32–39 · New question types, same Workbook and slide data · Class Diary ${RANGE}`,
+      groups:groupsOf([["Lesson 32","Ten-frames",1],["Lesson 33","Real graphs",1],["Lesson 34","Picture graphs",1],["Lesson 35","Describing patterns",1],
+        ["Lesson 36","Using patterns to predict",1],["Lesson 37","Extending shape patterns",1],["Lesson 38","Look for a pattern",1],["Lesson 39","Patterns in tables",1]]),
+      questions:PRACTICE,readings:[remember("notes-math-t5p"),lessonList]}
+  });
+
   // ───── (2) Review: gộp mọi câu của các bài Math theo ngày ─────
   const TOPICS=[["Ten-frames","Lesson 32",/ten-frame|lesson 32/i],["Graphs","Lessons 33–34",/graph|lesson 3[34]/i],
     ["Number patterns and tables","Lesson 39",/lesson 39|tables/i],["Patterns","Lessons 35–38",/.*/]];

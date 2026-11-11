@@ -224,7 +224,7 @@ function correctFor(item,given){
 }
 
 function fieldHasAnswer(field,given){
-  if(field.type==="multi"||field.type==="wordsearch") return Array.isArray(given)&&given.length>0;
+  if(field.type==="multi"||field.type==="wordsearch"||field.type==="tapframe"||field.type==="pick") return Array.isArray(given)&&given.length>0;
   if(field.type==="multi-any") return Array.isArray(given)&&given.length>=field.min;
   if(field.type==="draw") return Boolean(given&&Array.isArray(given.strokes)&&given.strokes.some(stroke=>Array.isArray(stroke)&&stroke.length>1));
   return String(given??"").trim().length>0;
@@ -258,6 +258,13 @@ function fieldCorrect(field,given){
   if(field.type==="text-any") return fieldHasAnswer(field,given);
   if(field.type==="choice-any") return field.choices.some(choice=>normalizeChoice(choice)===normalizeChoice(given));
   if(field.type==="multi-any") return Array.isArray(given)&&given.length===field.min&&given.every(value=>field.choices.includes(value));
+  // Ten-frame bấm ô: đúng khi tô đúng số ô, bắt đầu từ ô trên cùng bên trái, hết hàng trên rồi mới xuống hàng dưới (Lesson 32).
+  if(field.type==="tapframe") return Array.isArray(given)&&given.length===field.answer&&given.every(cell=>cell<field.answer);
+  // Chạm chọn 1 pattern unit trong dãy hình: đúng khi chọn liền nhau đúng 1 đơn vị lặp (đơn vị nào trong dãy cũng được).
+  if(field.type==="pick"){
+    const picked=(Array.isArray(given)?given:[]).map(Number).sort((a,b)=>a-b),unit=field.answer;
+    return picked.length===unit&&picked[0]%unit===0&&picked.every((cell,index)=>cell===picked[0]+index)&&picked[unit-1]<field.items.length;
+  }
   if(field.type==="multi"||field.type==="wordsearch"){
     const expected=field.answer.map(normalizeChoice).sort();
     const actual=(Array.isArray(given)?given:[]).map(normalizeChoice).sort();
@@ -282,6 +289,8 @@ function expectedAnswerText(item){
     if(field.type==="text-any") return `${field.label}: completed response`;
     if(field.type==="choice-any") return `${field.label}: any listed choice`;
     if(field.type==="multi-any") return `${field.label}: any ${field.min} listed needs`;
+    if(field.type==="tapframe") return `${field.label}: ${field.answer} counters (start at the top left, fill the top row first)`;
+    if(field.type==="pick") return `${field.label}: ${field.items.slice(0,field.answer).map(mvName).join(", ")}`;
     const expected=field.type==="fill"?field.answer[0]:Array.isArray(field.answer)?field.answer.join(" • "):field.answer;
     return `${field.label}: ${expected}`;
   }).join(" | ");
@@ -590,16 +599,86 @@ function buildTabs(){
   document.querySelectorAll("#subjectTabs button").forEach(button=>button.addEventListener("click",()=>openSubject(button.dataset.quiz)));
 }
 
+// ───── Hình Toán vẽ bằng code (field.visual) — dạng đề linh động như phiếu bài tập: ten-frame, hàng counter, dãy hình, bảng, picture graph ─────
+// Token hình: "triangle", "circle:gray", "cube:dotted", "text:A", "emoji:☀️", "?" (ô trống). Số liệu lấy từ Workbook/slide trong diary.
+const MV_FILL={white:"#fff",light:"#d9d9d9",gray:"#9b9b9b",dark:"#565656",black:"#222",purple:"#8e5bd6",blue:"#3b82f6",yellow:"#f6c945",red:"#e5484d",green:"#3fae6b",orange:"#ff8a3d"};
+const MV_DEFS=`<defs><pattern id="mv-dots" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#fff"/><circle cx="8" cy="8" r="4.5" fill="#444"/></pattern><pattern id="mv-stripes" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="14" fill="#fff"/><rect width="7" height="14" fill="#666"/></pattern></defs>`;
+const mvFill=name=>name==="dotted"?"url(#mv-dots)":name==="striped"?"url(#mv-stripes)":MV_FILL[name]||"#fff";
+const MV_SHAPES={
+  triangle:f=>`<polygon points="30,6 56,54 4,54" fill="${f}"/>`,
+  circle:f=>`<circle cx="30" cy="30" r="24" fill="${f}"/>`,
+  square:f=>`<rect x="7" y="7" width="46" height="46" fill="${f}"/>`,
+  trapezoid:f=>`<polygon points="17,12 43,12 56,50 4,50" fill="${f}"/>`,
+  parallelogram:f=>`<polygon points="19,12 57,12 41,48 3,48" fill="${f}"/>`,
+  star:f=>`<polygon points="30,4 37,22 56,23 41,35 46,54 30,43 14,54 19,35 4,23 23,22" fill="${f}"/>`,
+  heart:f=>`<path d="M30 54 C8 38 2 26 8 16 C14 6 26 8 30 18 C34 8 46 6 52 16 C58 26 52 38 30 54 Z" fill="${f}"/>`,
+  cube:f=>`<rect x="6" y="6" width="48" height="48" rx="4" fill="${f}"/><circle cx="30" cy="30" r="10" fill="#fff"/>`,
+  book:f=>`<rect x="16" y="4" width="28" height="52" rx="2" fill="${f}"/><line x1="22" y1="4" x2="22" y2="56"/>`,
+  tulip:f=>`<line x1="30" y1="36" x2="30" y2="58" stroke="#3fae6b"/><path d="M14 10 L22 20 L30 8 L38 20 L46 10 L46 28 Q30 44 14 28 Z" fill="${f}"/>`,
+  flower:f=>`${[0,45,90,135,180,225,270,315].map(a=>`<ellipse cx="30" cy="14" rx="7" ry="11" transform="rotate(${a} 30 30)" fill="${f}"/>`).join("")}<circle cx="30" cy="30" r="8" fill="#e8c34a"/>`,
+  gifttall:f=>`<rect x="15" y="6" width="30" height="50" fill="${f}"/><line x1="30" y1="6" x2="30" y2="56"/><line x1="15" y1="28" x2="45" y2="28"/>`,
+  giftwide:f=>`<rect x="4" y="18" width="52" height="32" fill="${f}"/><line x1="30" y1="18" x2="30" y2="50"/><line x1="4" y1="34" x2="56" y2="34"/>`,
+  stripe:f=>`<rect x="2" y="2" width="56" height="56" fill="${f}"/>`,
+  hat:f=>`<polygon points="30,8 50,54 10,54" fill="${f}"/><circle cx="30" cy="8" r="5" fill="#fff"/>`
+};
+const MV_NAMES={gifttall:"tall gift",giftwide:"wide gift",stripe:"stripe"};
+function mvName(token){
+  const [shape,fill]=String(token).split(":");
+  if(shape==="text"||shape==="emoji") return fill;
+  if(shape==="?") return "?";
+  return `${fill&&!["white"].includes(fill)?`${fill} `:""}${MV_NAMES[shape]||shape}`;
+}
+function mvToken(token){
+  const [shape,fill="white"]=String(token).split(":");
+  if(shape==="?") return `<span class="mv-token mv-blank" aria-label="blank">?</span>`;
+  if(shape==="text") return `<span class="mv-token mv-text">${escapeHtml(fill)}</span>`;
+  if(shape==="emoji") return `<span class="mv-token mv-emoji">${escapeHtml(fill)}</span>`;
+  const draw=MV_SHAPES[shape];
+  if(!draw) return `<span class="mv-token mv-text">${escapeHtml(token)}</span>`;
+  return `<svg class="mv-token" viewBox="0 0 60 60" role="img" aria-label="${escapeHtml(mvName(token))}">${MV_DEFS}<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">${draw(mvFill(fill))}</g></svg>`;
+}
+const mvDot=color=>`<i class="mv-dot" style="--dot:${MV_FILL[color]||color}"></i>`;
+function visualMarkup(spec){
+  if(!spec) return "";
+  let body="";
+  if(spec.kind==="tenframe"){
+    body=`<div class="mv-frame" style="--cols:5">${Array.from({length:10},(_,cell)=>`<span>${cell<spec.n?mvDot(spec.color||"black"):""}</span>`).join("")}</div>`;
+  }else if(spec.kind==="counters"){
+    body=`<div class="mv-counters">${spec.rows.map(([color,count])=>`<div class="mv-counter-row">${mvDot(color)}<div class="mv-frame" style="--cols:${spec.cols}">${Array.from({length:spec.cols},(_,cell)=>`<span>${cell<count?mvDot(color):""}</span>`).join("")}</div></div>`).join("")}</div>`;
+  }else if(spec.kind==="row"){
+    body=`<div class="mv-row">${spec.items.map(mvToken).join("")}</div>`;
+  }else if(spec.kind==="table"){
+    const cell=value=>value==="?"?`<td class="mv-missing">?</td>`:`<td>${escapeHtml(value)}</td>`;
+    body=`<table class="mv-table"><thead><tr>${spec.head.map(h=>`<th>${escapeHtml(h)}</th>`).join("")}</tr></thead><tbody>${spec.rows.map(row=>`<tr>${row.map(cell).join("")}</tr>`).join("")}</tbody></table>`;
+  }else if(spec.kind==="picgraph"){
+    const cols=spec.cols||Math.max(...spec.rows.map(row=>row[2]));
+    const icon=value=>MV_SHAPES[String(value).split(":")[0]]?mvToken(value):escapeHtml(value);
+    body=`<table class="mv-table mv-picgraph">${spec.title?`<caption>${escapeHtml(spec.title)}</caption>`:""}<tbody>${spec.rows.map(([label,pictureIcon,count])=>`<tr><th>${icon(pictureIcon)} ${escapeHtml(label)}</th>${Array.from({length:cols},(_,cell)=>`<td>${cell<count?icon(pictureIcon):""}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+  }
+  return `<div class="math-visual mv-${escapeHtml(spec.kind)}">${body}</div>`;
+}
+
 function compoundFieldMarkup(field,value,index,showResult,disabled){
   const fieldId=escapeHtml(field.id),label=escapeHtml(field.label);
-  // field.bigImg: ảnh minh hoạ to, nằm trên câu hỏi (ảnh chụp/hình hoạt động cần nhìn rõ).
-  const visualClass=(field.img||field.icon?"":" no-field-visual")+(field.img&&field.bigImg?" big-field-visual":"");
+  // field.bigImg: ảnh minh hoạ to, nằm trên câu hỏi (ảnh chụp/hình hoạt động cần nhìn rõ). field.visual: hình Toán vẽ bằng code, cũng nằm trên.
+  const interactive=field.type==="tapframe"||field.type==="pick";
+  const visualClass=(field.img||field.icon||field.visual||interactive?"":" no-field-visual")+((field.img&&field.bigImg)||field.visual||interactive?" big-field-visual":"");
   const typeClass=` ${escapeHtml(field.type)}-field`;
   const correct=showResult&&fieldCorrect(field,value);
   const result=showResult?`<small class="compound-field-result ${correct?"good":"try"}">${correct?"✓ Correct":"✕ Check this part"}</small>`:"";
-  const fieldImage=field.img
+  const fieldImage=field.visual?visualMarkup(field.visual):field.img
     ? `<img class="compound-field-image" src="${escapeHtml(field.img)}" alt="Picture for ${label}" loading="lazy">`
-    : field.icon?`<span class="compound-field-icon" aria-hidden="true">${escapeHtml(field.icon)}</span>`:"";
+    : field.icon&&!interactive?`<span class="compound-field-icon" aria-hidden="true">${escapeHtml(field.icon)}</span>`:"";
+  if(interactive){
+    const picked=Array.isArray(value)?value.map(Number):[];
+    const cell=(inner,i,extra="")=>`<button type="button" class="${field.type==="tapframe"?"tap-cell":"pick-item"}${picked.includes(i)?" on":""}" data-field="${fieldId}" data-cell="${i}" aria-pressed="${picked.includes(i)}"${extra}${disabled}>${inner}</button>`;
+    const fixedRows=(field.rows||[]).map(([color,count])=>`<div class="mv-counter-row">${mvDot(color)}<div class="mv-frame" style="--cols:${field.cols}">${Array.from({length:field.cols},(_,i)=>`<span>${i<count?mvDot(color):""}</span>`).join("")}</div></div>`).join("");
+    const board=field.type==="tapframe"
+      ? `<div class="math-visual mv-counters">${fixedRows}<div class="mv-counter-row">${field.rows?mvDot(field.color||"black"):""}<div class="mv-frame mv-tap" style="--cols:${field.cols}">${Array.from({length:field.cells},(_,i)=>cell(mvDot(field.color||"black"),i)).join("")}</div></div></div>`
+      : `<div class="math-visual mv-row mv-pick">${field.items.map((token,i)=>cell(mvToken(token),i)).join("")}</div>`;
+    const tip=field.type==="tapframe"?"Tap a box to put a counter. Tap again to take it away.":"Tap the pictures. Tap again to undo.";
+    return `<div class="compound-field${typeClass}${visualClass}" data-field="${fieldId}">${fieldImage}<div class="compound-field-content"><strong>${label}</strong><small class="multi-select-hint">${tip}</small>${board}${result}</div></div>`;
+  }
   if(field.type==="text-any"){
     return `<label class="compound-field open-response-field${visualClass}">${fieldImage}<span class="compound-field-content"><strong>${label}</strong><textarea class="compound-text" data-field="${fieldId}" rows="3" placeholder="Write your answer"${disabled}>${escapeHtml(value||"")}</textarea>${result}</span></label>`;
   }
@@ -617,7 +696,7 @@ function compoundFieldMarkup(field,value,index,showResult,disabled){
   const type=isMulti?"checkbox":"radio";
   const selectionHint=isMulti?`<small class="multi-select-hint">${multiChoiceHint(field)}</small>`:"";
   const wordGrid=field.type==="wordsearch"?`<div class="word-search-grid" role="img" aria-label="Letter grid with hidden Science words">${field.grid.map(row=>row.map(letter=>`<span>${escapeHtml(letter)}</span>`).join("")).join("")}</div>`:"";
-  return `<fieldset class="compound-field compound-options${field.type==="wordsearch"?" word-search-field":""}${visualClass}" data-field="${fieldId}" aria-label="${label}">${fieldImage}<div class="compound-field-content"><strong>${label}</strong>${selectionHint}${wordGrid}<div class="choice-list">${field.choices.map(choice=>`<label class="answer-option${selected.includes(choice)?" selected":""}"><input class="compound-choice" data-field="${fieldId}" type="${type}" name="q-${active}-${index}-${fieldId}" value="${escapeHtml(choice)}"${selected.includes(choice)?" checked":""}${disabled}>${field.choiceImages?.[choice]?`<img class="compound-choice-image" src="${escapeHtml(field.choiceImages[choice])}" alt="" loading="lazy">`:""}<span>${escapeHtml(choice)}</span></label>`).join("")}</div>${result}</div></fieldset>`;
+  return `<fieldset class="compound-field compound-options${field.type==="wordsearch"?" word-search-field":""}${visualClass}" data-field="${fieldId}" aria-label="${label}">${fieldImage}<div class="compound-field-content"><strong>${label}</strong>${selectionHint}${wordGrid}<div class="choice-list">${field.choices.map(choice=>`<label class="answer-option${selected.includes(choice)?" selected":""}"><input class="compound-choice" data-field="${fieldId}" type="${type}" name="q-${active}-${index}-${fieldId}" value="${escapeHtml(choice)}"${selected.includes(choice)?" checked":""}${disabled}>${field.choiceImages?.[choice]?`<img class="compound-choice-image" src="${escapeHtml(field.choiceImages[choice])}" alt="" loading="lazy">`:""}${field.choiceShapes?.[choice]?`<span class="mv-choice">${[].concat(field.choiceShapes[choice]).map(mvToken).join("")}</span>`:""}<span>${escapeHtml(choice)}</span></label>`).join("")}</div>${result}</div></fieldset>`;
 }
 
 function questionMarkup(item,index){
@@ -991,6 +1070,15 @@ function attachQuestionEvents(){
         persist(values);
       }));
       card.querySelectorAll(".drawing-canvas").forEach(canvas=>bindDrawingCanvas(canvas,canvas.dataset.field,values,persist,false));
+      card.querySelectorAll(".tap-cell,.pick-item").forEach(button=>button.addEventListener("click",()=>{
+        const fieldId=button.dataset.field,cell=Number(button.dataset.cell);
+        const picked=new Set(Array.isArray(values[fieldId])?values[fieldId]:[]);
+        if(picked.has(cell)) picked.delete(cell); else picked.add(cell);
+        values[fieldId]=[...picked].sort((a,b)=>a-b);
+        button.classList.toggle("on",picked.has(cell));
+        button.setAttribute("aria-pressed",String(picked.has(cell)));
+        persist(values);
+      }));
       return;
     }
     if(item.type==="fill"){
