@@ -642,7 +642,9 @@ function visualMarkup(spec){
   if(!spec) return "";
   let body="";
   if(spec.kind==="tenframe"){
-    body=`<div class="mv-frame" style="--cols:5">${Array.from({length:10},(_,cell)=>`<span>${cell<spec.n?mvDot(spec.color||"black"):""}</span>`).join("")}</div>`;
+    // n > 10 (số 11–20): 2 ten-frame chồng nhau, khung trên đầy trước (one group of 10 and some ones).
+    const frames=spec.frames||Math.max(1,Math.ceil(spec.n/10));
+    body=`<div class="mv-tens">${Array.from({length:frames},(_,f)=>`<div class="mv-frame" style="--cols:5">${Array.from({length:10},(_,cell)=>`<span>${f*10+cell<spec.n?mvDot(spec.color||"black"):""}</span>`).join("")}</div>`).join("")}</div>`;
   }else if(spec.kind==="counters"){
     body=`<div class="mv-counters">${spec.rows.map(([color,count])=>`<div class="mv-counter-row">${mvDot(color)}<div class="mv-frame" style="--cols:${spec.cols}">${Array.from({length:spec.cols},(_,cell)=>`<span>${cell<count?mvDot(color):""}</span>`).join("")}</div></div>`).join("")}</div>`;
   }else if(spec.kind==="row"){
@@ -673,7 +675,9 @@ function compoundFieldMarkup(field,value,index,showResult,disabled){
     const picked=Array.isArray(value)?value.map(Number):[];
     const cell=(inner,i,extra="")=>`<button type="button" class="${field.type==="tapframe"?"tap-cell":"pick-item"}${picked.includes(i)?" on":""}" data-field="${fieldId}" data-cell="${i}" aria-pressed="${picked.includes(i)}"${extra}${disabled}>${inner}</button>`;
     const fixedRows=(field.rows||[]).map(([color,count])=>`<div class="mv-counter-row">${mvDot(color)}<div class="mv-frame" style="--cols:${field.cols}">${Array.from({length:field.cols},(_,i)=>`<span>${i<count?mvDot(color):""}</span>`).join("")}</div></div>`).join("");
-    const board=field.type==="tapframe"
+    const board=field.type==="tapframe"&&field.frames>1
+      ? `<div class="math-visual mv-tenframe"><div class="mv-tens">${Array.from({length:field.frames},(_,f)=>`<div class="mv-frame mv-tap" style="--cols:5">${Array.from({length:10},(_,i)=>cell(mvDot(field.color||"black"),f*10+i)).join("")}</div>`).join("")}</div></div>`
+      : field.type==="tapframe"
       ? `<div class="math-visual mv-counters">${fixedRows}<div class="mv-counter-row">${field.rows?mvDot(field.color||"black"):""}<div class="mv-frame mv-tap" style="--cols:${field.cols}">${Array.from({length:field.cells},(_,i)=>cell(mvDot(field.color||"black"),i)).join("")}</div></div></div>`
       : `<div class="math-visual mv-row mv-pick">${field.items.map((token,i)=>cell(mvToken(token),i)).join("")}</div>`;
     const tip=field.type==="tapframe"?"Tap a box to put a counter. Tap again to take it away.":"Tap the pictures. Tap again to undo.";

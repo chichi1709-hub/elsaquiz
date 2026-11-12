@@ -12,10 +12,13 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–10/11/2026";
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–12/11/2026";
   const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"],VOC=["behavior","learn","signal"];
 
   const NOTES=[
+    "📅 Class Diary: 12/11/2026",
+    "(12/11) STEM Module Project: Design Protective Gear for a Sport",
+    "(12/11) Presentation: present your protective gear to the class.",
     "📅 Class Diary: 10/11/2026",
     "(10/11) STEM Module Project: Design Protective Gear for a Sport",
     "(10/11) A school needs protective gear for its sports teams. Design protective gear to keep the players safe. The gear needs to protect at least one body part.",
@@ -119,7 +122,7 @@
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
-  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"],["class-diary-2026-11-10-science"]];
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"],["class-diary-2026-11-10-science"],["class-diary-2026-11-12-science"]];
   const TOPICS=[["Stories and texts",/listen|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["STEM Module Project",/stem module/i],["Animal Behaviors",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
   for(const [id,filter] of SOURCES){

@@ -623,6 +623,7 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .mv-tenframe .mv-frame>span:nth-child(n+6){border-bottom:0}
 .mv-counters .mv-frame:not(.mv-tap)>*{border-bottom:0}
 .mv-dot{display:block;width:28px;height:28px;border-radius:50%;background:var(--dot);border:2px solid #2b2b2b;box-sizing:border-box}
+.mv-tens{display:grid;gap:10px;justify-items:center}
 .mv-counters{display:grid;gap:8px}.mv-counter-row{display:flex;align-items:center;gap:8px}
 .mv-tap{border-color:#ff8a3d}.mv-tap>button{cursor:pointer}.mv-tap>button .mv-dot{opacity:0;transform:scale(.4);transition:.15s}
 .mv-tap>button.on .mv-dot{opacity:1;transform:none}.mv-tap>button:not(:disabled):hover{background:#fff5ec}

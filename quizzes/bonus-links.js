@@ -915,4 +915,52 @@
       ch("wish","“You can hand out books to all,” said Cat. What did Nell say?",["“That is just my wish!”","“Shh! I am reading.”","“Yuck!”"],"“That is just my wish!”","🌟"),
       ch("end","At the end, what did Dog and Cat and Pig say?",["“Shh! Let us read!”","“Let’s go shopping!”","“Let’s play tennis!”"],"“Shh! Let us read!”","🤫")
     ],"Dog read in his tent, Pig read in a tub, Cat read in a pot. Nell heard clanging and banging: her friends made a bookmobile called Nell’s Books. “That is just my wish!” said Nell. At the end the friends said, “Shh! Let us read!”")]});
+  // ───────── 78. Video "Silly Bull | Syllables" (Nessy, không lời — đọc storyboard) — LA 12/11 ─────────
+  bonus({id:"bonus-video-silly-bull-syllables",urls:["https://youtu.be/0QcPb5bku70","https://www.youtube.com/watch?v=0QcPb5bku70"],title:"Silly Bull · Syllables",source:"Video · Nessy · Learn Syllables with Silly Bull",
+    remember:["Vowels: a · e · i · o · u","cactus → cac / tus (2 syllables)","important → im / por / tant (3 syllables)"],
+    cards:[card("Learn syllables with Silly Bull","Watch the video. Choose the answer.",[
+      ch("vowels","Silly Bull shows the letters a, e, i, o, u. These letters are the ___.",["vowels","digraphs","end blends"],"vowels","🔤"),
+      fixed("cactus","Silly Bull splits the word cactus. Which is correct?",["cac / tus","ca / ctus","cact / us"],"cac / tus","🌵"),
+      sel("cactus2","How many syllables are in cactus?",["1","2","3"],"2","🌵"),
+      fixed("important","Silly Bull splits the word important. Which is correct?",["im / por / tant","imp / or / tant","i / mpor / tant"],"im / por / tant","🍎"),
+      sel("important2","How many syllables are in important?",["1","2","3"],"3","🍎")
+    ],"Vowels: a, e, i, o, u. cactus → cac / tus (2 syllables). important → im / por / tant (3 syllables).")]});
+
+  // ───────── 79. Wordwall "Closed syllable vs Not closed syllable #2" (Group sort, content-model JSON) — LA 12/11 ─────────
+  const WW_CLOSED=[["hend","Closed syllable"],["hein","Not closed syllable"],["bliz","Closed syllable"],["kle","Not closed syllable"],["ness","Closed syllable"],
+    ["ode","Not closed syllable"],["hol","Closed syllable"],["ca","Not closed syllable"],["gret","Closed syllable"],["mire","Not closed syllable"]];
+  bonus({id:"bonus-wordwall-closed-syllable-2",urls:["https://wordwall.net/resource/38491859/reading/closed-syllable-vs-not-closed-syllable-2"],title:"Closed syllable vs Not closed syllable #2",source:"Game · Wordwall · Group sort",
+    remember:["Closed syllable: hend · bliz · ness · hol · gret","Not closed syllable: hein · kle · ode · ca · mire"],
+    cards:[card("Closed syllable or not?","Sort each syllable into the right group.",
+      WW_CLOSED.map(([w,a],i)=>sel(`ww${i+1}`,w,["Closed syllable","Not closed syllable"],a,a==="Closed syllable"?"🚪":"🔓")),
+      "Closed syllable: hend · bliz · ness · hol · gret. Not closed syllable: hein · kle · ode · ca · mire.")]});
+
+  // ───────── 80. Video "Digraphs | ch, sh" (Little Fox · Letter Teams · Fish for Lunch, đọc storyboard) — LA 12/11 ─────────
+  const FOX=[["cheese","ch","🧀"],["chips","ch","🍟"],["lunch","ch","🥪"],["sheep","sh","🐑"],["fish","sh","🐟"],["brush","sh","🪥"]];
+  bonus({id:"bonus-video-digraphs-ch-sh",urls:["https://www.youtube.com/watch?v=eUM94K5clyA"],title:"Digraphs ch, sh · Fish for Lunch",source:"Video · Little Fox · Letter Teams: Fish for Lunch",
+    remember:["ch: cheese · chips · lunch","sh: sheep · fish · brush"],
+    cards:[card("Letter teams: ch and sh","Watch the video. Which letter team do you see?",FOX.map(([w,d,icon])=>sel(`fox-${w}`,w,["ch","sh"],d,icon)),
+      "c and h make a new sound: ch (cheese · chips · lunch). s and h make a new sound: sh (sheep · fish · brush)."),
+    card("Story: Fish for Lunch","Watch the story. Choose the answer.",[
+      ch("time","It is time for ___.",["lunch","bed","school"],"lunch","🕛"),
+      ch("want","“I want ___!”",["fish","cake","milk"],"fish","🐟"),
+      ch("shed","The pals go to the ___. They get poles.",["shed","shop","ship"],"shed","🛖"),
+      ch("lake","They go to the ___.",["lake","shop","park"],"lake","🏞️"),
+      ch("catch","“Blue, what did you catch?” “It is a ___.”",["brush","fish","shell"],"brush","🪥"),
+      ch("ask","There are no fish! Who do the pals ask?",["the sheep","the fox","the duck"],"the sheep","🐑"),
+      ch("swap","The sheep wants cheese and chips. What do the pals get from the sheep?",["a fish","a brush","a pole"],"a fish","🐟"),
+      fixed("first","What happens FIRST?",["The pals want fish for lunch.","The pals ask the sheep.","They all eat lunch together."],"The pals want fish for lunch.","1️⃣"),
+      fixed("last","What happens LAST?",["They all eat lunch together.","The pals go to the shed.","Blue catches a brush."],"They all eat lunch together.","🔚")
+    ],"It is time for lunch. The pals want fish. They go to the shed, get poles and go to the lake. Blue catches a brush! There are no fish, so they ask the sheep. The sheep wants cheese and chips, and the pals get a fish. They all eat lunch together.")]});
+
+  // ───────── 81. Baamboozle 281844 "Digraphs" (34 câu, đáp án nguyên văn trang /study) — LA 12/11 ─────────
+  const BZ_DG=[["shark","sh"],["church","ch"],["shoes","sh"],["bathroom","th"],["tooth","th"],["chicken","ch"],["theater","th"],["ship","sh"],["dolphin","ph"],
+    ["phone","ph"],["thermometer","th"],["brush","sh"],["chair","ch"],["whistle","wh"],["elephant","ph"],["pharmacy","ph"],["trash","sh"],["thunder","th"],
+    ["chain","ch"],["thumb","th"],["whale","wh"],["birthday","th"],["wheel","wh"],["chess","ch"],["wheat","wh"],["check","ch"],["shell","sh"],["cheese","ch"],
+    ["feather","th"],["cherries","ch"],["alphabet","ph"],["photographer","ph"],["three","th"],["sheep","sh"]];
+  const DG5=["sh","th","ph","wh","ch"];
+  bonus({id:"bonus-baamboozle-digraphs",urls:["https://www.baamboozle.com/game/281844"],title:"Digraphs",source:"Game · Baamboozle · Digraphs",
+    remember:["sh: shark · shoes · ship · brush · trash · shell · sheep","th: bathroom · tooth · thumb · birthday · feather · three","ch: church · chicken · chair · chain · cheese","ph: dolphin · phone · elephant · alphabet","wh: whistle · whale · wheel · wheat"],
+    cards:chunk(BZ_DG,12).map((list,i,all)=>card(`What digraph does this word have? (${i+1}/${all.length})`,"Choose sh, th, ph, wh or ch.",
+      list.map(([w,d])=>sel(`bzd-${w}`,w,DG5,d,"🔤")),list.map(([w,d])=>`${w} (${d})`).join(" · ")))});
 })();
