@@ -21,8 +21,6 @@
     "class-diary-2026-11-05-language",
     "class-diary-2026-11-06-language","la-common-proper-nouns-test-2026-11-06","class-diary-2026-11-09-language","class-diary-2026-11-10-language","class-diary-2026-11-11-language",
     "class-diary-2026-11-12-language"];
-  // 12/11: user yêu cầu "riêng LA hãy tạo bài quiz tổng hợp" → bài LA ngày 12/11 chỉ làm nguồn cho Review, không hiện ở tab "Quiz theo ngày".
-  window.unregisterQuiz("class-diary-2026-11-12-language");
   const sources=DAILY_LA.map(id=>[id,(window.quizSources||{})[id]]).filter(([,src])=>src);
   const dayOf=src=>(src.uploadDate||"").slice(5).split("-").reverse().join("/");
   const RANGE=sources.length?`${dayOf(sources[0][1])}–${dayOf(sources[sources.length-1][1])}/2026`:"";
