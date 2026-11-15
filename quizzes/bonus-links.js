@@ -963,4 +963,76 @@
     remember:["sh: shark · shoes · ship · brush · trash · shell · sheep","th: bathroom · tooth · thumb · birthday · feather · three","ch: church · chicken · chair · chain · cheese","ph: dolphin · phone · elephant · alphabet","wh: whistle · whale · wheel · wheat"],
     cards:chunk(BZ_DG,12).map((list,i,all)=>card(`What digraph does this word have? (${i+1}/${all.length})`,"Choose sh, th, ph, wh or ch.",
       list.map(([w,d])=>sel(`bzd-${w}`,w,DG5,d,"🔤")),list.map(([w,d])=>`${w} (${d})`).join(" · ")))});
+
+  // ───────── 82. Video "Aesop's Fables" (Little Fox · 4 truyện, đọc phụ đề) — Close Reading 13/11 ─────────
+  bonus({id:"bonus-video-aesops-fables",urls:["https://www.youtube.com/watch?v=TPdr2F2-dic"],title:"Aesop’s Fables",source:"Video · Little Fox · The Grasshopper and the Ants, The Tortoise and the Hare, The Miser and His Gold, The Fox and the Crow",
+    remember:["The Grasshopper and the Ants: work and gather food before winter comes.","The Tortoise and the Hare: slow and steady can win the race.","The Miser and His Gold: riches you never spend are like no riches at all.","The Fox and the Crow: don’t trust those who flatter you."],
+    cards:[
+      card("The Grasshopper and the Ants","Watch the story. Choose the answer.",[
+        ch("move","One summer, a young grasshopper moved into a ___.",["forest","pond","city"],"forest","🌳"),
+        ch("carry","What are the ants carrying when they march by?",["green leaves and grass","books and toys","gold coins"],"green leaves and grass","🍃"),
+        ch("foolish","Grasshopper laughs: “It’s summer! It’s too early to get ready for ___.”",["winter","school","a party"],"winter","❄️"),
+        ch("cold","One morning Grasshopper wakes up cold. What does he see?",["It is snowing.","It is raining.","The sun is hot."],"It is snowing.","🌨️"),
+        fixed("first","What happens FIRST?",["Grasshopper asks the ants to play.","The ants share their food.","Grasshopper gathers food in spring."],"Grasshopper asks the ants to play.","1️⃣"),
+        fixed("last","What happens LAST?",["Grasshopper goes out to gather food for winter.","Grasshopper dances all summer.","Grasshopper moves into the forest."],"Grasshopper goes out to gather food for winter.","🔚")
+      ],"Grasshopper moves into a forest. The ants carry green leaves and grass and gather food for winter, but Grasshopper only plays. When it snows he cannot find food, and the ants share their food. In spring he goes out to gather food for winter."),
+      card("The Tortoise and the Hare","Watch the story. Choose the answer.",[
+        ch("walk","The tortoise is taking a nice slow walk around the ___.",["lake","farm","school"],"lake","🏞️"),
+        ch("flop","The hare races past. What happens to the tortoise?",["He flops over onto his back.","He jumps in the lake.","He falls asleep."],"He flops over onto his back.","🙃"),
+        ch("path","The tortoise says the path is for ___.",["everyone","speedy runners only","the fox"],"everyone","🛤️"),
+        ch("steady","How does the tortoise walk in the race?",["at the same steady pace","very fast, then he stops","backwards"],"at the same steady pace","🐢"),
+        ch("wake","When the hare wakes up, where is the tortoise?",["crossing the finish line","asleep under a tree","at the starting line"],"crossing the finish line","🏁")
+      ],"The hare races past and the tortoise flops onto his back. The tortoise says the path is for everyone, so they race. The hare eats carrots and falls asleep. The tortoise walks at the same steady pace and crosses the finish line first."),
+      card("The Miser and His Gold","Watch the story. Choose the answer.",[
+        ch("bury","Where does the miser hide his gold?",["He buries it in a big hole in his garden.","He puts it in a bank.","He gives it to the villagers."],"He buries it in a big hole in his garden.","🕳️"),
+        ch("thief","Who takes the gold at night?",["a thief","the old man","a fox"],"a thief","🦹"),
+        ch("spend","The old man asks: “Did you ever spend it?” What does the miser say?",["No. He only came to look at it.","Yes, every day.","He bought a house."],"No. He only came to look at it.","💰")
+      ],"The miser loves gold but hates to spend it. He buries it in his garden and looks at it every day. A thief sees him and takes the gold at night. The old man says: you didn’t spend your riches, so it is the same as having no riches at all."),
+      card("The Fox and the Crow","Watch the story. Choose the answer.",[
+        ch("brag","Crow sings loudly every morning. Is she a good singer?",["No, she is not a good singer.","Yes, she is the best singer.","She never sings."],"No, she is not a good singer.","🐦‍⬛"),
+        ch("say","What does Fox say about Crow’s feathers?",["They shine like the sun.","They are dirty.","They are too small."],"They shine like the sun.","☀️"),
+        ch("fall","Crow opens her beak to sing. What happens?",["The cheese falls down and Fox eats it.","Fox gives her more cheese.","Crow flies away with the cheese."],"The cheese falls down and Fox eats it.","🧀")
+      ],"Crow thinks she sings beautifully, but she is not a good singer. Fox says her feathers shine like the sun and asks her to sing. When she opens her beak, the cheese falls and Fox gobbles it down. Don’t trust those who flatter you.")
+    ]});
+
+  // ───────── 83. Wordwall 123817218 "Animal behaviors review" (Quiz, 10 câu nguyên văn content-model JSON) — Science 13/11 ─────────
+  const WW_BEH=[["What is a signal?","a sound or movement that gives information","a sound or information that gives movement"],["What is behaviour?","the way an animal acts or does something","the way an animal learns"],
+    ["What is learn?","to gain knowledge or information","to gain food"],["Where do animals learn behavior from?","their parents","youtube"],["True or false? Some animals are born already knowing some behavior.","true","false"],
+    ["Baby whales are born already knowing how to …?","swim","find food"],["What are the 4 animal behaviours?","taking care, feeding, protecting and teaching","taking care, feeding, protecting and sleeping"],
+    ["What is grooming?","cleaning","eating"],["What animal behaviour would a polar bear have to learn?","hunting","sleeping"],["Baby birds will do what when they are ready to eat?","make a noise and open their mouth","make a noise and fall asleep"]];
+  bonus({id:"bonus-wordwall-animal-behaviors-review",subjectKey:"science",urls:["https://wordwall.net/resource/123817218/khoa-h%E1%BB%8Dc/animal-behaviors-review"],title:"Animal behaviors review",source:"Game · Wordwall · Quiz (10 questions)",
+    remember:["signal: a sound or movement that gives information","behaviour: the way an animal acts or does something","learn: to gain knowledge or information","grooming: cleaning","The 4 animal behaviours: taking care, feeding, protecting and teaching"],
+    cards:[{...card("Animal behaviors review","Play the game. Choose the correct answer.",WW_BEH.map(([q,a,b],i)=>ch(`wwb${i+1}`,q,[a,b],a,"🐾")),WW_BEH.map(([q,a])=>`${q} → ${a}`).join(" · ")),img:"assets/mascot/academy/science.webp"}]});
+
+  // ───────── 84. Video "Helping at Home, Helping the Neighborhood" (Sesame Workshop, đọc phụ đề) — Wellbeing 13/11 ─────────
+  bonus({id:"bonus-video-helping-neighborhood",subjectKey:"wellbeing",urls:["https://www.youtube.com/watch?v=3BMAW6eYRAA"],title:"Helping at Home, Helping the Neighborhood",source:"Video · Sesame Workshop · Community Service",
+    remember:["Turn the water off when you are done.","Turn off the lights when no one is in a room to save electricity.","Donate clean clothes or toys to show kindness to others."],
+    cards:[{...card("Helping at Home, Helping the Neighborhood","Watch the video. Choose the answer.",[
+      fixed("wash","Julia helps clean the containers: wash, rinse, ___!",["dry","eat","sleep"],"dry","🧽"),
+      ch("where","Where will the containers be used for art class?",["at the community center","at the zoo","at the beach"],"at the community center","🏫"),
+      ch("kind","By reusing these items, they are being kind to their community and the ___.",["environment","television","weather"],"environment","🌍"),
+      ch("only","How can we help our environment and our community?",["Only use what we need and do not waste water and electricity.","Use lots of water every day.","Keep the lights on all night."],"Only use what we need and do not waste water and electricity.","♻️"),
+      ch("music","What does someone want to donate?",["music books","old shoes","a dog"],"music books","🎼"),
+      ch("drive","What is happening this weekend?",["a local clothes and home goods drive","a big race","a birthday party"],"a local clothes and home goods drive","🧺"),
+      ch("dog","What is the name of the dog?",["Rose","Julia","Sam"],"Rose","🐶")
+    ],"Wash, rinse, dry! Julia helped clean old containers to reuse them for art class at the community center. Being careful to only use what we need and not waste water and electricity helps our environment and our community. A local clothes and home goods drive is happening this weekend. The dog is Rose."),img:"assets/mascot/academy/success.webp"}]});
+
+  // ───────── 85. Video "Syllable Smash | Silly Bull" (Nessy, phụ đề + storyboard) — LA 13/11 ─────────
+  bonus({id:"bonus-video-syllable-smash",urls:["https://www.youtube.com/watch?v=v8c_ZJEFfBE"],title:"Syllable Smash · Silly Bull",source:"Video · Nessy · Syllable Smash",
+    remember:["Every word has a beat. Each beat is called a syllable.","Put a hand under your chin, say the word and count the times your mouth opens.","syl / la / ble → 3 syllables"],
+    cards:[card("Syllable Smash","Watch the video. Choose the answer.",[
+      ch("split","What do we do with a word?",["Split it into chunks, then build the chunks back up again.","Say it very fast.","Write it backwards."],"Split it into chunks, then build the chunks back up again.","🔨"),
+      ch("chunk","Each chunk is a beat. What do we call a beat?",["a syllable","a sentence","a letter"],"a syllable","🥁"),
+      ch("count","Your mouth opens 2 times when you say a word. How many syllables does it have?",["2","1","3"],"2","👄"),
+      sel("syl","syl / la / ble — how many syllables?",["1","2","3"],"3","🎸")
+    ],"Split a word into chunks, then build the chunks back up again. Each chunk is a beat, called a syllable. Count the times your mouth opens: that is the number of syllables. syl / la / ble = 3.")]});
+
+  // ───────── 86. Wordwall 11209624 "Open & Closed Syllables" (True or false, 2 nhóm, nguyên văn JSON) — LA 13/11 ─────────
+  const WW_OC=[["go","Open Syllable"],["gob","Closed Syllable"],["so","Open Syllable"],["soft","Closed Syllable"],["no","Open Syllable"],["not","Closed Syllable"],["she","Open Syllable"],["shell","Closed Syllable"],
+    ["he","Open Syllable"],["help","Closed Syllable"],["be","Open Syllable"],["beg","Closed Syllable"],["we","Open Syllable"],["welt","Closed Syllable"],["hi","Open Syllable"],["hick","Closed Syllable"],
+    ["I","Open Syllable"],["ill","Closed Syllable"],["me","Open Syllable"],["melt","Closed Syllable"]];
+  bonus({id:"bonus-wordwall-open-closed-syllables",urls:["https://wordwall.net/resource/11209624/reading/open-closed-syllables"],title:"Open & Closed Syllables",source:"Game · Wordwall · True or false (2 groups)",
+    remember:["Open Syllable: go · so · no · she · he · be · we · hi · I · me","Closed Syllable: gob · soft · not · shell · help · beg · welt · hick · ill · melt"],
+    cards:chunk(WW_OC,10).map((list,i,all)=>card(`Open or closed syllable? (${i+1}/${all.length})`,"Is it an Open Syllable or a Closed Syllable?",
+      list.map(([w,g])=>sel(`ocs-${w.toLowerCase()}`,w,["Open Syllable","Closed Syllable"],g,g==="Open Syllable"?"🔓":"🚪")),list.map(([w,g])=>`${w} (${g})`).join(" · ")))});
 })();

@@ -20,7 +20,7 @@
     "class-diary-2026-10-29-language","class-diary-2026-11-02-language","class-diary-2026-11-03-language","class-diary-2026-11-04-language",
     "class-diary-2026-11-05-language",
     "class-diary-2026-11-06-language","la-common-proper-nouns-test-2026-11-06","class-diary-2026-11-09-language","class-diary-2026-11-10-language","class-diary-2026-11-11-language",
-    "class-diary-2026-11-12-language"];
+    "class-diary-2026-11-12-language","class-diary-2026-11-13-language"];
   const sources=DAILY_LA.map(id=>[id,(window.quizSources||{})[id]]).filter(([,src])=>src);
   const dayOf=src=>(src.uploadDate||"").slice(5).split("-").reverse().join("/");
   const RANGE=sources.length?`${dayOf(sources[0][1])}–${dayOf(sources[sources.length-1][1])}/2026`:"";
@@ -96,11 +96,11 @@
     ["Phonemic Awareness","phoneme blending",/phonemic|phoneme/i],
     ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text · a good beginning · end punctuation",/writing(?! companion)/i],
     ["Grammar","singular and plural possessive nouns ’s / s’ · fix the possessives · common and proper nouns",/grammar|possessive|fix the draft|write each sentence/i],
-    ["Structural Analysis","inflectional ending -ing · What is happening now? · closed syllables · counting syllables",/structural|-ing|circle the word/i],
+    ["Structural Analysis","inflectional ending -ing · What is happening now? · closed syllables · counting syllables · open and closed syllables · Syllable Smash",/structural|-ing|circle the word/i],
     ["Phonics","end blends st · nk · nd · nt · sk · mp · ft · spelling words · consonant digraphs sh · th · -ng · ch",/phonics|end blend|sort the words|spelling/i],
     ["Research and Inquiry","Pick to research: animal · habitat · food · Where Animals Live",/research/i],
-    ["Essential Question and Vocabulary","Where do animals live together? · How do people help out in the community? · habitat · depend · hibernate · tranquil · tolerate · Ways to Help · leadership · admire",/build knowledge|build background|build vocabulary|vocabulary|essential/i],
-    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · Thump Thump Helps Out (fantasy) · The Three Billy Goats Gruff · The Chicks and the Fox · The Story of Martin Luther King Jr. (biography) · Nell’s Books (fantasy) · characters, setting, events · nonfiction · author’s purpose",/.*/]];
+    ["Essential Question and Vocabulary","Where do animals live together? · How do people help out in the community? · habitat · depend · hibernate · tranquil · tolerate · Ways to Help · leadership · admire · connections · enjoy · rely",/build knowledge|build background|build vocabulary|vocabulary|essential/i],
+    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · Thump Thump Helps Out (fantasy) · The Three Billy Goats Gruff · The Chicks and the Fox · The Story of Martin Luther King Jr. (biography) · Nell’s Books (fantasy) · Aesop’s Fables · characters, setting, events · nonfiction · author’s purpose",/.*/]];
   const buckets=new Map(BUCKET.map(([t,sub])=>[t,{subtitle:sub,items:[]}]));
   const seen=new Set(),readings=[notesCard("notes-la-u2w34")],links=new Map();
   for(const [id,src] of sources){
