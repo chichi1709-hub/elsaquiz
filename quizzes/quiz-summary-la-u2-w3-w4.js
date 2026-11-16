@@ -1,15 +1,13 @@
-// TỔNG HỢP KIẾN THỨC TUẦN — Language Arts Unit 2 Week 3 + Week 4 (Class Diary từ 23/10/2026, sau bộ W1&2).
-// Không ghi ngày upload: uploadDate bắt đầu bằng "weekly" → nhóm "Tổng hợp" riêng, nhãn "Tổng hợp kiến thức tuần (W3&4)".
-// 2 bài: (1) Practice Test theo format bài kiểm tra thật (20 câu): 1 bài đọc + đọc hiểu (1–6) · High-frequency words (7–10)
-// · Phonemic Awareness (11–13) · Phonics (14–17) · Grammar/Structural Analysis (18–20) — 1 Part, đúng thứ tự;
-// (2) Review: gộp TOÀN BỘ câu của các bài LA theo ngày trong DAILY_LA (bỏ câu trùng), xếp theo chủ đề, mang theo bài đọc,
-//     gom mọi link Bonus; thẻ Remember ghép từ thẻ Remember của từng ngày (ngày mới nhất trước).
-// Các bài LA theo ngày của W3 vẫn giữ ở tab "Quiz theo ngày" (tuần 3–4 chưa học xong). Diary mới của W3/W4: thêm id vào DAILY_LA.
-// 16/11: thêm bài (1b) "Unit Overview" lọc từ 2 tờ tổng hợp đầu mục Unit 2 Week 3/Week 4 (user gửi 16/11) + diary 16/11 vào DAILY_LA (bài kiểm tra 17/11).
-// Bài đọc “The Shell Shop” (viết lại 12/11, phủ cả 2 tuần) do mình viết theo kiểu bài kiểm tra: HFW tuần 3 + 4, end blends (W3), digraphs sh/th/ng (W4).
+// TỔNG HỢP KIẾN THỨC — Language Arts Unit 2 Week 3 + Week 4 (Class Diary 23/10–16/11/2026). Nhóm "Tổng hợp kiến thức Tuần 3&4" (uploadDate "weekly-…").
+// QUY TẮC user 16/11: nhóm tổng hợp đặt tên "Tổng hợp kiến thức Tuần/Lesson …"; bài chi tiết đặt "Practice Test - Part 1/2/3…";
+//   gom toàn bộ kiến thức LA vào MỘT dạng (không tách Practice Test / Unit Overview / Review), chỉ cần đủ kiến thức bài học;
+//   link Bonus không dồn hết vào mỗi Part mà xáo trộn rồi chia đều cho các Part.
+// Part 1: đề thử đúng format bài kiểm tra thật (TEST, bài đọc “The Shell Shop” tự viết, HFW + end blends + digraphs).
+// Part 2…n: OVERVIEW (lọc từ 2 tờ đầu mục unittwoweekthree/four2023.pdf) + PICK (ý chính từng truyện/bài lấy từ bài LA theo ngày).
+// Diary mới của W3/W4: thêm id vào DAILY_LA (Remember + link Bonus) và thêm dòng PICK nếu có truyện/kiến thức mới.
 (()=>{
   const L="assets/mascot/academy/language.webp";
-  const KEY="weekly-la-u2-w3-w4",LABEL="Tổng hợp kiến thức tuần (W3&4)";
+  const KEY="weekly-la-u2-w3-w4",LABEL="Tổng hợp kiến thức Tuần 3&4";
   const rotate=(items,key)=>{let hash=0;for(const char of key)hash=(hash*31+char.charCodeAt(0))>>>0;const shift=hash%items.length;return [...items.slice(shift),...items.slice(0,shift)]};
   const choice=(id,label,choices,answer,icon)=>({id,label,type:"choice",choices:rotate(choices,id+label),answer,icon});
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
@@ -72,24 +70,6 @@
       choice("picnic","Split the word into closed syllables: picnic",["pic/nic","pi/cnic","picn/ic"],"pic/nic","🧺")
     ],"One → ’s: the dog’s bed. More than one → s’: the girls’ tents. -ing tells what is happening now: jumping. Beth is a proper noun (a name, capital letter); book is a common noun. pic/nic: each closed syllable ends in a consonant and has a short vowel.")
   ];
-  registerQuiz({
-    id:"la-u2-w3-w4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
-    title:"LA_U2_W3+4 · Practice Test",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"Test format · Week 3 + Week 4 · Reading 1–6 · High-frequency words 7–10 · Phonemic awareness 11–13 · Phonics 14–17 · Grammar 18–20",scoreByField:true,
-      groups:groupsOf([
-        ["Reading Comprehension","Test questions 1–6 · read the story, then answer",1],
-        ["High-Frequency Words","Test questions 7–10 · choose the word that makes the sentence make sense",1],
-        ["Phonemic Awareness","Test questions 11–13 · blend the sounds, count the sounds",1],
-        ["Phonics","Test questions 14–17 · end blends st, nk · digraphs sh, th, ng",1],
-        ["Grammar and Structural Analysis","Test questions 18–20 · possessive nouns ’s / s’ · -ing · common and proper nouns · closed syllables",1]
-      ]),
-      questions:TEST,
-      readings:[
-        {id:"testText",title:"The Shell Shop",byline:"Test-style reading · a new story with words from Week 3 and Week 4",mode:"reference",text:"Beth is a crab. She has a shop at the pond. It is a shell shop!\n\n“Who wants a shell?” calls Beth. “Come to my shop!”\n\nFrog, Duck, and Fish come to the shop. It is a sunny day.\n\nFrog wants a big shell. Duck wants a pink shell.\n\nFish has no cash. He is sad.\n\nBeth gives Fish a shell. “This is for you,” she says.\n\n“Thank you!” says Fish. He swims under the water with his shell.\n\nBeth helps all of her pals. Then the pals eat lunch at the pond."},
-        notesCard("notes-la-u2w34-test")
-      ]}
-  });
-
   // ───── (1b) Unit Overview: lọc từ 2 tờ tổng hợp đầu mục user gửi 16/11 (NKL/Tháng 11/unittwoweekthree2023.pdf, unittwoweekfour2023.pdf) ─────
   // Chỉ giữ mục ĐÃ HỌC trong diary (định nghĩa nguyên văn diary). Bỏ: multiple-meaning words, text feature: lists, interview a classmate, handwriting (diary không có nội dung).
   const SPELL3=["lend","send","fast","past","sink","wink","run","bug","of","who"],SPELL4=["fish","shop","ship","with","thing","sang","fast","wink","want","call"];
@@ -181,68 +161,110 @@
       choice("o-res","Week 3 Research: What did we research?",["an animal in its habitat","a recipe for cake","a famous song"],"an animal in its habitat","🔎")
     ],"The author’s purpose is the reason why an author writes a text. Poems often have repetition, or repeated words or phrases. Poems also use alliteration, or words that start with the same sound (sand, stones, seaweed). Characters are the people or animals in a story. Setting is where the story takes place. Events are what happen in the story. Week 3 Research: an animal in its habitat.")
   ];
-  registerQuiz({
-    id:"la-u2-w3-w4-overview",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
-    title:"LA_U2_W3+4 · Unit Overview (all topics)",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"Every topic on the Unit 2 Week 3 + Week 4 overview sheets · Big Idea · texts · vocabulary · HFW · spelling · phonemic awareness · grammar · reading skills",scoreByField:true,
-      groups:groupsOf([["Big Idea and Key Concepts","What makes a community? · A Community in Nature · Let’s Help",1],["Texts and Genre","Shared Read · Anchor Text · Paired Text",1],["Oral Vocabulary","Week 3 · Week 4",2],["High-Frequency Words","eat · no · of · under · who · all · call · day · her · want",1],["Spelling Words","Week 3 end blends · Week 4 digraphs",2],["Phonemic Awareness","blending · substitution · categorization · segmentation · isolation",1],["Grammar and Mechanics","possessive nouns · capital letters · -ing · closed syllables",1],["Reading Skills","author’s purpose · poetry · story elements · research",1]]),
-      questions:OVERVIEW,
-      readings:[
-        {id:"overview",title:"Unit 2 · Week 3 + Week 4 Overview",byline:"What we learned in Week 3 and Week 4",mode:"reference",text:[
-          "Big Idea: What makes a community?",
-          "WEEK 3 · Key Concept: A Community in Nature · Essential Question: Where do animals live together?",
-          "Genre: Informational Text · Shared Read: “The Best Spot” · Anchor Text: At a Pond · Paired Text: “Way Down Deep”",
-          "Oral Vocabulary: depend, habitat, hibernate, tranquil, tolerate · High-Frequency Words: eat, no, of, under, who",
-          "Spelling (ending consonant blends): lend, send, fast, past, sink, wink, run, bug, of, who",
-          "Reading Poetry: repetition, alliteration · Reading Informational Text: author’s purpose, retell",
-          "Grammar: possessive nouns · Mechanics: apostrophes with possessive nouns · Structural Analysis: inflectional ending -ing",
-          "Research: research an animal in its habitat",
-          "",
-          "WEEK 4 · Key Concept: Let’s Help · Essential Question: How do people help out in the community?",
-          "Genre: Fantasy · Shared Read: “Thump Thump Helps Out” · Anchor Text: Nell’s Books · Paired Text: “Kids Can Help”",
-          "Oral Vocabulary: admire, leadership, enjoy, rely, connections · High-Frequency Words: all, call, day, her, want",
-          "Spelling (consonant digraphs th, sh, -ng): fish, shop, ship, with, thing, sang, fast, wink, want, call",
-          "Reading Literature: character, setting, events, retell",
-          "Grammar: common and proper nouns · Mechanics: capitalize proper nouns · Structural Analysis: closed syllables"].join("\n")},
-        notesCard("notes-la-u2w34-ov")
-      ]}
-  });
-
-  // ───── (2) Review: gộp mọi câu của các bài LA theo ngày (bỏ câu trùng nội dung + đáp án) ─────
-  const norm=v=>String(Array.isArray(v)?v.join("|"):v??"").toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'|/+=-]+/g," ").trim();
-  const fieldKeys=q=>(q.type==="compound"?q.fields:[q]).map(f=>`${norm(f.label||q.text)}#${norm(f.answer)}`);
-  const BUCKET=[
-    ["High-Frequency Words","eat · no · of · under · who · all · call · day · her · want",/high-frequency|\bhfw\b/i],
-    ["Phonemic Awareness","phoneme blending",/phonemic|phoneme/i],
-    ["Writing","write a sentence · Ben’s student model · capital letters · Write About the Anchor Text · a good beginning · end punctuation",/writing(?! companion)/i],
-    ["Grammar","singular and plural possessive nouns ’s / s’ · fix the possessives · common and proper nouns · possessive noun poster · nouns: person, place, animal, thing",/grammar|possessive|fix the draft|write each sentence/i],
-    ["Structural Analysis","inflectional ending -ing · What is happening now? · closed syllables · counting syllables · open and closed syllables · Syllable Smash",/structural|-ing|circle the word/i],
-    ["Phonics","end blends st · nk · nd · nt · sk · mp · ft · spelling words · consonant digraphs sh · th · -ng · ch",/phonics|end blend|sort the words|spelling/i],
-    ["Research and Inquiry","Pick to research: animal · habitat · food · Where Animals Live",/research/i],
-    ["Essential Question and Vocabulary","Where do animals live together? · How do people help out in the community? · habitat · depend · hibernate · tranquil · tolerate · Ways to Help · leadership · admire · connections · enjoy · rely",/build knowledge|build background|build vocabulary|vocabulary|essential/i],
-    ["Stories and Texts","The Best Spot · Babies in the Bayou · At a Pond · Way Down Deep (poetry) · Thump Thump Helps Out (fantasy) · The Three Billy Goats Gruff · The Chicks and the Fox · The Story of Martin Luther King Jr. (biography) · Nell’s Books (fantasy) · Aesop’s Fables · Kids Can Help! (nonfiction) · characters, setting, events · nonfiction · author’s purpose",/.*/]];
-  const buckets=new Map(BUCKET.map(([t,sub])=>[t,{subtitle:sub,items:[]}]));
-  const seen=new Set(),readings=[notesCard("notes-la-u2w34")],links=new Map();
-  for(const [id,src] of sources){
-    const day=dayOf(src);
-    for(const q of src.subject.questions){
-      const keys=fieldKeys(q);if(!keys.some(k=>!seen.has(k))) continue;
-      keys.forEach(k=>seen.add(k));
-      const copy={...q,section:`${q.section} (${day})`};
-      if(q.readingId){
-        const rid=`${id}--${q.readingId}`;copy.readingId=rid;
-        if(!readings.some(r=>r.id===rid)){const r=(src.subject.readings||[]).find(x=>x.id===q.readingId);if(r) readings.push({...r,id:rid})}
-      }
-      buckets.get(BUCKET.find(([,,re])=>re.test(q.section||""))[0]).items.push(copy);
-    }
-    (src.subject.readings||[]).filter(r=>r.mode==="bonus").forEach(r=>(r.links||[]).forEach(l=>{if(!links.has(l.url)) links.set(l.url,l)}));
+  // ───── (2) Gom thành MỘT dạng duy nhất "Practice Test - Part 1…n" (user chốt 16/11) ─────
+  // Part 1 = đề thử đúng format bài kiểm tra thật (TEST, giữ thứ tự). Part 2…n = Unit Overview (OVERVIEW) + thẻ kiến thức cốt lõi
+  // chọn từ các bài LA theo ngày (PICK: chỉ lấy ý chính của từng truyện/bài), xáo trộn cố định rồi chia đều ≤ 30 ý/Part.
+  // Link Bonus của mọi diary W3+4 được xáo trộn rồi CHIA ĐỀU cho các Part (mỗi Part chỉ hiện vài link, cộng lại đủ hết).
+  const TEST_TEXT="Beth is a crab. She has a shop at the pond. It is a shell shop!\n\n“Who wants a shell?” calls Beth. “Come to my shop!”\n\nFrog, Duck, and Fish come to the shop. It is a sunny day.\n\nFrog wants a big shell. Duck wants a pink shell.\n\nFish has no cash. He is sad.\n\nBeth gives Fish a shell. “This is for you,” she says.\n\n“Thank you!” says Fish. He swims under the water with his shell.\n\nBeth helps all of her pals. Then the pals eat lunch at the pond.";
+  const OVERVIEW_TEXT=[
+    "Big Idea: What makes a community?",
+    "WEEK 3 · Key Concept: A Community in Nature · Essential Question: Where do animals live together?",
+    "Genre: Informational Text · Shared Read: “The Best Spot” · Anchor Text: At a Pond · Paired Text: “Way Down Deep”",
+    "Oral Vocabulary: depend, habitat, hibernate, tranquil, tolerate · High-Frequency Words: eat, no, of, under, who",
+    "Spelling (ending consonant blends): lend, send, fast, past, sink, wink, run, bug, of, who",
+    "Reading Poetry: repetition, alliteration · Reading Informational Text: author’s purpose, retell",
+    "Grammar: possessive nouns · Mechanics: apostrophes with possessive nouns · Structural Analysis: inflectional ending -ing",
+    "Research: research an animal in its habitat",
+    "",
+    "WEEK 4 · Key Concept: Let’s Help · Essential Question: How do people help out in the community?",
+    "Genre: Fantasy · Shared Read: “Thump Thump Helps Out” · Anchor Text: Nell’s Books · Paired Text: “Kids Can Help”",
+    "Oral Vocabulary: admire, leadership, enjoy, rely, connections · High-Frequency Words: all, call, day, her, want",
+    "Spelling (consonant digraphs th, sh, -ng): fish, shop, ship, with, thing, sang, fast, wink, want, call",
+    "Reading Literature: character, setting, events, retell",
+    "Grammar: common and proper nouns · Mechanics: capitalize proper nouns · Structural Analysis: closed syllables"].join("\n");
+  const STORY="Stories and Texts",SKILL="Grammar, Phonics and Structural Analysis",WRITE="Writing and Research";
+  // [ngày bài LA, regex mục, id các ý lấy (null = cả thẻ), chủ đề]
+  const PICK=[
+    ["10-26",/^Shared Read · The Best Spot$/,["genre","where","deer","up","bugs"],STORY],
+    ["10-27",/^Shared Read · Author’s purpose/,["photo","text","why"],STORY],
+    ["10-29",/^Big Book · Babies in the Bayou/,["bayou","animals","gator","duck"],STORY],
+    ["10-29",/^Anchor Text · At a Pond/,["genre","author","pond","twigs"],STORY],
+    ["11-03",/^Paired Selection · Way Down Deep/,["genre","author","compare","connect"],STORY],
+    ["11-06",/^Shared Read · Thump Thump Helps Out \(pages 1/,["genre","narrator","liked","problem","sheldon"],STORY],
+    ["11-06",/Three Billy Goats Gruff/,["first","save","message"],STORY],
+    ["11-09",/page 131 · Characters/,["chars","park","road","stuck"],STORY],
+    ["11-09",/Chicks and the Fox \(part 1\)/,["first","next","thing","mine"],STORY],
+    ["11-11",/^Big Book · The Story of Martin Luther King/,["genre","born","dream","mlk-first","mlk-last","now"],STORY],
+    ["11-11",/^Anchor Text · Nell’s Books \(Literature/,["genre2","shelf","wish"],STORY],
+    ["11-11",/^Anchor Text · Main Story Elements/,null,STORY],
+    ["11-13",/Grasshopper and the Ants/,["ants","winter"],STORY],
+    ["11-13",/Tortoise and the Hare/,["hare","win"],STORY],
+    ["11-13",/Fox and the Crow/,["trick","advice"],STORY],
+    ["11-16",/^Paired Selection · Kids Can Help/,["genre","garden","place","boys","t-garden","t-play","title"],STORY],
+    ["11-05",/^Build Vocabulary · Ways to Help/,["ways","fire","doctor","police"],STORY],
+    ["10-26",/^Structural Analysis · Inflectional Ending -ing$/,null,SKILL],
+    ["11-05",/^Phonics · Consonant Digraphs/,null,SKILL],
+    ["11-16",/^Grammar · Possessive Noun/,["p-def","p-apos","p-owns","p-girls"],SKILL],
+    ["11-16",/^Structural Analysis · Closed Syllables/,["k-end","k-short","k-tree","k-pen"],SKILL],
+    ["10-28",/^Writing and Grammar · Write About the Shared Read/,["topic","poss","rule1","rule2","capital"],WRITE],
+    ["11-04",/^Research and Inquiry · Where Animals Live/,["first","where","last"],WRITE]
+  ];
+  const pool=[],srcReadings=new Map();
+  OVERVIEW.forEach(q=>pool.push({q,topic:q.section}));
+  for(const [d,re,ids,topic] of PICK){
+    const id=`class-diary-2026-${d}-language`,src=(window.quizSources||{})[id];if(!src) continue;
+    const card=src.subject.questions.find(c=>re.test(c.section||""));if(!card) continue;
+    const fields=ids?card.fields.filter(f=>ids.includes(f.id)):card.fields;if(!fields.length) continue;
+    const copy={...card,fields,section:`${card.section} (${dayOf(src)})`};
+    if(card.readingId){const rid=`${id}--${card.readingId}`;copy.readingId=rid;
+      if(!srcReadings.has(rid)){const r=(src.subject.readings||[]).find(x=>x.id===card.readingId);if(r) srcReadings.set(rid,{...r,id:rid})}}
+    pool.push({q:copy,topic});
   }
-  if(links.size) readings.push({id:"bonus-la-u2w34",title:"Bonus · Video & game",byline:"All links from the Class Diaries of Unit 2 Week 3 and Week 4",mode:"bonus",links:[...links.values()],text:""});
-  const parts=[...buckets].filter(([,b])=>b.items.length);
+  pool.forEach((x,i)=>x.order=i);
+  // Chia Part: xáo trộn cố định, thẻ nhiều ý xếp trước vào Part đang ít ý nhất (giống quiz-registry.js).
+  const size=x=>x.q.fields.length,limit=30;
+  const seeded=key=>{let h=2166136261;for(const c of key){h^=c.charCodeAt(0);h=Math.imul(h,16777619)>>>0}return()=>{h=Math.imul(h^(h>>>15),2246822507)>>>0;h=Math.imul(h^(h>>>13),3266489909)>>>0;h^=h>>>16;return(h>>>0)/4294967296}};
+  const shuffle=(list,key)=>{const rand=seeded(key),out=[...list];for(let i=out.length-1;i>0;i--){const j=Math.floor(rand()*(i+1));[out[i],out[j]]=[out[j],out[i]]}return out};
+  const total=pool.reduce((a,x)=>a+size(x),0);
+  const order=shuffle(pool,"la-u2-w3-w4-practice").map((x,rank)=>({x,rank})).sort((a,b)=>size(b.x)-size(a.x)||a.rank-b.rank).map(o=>o.x);
+  let buckets;
+  for(let count=Math.ceil(total/limit);;count++){
+    buckets=Array.from({length:count},()=>({items:[],n:0}));
+    for(const x of order){const b=buckets.reduce((a,c)=>c.n<a.n?c:a);b.items.push(x);b.n+=size(x)}
+    if(buckets.every(b=>b.n<=limit)) break;
+  }
+  const PARTS=1+buckets.length;
+  // Link Bonus: gom từ mọi bài ngày, xáo trộn, chia đều cho các Part.
+  const links=new Map();
+  for(const [,src] of sources)(src.subject.readings||[]).filter(r=>r.mode==="bonus").forEach(r=>(r.links||[]).forEach(l=>{if(!links.has(l.url)) links.set(l.url,l)}));
+  const linkParts=Array.from({length:PARTS},()=>[]);
+  shuffle([...links.values()],"la-u2-w3-w4-links").forEach((l,i)=>linkParts[i%PARTS].push(l));
+  const bonusOf=k=>linkParts[k].length?[{id:`bonus-la-u2w34-p${k+1}`,title:"Bonus · Video & game",byline:"Links from the Class Diaries of Week 3 and Week 4",mode:"bonus",links:linkParts[k],text:""}]:[];
+  const SUB="Week 3 + Week 4 · All knowledge of the lessons";
   registerQuiz({
-    id:"la-u2-w3-w4-summary",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
-    title:"LA_U2_W3+4 · Review (all lessons)",
-    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:`All Language Arts classes · Unit 2 Week 3 + Week 4 · Class Diary ${RANGE}`,scoreByField:true,
-      groups:groupsOf(parts.map(([t,b])=>[t,b.subtitle,b.items.length])),questions:parts.flatMap(([,b])=>b.items),readings}
+    id:"la-u2-w3-w4-practice-p1",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
+    title:"Practice Test - Part 1",
+    subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:`${SUB} · Part 1/${PARTS} · Test format: Reading 1–6 · High-frequency words 7–10 · Phonemic awareness 11–13 · Phonics 14–17 · Grammar 18–20`,scoreByField:true,
+      groups:groupsOf([
+        ["Reading Comprehension","Test questions 1–6 · read the story, then answer",1],
+        ["High-Frequency Words","Test questions 7–10 · choose the word that makes the sentence make sense",1],
+        ["Phonemic Awareness","Test questions 11–13 · blend the sounds, count the sounds",1],
+        ["Phonics","Test questions 14–17 · end blends st, nk · digraphs sh, th, ng",1],
+        ["Grammar and Structural Analysis","Test questions 18–20 · possessive nouns ’s / s’ · -ing · common and proper nouns · closed syllables",1]
+      ]),
+      questions:TEST,
+      readings:[{id:"testText",title:"The Shell Shop",byline:"Test-style reading · a new story with words from Week 3 and Week 4",mode:"reference",text:TEST_TEXT},notesCard("notes-la-u2w34-p1"),...bonusOf(0)]}
+  });
+  buckets.forEach((b,k)=>{
+    const items=b.items.sort((a,c)=>a.order-c.order),questions=items.map(x=>x.q);
+    const runs=[];items.forEach(x=>{const last=runs[runs.length-1];if(last&&last[0]===x.topic) last[2]++;else runs.push([x.topic,"",1])});
+    const used=new Set(questions.map(q=>q.readingId).filter(Boolean));
+    registerQuiz({
+      id:`la-u2-w3-w4-practice-p${k+2}`,uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
+      title:`Practice Test - Part ${k+2}`,
+      subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:`${SUB} · Part ${k+2}/${PARTS}`,scoreByField:true,
+        groups:groupsOf(runs),questions,
+        readings:[...[...srcReadings.values()].filter(r=>used.has(r.id)),{id:"overview",title:"Unit 2 · Week 3 + Week 4 Overview",byline:"What we learned in Week 3 and Week 4",mode:"reference",text:OVERVIEW_TEXT},notesCard(`notes-la-u2w34-p${k+2}`),...bonusOf(k+1)]}
+    });
   });
 })();

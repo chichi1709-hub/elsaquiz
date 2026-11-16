@@ -19,7 +19,7 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-test",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Module Test",RANGE="18/09–16/11/2026";
+  const KEY="weekly-sci-u2m1-test",LABEL="Tổng hợp kiến thức Module 1",RANGE="18/09–16/11/2026";
   const REVIEW_1611=window.SCI_M1_REVIEW_1611||[];
   const GAME_URL="https://wordwall.net/resource/123817218/khoa-h%E1%BB%8Dc/animal-behaviors-review";
   const GAME=window.SCI_WRAPUP_GAME||[];

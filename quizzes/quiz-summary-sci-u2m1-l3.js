@@ -11,7 +11,7 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l3",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 3";
+  const KEY="weekly-sci-u2m1-l3",LABEL="Tổng hợp kiến thức Lesson 3";
   const BABY=["kitten","puppy","calf","cub","fawn","duckling"];
 
   const NOTES=[

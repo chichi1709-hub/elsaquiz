@@ -11,7 +11,7 @@
   const fill=(id,label,answer,icon)=>({id,label,type:"fill",answer:[answer],icon});
   const math=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:M,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-math-test-5",LABEL="Tổng hợp kiến thức · Math · Test 5",RANGE="16/10–09/11/2026";
+  const KEY="weekly-math-test-5",LABEL="Tổng hợp kiến thức Test 5",RANGE="16/10–09/11/2026";
   const SUBJECT={name:"Math",icon:"🧮",accent:"#ff8a3d",soft:"#fff1e6",scoreByField:true};
 
   // Bài Math theo ngày (Class Diary 16/10 → 06/11), cũ trước
