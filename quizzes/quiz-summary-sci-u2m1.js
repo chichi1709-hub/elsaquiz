@@ -1,5 +1,7 @@
-// ĐÃ GỠ khỏi index.html ngày 16/11 (user đổi thành "Tổng hợp Science Unit 2 Module 1, Lesson 4"; Wrap-up Game đã chuyển sang quiz-summary-sci-u2m1-l4.js).
-// Giữ file để dùng lại bài Module Test (Lessons 1–4) khi cần — nếu bật lại thì KHÔNG đăng ký lại id sci-u2m1-wrapup-game.
+// 16/11: user yêu cầu "Tạo thêm 1 bài tổng hợp Science - Module Test, gồm toàn bộ kiến thức Module 1" (thi Module Test 17/11).
+//   → bật lại file này với nhóm riêng "Tổng hợp kiến thức · Unit 2 Module 1 · Module Test" (KEY weekly-sci-u2m1-test).
+//   Module Test thêm: Science Module 1 Review 16/11 (window.SCI_M1_REVIEW_1611 từ quiz-2026-11-16.js) + 2 thẻ kiến thức game Lesson 4.
+//   Wrap-up Game KHÔNG đăng ký ở đây (đã nằm trong bộ Lesson 4: quiz-summary-sci-u2m1-l4.js).
 // TỔNG HỢP KIẾN THỨC — Science Unit 2 Module 1: Animal Parents and Their Offspring (cả Module, Class Diary 18/09 → 13/11/2026).
 // User yêu cầu 15/11: "Tạo thêm tổng hợp Science unit 2 module 1, đặc biệt nhớ check kĩ đường link play the game (class diary ngày 13/11 - đây là nội dung chính quiz)".
 // 3 bài trong nhóm Tổng hợp (uploadDate "weekly-sci-u2m1"):
@@ -17,7 +19,8 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1",LABEL="Tổng hợp kiến thức · Unit 2 Module 1",RANGE="18/09–13/11/2026";
+  const KEY="weekly-sci-u2m1-test",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Module Test",RANGE="18/09–16/11/2026";
+  const REVIEW_1611=window.SCI_M1_REVIEW_1611||[];
   const GAME_URL="https://wordwall.net/resource/123817218/khoa-h%E1%BB%8Dc/animal-behaviors-review";
   const GAME=window.SCI_WRAPUP_GAME||[];
   const BEH4=["Taking care","Feeding","Protecting","Teaching"];
@@ -26,6 +29,12 @@
   const SF=["structure","function","protection"];
 
   const NOTES=[
+    "📅 Class Diary: 16/11/2026 · Science Module 1 Review (Module Test tomorrow)",
+    "(16/11) Different types of animals have different structures that help them survive and grow.",
+    "(16/11) Circle the structure: fish → fins · insect → wings · bird → beak · mammal → hair · reptile → scales · amphibian → skin. Some fish are covered in scales. Amphibians have thin skin.",
+    "(16/11) Signal: a sound or movement that gives information. Babies signal to send a message. A parent responds to signals from its offspring.",
+    "(16/11) Learn: means to gain knowledge or a skill.",
+    "(16/11) Protection: keeps things safe from harm. Some animals can use their structures for protection. Other animals build homes for protection.",
     "📅 Class Diary: 13/11/2026 · Module Wrap-up",
     "(13/11) Rediscover the Phenomenon: What keeps these animals safe? Look at your project to help you answer the question.",
     "(13/11) Game: signal — a sound or movement that gives information · behaviour — the way an animal acts or does something · grooming — cleaning",
@@ -124,6 +133,7 @@
       choice("birdparts","A bird has two ___, two ___, and ___.",["wings · legs · feathers","fins · gills · scales","horns · hooves · fur"],"wings · legs · feathers","🪶"),
       choice("legs","Birds, bats, and insects have wings. Birds and bats have 2 legs, but insects have ___ legs.",["6","4","8"],"6","🦗")
     ],"Animals do not all have the same structures. A cheetah and an armadillo both have a tail and legs; only the armadillo has a shell. A bird has two wings, two legs, and feathers. Birds and bats have 2 legs, but insects have 6 legs."),
+    ...REVIEW_1611.slice(0,2).map(q=>({...q,section:q.section.replace("Module 1 Review","Module 1 Review (16/11)")})),
     sci("Lesson 2 · Functions of Animal Structures (01/10–13/10)","Structure · Function · Protection.",[
       select("k-structure","a body part",SF,"structure","🦴"),
       select("k-function","what the body part does",SF,"function","⚙️"),
@@ -143,6 +153,7 @@
       select("p-skunk","A skunk ___ to protect itself.",["sprays a bad-smelling liquid","blends in with its surroundings","has sharp spines"],"sprays a bad-smelling liquid","🦨"),
       select("p-chameleon","A chameleon can ___ to hide from predators.",["blend in with its surroundings","spray a bad-smelling liquid","grow a hard shell"],"blend in with its surroundings","🦎")
     ],"A turtle has a hard shell to protect its body. A hedgehog has sharp spines to protect itself. A skunk sprays a bad-smelling liquid to protect itself. A chameleon can blend in with its surroundings to hide from predators."),
+    ...REVIEW_1611.slice(3,4).map(q=>({...q,section:q.section.replace("Module 1 Review","Module 1 Review (16/11)")})),
     sci("Lesson 3 · Animals and Their Parents (15/10–27/10)","Offspring · trait · life cycle.",[
       choice("title3","In Lesson 3 we learned about birds and their chicks, kittens and their mother, ducklings, and how a puppy grows into an adult dog. So the topic of Lesson 3 is called ___.",["Animals and Their Parents","Animal Behaviors","Animal Structures"],"Animals and Their Parents","👪"),
       choice("hatch","Which animals hatch from eggs?",["Birds and reptiles","Dogs and cats","Cows and horses"],"Birds and reptiles","🥚"),
@@ -159,6 +170,8 @@
       choice("service","Some animals are trained to help people. What is the most common type of service animal?",["dogs","cats","birds"],"dogs","🦮"),
       choice("survive","Why do some young animals need their parents?",["They need their parents to protect and feed them because they cannot do it on their own.","They want to watch TV with them.","They do not need their parents."],"They need their parents to protect and feed them because they cannot do it on their own.","🌱")
     ],"Essential Question: How does an animal’s behavior help it survive? The mother groundhog whistles to communicate danger. Dogs are the most common type of service animal. Some young animals need their parents to protect and feed them because they cannot do it on their own."),
+    ...REVIEW_1611.slice(2,3).map(q=>({...q,section:q.section.replace("Module 1 Review","Module 1 Review (16/11)")})),
+    ...GAME_Q.slice(2,4).map(q=>({...q,section:q.section.replace("Game ·","Lesson 4 · Wrap-up game ·")})),
     sci("STEM Module Project and Module Wrap-up (10/11–13/11)","Design Protective Gear for a Sport · What keeps these animals safe?",[
       choice("gear","What must the protective gear do?",["Keep the players safe. It needs to protect at least one body part.","Help the players run faster.","Make the players look funny."],"Keep the players safe. It needs to protect at least one body part.","⛑️"),
       choice("tip","Tip for the project: think about ___.",["how animals protect themselves","what animals eat for lunch","how tall animals are"],"how animals protect themselves","💡"),
@@ -169,18 +182,18 @@
     id:"sci-u2m1-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Module 1 · Module Test (Lessons 1–4)",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1: Animal Parents and Their Offspring · Class Diary ${RANGE}`,scoreByField:true,
-      groups:groupsOf([["Module Opener","zoologist · Science Probe",1],["Lesson 1 · Animal Structures","Vocabulary · Inquiry · Sort Animals · Review",4],["Lesson 2 · Functions of Animal Structures","structure · function · protection",3],["Lesson 3 · Animals and Their Parents","offspring · trait · life cycle",1],["Lesson 4 · Animal Behaviors","Essential Question · signals · service animals",1],["STEM Module Project and Wrap-up","protective gear · What keeps these animals safe?",1]]),
+      groups:groupsOf([["Module Opener","zoologist · Science Probe",1],["Lesson 1 · Animal Structures","Vocabulary · Inquiry · Sort Animals · Review",4],["Module 1 Review (16/11)","Different Types of Animals · circle the structure",2],["Lesson 2 · Functions of Animal Structures","structure · function · protection",4],["Lesson 3 · Animals and Their Parents","offspring · trait · life cycle",1],["Lesson 4 · Animal Behaviors","Essential Question · signals · Animal Messages · born knowing or learned · the 4 animal behaviours",4],["STEM Module Project and Wrap-up","protective gear · What keeps these animals safe?",1]]),
       questions:TEST,readings:[notesCard("notes-sci-u2m1-t")]}
   });
 
   // ───── (3) Review: gộp mọi câu của các bài Science theo ngày trong Module 1 ─────
-  const L2="Lesson 2 · Functions of Animal Structures",L3="Lesson 3 · Animals and Their Parents",L4="Lesson 4 · Animal Behaviors",STEM="STEM Module Project",WRAP="Module Wrap-up";
+  const L2="Lesson 2 · Functions of Animal Structures",L3="Lesson 3 · Animals and Their Parents",L4="Lesson 4 · Animal Behaviors",STEM="STEM Module Project",WRAP="Module Wrap-up",REV="Module 1 Review (16/11)";
   const SOURCES=[["class-diary-2026-10-07-science",L2],["class-diary-2026-10-08-science",L2],["class-diary-2026-10-12-science",L2],["class-diary-2026-10-13-science",L2],
     ["class-diary-2026-10-15-science",L3],["class-diary-2026-10-16-science",L3],["class-diary-2026-10-20-science",L3],["class-diary-2026-10-22-science",L3],["class-diary-2026-10-23-science",L3],["class-diary-2026-10-27-science",L3],
     ["class-diary-2026-10-29-science",L4],["class-diary-2026-11-02-science",L4],["class-diary-2026-11-03-science",L4],["class-diary-2026-11-05-science",L4],["class-diary-2026-11-06-science",L4],
-    ["class-diary-2026-11-10-science",STEM],["class-diary-2026-11-12-science",STEM],["class-diary-2026-11-13-science",WRAP]];
+    ["class-diary-2026-11-10-science",STEM],["class-diary-2026-11-12-science",STEM],["class-diary-2026-11-13-science",WRAP],["class-diary-2026-11-16-science",REV]];
   const lessonOf=(q,lesson)=>/stem module/i.test(q.section)?STEM:lesson===L2&&/Lesson 3/i.test(q.section)?L3:lesson;
-  const buckets=new Map([L2,L3,L4,STEM,WRAP].map(t=>[t,[]])),readings=[notesCard("notes-sci-u2m1-r")],links=new Map([[GAME_URL,{label:"Play the game: Animal behaviors review",url:GAME_URL}]]);
+  const buckets=new Map([REV,L2,L3,L4,STEM,WRAP].map(t=>[t,[]])),readings=[notesCard("notes-sci-u2m1-r")],links=new Map([[GAME_URL,{label:"Play the game: Animal behaviors review",url:GAME_URL}]]);
   for(const [id,lesson] of SOURCES){
     const src=(window.quizSources||{})[id];if(!src) continue;
     const day=src.uploadDate.slice(5).split("-").reverse().join("/");
@@ -197,7 +210,7 @@
   registerQuiz({
     id:"sci-u2m1-review",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
     title:"Science Module 1 · Review (all lessons)",
-    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`All Science classes of Unit 2 Module 1 · Class Diary 07/10–13/11/2026`,scoreByField:true,
+    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`All Science classes of Unit 2 Module 1 · Class Diary 07/10–16/11/2026`,scoreByField:true,
       groups:groupsOf(parts.map(([t,list])=>[t,"",list.length])),questions:parts.flatMap(([,list])=>list),readings}
   });
 })();

@@ -1035,4 +1035,66 @@
     remember:["Open Syllable: go · so · no · she · he · be · we · hi · I · me","Closed Syllable: gob · soft · not · shell · help · beg · welt · hick · ill · melt"],
     cards:chunk(WW_OC,10).map((list,i,all)=>card(`Open or closed syllable? (${i+1}/${all.length})`,"Is it an Open Syllable or a Closed Syllable?",
       list.map(([w,g])=>sel(`ocs-${w.toLowerCase()}`,w,["Open Syllable","Closed Syllable"],g,g==="Open Syllable"?"🔓":"🚪")),list.map(([w,g])=>`${w} (${g})`).join(" · ")))});
+  // ───────── 87. Video "Proper and Common Noun Song" (Bibo KidloLand, không phụ đề → đọc storyboard) — LA 16/11 ─────────
+  const NOUN_KIDLO=[["man","John","🧑"],["mountain","Mount Everest","🏔️"],["dog","Rover","🐶"],["planet","Earth","🌍"],["city","New York","🏙️"]];
+  bonus({id:"bonus-video-common-proper-noun-song",urls:["https://youtu.be/emGW2RUVa2Y","https://www.youtube.com/watch?v=emGW2RUVa2Y"],title:"Proper and Common Noun Song",source:"Video · Bibo KidloLand · Common noun and proper noun",
+    remember:NOUN_KIDLO.map(([c,p])=>`common noun: ${c} · proper noun: ${p}`),
+    cards:[card("Proper and Common Noun Song","Watch the video. Is it a common noun or a proper noun?",
+      NOUN_KIDLO.flatMap(([c,p,icon])=>[sel(`cn-${c.replace(/ /g,"")}`,c,["common noun","proper noun"],"common noun",icon),sel(`pn-${p.replace(/ /g,"").toLowerCase()}`,p,["common noun","proper noun"],"proper noun",icon)]),
+      NOUN_KIDLO.map(([c,p])=>`${c} (common noun) → ${p} (proper noun)`).join(" · ")+". A proper noun starts with a capital letter.")]});
+
+  // ───────── 88–90. Videos StoryBots "SH", "NG", "TH" (Netflix Jr., không phụ đề → đọc storyboard) — LA 16/11 ─────────
+  bonus({id:"bonus-video-storybots-sh",urls:["https://youtu.be/K7UgI0JCebc","https://www.youtube.com/watch?v=K7UgI0JCebc"],title:"What Sound Does “SH” Make?",source:"Video · StoryBots: Learn to Read · sh",
+    remember:["Words with sh in the video: sheep · ship · brush · hush · shine · shampoo · shower · share · show"],
+    cards:[card("What Sound Does “SH” Make?","Watch the video. Choose the answer.",[
+      multi("sh-words","Which words from the video have sh? Choose 4.",["sheep","brush","shower","share","sock","bus"],["sheep","brush","shower","share"],"🐑"),
+      ch("sh-start","In which word is sh at the START?",["shampoo","brush","hush"],"shampoo","🧴"),
+      ch("sh-end","In which word is sh at the END?",["brush","ship","shine"],"brush","🪥"),
+      ch("sh-quiet","Which sh word means “be quiet”?",["hush","ship","shine"],"hush","🤫"),
+      ch("sh-ship","Which sh word names a big boat?",["ship","sip","chip"],"ship","🚢")
+    ],"s and h together make one sound: sh. sh at the start: sheep, ship, shine, shampoo, shower, share, show. sh at the end: brush, hush.")]});
+  bonus({id:"bonus-video-storybots-ng",urls:["https://youtu.be/9K70YXyyJ_M","https://www.youtube.com/watch?v=9K70YXyyJ_M"],title:"How To Use “NG” in Words",source:"Video · StoryBots: Learn to Read · ng",
+    remember:["Words with ng in the video: ding dong song · rings · wings · noticing · thinking · wrong · doing · running · hiking · humming · kissing · kangaroo · hummingbird · swinging · rocking"],
+    cards:[card("How To Use “NG” in Words","Watch the video. Choose the answer.",[
+      multi("ng-words","Which words from the video have ng? Choose 4.",["song","rings","wings","wrong","sun","win"],["song","rings","wings","wrong"],"🔔"),
+      ch("ng-ing","Many action words end with ___: running, hiking, humming, kissing.",["-ing","-ed","-s"],"-ing","🏃"),
+      ch("ng-kanga","Where is ng in kangaroo?",["in the middle: ka-ng-aroo","at the end","at the start"],"in the middle: ka-ng-aroo","🦘"),
+      ch("ng-bird","Which bird has ng in its name?",["hummingbird","robin","duck"],"hummingbird","🐦"),
+      ch("ng-ring","Which ng word names something you wear on your finger?",["ring","rig","rink"],"ring","💍")
+    ],"n and g together make one sound: ng. ng is often at the end: song, rings, wings, wrong, and -ing words (running, hiking, swinging, rocking). In kangaroo and hummingbird, ng is in the middle.")]});
+  bonus({id:"bonus-video-storybots-th",urls:["https://youtu.be/KN4nNA2o6Ts","https://www.youtube.com/watch?v=KN4nNA2o6Ts"],title:"What Sound Does “TH” Make?",source:"Video · StoryBots: Learn to Read · th",
+    remember:["th at the start: thrill · think · throw · thaw · this · that · there · then","th in the middle: together · feather · mother · weather","th at the end: math · north · path · bath"],
+    cards:[card("What Sound Does “TH” Make?","Watch the video. Where is th in the word?",[
+      sel("th-think","think",["at the start","in the middle","at the end"],"at the start","💭"),
+      sel("th-feather","feather",["at the start","in the middle","at the end"],"in the middle","🪶"),
+      sel("th-math","math",["at the start","in the middle","at the end"],"at the end","➗"),
+      sel("th-mother","mother",["at the start","in the middle","at the end"],"in the middle","👩"),
+      sel("th-bath","bath",["at the start","in the middle","at the end"],"at the end","🛁"),
+      sel("th-throw","throw",["at the start","in the middle","at the end"],"at the start","⚾"),
+      multi("th-words","Which words have th? Choose 3.",["path","weather","together","tap","wet"],["path","weather","together"],"🌦️")
+    ],"t and h together make one sound: th. Start: think, throw, thaw, this, that, there, then. Middle: together, feather, mother, weather. End: math, north, path, bath.")]});
+
+  // ───────── 91. Baamboozle 5043843 "Consonant Digraphs: th, sh, ng" (16 câu nguyên văn trang game) — LA 16/11 ─────────
+  const BZ_DG3=[["shop","sh"],["fish","sh"],["bath","th"],["wing","ng"],["bring","ng"],["thin","th"],["path","th"],["song","ng"],["crash","sh"]];
+  const BZ_READ3=[["SHIP","sh"],["SHED","sh"],["CASH","sh"],["RUSH","sh"],["DISH","sh"],["SHOP","sh"],["THUMB","th"]];
+  bonus({id:"bonus-baamboozle-digraphs-th-sh-ng",urls:["https://www.baamboozle.com/game/5043843"],title:"Consonant Digraphs: th, sh, ng",source:"Game · Baamboozle · 16 questions",
+    remember:["sh: shop · fish · crash · ship · shed · cash · rush · dish","th: bath · thin · path · thumb","ng: wing · bring · song"],
+    cards:[card("What is the digraph?","Read the word. What is the digraph?",BZ_DG3.map(([w,d])=>sel(`bzd-${w}`,`${w}: What is the digraph?`,["sh","th","ng"],d,"🔤")),BZ_DG3.map(([w,d])=>`${w} → ${d}`).join(" · ")),
+      card("Read the word and say the name","Read the word aloud. Which digraph do you see?",BZ_READ3.map(([w,d])=>sel(`bzr-${w.toLowerCase()}`,`Read the word: ${w}`,["sh","th","ng"],d,"🗣️")),BZ_READ3.map(([w,d])=>`${w} (${d})`).join(" · "))]});
+
+  // ───────── 92. Video "What is a Syllable? Open and Closed Syllables" (Kids Academy, đọc storyboard) — LA 16/11 ─────────
+  bonus({id:"bonus-video-open-closed-syllables-kids-academy",urls:["https://youtu.be/epk-hnVC10k","https://www.youtube.com/watch?v=epk-hnVC10k"],title:"What is a Syllable? Open and Closed Syllables",source:"Video · Kids Academy · Divide words into syllables",
+    remember:["Vowels: A E I O U","Open Syllables: ti-ger · pi-lot","Closed Syllables: sand-wich · car-pet · pic-nic","bas-ket-ball · ba-na-na"],
+    cards:[card("Divide Words into Syllables","Watch the video. Choose the answer.",[
+      multi("vowels","Which letters are vowels? Choose 5.",["A","E","I","O","U","B","T"],["A","E","I","O","U"],"🔠"),
+      ch("tiger","Divide the word: tiger",["ti-ger","tig-er","t-iger"],"ti-ger","🐯"),
+      ch("pilot","Divide the word: pilot",["pi-lot","pil-ot","p-ilot"],"pi-lot","✈️"),
+      ch("sandwich","Divide the word: sandwich",["sand-wich","sa-ndwich","sandw-ich"],"sand-wich","🥪"),
+      ch("carpet","Divide the word: carpet",["car-pet","ca-rpet","carp-et"],"car-pet","🧶"),
+      ch("picnic","Divide the word: picnic",["pic-nic","pi-cnic","picn-ic"],"pic-nic","🧺"),
+      sel("ti-open","ti in ti-ger is ___.",["an open syllable","a closed syllable"],"an open syllable","🔓"),
+      sel("pic-closed","pic in pic-nic is ___.",["an open syllable","a closed syllable"],"a closed syllable","🚪"),
+      sel("basket","How many syllables? bas-ket-ball",["1","2","3"],"3","🏀"),
+      sel("banana","How many syllables? ba-na-na",["1","2","3"],"3","🍌")
+    ],"Vowels: A E I O U. Open syllables: ti-ger, pi-lot. Closed syllables: sand-wich, car-pet, pic-nic. bas-ket-ball and ba-na-na have 3 syllables.")]});
 })();
