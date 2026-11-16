@@ -1,3 +1,5 @@
+// ĐÃ GỠ khỏi index.html ngày 16/11 (user đổi thành "Tổng hợp Science Unit 2 Module 1, Lesson 4"; Wrap-up Game đã chuyển sang quiz-summary-sci-u2m1-l4.js).
+// Giữ file để dùng lại bài Module Test (Lessons 1–4) khi cần — nếu bật lại thì KHÔNG đăng ký lại id sci-u2m1-wrapup-game.
 // TỔNG HỢP KIẾN THỨC — Science Unit 2 Module 1: Animal Parents and Their Offspring (cả Module, Class Diary 18/09 → 13/11/2026).
 // User yêu cầu 15/11: "Tạo thêm tổng hợp Science unit 2 module 1, đặc biệt nhớ check kĩ đường link play the game (class diary ngày 13/11 - đây là nội dung chính quiz)".
 // 3 bài trong nhóm Tổng hợp (uploadDate "weekly-sci-u2m1"):
@@ -85,13 +87,7 @@
       select("b-teach","The cheetah cubs watch their mother. They learn how to hunt.",BEH4,"Teaching","🐆")
     ],"The 4 animal behaviours: taking care, feeding, protecting and teaching. Taking care: parents groom their offspring to clean them. Feed: parents get and give food to their offspring. Protect: parents keep their offspring safe from harm. The cheetah cubs watch their mother and learn how to hunt.")
   ];
-  registerQuiz({
-    id:"sci-u2m1-wrapup-game",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
-    title:"Science Module 1 · Wrap-up Game: Animal behaviors review",
-    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"Module Wrap-up (13/11) · Play the game: Animal behaviors review · Unit 2 Module 1",scoreByField:true,
-      groups:groupsOf([["Play the game","Animal behaviors review · 10 questions",1],["Game words","signal · behaviour · learn · grooming",1],["Born knowing or learned?","whale · polar bear · baby birds",1],["The 4 animal behaviours","taking care · feeding · protecting · teaching",1]]),
-      questions:GAME_Q,readings:[notesCard("notes-sci-u2m1-g"),gameReading]}
-  });
+  // (Wrap-up Game đã chuyển sang quiz-summary-sci-u2m1-l4.js)
 
   // ───── (2) Module 1 Test ─────
   const TEST=[

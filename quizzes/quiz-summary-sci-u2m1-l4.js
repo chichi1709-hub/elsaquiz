@@ -1,5 +1,8 @@
 // TỔNG HỢP KIẾN THỨC — Science Unit 2 Module 1 · Lesson 4: Animal Behaviors (Class Diary từ 29/10/2026, sau bộ Lesson 3).
-// 2 bài trong nhóm Tổng hợp (uploadDate "weekly-…"), cùng cách với quiz-summary-sci-u2m1-l3.js:
+// User 16/11: đổi "Tổng hợp Science Unit 2 Module 1" thành "Tổng hợp Science Unit 2 Module 1, Lesson 4" (game play-the-game 13/11 chỉ có kiến thức Lesson 4)
+//   → chuyển bài Wrap-up Game (13/11) vào nhóm này; bộ Module 1 (quiz-summary-sci-u2m1.js) gỡ khỏi index.html.
+// 3 bài trong nhóm Tổng hợp (uploadDate "weekly-…"), cùng cách với quiz-summary-sci-u2m1-l3.js:
+//   (0) Wrap-up Game: 10 câu game Wordwall 123817218 "Animal behaviors review" (nguyên văn, window.SCI_WRAPUP_GAME từ quiz-2026-11-13.js) + dạng hỏi lại;
 //   (1) Key Concepts Test: câu hỏi chắt lọc kiến thức chính của Lesson 4 (≤ 30 ý → 1 Part);
 //   (2) Review: gộp TOÀN BỘ câu của các bài Science theo ngày trong SOURCES, xếp theo chủ đề, mang theo bài đọc và link Bonus.
 // Diary mới của Lesson 4: thêm id vào SOURCES, thêm dòng NOTES, thêm câu chính vào Key Concepts Test (≤ 30).
@@ -12,10 +15,16 @@
   const select=(id,label,choices,answer,icon)=>({id,label,type:"select",choices,answer,icon});
   const sci=(section,text,fields,explain,extra={})=>({section,text,type:"compound",img:S,layout:"icon-activity",fields,explain,...extra});
   const groupsOf=parts=>{let start=0;return parts.map(([title,subtitle,count],index)=>{const group={title:`${index+1}. ${title}`,subtitle,start,end:start+count-1};start+=count;return group})};
-  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–12/11/2026";
+  const KEY="weekly-sci-u2m1-l4",LABEL="Tổng hợp kiến thức · Unit 2 Module 1 · Lesson 4",RANGE="29/10–13/11/2026";
+  const GAME_URL="https://wordwall.net/resource/123817218/khoa-h%E1%BB%8Dc/animal-behaviors-review",GAME=window.SCI_WRAPUP_GAME||[],BEH4=["Taking care","Feeding","Protecting","Teaching"];
   const BEHAVIOR=["Taking care","Feed","Protect"],GROUPS=["Feeding","Protecting","Teaching"],VOC=["behavior","learn","signal"];
 
   const NOTES=[
+    "📅 Class Diary: 13/11/2026 · Module Wrap-up",
+    "(13/11) Rediscover the Phenomenon: What keeps these animals safe? Look at your project to help you answer the question.",
+    "(13/11) Game: signal — a sound or movement that gives information · behaviour — the way an animal acts or does something · grooming — cleaning",
+    "(13/11) Animals learn behavior from their parents. Some animals are born already knowing some behavior: baby whales can swim. A polar bear has to learn hunting.",
+    "(13/11) The 4 animal behaviours: taking care, feeding, protecting and teaching.",
     "📅 Class Diary: 12/11/2026",
     "(12/11) STEM Module Project: Design Protective Gear for a Sport",
     "(12/11) Presentation: present your protective gear to the class.",
@@ -60,6 +69,39 @@
     "(29/10) Feed: Parents get and give food to their offspring.",
     "(29/10) Protect: Parents keep their offspring safe from harm."
   ];
+
+  // ───── (0) Wrap-up Game (Class Diary 13/11) ─────
+  const gameReading={id:"game-sci-u2m1",title:"Play the game: Animal behaviors review",byline:"Module Wrap-up · Class Diary 13/11",mode:"bonus",links:[{label:"Play the game: Animal behaviors review",url:GAME_URL}],text:""};
+  const GAME_Q=[
+    sci("Play the game · Animal behaviors review (13/11)","Wordwall quiz · 10 questions. Choose the correct answer.",
+      GAME.map(([q,a,b,icon],i)=>choice(`gm${i+1}`,q,[a,b],a,icon)),
+      GAME.map(([q,a])=>`${q} → ${a}`).join(" · "),{readingId:"game-sci-u2m1"}),
+    sci("Game words · Which word?","Same game, new way: read the meaning and choose the word.",[
+      select("w-signal","a sound or movement that gives information",["signal","behaviour","grooming","learn"],"signal","📣"),
+      select("w-behaviour","the way an animal acts or does something",["behaviour","signal","grooming","learn"],"behaviour","🐾"),
+      select("w-learn","to gain knowledge or information",["learn","signal","grooming","behaviour"],"learn","📘"),
+      select("w-grooming","cleaning",["grooming","learn","signal","behaviour"],"grooming","🪮")
+    ],"signal: a sound or movement that gives information · behaviour: the way an animal acts or does something · learn: to gain knowledge or information · grooming: cleaning"),
+    sci("Game · Born knowing or learned?","Some animals are born already knowing some behavior. Animals learn behavior from their parents.",[
+      fixed("b-whale","A baby whale can swim right away.",["born knowing","learned from parents"],"born knowing","🐋"),
+      fixed("b-polar","A polar bear hunts for food.",["learned from parents","born knowing"],"learned from parents","🐻‍❄️"),
+      fixed("b-bird","Baby birds make a noise and open their mouth when they are ready to eat. This is a ___.",["signal","grooming"],"signal","🐦")
+    ],"Baby whales are born already knowing how to swim. A polar bear has to learn hunting from its parents. Baby birds make a noise and open their mouth: a signal to their parents."),
+    sci("Game · The 4 animal behaviours","Taking care · Feeding · Protecting · Teaching",[
+      multi("b-four","What are the 4 animal behaviours? Choose 4.",[...BEH4,"Sleeping","Hiding"],BEH4,"4️⃣"),
+      select("b-groom","Parents groom their offspring to clean them.",BEH4,"Taking care","🪮"),
+      select("b-feed","Parents get and give food to their offspring.",BEH4,"Feeding","🍼"),
+      select("b-protect","Parents keep their offspring safe from harm.",BEH4,"Protecting","🛡️"),
+      select("b-teach","The cheetah cubs watch their mother. They learn how to hunt.",BEH4,"Teaching","🐆")
+    ],"The 4 animal behaviours: taking care, feeding, protecting and teaching. Taking care: parents groom their offspring to clean them. Feed: parents get and give food to their offspring. Protect: parents keep their offspring safe from harm. The cheetah cubs watch their mother and learn how to hunt.")
+  ];
+  registerQuiz({
+    id:"sci-u2m1-wrapup-game",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    title:"Science Lesson 4 · Wrap-up Game: Animal behaviors review",
+    subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"Module Wrap-up (13/11) · Play the game: Animal behaviors review · Unit 2 Module 1 · Lesson 4: Animal Behaviors",scoreByField:true,
+      groups:groupsOf([["Play the game","Animal behaviors review · 10 questions",1],["Game words","signal · behaviour · learn · grooming",1],["Born knowing or learned?","whale · polar bear · baby birds",1],["The 4 animal behaviours","taking care · feeding · protecting · teaching",1]]),
+      questions:GAME_Q,readings:[{id:"notes-sci-l4g",title:"Remember — Science Lesson 4",byline:`Animal Behaviors · Class Diary ${RANGE}`,mode:"notes",text:NOTES.join("\n")},gameReading]}
+  });
 
   // ───── (1) Key Concepts Test ─────
   const TEST=[
@@ -122,7 +164,7 @@
   });
 
   // ───── (2) Review: gộp mọi câu của các bài Science theo ngày thuộc Lesson 4 ─────
-  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"],["class-diary-2026-11-10-science"],["class-diary-2026-11-12-science"]];
+  const SOURCES=[["class-diary-2026-10-29-science"],["class-diary-2026-11-02-science"],["class-diary-2026-11-03-science"],["class-diary-2026-11-05-science"],["class-diary-2026-11-06-science"],["class-diary-2026-11-10-science"],["class-diary-2026-11-12-science"],["class-diary-2026-11-13-science"]];
   const TOPICS=[["Stories and texts",/listen|close reading|story|order of events/i],["Inquiry activities",/inquiry|investigate|record|prediction/i],["STEM Module Project",/stem module/i],["Animal Behaviors",/.*/]];
   const buckets=new Map(TOPICS.map(([t])=>[t,[]])),readings=[{id:"notes-sci-l4r",title:"Remember — Science Lesson 4",byline:"Animal Behaviors",mode:"notes",text:NOTES.join("\n")}],links=new Map();
   for(const [id,filter] of SOURCES){
