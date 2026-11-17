@@ -71,7 +71,7 @@
     ],"Young animals look like their parents. Their structures are the same. The way they move is the same. Parents and offspring can have a different coloring.")
   ];
   registerQuiz({
-    id:"sci-u2m1-l3-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-l3-test",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Lesson 3 · Key Concepts Test",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"Key concepts · Unit 2 Module 1 · Lesson 3: Animals and Their Parents · Class Diary 13/10–27/10/2026",scoreByField:true,
       groups:groupsOf([["Key vocabulary","trait · offspring · young · life cycle",1],["Parents and offspring","similar, but not exactly the same",1],["Traits","looks · sounds · acts",1],["Growing and changing","eggs · dogs · meerkats",1],["Baby animals","parent and baby",1],["Summarize It","Lesson 3 Review · Student Book pages 48–49",1]]),
@@ -99,7 +99,7 @@
   if(links.size) readings.push({id:"bonus-sci-l3",title:"Bonus · Video & game",byline:"Links from the Class Diaries of Lesson 3",mode:"bonus",links:[...links.values()],text:""});
   const parts=[...buckets].filter(([,list])=>list.length);
   registerQuiz({
-    id:"sci-u2m1-l3-review",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-l3-review",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Lesson 3 · Review (all lessons)",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"All Lesson 3 classes · Unit 2 Module 1 · Animals and Their Parents · Class Diary 13/10–27/10/2026",scoreByField:true,
       groups:groupsOf(parts.map(([t,list])=>[t,"",list.length])),questions:parts.flatMap(([,list])=>list),readings}

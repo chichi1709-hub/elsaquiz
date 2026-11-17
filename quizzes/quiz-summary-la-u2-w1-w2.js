@@ -360,7 +360,7 @@
   // Bài kiểm tra mẫu (≤ 30 ý → 1 Part, giữ đúng thứ tự đề thật).
   registerQuiz({
     id:"la-u2-w1-w2-test",
-    uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức Tuần 1&2",
+    uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức Tuần 1&2",uploadSet:"Unit 2",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Practice Test",
     subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"Test format · Reading 1–6 · High-frequency words 7–10 · Phonemic awareness 11–13 · Phonics 14–17 · Grammar 18–20",scoreByField:true,
@@ -482,7 +482,7 @@
 
   registerQuiz(mergeDailyLA({
     id:"la-u2-w1-w2-summary",
-    uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức Tuần 1&2",
+    uploadDate:"weekly-la-u2-w1-w2",uploadLabel:"Tổng hợp kiến thức Tuần 1&2",uploadSet:"Unit 2",
     subjectKey:"language",
     title:"LA_U2_W1+2 · Review (more practice)",
     subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:"More practice · Unit 2 Week 1 + Week 2 · Class Diary 01/10–21/10/2026",scoreByField:true,

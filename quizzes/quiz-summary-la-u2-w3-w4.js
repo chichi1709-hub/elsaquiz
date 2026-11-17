@@ -242,7 +242,7 @@
   const bonusOf=k=>linkParts[k].length?[{id:`bonus-la-u2w34-p${k+1}`,title:"Bonus · Video & game",byline:"Links from the Class Diaries of Week 3 and Week 4",mode:"bonus",links:linkParts[k],text:""}]:[];
   const SUB="Week 3 + Week 4 · All knowledge of the lessons";
   registerQuiz({
-    id:"la-u2-w3-w4-practice-p1",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
+    id:"la-u2-w3-w4-practice-p1",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2",subjectKey:"language",
     title:"Practice Test - Part 1",
     subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:`${SUB} · Part 1/${PARTS} · Test format: Reading 1–6 · High-frequency words 7–10 · Phonemic awareness 11–13 · Phonics 14–17 · Grammar 18–20`,scoreByField:true,
       groups:groupsOf([
@@ -260,7 +260,7 @@
     const runs=[];items.forEach(x=>{const last=runs[runs.length-1];if(last&&last[0]===x.topic) last[2]++;else runs.push([x.topic,"",1])});
     const used=new Set(questions.map(q=>q.readingId).filter(Boolean));
     registerQuiz({
-      id:`la-u2-w3-w4-practice-p${k+2}`,uploadDate:KEY,uploadLabel:LABEL,subjectKey:"language",
+      id:`la-u2-w3-w4-practice-p${k+2}`,uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2",subjectKey:"language",
       title:`Practice Test - Part ${k+2}`,
       subject:{name:"Language Arts",icon:"📚",accent:"#9b69e8",soft:"#f5efff",subtitle:`${SUB} · Part ${k+2}/${PARTS}`,scoreByField:true,
         groups:groupsOf(runs),questions,

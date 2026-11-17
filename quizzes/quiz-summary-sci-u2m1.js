@@ -179,7 +179,7 @@
     ],"A school needs protective gear for its sports teams. The gear needs to protect at least one body part. Think about how animals protect themselves. The armadillo has a shell; a shell protects the animal’s body.")
   ];
   registerQuiz({
-    id:"sci-u2m1-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-test",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Module 1 · Module Test (Lessons 1–4)",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1: Animal Parents and Their Offspring · Class Diary ${RANGE}`,scoreByField:true,
       groups:groupsOf([["Module Opener","zoologist · Science Probe",1],["Lesson 1 · Animal Structures","Vocabulary · Inquiry · Sort Animals · Review",4],["Module 1 Review (16/11)","Different Types of Animals · circle the structure",2],["Lesson 2 · Functions of Animal Structures","structure · function · protection",4],["Lesson 3 · Animals and Their Parents","offspring · trait · life cycle",1],["Lesson 4 · Animal Behaviors","Essential Question · signals · Animal Messages · born knowing or learned · the 4 animal behaviours",4],["STEM Module Project and Wrap-up","protective gear · What keeps these animals safe?",1]]),
@@ -208,7 +208,7 @@
   readings.push({id:"bonus-sci-u2m1",title:"Bonus · Video & game",byline:"All links from the Science Class Diaries of Module 1",mode:"bonus",links:[...links.values()],text:""});
   const parts=[...buckets].filter(([,list])=>list.length);
   registerQuiz({
-    id:"sci-u2m1-review",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-review",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Module 1 · Review (all lessons)",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`All Science classes of Unit 2 Module 1 · Class Diary 07/10–16/11/2026`,scoreByField:true,
       groups:groupsOf(parts.map(([t,list])=>[t,"",list.length])),questions:parts.flatMap(([,list])=>list),readings}

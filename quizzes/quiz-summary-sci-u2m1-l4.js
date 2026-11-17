@@ -96,7 +96,7 @@
     ],"The 4 animal behaviours: taking care, feeding, protecting and teaching. Taking care: parents groom their offspring to clean them. Feed: parents get and give food to their offspring. Protect: parents keep their offspring safe from harm. The cheetah cubs watch their mother and learn how to hunt.")
   ];
   registerQuiz({
-    id:"sci-u2m1-wrapup-game",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-wrapup-game",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Lesson 4 · Wrap-up Game: Animal behaviors review",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:"Module Wrap-up (13/11) · Play the game: Animal behaviors review · Unit 2 Module 1 · Lesson 4: Animal Behaviors",scoreByField:true,
       groups:groupsOf([["Play the game","Animal behaviors review · 10 questions",1],["Game words","signal · behaviour · learn · grooming",1],["Born knowing or learned?","whale · polar bear · baby birds",1],["The 4 animal behaviours","taking care · feeding · protecting · teaching",1]]),
@@ -155,7 +155,7 @@
     ],"A school needs protective gear for its sports teams. Design protective gear to keep the players safe. The gear needs to protect at least one body part. Think about how animals protect themselves. We will wear it on our head and it will keep our head safe.")
   ];
   registerQuiz({
-    id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-l4-test",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Lesson 4 · Key Concepts Test",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`Key concepts · Unit 2 Module 1 · Lesson 4: Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
       groups:groupsOf([["Lesson 4","Animal Behaviors · Science Probe · Vervet Monkeys",1],["How animal parents help their young","feed · protect · teach · take care of",1],["Inquiry Activity","What Animals Do · FIRST, NEXT, LAST · Sort the cards",2],["Communicate","Student Book page 56",1],["Listening Comprehension","The Hungry Groundhog",1],["Signals and behaviors","behavior · learn · signal · The Burrow · Animal Messages",1],["Lesson 4 Review","Essential Question · Summarize It",1],["STEM Module Project","Design Protective Gear for a Sport",1]]),
@@ -181,7 +181,7 @@
   if(links.size) readings.push({id:"bonus-sci-l4",title:"Bonus · Video & game",byline:"Links from the Class Diaries of Lesson 4",mode:"bonus",links:[...links.values()],text:""});
   const parts=[...buckets].filter(([,list])=>list.length);
   registerQuiz({
-    id:"sci-u2m1-l4-review",uploadDate:KEY,uploadLabel:LABEL,subjectKey:"science",
+    id:"sci-u2m1-l4-review",uploadDate:KEY,uploadLabel:LABEL,uploadSet:"Unit 2 Module 1",subjectKey:"science",
     title:"Science Lesson 4 · Review (all lessons)",
     subject:{name:"Science",icon:"🐾",accent:"#31a66d",soft:"#f5efff",subtitle:`All Lesson 4 classes · Unit 2 Module 1 · Animal Behaviors · Class Diary ${RANGE}`,scoreByField:true,
       groups:groupsOf(parts.map(([t,list])=>[t,"",list.length])),questions:parts.flatMap(([,list])=>list),readings}

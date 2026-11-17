@@ -597,6 +597,10 @@ html{scroll-behavior:auto}body{overflow-y:auto;overscroll-behavior-y:auto}.top-n
 .summary-subject.science .summary-subject-heading strong{color:#1f8a57}
 .summary-subject.math .summary-subject-heading strong{color:#d8661c}
 .summary-collection{cursor:default}
+.summary-set{border-style:double;border-width:4px}
+.summary-set-list{list-style:none;margin:6px 0 8px;padding:0;display:grid;gap:4px}
+.summary-set-list li{padding:4px 10px;border-radius:10px;background:#f8f4ff;font-weight:800;color:#3d2a7a}
+.summary-set-list li span{font-weight:600;color:#7a6aa8}
 .summary-none{margin:0;padding:10px 12px;border-radius:12px;background:#faf8fd;color:#7a7488;font-weight:700}
 .summary-more,.summary-back{justify-self:start;min-height:42px;padding:6px 16px;border:2px solid #d9cdf3;border-radius:12px;background:#f8f4ff;color:#5b3fc4;font:inherit;font-weight:900;cursor:pointer}
 .summary-back{margin:0 0 12px}
